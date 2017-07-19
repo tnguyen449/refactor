@@ -1,0 +1,61 @@
+strip-bom@3.0.0 node_modules\eslint\node_modules\strip-bom -> node_modules\eslint-plugin-import\node_modules\strip-bom
+- shelljs@0.7.8 node_modules\eslint\node_modules\shelljs
+- user-home@2.0.0 node_modules\eslint\node_modules\user-home
+- pkg-up@1.0.0 node_modules\pkg-up
+blur_admin@1.3.0 H:\blur-admin-1.3.1
++-- UNMET PEER DEPENDENCY eslint@4.2.0
+| +-- ajv@5.2.2 
+| | +-- fast-deep-equal@1.0.0 
+| | `-- json-schema-traverse@0.3.1 
+| +-- debug@2.6.8 
+| | `-- ms@2.0.0 
+| +-- eslint-scope@3.7.1 
+| +-- inquirer@3.2.0 
+| | +-- ansi-escapes@2.0.0 
+| | +-- chalk@2.0.1 
+| | | +-- ansi-styles@3.1.0 
+| | | | `-- color-convert@1.9.0 
+| | | `-- supports-color@4.2.0 
+| | |   `-- has-flag@2.0.0 
+| | +-- cli-cursor@2.1.0 
+| | | `-- restore-cursor@2.0.0 
+| | |   `-- onetime@2.0.1 
+| | |     `-- mimic-fn@1.1.0 
+| | +-- external-editor@2.0.4 
+| | | +-- iconv-lite@0.4.18 
+| | | +-- jschardet@1.5.0 
+| | | `-- tmp@0.0.31 
+| | +-- figures@2.0.0 
+| | +-- mute-stream@0.0.7 
+| | +-- run-async@2.3.0 
+| | | `-- is-promise@2.1.0 
+| | +-- rx-lite@4.0.8 
+| | +-- rx-lite-aggregates@4.0.8 
+| | +-- string-width@2.1.1 
+| | | `-- is-fullwidth-code-point@2.0.0 
+| | `-- strip-ansi@4.0.0 
+| |   `-- ansi-regex@3.0.0 
+| +-- pluralize@4.0.0 
+| +-- progress@2.0.0 
+| `-- table@4.0.1 
+|   `-- ajv@4.11.8 
++-- eslint-config-standard@10.2.1 
++-- eslint-plugin-import@2.7.0 
+| +-- debug@2.6.8 
+| | `-- ms@2.0.0 
+| +-- eslint-import-resolver-node@0.3.1 
+| | `-- debug@2.6.8 
+| |   `-- ms@2.0.0 
+| `-- read-pkg-up@2.0.0 
+|   +-- find-up@2.1.0 
+|   | `-- locate-path@2.0.0 
+|   |   +-- p-locate@2.0.0 
+|   |   | `-- p-limit@1.1.0 
+|   |   `-- path-exists@3.0.0 
+|   `-- read-pkg@2.0.0 
+|     +-- load-json-file@2.0.0 
+|     `-- path-type@2.0.0 
++-- eslint-plugin-node@5.1.1 
++-- eslint-plugin-promise@3.5.0 
+`-- eslint-plugin-standard@3.0.1 
+

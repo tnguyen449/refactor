@@ -1,0 +1,81 @@
+<!--start column sender-->
+<div class="col-md-6">
+    <div class="panel panel-default height">
+        <!--sender heading form-->
+        <div class="panel-heading">
+            <h2>Người Gửi</h2>
+        </div>
+        <!--sender body form-->
+        <div class="panel-body">
+            <!--input sender name-->
+            <div class="form-group has-feedback" ng-class="{'has-error': vm.customerInfoVM.senderName.$invalid && (vm.customerInfoVM.senderName.$dirty || vm.customerInfoVM.senderName.$submitted)}">
+                <label for="exampleUsername1">Họ Tên</label>
+                <input type="text" class="form-control" name="username" placeholder="Nhập Họ và Tên Người Gửi" ng-model="vm.customerInfoVM.senderName" required>
+                <span class="help-block error-block basic-block">Vui Lòng Nhập Họ Tên Người Gửi</span>
+            </div>
+            <!--input sender phone-->
+            <div class="form-group has-feedback" ng-class="{'has-error': vm.customerInfoVM.senderPhone.$invalid && (vm.customerInfoVM.senderPhone.$dirty || vm.customerInfoVM.senderPhone.$submitted)}">
+                <label for="exampleInputEmail1">Số Điện Thoại</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="Nhập Số Điện Thoại Người Gửi" ng-model="vm.customerInfoVM.senderPhone" required>
+                <span class="help-block error-block basic-block">Vui Lòng Nhập Số Điện Thoại Người Gửi</span>
+            </div>
+            <!--dropdown send from-->
+            <div class="form-group">
+                <label class="control-label"><span class="require">* </span>Gửi Từ:</label> {{vm.bolInfo.BolFrom.Name}}
+                <!--Dropdown Gửi Từ-->
+                <div class="form-group">
+                    <ui-select ng-model="vm.bolInfo.BolFrom.Name.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
+                        <ui-select-match placeholder="Chọn Nơi Gửi">
+                            {{$select.selected.Name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="branch in vm.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                            <span>{{branch.Name | highlight: $select.search}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end column sender-->
+
+<!--start column receiver-->
+<div class="col-md-6">
+    <div class="panel panel-default height">
+        <!--receiver heading form-->
+        <div class="panel-heading">
+            <h2>Người Nhận</h2>
+        </div>
+        <!--receiver body form-->
+        <div class="panel-body">
+            <!--input receiver name-->
+            <div class="form-group">
+                <label for="exampleInputPassword1">Họ Tên</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Nhập Họ và Tên Người Nhận" ng-model="vm.customerInfoVM.receiverName">
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+            <!--input receiver phone-->
+            <div class="form-group">
+                <label for="exampleInputConfirmPassword1">Số Điện Thoại</label>
+                <input type="text" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Nhập Số Điện Thoại Người Nhận" ng-model="vm.customerInfoVM.receiverPhone">
+                <span class="help-block error-block basic-block">Passwords should match</span>
+            </div>
+            <!--dropdown send to -->
+            <div class="form-group">
+                <label class="control-label"><span class="require">* </span>Gửi Đến:</label>
+                <!--Dropdown gửi từ-->
+                <div class="form-group">
+                    <ui-select ng-model="vm.bolInfo.BolTo.Name.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
+                        <ui-select-match placeholder="Chọn Nơi Gửi">
+                            {{$select.selected.Name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="branch in vm.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                            <span ng-bind-html="branch.Name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end column receiver-->

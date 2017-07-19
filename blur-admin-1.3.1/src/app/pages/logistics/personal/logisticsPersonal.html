@@ -1,0 +1,25 @@
+<div ba-panel ba-panel-title="TẠO MỚI ĐƠN VẬN" ba-panel-class="with-scroll">
+    <!--start form wizard group-->
+    <ba-wizard>
+        <!--start step 1-->
+        <ba-wizard-step title="Thông Tin Khách Hàng">
+            <div class="widgets">
+                <div class="row">
+                    <div data-ng-include="'app/pages/logistics/personal/logisticsPersonalStep_one.html'"></div>
+                </div>
+            </div>
+        </ba-wizard-step>
+        <!--end step 1-->
+
+        <!--start step 2-->
+        <ba-wizard-step title="Thông Tin Đơn Hàng">
+            <div class="widgets">
+                <div class="row">
+                    <div data-ng-include="'app/pages/logistics/personal/logisticsPersonalStep_two.html'"></div>
+                </div>
+            </div>
+        </ba-wizard-step>
+        <!--end step 2-->
+    </ba-wizard>
+    <!--end form wizard group-->
+</div>
