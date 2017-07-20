@@ -28,7 +28,7 @@
                     setPrev: setPrev
                 };
 
-                // wizard.addCustomer($scope.customer);
+                wizard.addCustomer($scope.customer);
 
                 wizard.addTab(tab);
 

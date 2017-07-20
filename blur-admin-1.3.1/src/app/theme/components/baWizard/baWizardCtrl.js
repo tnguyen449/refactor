@@ -12,17 +12,17 @@
         vm.tabNum = 0;
         vm.progress = 0;
 
-        // vm.data = [];
-        // vm.getCustomer = function() {
-        //     vm.data = shareDataService.getList();
-        //     console.log(vm.data);
-        // }
+        vm.data = [];
 
-        // vm.addCustomer = function(item) {
-        //     shareDataService.addItem(item);
-        //     vm.data = shareDataService.getList();
-        //     console.log(vm.data);
-        // }
+        vm.addCustomer = function(item) {
+            shareDataService.addItem(item);
+        }
+
+        vm.data = shareDataService.getList();
+
+        vm.getCustomer = function() {
+            console.log(vm.data);
+        };
 
         vm.addTab = function(tab) {
             tab.setPrev(vm.tabs[vm.tabs.length - 1]);

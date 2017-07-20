@@ -161,38 +161,38 @@
                         <!-- dropdown merchandise types -->
                         <td style="border-top:none">
                             <select ng-change="vm.calculate(item)" ng-model="item.type" class="input-sm form-control" ng-options="type.MerchandiseType1 group by type.Description for type in vm.merchandiseTypeVM" name="sendTo" class="form-control">
-                                                <option>Chọn Loại Hàng</option>
-                                            </select>
+                                    <option>Chọn Loại Hàng</option>
+                            </select>
                         </td>
                         <!-- input quantity -->
                         <td style="border-top:none">
                             <input type="number" class="input-sm form-control" ng-model="item.amount" min: "0">
                         </td>
                         <!-- input weight -->
-                        <td class="col-sm-2 " style="border-top:none ">
-                            <div class="input-group ">
-                                <input type="text " class="input-sm form-control " ng-model="item.quantity " ng-change="vm.calculate(item) ">
-                                <span class="input-group-addon input-group-addon-primary addon-right " style="width:60px ">{{item.type.CalculationUnit}}</span>
+                        <td class="col-sm-2" style="border-top:none">
+                            <div class="input-group">
+                                <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="vm.calculate(item)">
+                                <span class="input-group-addon input-group-addon-primary addon-right" style="width:60px">{{item.type.CalculationUnit}}</span>
                             </div>
                         </td>
                         <!-- check box declare values -->
-                        <td class="text-center " style="border-top:none ">
-                            <input type="checkbox " ng-model='item.isDeclaredValue' ng-change="vm.toggleDeclareValueInput(item) " />
+                        <td class="text-center" style="border-top:none">
+                            <input type="checkbox" ng-model="item.isDeclaredValue" ng-change="vm.toggleDeclareValueInput(item)" />
                         </td>
                         <!-- input declare values -->
-                        <td style="border-top:none ">
-                            <input type="text " class="input-sm form-control " ng-disabled="item.isDeclareDisabled " ng-model="item.declareValue " placeholder="Khai giá ">
+                        <td style="border-top:none">
+                            <input type="text" class="input-sm form-control" ng-disabled="item.isDeclareDisabled" ng-model="item.declareValue" placeholder="Khai giá">
                         </td>
                         <!-- input predictable values -->
-                        <td style="border-top:none ">
-                            <input type="text " class="input-sm form-control " ng-disabled="item.isSpecialDisabled " ng-model="item.specialPrice " placeholder="Giá Ước Tính ">
+                        <td style="border-top:none">
+                            <input type="text" class="input-sm form-control" ng-disabled="item.isSpecialDisabled" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
                         </td>
                         <!-- input description -->
-                        <td style="border-top:none ">
-                            <input type="text " class="input-sm form-control " ng-model="item.description " placeholder="Ghi Chú ">
+                        <td style="border-top:none">
+                            <input type="text" class="input-sm form-control" ng-model="item.description" placeholder="Ghi Chú">
                         </td>
                         <!-- binding total -->
-                        <td style="border-top:none ">
+                        <td style="border-top:none">
                             <label><span>{{item.total}}</label>
                         </td>
                     </tr>
@@ -200,53 +200,53 @@
                 <tfoot>
                     <tr>
                         <!-- canvas sub total column -->
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
                         <!-- title subtotal column -->
-                        <td class="pull-right " style="border-top:none ">
+                        <td class="pull-right" style="border-top:none">
                             <strong>Tổng Cộng: </strong>
                         </td>
                         <!-- binding subtotal -->
-                        <td style="border-top:none ">{{vm.bolInfoVM.total}}</td>
+                        <td style="border-top:none">{{vm.bolInfoVM.total}}</td>
                     </tr>
                     <tr>
                         <!-- canvas prepaid column -->
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
                         <!-- title prepaid column -->
-                        <td class="pull-right " style="border-top:none ">
+                        <td class="pull-right" style="border-top:none">
                             <strong>Trả trước: </strong>
                         </td>
                         <!-- input prepaid value -->
-                        <td style="border-top:none ">
-                            <input type="text " class="input-sm form-control " ng-change="vm.calculateBolLiabilities() " ng-model="vm.bolInfoVM.prepaid ">
+                        <td style="border-top:none">
+                            <input type="text" class="input-sm form-control" ng-change="vm.calculateBolLiabilities()" ng-model="vm.bolInfoVM.prepaid">
                         </td>
                     </tr>
                     <tr>
                         <!-- canvas liabilities column -->
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
-                        <td style="border-top:none "></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
+                        <td style="border-top:none"></td>
                         <!-- title liabilities column -->
-                        <td class="pull-right " style="border-top:none ">
+                        <td class="pull-right" style="border-top:none">
                             <strong>Còn  nợ: </strong>
                         </td>
                         <!-- binding liabilities values -->
-                        <td style="border-top:none ">{{vm.bolInfoVM.liabilities}}</td>
+                        <td style="border-top:none">{{vm.bolInfoVM.liabilities}}</td>
                     </tr>
                 </tfoot>
             </table>
