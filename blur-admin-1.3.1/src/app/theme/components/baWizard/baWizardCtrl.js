@@ -5,12 +5,24 @@
         .controller('baWizardCtrl', baWizardCtrl);
 
     /** @ngInject */
-    function baWizardCtrl($scope) {
+    function baWizardCtrl($scope, shareDataService) {
         var vm = this;
         vm.tabs = [];
 
         vm.tabNum = 0;
         vm.progress = 0;
+
+        // vm.data = [];
+        // vm.getCustomer = function() {
+        //     vm.data = shareDataService.getList();
+        //     console.log(vm.data);
+        // }
+
+        // vm.addCustomer = function(item) {
+        //     shareDataService.addItem(item);
+        //     vm.data = shareDataService.getList();
+        //     console.log(vm.data);
+        // }
 
         vm.addTab = function(tab) {
             tab.setPrev(vm.tabs[vm.tabs.length - 1]);
@@ -38,9 +50,8 @@
             return vm.tabNum == vm.tabs.length - 1;
         };
 
-        vm.nextTab = function(bolInfo) {
+        vm.nextTab = function() {
             vm.selectTab(vm.tabNum + 1);
-            console.log(bolInfo);
         };
 
         vm.previousTab = function() {

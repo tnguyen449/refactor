@@ -21,7 +21,7 @@
                 }
             })
             .state('logistics.personal', {
-                url: '/logistics/personal',
+                url: '/personal',
                 templateUrl: 'app/pages/logistics/personal/logisticsPersonal.html',
                 title: 'Logistics Personal',
                 controller: 'PersonalCtrl',
@@ -32,7 +32,7 @@
                 }
             })
             .state('logistics.area', {
-                url: '/logistics/area',
+                url: '/area',
                 templateUrl: 'app/pages/logistics/area/logisticsArea.html',
                 title: 'Logistics Area',
                 controller: 'AreaCtrl',

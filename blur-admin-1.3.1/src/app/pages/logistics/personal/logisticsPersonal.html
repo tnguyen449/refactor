@@ -2,10 +2,10 @@
     <!--start form wizard group-->
     <ba-wizard>
         <!--start step 1-->
-        <ba-wizard-step title="Thông Tin Khách Hàng">
+        <ba-wizard-step title="Thông Tin Khách Hàng" info="vm.customerInfoVM">
             <div class="widgets">
                 <div class="row">
-                    <div data-ng-include="'app/pages/logistics/personal/logisticsPersonalStep_one.html'"></div>
+                    <div data-ng-include="'app/pages/logistics/personal/customerInfo/customerInfo.html'"></div>
                 </div>
             </div>
         </ba-wizard-step>
@@ -14,12 +14,18 @@
         <!--start step 2-->
         <ba-wizard-step title="Thông Tin Đơn Hàng">
             <div class="widgets">
-                <div class="row">
-                    <div data-ng-include="'app/pages/logistics/personal/logisticsPersonalStep_two.html'"></div>
-                </div>
+                <div data-ng-include="'app/pages/logistics/personal/billOfLandingInfo/billOfLandingInfo.html'"></div>
             </div>
         </ba-wizard-step>
         <!--end step 2-->
+
+        <!--start step 3-->
+        <ba-wizard-step title="Hoàn Tất">
+            <div class="widgets">
+                <div data-ng-include="'app/pages/logistics/personal/billOfLandingReview/billOfLandingReview.html'"></div>
+            </div>
+        </ba-wizard-step>
+        <!--end step 3-->
     </ba-wizard>
     <!--end form wizard group-->
 </div>

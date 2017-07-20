@@ -1,0 +1,179 @@
+<!-- start form bill of landing review -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <!-- start bill of landing information -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- start title -->
+                    <div class="text-center">
+                        <img ng-src="assets/img/ntl_logo.png " class="pull-left " id="logo "></img>
+                        <h2>Thông tin đơn hàng số {{vm.dateCode}}</h2>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <!-- start customer infomation -->
+                        <div class="col-xs-12 col-md-4 col-lg-4 pull-left">
+                            <!-- start sender information -->
+                            <div class="panel panel-default height">
+                                <!-- heading -->
+                                <div class="panel-heading">
+                                    <h2>Thông Tin Người gửi</h2>
+                                </div>
+                                <!-- body -->
+                                <div class="panel-body">
+                                    <strong>Người Gửi: </strong>{{vm.customerInfoVM.senderName}}
+                                    <br>
+                                    <br>
+                                    <strong>Số Điện Thoại: </strong>{{vm.customerInfoVM.senderPhone}}
+                                    <br>
+                                    <br>
+                                    <strong>Số CMND( gửi đảm bảo): </strong> {{vm.customerInfoVM.SenderIdNumber}}
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                            <!-- end sender information -->
+                            <!-- start receiver information -->
+                            <div class="panel panel-default height">
+                                <!-- heading -->
+                                <div class="panel-heading ">
+                                    <h2>Thông Tin Người nhận</h2>
+                                </div>
+                                <!-- body -->
+                                <div class="panel-body ">
+                                    <strong>Người Nhận: </strong>{{vm.customerInfoVM.receiverName}} {{vm.customerInfoVM.receiverIdNumber}}
+                                    <br>
+                                    <br>
+                                    <strong>Số Điện Thoại: </strong>{{vm.customerInfoVM.receiverPhone}}
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end receiver information -->
+                        <div class="col-xs-12 col-md-8 col-lg-8">
+                            <!-- start general information -->
+                            <div class="panel panel-default height">
+                                <!-- heading -->
+                                <div class="panel-heading">
+                                    <h2>Thông tin chung</h2>
+                                </div>
+                                <!-- body -->
+                                <div class="panel-body">
+                                    <strong>Ngày Gửi: </strong>{{vm.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
+                                    <br>
+                                    <br>
+                                    <strong>Giờ Gửi : </strong>{{vm.bolInfoVM.createdDate | date:'HH:mm:ss'}}
+                                    <br>
+                                    <br>
+                                    <strong>Phương thức gửi: </strong>{{vm.bolInfoVM.deliveryType.Name}}
+                                    <br>
+                                    <br>
+                                    <strong>Phụ phí/bảo hiểm: </strong>{{vm.bolInfoVM.isGuarantee ? 'Có':'Không' }}
+                                    <br>
+                                    <br>
+                                    <strong>Nơi Gửi:</strong>{{vm.bolInfoVM.bolFrom.Name}}
+                                    <br>
+                                    <br>
+                                    <strong>Địa chỉ :</strong>{{vm.bolInfoVM.bolFrom.Address}}
+                                    <br>
+                                    <br>
+                                    <strong>Nơi Nhận:</strong>{{vm.bolInfoVM.bolTo.Name}}
+                                    <br>
+                                    <br>
+                                    <strong>Địa chỉ :</strong>{{vm.bolInfoVM.bolTo.Address}}
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+                            <!-- end general information -->
+                        </div>
+                    </div>
+                    <!-- end start customer information -->
+                </div>
+            </div>
+            <!-- star order summary -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default height">
+                        <!-- heading -->
+                        <div class="panel-heading ">
+                            <h2 class="text-center ">Chi Tiết Đơn Vận</h2>
+                        </div>
+                        <!-- body -->
+                        <div class="panel-body">
+                            <!-- start order details table  -->
+                            <table class="table" st-table="smartTable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1 text-left ">Loại Đơn Hàng</th>
+                                        <th class="col-md-1 text-left ">Số Lượng </th>
+                                        <th class="col-md-1 text-left ">Khối Lượng</th>
+                                        <th class="col-md-1 text-center ">Ghi Chú</th>
+                                        <th class="col-md-1 text-center ">Thành Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in vm.merchandisesVM ">
+                                        <td>
+                                            <label>{{item.type.MerchandiseType1}}</label>
+                                        </td>
+                                        <td>
+                                            <label>{{item.amount}}</label>
+                                        </td>
+                                        <td>
+                                            <label>{{item.quantity}}  {{item.type.CalculationUnit}}</label>
+                                        </td>
+                                        </td>
+                                        <td class="text-center ">
+                                            <label>{{item.description}}</label>
+                                        </td>
+                                        <td class="text-center ">
+                                            <label>{{item.total}}</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-right ">
+                                            <strong>Tổng Cộng: </strong>
+                                        </td>
+                                        <td class="text-center "><strong>{{vm.bolInfoVM.total}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top:none "></td>
+                                        <td style="border-top:none "></td>
+                                        <td style="border-top:none "></td>
+
+                                        <td class="text-right " style="border-top:none ">
+                                            <strong>Trả trước: </strong>
+                                        </td>
+                                        <td style="border-top:none " class="text-center "><strong>{{vm.bolInfoVM.prepaid}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top:none "></td>
+                                        <td style="border-top:none "></td>
+                                        <td style="border-top:none "></td>
+
+                                        <td class="text-right " style="border-top:none ">
+                                            <strong>Còn  nợ: </strong>
+                                        </td>
+                                        <td style="border-top:none " class="text-center "><strong>{{vm.bolInfoVM.liabilities}}</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- end order details table -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end order summary -->
+        </div>
+        <!-- end bill of landing information -->
+    </div>
+</div>
+</div>
