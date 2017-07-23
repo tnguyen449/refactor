@@ -1,35 +1,15 @@
 (function() {
     'use strict';
     angular.module('BlurAdmin.pages.logistics')
-        .controller('customerInfoCtrl', customerInfoCtrl);
+        .controller('customerInfoCtrl', ['$scope', '$rootScope', customerInfoCtrl]);
 
-    function customerInfoCtrl(shareDataService) {
+    function customerInfoCtrl($scope, $rootScope, shareDataService) {
         var vm = this;
         vm.customerInfoVM = {};
-        vm.branchInfoVM = [{
-                Name: 'Quận 1',
-                Description: 'Sài Gòn'
-            },
-            {
-                Name: 'Quận 10',
-                Description: 'Sài Gòn'
-            }, {
-                Name: 'Quận Tân Bình',
-                Description: 'Sài Gòn'
-            },
-            {
-                Name: 'Vĩnh Hy',
-                Description: 'Nha Trang'
-            },
-            {
-                Name: 'Cam Ranh',
-                Description: 'Khánh Hòa'
-            },
-            {
-                Name: 'Thành phố Cam Ranh',
-                Description: 'Khánh Hòa'
-            }
-        ];
+
+        vm.emitEvent = function() {
+            $scope.$emit('storeValue', vm.customerInfoVM)
+        };
 
     }
 })();

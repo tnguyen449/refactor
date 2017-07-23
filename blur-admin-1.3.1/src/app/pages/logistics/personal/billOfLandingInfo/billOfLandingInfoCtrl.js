@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
-        .controller('bolInfoCtrl', bolInfoCtrl);
+        .controller('bolInfoCtrl', ['$scope', '$rootScope', bolInfoCtrl]);
 
-    function bolInfoCtrl() {
+    function bolInfoCtrl($scope, $rootScope) {
         var vm = this;
         vm.dateOptions = {
             formatYear: 'yyyy',
@@ -21,7 +21,8 @@
             isCollectOnBehalfValue: 0,
             discount: 0,
             statusId: 0,
-            total: null,
+            total: 0,
+            extraFee: 0,
             createdDate: vm.dateOptions.minDate,
             createdBy: "",
             barcode: "",
@@ -31,6 +32,8 @@
             prepaid: null,
             liabilities: null
         };
+        vm.test = '';
+
         vm.merchandisesVM = [{
             //Init first empty row SmartTable
             id: 1,
@@ -54,6 +57,21 @@
             isSpecialDisabled: true
                 //end init
         }];
+
+        vm.deliveryTypeVM = [{
+                Name: 'Nhận Tại VP'
+            },
+            {
+                Name: 'Giao Nhận Tận Nơi'
+            },
+            {
+                Name: 'Đồng Giá'
+            },
+            {
+                Name: 'Giao Nhận Hẹn Giờ'
+            }
+        ];
+
         vm.addItem = function() {
             vm.inserted = {
                 id: vm.merchandisesVM.length + 1,
@@ -66,7 +84,8 @@
                 declareValue: null,
                 specialPrice: null,
                 description: null,
-                total: null,
+                total: 0,
+                extraFee: 0,
                 isDeclareDisabled: true,
                 isSpecialDisabled: true
             };
@@ -83,6 +102,7 @@
             });
             vm.merchandisesVM = newProductList;
         };
+
         //Select all items in checkbox
         vm.selectAll = function() {
             if (!vm.selectedAll) {
@@ -95,14 +115,35 @@
             });
         };
 
-        function createOrderCode() {
-            var fromBranchCode = vm.bolInfoVM.bolFrom.BranchCode;
-            var toBranchCode = vm.bolInfoVM.bolTo.BranchCode;
-            var dateCode = vm.dateOptions.minDate.getDate().toString() + vm.dateOptions.minDate.getMonth().toString() + vm.dateOptions.minDate.getFullYear().toString().substring(2);
-            var timeCode = vm.dateOptions.minDate.getHours().toString() + vm.dateOptions.minDate.getMinutes().toString() + vm.dateOptions.minDate.getSeconds().toString();
-            return "SQ1" + dateCode + "CR" + timeCode;
-        }
-        vm.dateCode = createOrderCode();
+        //Calculate item individually
+        vm.calculateItem = function(item) {
+            item.total = item.type.Value * item.quantity;
+            vm.calculateBolTotal();
+        };
+        //Calculate bol total before extra fee
+        vm.calculateBolTotal = function() {
+                vm.bolInfoVM.total = 0;
+                angular.forEach(vm.merchandisesVM, function(item) {
+                    vm.bolInfoVM.total = vm.bolInfoVM.total + item.total;
+                });
+                vm.bolInfoVM.total = vm.bolInfoVM.total + parseInt(vm.bolInfoVM.extraFee);
+                vm.calculateBolLiabilities();
+            }
+            //Calculate bol liabilities
+        vm.calculateBolLiabilities = function() {
+                vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaid;
+            }
+            //End
+
+        $scope.$on('setValue', function(event, obj) {
+            console.log(event);
+            var front = obj.BolFromName.selected.BranchCode;
+            var end = obj.BolToName.selected.BranchCode;
+            // var dateCode = $rootScope.serverTimeStampVM.getDate().toString() + $rootScope.serverTimeStampVM.getMonth().toString() + $rootScope.serverTimeStampVM.getFullYear().toString().substring(2);
+            // var timeCode = $rootScope.serverTimeStampVM.getHours().toString() + $rootScope.serverTimeStampVM.getMinutes().toString() + $rootScope.serverTimeStampVM.getSeconds().toString();
+            vm.test = front + $rootScope.serverTimeStampVM + end;
+            return vm.test;
+        });
 
     }
 })();

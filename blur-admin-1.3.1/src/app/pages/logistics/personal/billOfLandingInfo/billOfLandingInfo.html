@@ -2,7 +2,7 @@
 <div class="panel panel-default height">
     <!-- form heading -->
     <div class="text-center panel-heading">
-        <h2>Thông tin đơn hàng số {{vm.bolInfoVM.bolFrom.BranchCode}}{{vm.bolInfoVM.bolTo.BranchCode}}{{vm.serverTimeStampVM}}</h2>
+        <h2>Thông tin đơn hàng số {{bolInfo.test}}</h2>
     </div>
     <!-- form body -->
     <div class="panel-body">
@@ -10,11 +10,11 @@
             <div class="col-md-12">
                 <!-- binding send date -->
                 <div class="col-md-12">
-                    <div>
-                        <label class="col-md-4">Ngày Gửi:</label>
+                    <div class="col-md-4">
+                        <label>Ngày Gửi:</label>
                     </div>
-                    <div>
-                        <label class="col-md-8">{{vm.bolInfoVM.createdDate | date: 'dd/MM/yyyy'}}</label>
+                    <div class="col-md-8">
+                        <label>{{bolInfo.bolInfoVM.createdDate | date: 'dd/MM/yyyy'}}</label>
                     </div>
                 </div>
 
@@ -24,235 +24,226 @@
                         <label style="padding-top: 5px">Ngày Nhận:</label>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="Nhập Ngày Nhận">
+                        <input type="text" class="form-control" ng-focus="bolInfo.dateCode()" placeholder="Nhập Ngày Nhận">
                     </div>
-                    <div class="col-md-2">
-                        <span style="padding:10px 0 0 0"> (dd/MM/yyyy)</span>
+                    <div class="col-md-2" style="padding:10px 0 0 0">
+                        <span> (dd/MM/yyyy)</span>
                     </div>
                 </div>
             </div>
             <!-- component collect in behalf -->
-            <div class="add-row-editable-table col-md-12">
+            <div class="col-md-12">
                 <div class="col-md-12">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <label style="padding-top:10px"><strong>Thu Hộ:</strong></label>
-                        </div>
-                        <!-- input collect in behalf -->
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" placeholder="Tiền Cần Thu" />
-                        </div>
+                    <div class="col-md-4" style="padding-top:8px">
+                        <label>Thu Hộ:</label>
+                    </div>
+                    <!-- input collect in behalf -->
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Tiền Cần Thu" />
                     </div>
                 </div>
             </div>
 
             <!-- component delivery method -->
-            <div class="add-row-editable-table col-md-12">
+            <div class="col-md-12" style="padding-top:10px">
                 <div class="col-md-12">
-                    <div class="col-md-12">
-                        <div class="col-md-3">
-                            <label><strong>Phương Thức Giao Nhận:</strong></label>
-                        </div>
-                        <!-- radio button delivery methods -->
-                        <div class="col-md-12">
-                            <div class="col-md-3" ng-repeat="deliveryType in vm.deliveryTypeVM" ng-init="vm.bolInfoVM.deliveryType.Name = vm.deliveryTypeVM[0].Name">
-                                <fieldset>
-                                    <input type="radio" name="optradio" ng-value="deliveryType.Name" ng-model="vm.bolInfoVM.deliveryType.Name" /> {{deliveryType.Name}}
-                                </fieldset>
-                            </div>
+                    <div class="col-md-4" style="padding-top:10px">
+                        <label>Dịch Vụ Giao Nhận:</label>
+                    </div>
+                    <!-- radio button delivery methods -->
+                    <div class="col-md-8">
+                        <div class="col-md-6" ng-repeat="deliveryType in bolInfo.deliveryTypeVM" ng-init="bolInfo.bolInfoVM.deliveryType.Name = bolInfo.deliveryTypeVM[0].Name">
+                            <input type="radio" name="optradio" ng-value="deliveryType.Name" ng-model="bolInfo.bolInfoVM.deliveryType.Name" /> {{deliveryType.Name}}
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- optional component for some delivery methods -->
-            <div class="add-row-editable-table col-md-12" style="height: 80px">
-                <div class="col-md-12" style="height: 60px" ng-switch on="vm.bolInfoVM.deliveryType.Name" ng-hide="vm.bolInfoVM.deliveryType.Name =='Nhận Tại Văn Phòng'">
-                    <div class="col-md-12">
-                        <div class="col-md-3" style="padding-top: 45px">
-                            <label>Phương Thức {{vm.bolInfoVM.deliveryType.Name}}</label>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="col-md-12">
-                                <!-- sub-component Cash on Delivery -->
-                                <form class="row form-inline animate-switch" ng-switch-when="Giao Nhận Tận Nơi" style="padding-top: 35px">
-                                    <div class="form-group col-sm-3 col-xs-6">
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
-                                    </div>
-                                    <div class="form-group col-sm-3 col-xs-6">
-                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Nhập Địa Chỉ Nhận">
-                                    </div>
-                                </form>
-                                <!-- sub-component Timed delivery -->
-                                <form class="row form-inline" ng-switch-when="Giao Nhận Hẹn Giờ">
-                                    <div class="form-group col-sm-3 col-xs-6" style="padding-top: 35px">
-                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
-                                    </div>
-                                    <div class="form-group col-sm-3 col-xs-6">
-                                        <div uib-timepicker ng-model="vm.mytime" ng-change="vm.changed()" show-meridian="!vm.ismeridian"></div>
-                                    </div>
-                                </form>
-                            </div>
+            <div class="col-md-12" style="min-height: 80px; overflow:fixed" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name" ng-hide="bolInfo.bolInfoVM.deliveryType.Name =='Nhận Tại Văn Phòng'">
+                <div class="col-md-12">
+                    <div class="col-md-3" style="padding-top: 45px">
+                        <label>Dịch Vụ {{bolInfo.bolInfoVM.deliveryType.Name}}</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-md-12">
+                            <!-- sub-component Cash on Delivery -->
+                            <form class="row form-inline animate-switch" ng-switch-when="Giao Nhận Tận Nơi" style="padding-top: 35px">
+                                <div class="form-group col-sm-3 col-xs-6">
+                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-6">
+                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Nhập Địa Chỉ Nhận">
+                                </div>
+                            </form>
+                            <!-- sub-component Timed delivery -->
+                            <form class="row form-inline" ng-switch-when="Giao Nhận Hẹn Giờ">
+                                <div class="form-group col-sm-3 col-xs-6" style="padding-top: 35px">
+                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-6">
+                                    <div uib-timepicker ng-model="bolInfo.mytime" ng-change="bolInfo.changed()" show-meridian="!bolInfo.ismeridian"></div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- end optional components -->
+    <!-- end optional components -->
 
-<!-- bill of landing details -->
-<div class="panel panel-default height">
-    <!-- heading -->
-    <div class="panel-heading text-center">
-        <h2>Chi Tiết Đơn Vận</h2>
-    </div>
-    <!-- body -->
-    <div class="panel-body">
-        <!-- button group -->
-        <div class="add-row-editable-table col-md-12 pull-right">
-            <div class="col-md-12">
-                <div class="col-md-6 pull-right">
-                    <!-- button add item -->
-                    <div class="col-md-5">
-                        <button class="btn btn-primary" ng-click="vm.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
-                    </div>
-                    <!-- button remove item -->
-                    <div class="col-md-5">
-                        <button class="btn btn-danger" ng-click="vm.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+    <!-- bill of landing details -->
+    <div class="panel panel-default height">
+        <!-- heading -->
+        <div class="panel-heading text-center">
+            <h2>Chi Tiết Đơn Vận</h2>
+        </div>
+        <!-- body -->
+        <div class="panel-body">
+            <!-- button group -->
+            <div class="add-row-editable-table col-md-12 pull-right">
+                <div class="col-md-12">
+                    <div class="col-md-6 pull-right">
+                        <!-- button add item -->
+                        <div class="col-md-5">
+                            <button class="btn btn-primary" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
+                        </div>
+                        <!-- button remove item -->
+                        <div class="col-md-5">
+                            <button class="btn btn-danger" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end button group -->
-        <!-- table bill of landing details -->
-        <div class="horizontal-scroll col-md-12">
-            <!-- start smart table-->
-            <table class="table" st-table="smartTableData">
-                <thead>
-                    <tr>
-                        <!-- checkbox select all -->
-                        <th class="table-id">
-                            <input type="checkbox" ng-model="vm.selectedAll" ng-click="vm.selectAll()" />
-                        </th>
-                        <!-- input title block -->
-                        <th class="col-md-2 text-left">Loại Đơn Hàng</th>
-                        <th class="col-md-1 text-left">Số Lượng </th>
-                        <th class="col-md-1 text-left">Khối Lượng</th>
-                        <!-- check box title declare value -->
-                        <th class="col-md-0.5 text-center">KG</th>
-                        <!-- input title block -->
-                        <th class="col-md-2 text-left">Giá Khai</th>
-                        <th class="col-md-2 text-left">Giá Ước Tính</th>
-                        <th class="col-md-3 text-left">Ghi Chú</th>
-                        <th class="col-md-2 text-left">Thành Tiền</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- canvas form -->
-                    <tr></tr>
-                    <!-- primary table body components -->
-                    <tr ng-repeat="item in vm.merchandisesVM">
-                        <!-- check box select specific item -->
-                        <td class="table-id" style="border-top:none">
-                            <input type="checkbox" ng-model="item.selected" />
-                        </td>
-                        <!-- dropdown merchandise types -->
-                        <td style="border-top:none">
-                            <select ng-change="vm.calculate(item)" ng-model="item.type" class="input-sm form-control" ng-options="type.MerchandiseType1 group by type.Description for type in vm.merchandiseTypeVM" name="sendTo" class="form-control">
+            <!-- end button group -->
+            <!-- table bill of landing details -->
+            <div class="horizontal-scroll col-md-12">
+                <!-- start smart table-->
+                <table class="table" st-table="smartTableData">
+                    <thead>
+                        <tr>
+                            <!-- checkbox select all -->
+                            <th class="table-id">
+                                <input type="checkbox" ng-model="bolInfo.selectedAll" ng-click="bolInfo.selectAll()" />
+                            </th>
+                            <!-- input title block -->
+                            <th class="col-md-2 text-left">Loại Đơn Hàng</th>
+                            <th class="col-md-1 text-left">Số Lượng </th>
+                            <th class="col-md-1 text-left">Khối Lượng</th>
+                            <!-- check box title declare value -->
+                            <th class="col-md-0.5 text-center">KG</th>
+                            <!-- input title block -->
+                            <th class="col-md-2 text-left">Giá Khai</th>
+                            <th class="col-md-2 text-left">Giá Ước Tính</th>
+                            <th class="col-md-3 text-left">Ghi Chú</th>
+                            <th class="col-md-2 text-left">Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- canvas form -->
+                        <tr></tr>
+                        <!-- primary table body components -->
+                        <tr ng-repeat="item in bolInfo.merchandisesVM">
+                            <!-- check box select specific item -->
+                            <td class="table-id" style="border-top:none">
+                                <input type="checkbox" ng-model="item.selected" />
+                            </td>
+                            <!-- dropdown merchandise types -->
+                            <td style="border-top:none">
+                                <select ng-change="bolInfo.calculateItem(item)" ng-model="item.type" class="input-sm form-control" ng-options="type.MerchandiseType1 group by type.Description for type in personal.merchandiseTypeVM" name="sendTo" class="form-control">
                                     <option>Chọn Loại Hàng</option>
                             </select>
-                        </td>
-                        <!-- input quantity -->
-                        <td style="border-top:none">
-                            <input type="number" class="input-sm form-control" ng-model="item.amount" min: "0">
-                        </td>
-                        <!-- input weight -->
-                        <td class="col-sm-2" style="border-top:none">
-                            <div class="input-group">
-                                <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="vm.calculate(item)">
-                                <span class="input-group-addon input-group-addon-primary addon-right" style="width:60px">{{item.type.CalculationUnit}}</span>
-                            </div>
-                        </td>
-                        <!-- check box declare values -->
-                        <td class="text-center" style="border-top:none">
-                            <input type="checkbox" ng-model="item.isDeclaredValue" ng-change="vm.toggleDeclareValueInput(item)" />
-                        </td>
-                        <!-- input declare values -->
-                        <td style="border-top:none">
-                            <input type="text" class="input-sm form-control" ng-disabled="item.isDeclareDisabled" ng-model="item.declareValue" placeholder="Khai giá">
-                        </td>
-                        <!-- input predictable values -->
-                        <td style="border-top:none">
-                            <input type="text" class="input-sm form-control" ng-disabled="item.isSpecialDisabled" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
-                        </td>
-                        <!-- input description -->
-                        <td style="border-top:none">
-                            <input type="text" class="input-sm form-control" ng-model="item.description" placeholder="Ghi Chú">
-                        </td>
-                        <!-- binding total -->
-                        <td style="border-top:none">
-                            <label><span>{{item.total}}</label>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <!-- canvas sub total column -->
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <!-- title subtotal column -->
-                        <td class="pull-right" style="border-top:none">
-                            <strong>Tổng Cộng: </strong>
-                        </td>
-                        <!-- binding subtotal -->
-                        <td style="border-top:none">{{vm.bolInfoVM.total}}</td>
-                    </tr>
-                    <tr>
-                        <!-- canvas prepaid column -->
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <!-- title prepaid column -->
-                        <td class="pull-right" style="border-top:none">
-                            <strong>Trả trước: </strong>
-                        </td>
-                        <!-- input prepaid value -->
-                        <td style="border-top:none">
-                            <input type="text" class="input-sm form-control" ng-change="vm.calculateBolLiabilities()" ng-model="vm.bolInfoVM.prepaid">
-                        </td>
-                    </tr>
-                    <tr>
-                        <!-- canvas liabilities column -->
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <td style="border-top:none"></td>
-                        <!-- title liabilities column -->
-                        <td class="pull-right" style="border-top:none">
-                            <strong>Còn  nợ: </strong>
-                        </td>
-                        <!-- binding liabilities values -->
-                        <td style="border-top:none">{{vm.bolInfoVM.liabilities}}</td>
-                    </tr>
-                </tfoot>
-            </table>
-            <!-- end smart table -->
+                            </td>
+                            <!-- input quantity -->
+                            <td style="border-top:none">
+                                <input type="number" class="input-sm form-control" ng-model="item.amount" min: "0">
+                            </td>
+                            <!-- input weight -->
+                            <td class="col-sm-2" style="border-top:none">
+                                <div class="input-group">
+                                    <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)">
+                                    <span class="input-group-addon input-group-addon-primary addon-right" style="width:60px">{{item.type.CalculationUnit}}</span>
+                                </div>
+                            </td>
+                            <!-- check box declare values -->
+                            <td class="text-center" style="border-top:none">
+                                <input type="checkbox" ng-model="item.isDeclaredValue" ng-change="bolInfo.toggleDeclareValueInput(item)" />
+                            </td>
+                            <!-- input declare values -->
+                            <td style="border-top:none">
+                                <input type="text" class="input-sm form-control" ng-disabled="item.isDeclareDisabled" ng-model="item.declareValue" placeholder="Khai giá">
+                            </td>
+                            <!-- input predictable values -->
+                            <td style="border-top:none">
+                                <input type="text" class="input-sm form-control" ng-disabled="item.isSpecialDisabled" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
+                            </td>
+                            <!-- input description -->
+                            <td style="border-top:none">
+                                <input type="text" class="input-sm form-control" ng-model="item.description" placeholder="Ghi Chú">
+                            </td>
+                            <!-- binding total -->
+                            <td class="text-center" style="border-top:none">
+                                <label><span>  {{item.total}}</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <!-- canvas sub total column -->
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <!-- title subtotal column -->
+                            <td class="pull-right" style="border-top:none">
+                                <strong>Tổng Cộng: </strong>
+                            </td>
+                            <!-- binding subtotal -->
+                            <td class="text-center" style="border-top:none">{{bolInfo.bolInfoVM.total}}</td>
+                        </tr>
+                        <tr>
+                            <!-- canvas prepaid column -->
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <!-- title prepaid column -->
+                            <td class="pull-right" style="border-top:none">
+                                <strong>Trả trước: </strong>
+                            </td>
+                            <!-- input prepaid value -->
+                            <td style="border-top:none">
+                                <input type="text" class="input-sm form-control" ng-change="bolInfo.calculateBolLiabilities()" ng-model="bolInfo.bolInfoVM.prepaid">
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- canvas liabilities column -->
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <td style="border-top:none"></td>
+                            <!-- title liabilities column -->
+                            <td class="pull-right" style="border-top:none">
+                                <strong>Còn  nợ: </strong>
+                            </td>
+                            <!-- binding liabilities values -->
+                            <td style="border-top:none">{{bolInfo.bolInfoVM.liabilities}}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <!-- end smart table -->
+            </div>
+            <!-- end bill of landing details -->
         </div>
-        <!-- end bill of landing details -->
     </div>
-</div>
-<!-- end bill of landing infomation -->
+    <!-- end bill of landing infomation -->

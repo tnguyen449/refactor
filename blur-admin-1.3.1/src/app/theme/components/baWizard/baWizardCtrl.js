@@ -50,6 +50,8 @@
             return vm.tabNum == vm.tabs.length - 1;
         };
 
+        vm.emit;
+
         vm.nextTab = function() {
             vm.selectTab(vm.tabNum + 1);
         };

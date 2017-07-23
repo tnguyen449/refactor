@@ -11,8 +11,7 @@
             transclude: true,
             require: '^baWizard',
             scope: {
-                form: '=',
-                customer: '=info'
+                form: '='
             },
             templateUrl: 'app/theme/components/baWizard/baWizardStep.html',
             link: function($scope, $element, $attrs, wizard) {

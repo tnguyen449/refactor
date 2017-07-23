@@ -24,11 +24,11 @@
                 <label class="control-label"><span class="require">* </span>Gửi Từ:</label> {{vm.bolInfo.BolFrom.Name}}
                 <!--Dropdown Gửi Từ-->
                 <div class="form-group">
-                    <ui-select ng-model="vm.customerInfoVM.BolFromName.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
+                    <ui-select ng-model="customerInfo.customerInfoVM.BolFromName.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
                         <ui-select-match placeholder="Chọn Nơi Gửi">
                             {{$select.selected.Name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="branch in vm.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                        <ui-select-choices repeat="branch in personal.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
                             <span ng-bind-html="branch.Name | highlight: $select.search"></span>
                         </ui-select-choices>
                     </ui-select>
@@ -65,11 +65,11 @@
                 <label class="control-label"><span class="require">* </span>Gửi Đến:</label>
                 <!--Dropdown gửi từ-->
                 <div class="form-group">
-                    <ui-select ng-model="vm.customerInfoVM.BolToName.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
+                    <ui-select ng-model="customerInfo.customerInfoVM.BolToName.selected" on-select="customerInfo.emitEvent()" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
                         <ui-select-match placeholder="Chọn Nơi Gửi">
                             {{$select.selected.Name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="branch in vm.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                        <ui-select-choices repeat="branch in personal.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
                             <span ng-bind-html="branch.Name | highlight: $select.search"></span>
                         </ui-select-choices>
                     </ui-select>

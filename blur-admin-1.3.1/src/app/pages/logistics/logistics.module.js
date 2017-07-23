@@ -14,7 +14,6 @@
                 url: '/logistics',
                 templateUrl: 'app/pages/logistics/main/logisticsMain.html',
                 title: 'Logistics',
-                abstract: true,
                 sidebarMeta: {
                     icon: 'ion-compose',
                     order: 0
@@ -26,29 +25,23 @@
                     'root': {
                         templateUrl: 'app/pages/logistics/personal/logisticsPersonal.html',
                         controller: 'PersonalCtrl',
-                        controllerAs: 'vm'
+                        controllerAs: 'personal'
                     },
                     'bolInfo@logistics.personal': {
                         templateUrl: 'app/pages/logistics/personal/billOfLandingInfo/billOfLandingInfo.html',
                         controller: 'bolInfoCtrl',
-                        controllerAs: 'vm'
+                        controllerAs: 'bolInfo'
                     },
                     'customerInfo@logistics.personal': {
                         templateUrl: 'app/pages/logistics/personal/customerInfo/customerInfo.html',
                         controller: 'customerInfoCtrl',
-                        controllerAs: 'vm'
+                        controllerAs: 'customerInfo'
+                    },
+                    'bolReviewCtrl@logistics.personal': {
+                        templateUrl: 'app/pages/logistics/personal/billOfLandingReview/billOfLandingReview.html',
+                        controller: 'PersonalCtrl',
+                        controllerAs: 'bolReview'
                     }
-                    // ,
-                    // 'bolReviewCtrl@logistics.personal': {
-                    //     templateUrl: 'app/pages/logistics/personal/billOfLandingReview/billOfLandingReview.html',
-                    //     controller: 'billOfLandingReviewCtrl',
-                    //     controllerAs: 'vm'
-                    // }
-                },
-                title: 'Logistics Personal',
-                sidebarMeta: {
-                    icon: 'ion-compose',
-                    order: 0
                 }
             })
             // .state('logistics.area', {
