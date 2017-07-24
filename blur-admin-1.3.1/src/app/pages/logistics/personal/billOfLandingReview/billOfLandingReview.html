@@ -8,7 +8,7 @@
                     <!-- start title -->
                     <div class="text-center">
                         <img ng-src="assets/img/ntl_logo.png " class="pull-left " id="logo "></img>
-                        <h2>Thông tin đơn hàng số {{vm.dateCode}}</h2>
+                        <h2>Thông tin đơn hàng số {{bolReview.dateCode}}</h2>
                     </div>
                     <hr>
                     <div class="row">
@@ -22,13 +22,13 @@
                                 </div>
                                 <!-- body -->
                                 <div class="panel-body">
-                                    <strong>Người Gửi: </strong>{{vm.customerInfoVM.senderName}}
+                                    <strong>Người Gửi: </strong>{{bolReview.customerInfoVM.senderName}}
                                     <br>
                                     <br>
-                                    <strong>Số Điện Thoại: </strong>{{vm.customerInfoVM.senderPhone}}
+                                    <strong>Số Điện Thoại: </strong>{{bolReview.customerInfoVM.senderPhone}}
                                     <br>
                                     <br>
-                                    <strong>Số CMND( gửi đảm bảo): </strong> {{vm.customerInfoVM.SenderIdNumber}}
+                                    <strong>Số CMND( gửi đảm bảo): </strong> {{bolReview.customerInfoVM.SenderIdNumber}}
                                     <br>
                                     <br>
                                 </div>
@@ -42,10 +42,10 @@
                                 </div>
                                 <!-- body -->
                                 <div class="panel-body ">
-                                    <strong>Người Nhận: </strong>{{vm.customerInfoVM.receiverName}} {{vm.customerInfoVM.receiverIdNumber}}
+                                    <strong>Người Nhận: </strong>{{bolReview.customerInfoVM.receiverName}} {{bolReview.customerInfoVM.receiverIdNumber}}
                                     <br>
                                     <br>
-                                    <strong>Số Điện Thoại: </strong>{{vm.customerInfoVM.receiverPhone}}
+                                    <strong>Số Điện Thoại: </strong>{{bolReview.customerInfoVM.receiverPhone}}
                                     <br>
                                     <br>
                                 </div>
@@ -61,28 +61,28 @@
                                 </div>
                                 <!-- body -->
                                 <div class="panel-body">
-                                    <strong>Ngày Gửi: </strong>{{vm.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
+                                    <strong>Ngày Gửi: </strong>{{bolReview.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
                                     <br>
                                     <br>
-                                    <strong>Giờ Gửi : </strong>{{vm.bolInfoVM.createdDate | date:'HH:mm:ss'}}
+                                    <strong>Giờ Gửi : </strong>{{bolReview.bolInfoVM.createdDate | date:'HH:mm:ss'}}
                                     <br>
                                     <br>
-                                    <strong>Phương thức gửi: </strong>{{vm.bolInfoVM.deliveryType.Name}}
+                                    <strong>Phương thức gửi: </strong>{{bolReview.bolInfoVM.deliveryType.Name}}
                                     <br>
                                     <br>
-                                    <strong>Phụ phí/bảo hiểm: </strong>{{vm.bolInfoVM.isGuarantee ? 'Có':'Không' }}
+                                    <strong>Phụ phí/bảo hiểm: </strong>{{bolReview.bolInfoVM.isGuarantee ? 'Có':'Không' }}
                                     <br>
                                     <br>
-                                    <strong>Nơi Gửi:</strong>{{vm.bolInfoVM.bolFrom.Name}}
+                                    <strong>Nơi Gửi:</strong>{{bolReview.bolInfoVM.bolFrom.Name}}
                                     <br>
                                     <br>
-                                    <strong>Địa chỉ :</strong>{{vm.bolInfoVM.bolFrom.Address}}
+                                    <strong>Địa chỉ :</strong>{{bolReview.bolInfoVM.bolFrom.Address}}
                                     <br>
                                     <br>
-                                    <strong>Nơi Nhận:</strong>{{vm.bolInfoVM.bolTo.Name}}
+                                    <strong>Nơi Nhận:</strong>{{bolReview.bolInfoVM.bolTo.Name}}
                                     <br>
                                     <br>
-                                    <strong>Địa chỉ :</strong>{{vm.bolInfoVM.bolTo.Address}}
+                                    <strong>Địa chỉ :</strong>{{bolReview.bolInfoVM.bolTo.Address}}
                                     <br>
                                     <br>
                                 </div>
@@ -115,7 +115,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in vm.merchandisesVM ">
+                                    <tr ng-repeat="item in bolReview.merchandisesVM ">
                                         <td>
                                             <label>{{item.type.MerchandiseType1}}</label>
                                         </td>
@@ -142,7 +142,7 @@
                                         <td class="text-right ">
                                             <strong>Tổng Cộng: </strong>
                                         </td>
-                                        <td class="text-center "><strong>{{vm.bolInfoVM.total}}</strong></td>
+                                        <td class="text-center "><strong>{{bolReview.bolInfoVM.total}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td style="border-top:none "></td>
@@ -152,7 +152,7 @@
                                         <td class="text-right " style="border-top:none ">
                                             <strong>Trả trước: </strong>
                                         </td>
-                                        <td style="border-top:none " class="text-center "><strong>{{vm.bolInfoVM.prepaid}}</strong></td>
+                                        <td style="border-top:none " class="text-center "><strong>{{bolReview.bolInfoVM.prepaid}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td style="border-top:none "></td>
@@ -162,7 +162,7 @@
                                         <td class="text-right " style="border-top:none ">
                                             <strong>Còn  nợ: </strong>
                                         </td>
-                                        <td style="border-top:none " class="text-center "><strong>{{vm.bolInfoVM.liabilities}}</strong></td>
+                                        <td style="border-top:none " class="text-center "><strong>{{bolReview.bolInfoVM.liabilities}}</strong></td>
                                     </tr>
                                 </tfoot>
                             </table>

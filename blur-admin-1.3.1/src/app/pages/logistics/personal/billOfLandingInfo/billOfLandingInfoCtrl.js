@@ -6,6 +6,8 @@
 
     function bolInfoCtrl($scope, $rootScope) {
         var vm = this;
+        vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
+        vm.ismeridian = true;
         vm.dateOptions = {
             formatYear: 'yyyy',
             maxDate: new Date(2099, 12, 31),
@@ -18,20 +20,20 @@
             sender: 0,
             receiver: 0,
             isCollectOnBehalf: false,
-            isCollectOnBehalfValue: 0,
-            discount: 0,
-            statusId: 0,
-            total: 0,
+            collectOnBehalfValue: 0,
+            isDeclared: false,
+            declaredValue: 0,
+            isSpecialPrice: false,
+            specialPrice: 0,
             extraFee: 0,
+            statusId: 0,
             createdDate: vm.dateOptions.minDate,
             createdBy: "",
-            barcode: "",
-            premium: "",
-            description: "",
             deliveryType: 0,
             prepaid: null,
             liabilities: null
         };
+
         vm.test = '';
 
         vm.merchandisesVM = [{
@@ -44,18 +46,18 @@
             },
             quantity: null,
             amount: null,
-            isDeclaredValue: false,
-            isBreakable: false,
+            enabledDeclare: false,
+            // isBreakable: false,
             isSpecialPrice: false,
-            declareValue: null,
-            specialPrice: null,
+            declareValue: 0,
+            specialPrice: 0,
             description: null,
             total: 0,
             //end init
             //init checkbox properties for each row
-            isDeclareDisabled: true,
-            isSpecialDisabled: true
-                //end init
+            // isDeclareDisabled: true,
+            // isSpecialDisabled: true
+            //end init
         }];
 
         vm.deliveryTypeVM = [{
@@ -91,6 +93,31 @@
             };
             vm.merchandisesVM.push(vm.inserted);
         };
+
+        //Calculate item individually
+        vm.calculateItem = function(item) {
+            item.total = ((parseFloat((item.enabledDeclare ? item.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
+            // vm.calculateBolTotal();
+        };
+        //Calculate bol total before extra fee
+        vm.calculateBolTotal = function() {
+                vm.bolInfoVM.total = 0;
+                angular.forEach(vm.merchandisesVM, function(item) {
+                    vm.bolInfoVM.total += item.total;
+                });
+                vm.bolInfoVM.total += parseInt(vm.bolInfoVM.extraFee);
+                vm.calculateBolLiabilities();
+                return vm.bolInfoVM.total;
+            }
+            //Calculate bol liabilities
+        vm.calculateBolLiabilities = function() {
+                if (vm.merchandisesVM.length == 0) {
+                    vm.bolInfoVM.prepaid = 0;
+                }
+                vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaid;
+            }
+            //End
+
         //Remove items that are checked in checkbox.
         vm.removeItem = function() {
             var newProductList = [];
@@ -115,26 +142,6 @@
             });
         };
 
-        //Calculate item individually
-        vm.calculateItem = function(item) {
-            item.total = item.type.Value * item.quantity;
-            vm.calculateBolTotal();
-        };
-        //Calculate bol total before extra fee
-        vm.calculateBolTotal = function() {
-                vm.bolInfoVM.total = 0;
-                angular.forEach(vm.merchandisesVM, function(item) {
-                    vm.bolInfoVM.total = vm.bolInfoVM.total + item.total;
-                });
-                vm.bolInfoVM.total = vm.bolInfoVM.total + parseInt(vm.bolInfoVM.extraFee);
-                vm.calculateBolLiabilities();
-            }
-            //Calculate bol liabilities
-        vm.calculateBolLiabilities = function() {
-                vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaid;
-            }
-            //End
-
         $scope.$on('setValue', function(event, obj) {
             console.log(event);
             var front = obj.BolFromName.selected.BranchCode;
@@ -145,5 +152,9 @@
             return vm.test;
         });
 
+
+        // vm.bolnfo = {};
+        // vm.isCollectInBehalf = false;
+        // vm.isGuarantee = false;
     }
 })();

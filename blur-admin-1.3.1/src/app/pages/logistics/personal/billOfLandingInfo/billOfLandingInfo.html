@@ -43,6 +43,18 @@
                     </div>
                 </div>
             </div>
+            <!-- component guanrantee -->
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="col-md-4" style="padding-top:8px">
+                        <label>Đảm Bảo:</label>
+                    </div>
+                    <!-- input collect in behalf -->
+                    <div class="col-md-2">
+                        <input type="checkbox" ng-model="bolInfo.isGuarantee" />
+                    </div>
+                </div>
+            </div>
 
             <!-- component delivery method -->
             <div class="col-md-12" style="padding-top:10px">
@@ -60,7 +72,7 @@
             </div>
 
             <!-- optional component for some delivery methods -->
-            <div class="col-md-12" style="min-height: 80px; overflow:fixed" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name" ng-hide="bolInfo.bolInfoVM.deliveryType.Name =='Nhận Tại Văn Phòng'">
+            <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name" ng-hide="bolInfo.bolInfoVM.deliveryType.Name =='Nhận Tại Văn Phòng'">
                 <div class="col-md-12">
                     <div class="col-md-3" style="padding-top: 45px">
                         <label>Dịch Vụ {{bolInfo.bolInfoVM.deliveryType.Name}}</label>
@@ -105,13 +117,15 @@
             <div class="add-row-editable-table col-md-12 pull-right">
                 <div class="col-md-12">
                     <div class="col-md-6 pull-right">
-                        <!-- button add item -->
-                        <div class="col-md-5">
-                            <button class="btn btn-primary" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
-                        </div>
-                        <!-- button remove item -->
-                        <div class="col-md-5">
-                            <button class="btn btn-danger" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+                        <div class="col-md-12">
+                            <!-- button add item -->
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
+                            </div>
+                            <!-- button remove item -->
+                            <div class="col-md-6">
+                                <button class="btn btn-danger" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,11 +182,11 @@
                             </td>
                             <!-- check box declare values -->
                             <td class="text-center" style="border-top:none">
-                                <input type="checkbox" ng-model="item.isDeclaredValue" ng-change="bolInfo.toggleDeclareValueInput(item)" />
+                                <input type="checkbox" ng-model="item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" />
                             </td>
                             <!-- input declare values -->
                             <td style="border-top:none">
-                                <input type="text" class="input-sm form-control" ng-disabled="item.isDeclareDisabled" ng-model="item.declareValue" placeholder="Khai giá">
+                                <input type="text" class="input-sm form-control" ng-disabled="!item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" placeholder="Khai giá">
                             </td>
                             <!-- input predictable values -->
                             <td style="border-top:none">
@@ -203,7 +217,7 @@
                                 <strong>Tổng Cộng: </strong>
                             </td>
                             <!-- binding subtotal -->
-                            <td class="text-center" style="border-top:none">{{bolInfo.bolInfoVM.total}}</td>
+                            <td class="text-center" style="border-top:none">{{bolInfo.calculateBolTotal()}}</td>
                         </tr>
                         <tr>
                             <!-- canvas prepaid column -->
@@ -234,7 +248,7 @@
                             <td style="border-top:none"></td>
                             <!-- title liabilities column -->
                             <td class="pull-right" style="border-top:none">
-                                <strong>Còn  nợ: </strong>
+                                <strong>Còn nợ: </strong>
                             </td>
                             <!-- binding liabilities values -->
                             <td style="border-top:none">{{bolInfo.bolInfoVM.liabilities}}</td>

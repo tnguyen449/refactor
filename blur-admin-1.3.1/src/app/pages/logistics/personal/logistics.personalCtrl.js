@@ -41,7 +41,6 @@
         };
 
         $scope.$on('storeValue', function(event, obj) {
-            console.log(obj);
             $scope.$broadcast('setValue', obj);
         });
 
