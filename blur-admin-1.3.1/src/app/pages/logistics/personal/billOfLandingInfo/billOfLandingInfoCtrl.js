@@ -22,7 +22,7 @@
             isCollectOnBehalf: false,
             collectOnBehalfValue: 0,
             isDeclared: false,
-            declaredValue: 0,
+            declaredValue: null,
             isSpecialPrice: false,
             specialPrice: 0,
             extraFee: 0,
@@ -49,7 +49,7 @@
             enabledDeclare: false,
             // isBreakable: false,
             isSpecialPrice: false,
-            declareValue: 0,
+            declareValue: "",
             specialPrice: 0,
             description: null,
             total: 0,
@@ -96,7 +96,7 @@
 
         //Calculate item individually
         vm.calculateItem = function(item) {
-            item.total = ((parseFloat((item.enabledDeclare ? item.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
+            item.total = ((parseFloat((item.enabledDeclare && item.declareValue !== "" ? item.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
             // vm.calculateBolTotal();
         };
         //Calculate bol total before extra fee
