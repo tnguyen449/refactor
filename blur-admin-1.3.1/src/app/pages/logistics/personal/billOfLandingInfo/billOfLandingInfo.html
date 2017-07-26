@@ -22,7 +22,7 @@
                     <div class="col-md-4" style="padding-top: 10px">
                         <label style="padding-top: 5px">Ngày Nhận:</label>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <input type="text" class="form-control" ng-focus="bolInfo.dateCode()" placeholder="Nhập Ngày Nhận">
                     </div>
                     <div class="col-md-2" style="padding:10px 0 0 0">
@@ -37,7 +37,7 @@
                         <label>Đảm Bảo:</label>
                     </div>
                     <!-- input guanrantee -->
-                    <div class="col-sm-2">
+                    <div class="col-md-4">
                         <ba-switcher switcher-style="primary" switcher-value="bolInfo.merchandisesVM.isGuarantee"></ba-switcher>
                         <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
                     </div>
@@ -50,7 +50,7 @@
                         <label>Thu Hộ:</label>
                     </div>
                     <!-- input collect in behalf -->
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <input type="text" class="form-control" placeholder="Tiền Cần Thu" />
                     </div>
                 </div>
@@ -74,30 +74,28 @@
             <!-- optional component for some delivery methods -->
             <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name" ng-hide="bolInfo.bolInfoVM.deliveryType.Name =='Nhận Tại Văn Phòng'">
                 <div class="col-md-12">
-                    <div class="col-md-3" style="padding-top: 45px">
+                    <div class="col-md-4" style="padding-top: 45px">
                         <label>Dịch Vụ {{bolInfo.bolInfoVM.deliveryType.Name}}</label>
                     </div>
-                    <div class="col-md-9">
-                        <div class="col-md-12">
-                            <!-- sub-component Cash on Delivery -->
-                            <form class="row form-inline animate-switch" ng-switch-when="Giao Nhận Tận Nơi" style="padding-top: 35px">
-                                <!-- <div class="form-group col-sm-3 col-xs-6">
+                    <div class="col-md-8">
+                        <!-- sub-component Cash on Delivery -->
+                        <form class="row form-inline animate-switch" ng-switch-when="Giao Nhận Tận Nơi" style="padding-top: 35px">
+                            <!-- <div class="form-group col-sm-3 col-xs-6">
                                     <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
                                 </div> -->
-                                <div class="form-group col-sm-3 col-xs-6">
-                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Nhập Địa Chỉ Nhận">
-                                </div>
-                            </form>
-                            <!-- sub-component Timed delivery -->
-                            <form class="row form-inline" ng-switch-when="Giao Nhận Hẹn Giờ">
-                                <div class="form-group col-sm-3 col-xs-6" style="padding-top: 35px">
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Địa Chỉ Nhận">
-                                </div>
-                                <div class="form-group col-sm-3 col-xs-6">
-                                    <div uib-timepicker ng-model="bolInfo.mytime" ng-change="bolInfo.changed()" show-meridian="!bolInfo.ismeridian"></div>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="form-group col-md-4 col-sm-3 col-xs-6">
+                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Nhập Địa Chỉ Nhận">
+                            </div>
+                        </form>
+                        <!-- sub-component Timed delivery -->
+                        <form class="row form-inline" ng-switch-when="Giao Nhận Hẹn Giờ">
+                            <div class="form-group col-md-4 col-sm-3 col-xs-6" style="padding-top: 35px">
+                                <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Địa Chỉ Nhận">
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-6">
+                                <div uib-timepicker ng-model="bolInfo.mytime" ng-change="bolInfo.changed()" show-meridian="!bolInfo.ismeridian"></div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -180,7 +178,7 @@
                                 <td class="col-sm-2" style="border-top:none">
                                     <div class="input-group">
                                         <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)">
-                                        <span class="input-group-addon input-group-addon-primary addon-right" style="width:60px">{{item.type.CalculationUnit}}</span>
+                                        <span class="input-group-addon input-group-addon-primary addon-right" style="width:50px">{{item.type.CalculationUnit}}</span>
                                     </div>
                                 </td>
                                 <!-- check box declare values -->
@@ -193,7 +191,7 @@
                                 </td>
                                 <!-- input predictable values -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control" ng-disabled="item.isSpecialDisabled" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
+                                    <input type="text" class="input-sm form-control" ng-disabled="item.type.Description != 'Hàng Hóa Đặc Biệt'" ng-change="bolInfo.calculateItem(item)" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
                                 </td>
                                 <!-- input description -->
                                 <td style="border-top:none">
@@ -201,27 +199,11 @@
                                 </td>
                                 <!-- binding total -->
                                 <td class="text-center" style="border-top:none">
-                                    <span>  {{item.total}}</span>
+                                    <span>  {{item.total | number:0}}</span>
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <!-- canvas sub total column -->
-                                <td style="border-top:none"></td>
-                                <td style="border-top:none"></td>
-                                <td style="border-top:none"></td>
-                                <td style="border-top:none"></td>
-                                <td style="border-top:none"></td>
-                                <td style="border-top:none"></td>
-                                <td style="border-top:none"></td>
-                                <!-- title subtotal column -->
-                                <td class="pull-right" style="border-top:none">
-                                    <strong>Tổng Cộng: </strong>
-                                </td>
-                                <!-- binding subtotal -->
-                                <td class="text-center" style="border-top:none"><span>{{bolInfo.calculateBolTotal()}}</span></td>
-                            </tr>
                             <tr>
                                 <!-- canvas additional fee column -->
                                 <td style="border-top:none"></td>
@@ -239,6 +221,40 @@
                                 <td style="border-top:none">
                                     <input type="text" class="form-control" id="exampleInputName2">
                                 </td>
+                            </tr>
+                            <tr>
+                                <!-- canvas tax column -->
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <!-- title tax column -->
+                                <td class="pull-right" style="border-top:none; padding-top:17px">
+                                    <strong>Thuế (% VAT): </strong>
+                                </td>
+                                <!-- input tax value -->
+                                <td style="border-top:none">
+                                    <input type="text" class="form-control" id="exampleInputName2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <!-- canvas sub total column -->
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <!-- title subtotal column -->
+                                <td class="pull-right" style="border-top:none">
+                                    <strong>Tổng Cộng: </strong>
+                                </td>
+                                <!-- binding subtotal -->
+                                <td class="text-center" style="border-top:none"><span>{{bolInfo.calculateBolTotal() | number:0}}</span></td>
                             </tr>
                             <tr>
                                 <!-- canvas prepaid column -->
@@ -272,7 +288,7 @@
                                     <strong>Còn nợ: </strong>
                                 </td>
                                 <!-- binding liabilities values -->
-                                <td style="border-top:none">{{bolInfo.bolInfoVM.liabilities}}</td>
+                                <td class="text-center" style="border-top:none"><span>{{bolInfo.bolInfoVM.liabilities | number:0}}</span></td>
                             </tr>
                         </tfoot>
                     </table>

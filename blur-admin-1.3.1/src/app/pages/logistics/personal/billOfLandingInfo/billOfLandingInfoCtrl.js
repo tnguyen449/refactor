@@ -93,7 +93,7 @@
 
         //Calculate item individually
         vm.calculateItem = function(item) {
-            item.total = ((parseFloat((item.enabledDeclare && item.declareValue !== "" ? item.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
+            item.total = ((parseFloat((item.enabledDeclare && item.declareValue !== "" ? item.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity) + parseInt((item.specialPrice == null ? 0 : item.specialPrice)); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
             // vm.calculateBolTotal();
         };
         //Calculate bol total before extra fee
