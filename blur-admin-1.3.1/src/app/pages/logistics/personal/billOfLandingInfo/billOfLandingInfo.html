@@ -17,7 +17,6 @@
                         <label>{{bolInfo.bolInfoVM.createdDate | date: 'dd/MM/yyyy'}}</label>
                     </div>
                 </div>
-
                 <!-- input received date -->
                 <div class="col-md-12">
                     <div class="col-md-4" style="padding-top: 10px">
@@ -31,6 +30,19 @@
                     </div>
                 </div>
             </div>
+            <!-- component guanrantee -->
+            <div class="col-md-12" style="padding-top:8px">
+                <div class="col-md-12">
+                    <div class="col-sm-4 control-label" style="padding-top:8px">
+                        <label>Đảm Bảo:</label>
+                    </div>
+                    <!-- input guanrantee -->
+                    <div class="col-sm-2">
+                        <ba-switcher switcher-style="primary" switcher-value="bolInfo.merchandisesVM.isGuarantee"></ba-switcher>
+                        <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
+                    </div>
+                </div>
+            </div>
             <!-- component collect in behalf -->
             <div class="col-md-12">
                 <div class="col-md-12">
@@ -40,18 +52,6 @@
                     <!-- input collect in behalf -->
                     <div class="col-md-2">
                         <input type="text" class="form-control" placeholder="Tiền Cần Thu" />
-                    </div>
-                </div>
-            </div>
-            <!-- component guanrantee -->
-            <div class="col-md-12">
-                <div class="col-md-12">
-                    <div class="col-md-4" style="padding-top:8px">
-                        <label>Đảm Bảo:</label>
-                    </div>
-                    <!-- input collect in behalf -->
-                    <div class="col-md-2">
-                        <input type="checkbox" ng-model="bolInfo.isGuarantee" />
                     </div>
                 </div>
             </div>
@@ -81,9 +81,9 @@
                         <div class="col-md-12">
                             <!-- sub-component Cash on Delivery -->
                             <form class="row form-inline animate-switch" ng-switch-when="Giao Nhận Tận Nơi" style="padding-top: 35px">
-                                <div class="form-group col-sm-3 col-xs-6">
+                                <!-- <div class="form-group col-sm-3 col-xs-6">
                                     <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
-                                </div>
+                                </div> -->
                                 <div class="form-group col-sm-3 col-xs-6">
                                     <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Nhập Địa Chỉ Nhận">
                                 </div>
@@ -91,7 +91,7 @@
                             <!-- sub-component Timed delivery -->
                             <form class="row form-inline" ng-switch-when="Giao Nhận Hẹn Giờ">
                                 <div class="form-group col-sm-3 col-xs-6" style="padding-top: 35px">
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
+                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Địa Chỉ Nhận">
                                 </div>
                                 <div class="form-group col-sm-3 col-xs-6">
                                     <div uib-timepicker ng-model="bolInfo.mytime" ng-change="bolInfo.changed()" show-meridian="!bolInfo.ismeridian"></div>
@@ -116,16 +116,22 @@
             <!-- button group -->
             <div class="add-row-editable-table col-md-12 pull-right">
                 <div class="col-md-12">
-                    <div class="row btns-row pull-right">
-                        <!-- button add item -->
-                        <div class="col-sm-6">
-                            <button class="btn btn-primary" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
-                        </div>
-                        <!-- button remove item -->
-                        <div class="col-sm-6">
-                            <button class="btn btn-danger" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+                    <div class="col-md-6">
+                        <!--add another view-->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row btns-row pull-right">
+                            <!-- button add item -->
+                            <div class="col-sm-6">
+                                <button class="btn btn-primary" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
+                            </div>
+                            <!-- button remove item -->
+                            <div class="col-sm-6">
+                                <button class="btn btn-danger" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- end button group -->
                 <!-- table bill of landing details -->
@@ -195,7 +201,7 @@
                                 </td>
                                 <!-- binding total -->
                                 <td class="text-center" style="border-top:none">
-                                    <label><span>  {{item.total}}</label>
+                                    <span>  {{item.total}}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -214,7 +220,25 @@
                                     <strong>Tổng Cộng: </strong>
                                 </td>
                                 <!-- binding subtotal -->
-                                <td class="text-center" style="border-top:none">{{bolInfo.calculateBolTotal()}}</td>
+                                <td class="text-center" style="border-top:none"><span>{{bolInfo.calculateBolTotal()}}</span></td>
+                            </tr>
+                            <tr>
+                                <!-- canvas additional fee column -->
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
+                                <!-- title additional fee column -->
+                                <td class="pull-right" style="border-top:none; padding-top:17px">
+                                    <strong>Phụ Phí: </strong>
+                                </td>
+                                <!-- input additional fee value -->
+                                <td style="border-top:none">
+                                    <input type="text" class="form-control" id="exampleInputName2">
+                                </td>
                             </tr>
                             <tr>
                                 <!-- canvas prepaid column -->
@@ -226,7 +250,7 @@
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <!-- title prepaid column -->
-                                <td class="pull-right" style="border-top:none">
+                                <td class="pull-right" style="border-top:none; padding-top:17px">
                                     <strong>Trả trước: </strong>
                                 </td>
                                 <!-- input prepaid value -->

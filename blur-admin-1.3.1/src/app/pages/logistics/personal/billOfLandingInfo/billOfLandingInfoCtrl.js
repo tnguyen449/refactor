@@ -47,17 +47,15 @@
             quantity: null,
             amount: null,
             enabledDeclare: false,
-            // isBreakable: false,
-            isSpecialPrice: false,
+            isGuarantee: true,
             declareValue: "",
-            specialPrice: 0,
             description: null,
             total: 0,
             //end init
             //init checkbox properties for each row
-            // isDeclareDisabled: true,
-            // isSpecialDisabled: true
-            //end init
+            isDeclareDisabled: true,
+            isSpecialDisabled: true
+                //end init
         }];
 
         vm.deliveryTypeVM = [{
@@ -81,10 +79,9 @@
                 quantity: null,
                 amount: null,
                 isDeclaredValue: false,
-                isBreakable: false,
+                isGuarantee: false,
                 isSpecialPrice: false,
                 declareValue: null,
-                specialPrice: null,
                 description: null,
                 total: 0,
                 extraFee: 0,
@@ -102,8 +99,9 @@
         //Calculate bol total before extra fee
         vm.calculateBolTotal = function() {
                 vm.bolInfoVM.total = 0;
+                vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
                 angular.forEach(vm.merchandisesVM, function(item) {
-                    vm.bolInfoVM.total += item.total;
+                    vm.bolInfoVM.total += item.total + vm.guaranteeValue;
                 });
                 vm.bolInfoVM.total += parseInt(vm.bolInfoVM.extraFee);
                 vm.calculateBolLiabilities();
