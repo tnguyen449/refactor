@@ -23,11 +23,19 @@
                         <label style="padding-top: 5px">Ngày Nhận:</label>
                     </div>
                     <div class="col-md-3">
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                            <span class="input-group-btn">
+                             <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <!--<div class="col-md-3">
                         <input type="text" class="form-control" ng-focus="bolInfo.dateCode()" placeholder="Nhập Ngày Nhận">
                     </div>
                     <div class="col-md-2" style="padding:10px 0 0 0">
                         <span> (dd/MM/yyyy)</span>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <!-- component guanrantee -->
@@ -64,8 +72,11 @@
                     </div>
                     <!-- radio button delivery methods -->
                     <div class="col-md-8">
-                        <div class="col-md-6" ng-repeat="deliveryType in bolInfo.deliveryTypeVM" ng-init="bolInfo.bolInfoVM.deliveryType.Name = bolInfo.deliveryTypeVM[0].Name">
-                            <input type="radio" name="optradio" ng-value="deliveryType.Name" ng-model="bolInfo.bolInfoVM.deliveryType.Name" /> {{deliveryType.Name}}
+                        <div class="col-md-6" style="padding-top: 10px" ng-repeat="deliveryType in bolInfo.deliveryTypeVM" ng-init="bolInfo.bolInfoVM.deliveryType.Name = bolInfo.deliveryTypeVM[0].Name">
+                            <label class="radio-inline custom-radio nowrap">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Name" ng-model="bolInfo.bolInfoVM.deliveryType.Name">
+                            <span>{{deliveryType.Name}}</span>
+                        </label>
                         </div>
                     </div>
                 </div>
@@ -145,6 +156,7 @@
                                 <!-- input title block -->
                                 <th class="col-md-2 text-left">Loại Đơn Hàng</th>
                                 <th class="col-md-1 text-left">Số Lượng </th>
+                                <th class="col-md-1 text-center">ĐVT </th>
                                 <th class="col-md-1 text-left">Khối Lượng</th>
                                 <!-- check box title declare value -->
                                 <th class="col-md-0.5 text-center">KG</th>
@@ -172,14 +184,15 @@
                                 </td>
                                 <!-- input quantity -->
                                 <td style="border-top:none">
-                                    <input type="number" class="input-sm form-control" ng-model="item.amount" min: "0">
+                                    <input class="input-sm form-control" ng-model="item.amount">
+                                </td>
+                                <!-- bind calculation unit -->
+                                <td style="border-top:none">
+                                    <input class="input-sm form-control" style=" width: 55px" ng-model="item.type.CalculationUnit" readonly>
                                 </td>
                                 <!-- input weight -->
-                                <td class="col-sm-2" style="border-top:none">
-                                    <div class="input-group">
-                                        <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)">
-                                        <span class="input-group-addon input-group-addon-primary addon-right" style="width:50px">{{item.type.CalculationUnit}}</span>
-                                    </div>
+                                <td style="border-top:none">
+                                    <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.Description == 'Hàng Hóa Đặc Biệt'">
                                 </td>
                                 <!-- check box declare values -->
                                 <td class="text-center" style="border-top:none">
@@ -213,17 +226,19 @@
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
                                 <!-- title additional fee column -->
                                 <td class="pull-right" style="border-top:none; padding-top:17px">
                                     <strong>Phụ Phí: </strong>
                                 </td>
                                 <!-- input additional fee value -->
                                 <td style="border-top:none">
-                                    <input type="text" class="form-control" id="exampleInputName2">
+                                    <input type="text" class="form-control input-sm" id="exampleInputName2">
                                 </td>
                             </tr>
                             <tr>
                                 <!-- canvas tax column -->
+                                <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
@@ -237,11 +252,12 @@
                                 </td>
                                 <!-- input tax value -->
                                 <td style="border-top:none">
-                                    <input type="text" class="form-control" id="exampleInputName2">
+                                    <input type="text" class="form-control input-sm" id="exampleInputName2">
                                 </td>
                             </tr>
                             <tr>
                                 <!-- canvas sub total column -->
+                                <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
@@ -265,6 +281,7 @@
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
+                                <td style="border-top:none"></td>
                                 <!-- title prepaid column -->
                                 <td class="pull-right" style="border-top:none; padding-top:17px">
                                     <strong>Trả trước: </strong>
@@ -276,6 +293,7 @@
                             </tr>
                             <tr>
                                 <!-- canvas liabilities column -->
+                                <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>

@@ -150,9 +150,18 @@
             return vm.test;
         });
 
+        // format datepicker
+        $scope.open = open;
+        $scope.opened = false;
+        $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        $scope.format = $scope.formats[0];
+        $scope.options = {
+            showWeeks: false
+        };
 
-        // vm.bolnfo = {};
-        // vm.isCollectInBehalf = false;
-        // vm.isGuarantee = false;
+        function open() {
+            $scope.opened = true;
+        }
+        // end
     }
 })();
