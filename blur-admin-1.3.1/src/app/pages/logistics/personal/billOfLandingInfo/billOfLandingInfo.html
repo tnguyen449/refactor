@@ -2,7 +2,7 @@
 <div class="panel panel-default height">
     <!-- form heading -->
     <div class="text-center panel-heading">
-        <h2>Thông tin đơn hàng số {{bolInfo.test}}</h2>
+        <h2>Thông tin đơn hàng số {{bolInfo.bolCode}}</h2>
     </div>
     <!-- form body -->
     <div class="panel-body">
@@ -22,9 +22,9 @@
                     <div class="col-md-4" style="padding-top: 10px">
                         <label style="padding-top: 5px">Ngày Nhận:</label>
                     </div>
-                    <div class="col-md-3">
+                    <div class="datepicker col-md-3">
                         <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="bolInfo.receivedDate" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
                             <span class="input-group-btn">
                              <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
@@ -74,7 +74,7 @@
                     <div class="col-md-8">
                         <div class="col-md-6" style="padding-top: 10px" ng-repeat="deliveryType in bolInfo.deliveryTypeVM" ng-init="bolInfo.bolInfoVM.deliveryType.Name = bolInfo.deliveryTypeVM[0].Name">
                             <label class="radio-inline custom-radio nowrap">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Name" ng-model="bolInfo.bolInfoVM.deliveryType.Name">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Name" ng-model="bolInfo.bolInfoVM.deliveryType.Name" ng-change="bolInfo.calculateMinorFee(bolInfo.bolInfoVM.deliveryType.Name)">
                             <span>{{deliveryType.Name}}</span>
                         </label>
                         </div>
@@ -83,15 +83,15 @@
             </div>
 
             <!-- optional component for some delivery methods -->
-            <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name" ng-hide="bolInfo.bolInfoVM.deliveryType.Name =='Nhận Tại Văn Phòng'">
-                <div class="col-md-12">
+            <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name">
+                <div class="col-md-12" ng-hide="bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[0].Name || bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[3].Name">
                     <div class="col-md-4" style="padding-top: 45px">
                         <label>Dịch Vụ {{bolInfo.bolInfoVM.deliveryType.Name}}</label>
                     </div>
                     <div class="col-md-8">
                         <!-- sub-component Cash on Delivery -->
-                        <form class="row form-inline animate-switch" ng-switch-when="Giao Nhận Tận Nơi" style="padding-top: 35px">
-                            <!-- <div class="form-group col-sm-3 col-xs-6">
+                        <form class="row form-inline animate-switch" ng-show="bolInfo.bolInfoVM.deliveryType.Name ==bolInfo.deliveryTypeVM[2].Name" style="padding-top: 35px">
+                            <!-- <div class="form-group col-sm-3 col-xs-6"
                                     <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
                                 </div> -->
                             <div class="form-group col-md-4 col-sm-3 col-xs-6">
@@ -99,7 +99,7 @@
                             </div>
                         </form>
                         <!-- sub-component Timed delivery -->
-                        <form class="row form-inline" ng-switch-when="Giao Nhận Hẹn Giờ">
+                        <form class="row form-inline" ng-show="bolInfo.bolInfoVM.deliveryType.Name ==bolInfo.deliveryTypeVM[1].Name">
                             <div class="form-group col-md-4 col-sm-3 col-xs-6" style="padding-top: 35px">
                                 <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Địa Chỉ Nhận">
                             </div>
@@ -178,13 +178,13 @@
                                 </td>
                                 <!-- dropdown merchandise types -->
                                 <td style="border-top:none">
-                                    <select ng-change="bolInfo.calculateItem(item)" ng-model="item.type" class="input-sm form-control" ng-options="type.MerchandiseType1 group by type.Description for type in personal.merchandiseTypeVM" name="sendTo" class="form-control">
+                                    <select ng-change="bolInfo.calculateItem(item)" ng-model="item.type" class="input-sm form-control type" ng-options="type.MerchandiseType1 group by type.Description for type in personal.merchandiseTypeVM" name="sendTo" class="form-control">
                                     <option>Chọn Loại Hàng</option>
                             </select>
                                 </td>
                                 <!-- input quantity -->
                                 <td style="border-top:none">
-                                    <input class="input-sm form-control" ng-model="item.amount">
+                                    <input class="input-sm form-control quantity" ng-model="item.amount" ng-value="item.amount =1">
                                 </td>
                                 <!-- bind calculation unit -->
                                 <td style="border-top:none">
@@ -192,7 +192,7 @@
                                 </td>
                                 <!-- input weight -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.Description == 'Hàng Hóa Đặc Biệt'">
+                                    <input type="text" class="input-sm form-control weight" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.Description == 'Hàng Hóa Đặc Biệt'">
                                 </td>
                                 <!-- check box declare values -->
                                 <td class="text-center" style="border-top:none">
@@ -200,11 +200,11 @@
                                 </td>
                                 <!-- input declare values -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control" ng-disabled="!item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" ng-value="item.declareValue == null? '0' : item.declareValue" placeholder="Khai giá">
+                                    <input type="text" class="input-sm form-control" currency-format ng-disabled="!item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" ng-value="item.declareValue == null? '0' : item.declareValue" placeholder="Khai giá">
                                 </td>
                                 <!-- input predictable values -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control" ng-disabled="item.type.Description != 'Hàng Hóa Đặc Biệt'" ng-change="bolInfo.calculateItem(item)" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
+                                    <input type="text" class="input-sm form-control" currency-format ng-disabled="item.type.Description != 'Hàng Hóa Đặc Biệt'" ng-change="bolInfo.calculateItem(item)" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
                                 </td>
                                 <!-- input description -->
                                 <td style="border-top:none">
@@ -233,11 +233,12 @@
                                 </td>
                                 <!-- input additional fee value -->
                                 <td style="border-top:none">
-                                    <input type="text" class="form-control input-sm" id="exampleInputName2">
+                                    <input type="text" currency-format ng-model="bolInfo.additionalFee" class="form-control input-sm">
+                                    <!--ng-value="bolInfo.additionalFee = (bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[1].Name? bolInfo.deliveryTypeVM[1].Value :bolInfo.additionalFee)"-->
                                 </td>
                             </tr>
-                            <tr>
-                                <!-- canvas tax column -->
+                            <!--<tr>
+                                 canvas tax column 
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
@@ -246,15 +247,15 @@
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
                                 <td style="border-top:none"></td>
-                                <!-- title tax column -->
+                                 title tax column 
                                 <td class="pull-right" style="border-top:none; padding-top:17px">
                                     <strong>Thuế (% VAT): </strong>
                                 </td>
-                                <!-- input tax value -->
+                                input tax value
                                 <td style="border-top:none">
                                     <input type="text" class="form-control input-sm" id="exampleInputName2">
                                 </td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <!-- canvas sub total column -->
                                 <td style="border-top:none"></td>
@@ -288,7 +289,7 @@
                                 </td>
                                 <!-- input prepaid value -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control" ng-change="bolInfo.calculateBolLiabilities()" ng-model="bolInfo.bolInfoVM.prepaid">
+                                    <input type="text" class="input-sm form-control" ng-change="bolInfo.calculateBolLiabilities()" currency-format ng-model="bolInfo.bolInfoVM.prepaid">
                                 </td>
                             </tr>
                             <tr>

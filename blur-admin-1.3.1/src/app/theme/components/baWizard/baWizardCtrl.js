@@ -14,16 +14,6 @@
 
         vm.data = [];
 
-        vm.addCustomer = function(item) {
-            shareDataService.addItem(item);
-        }
-
-        vm.data = shareDataService.getList();
-
-        vm.getCustomer = function() {
-            console.log(vm.data);
-        };
-
         vm.addTab = function(tab) {
             tab.setPrev(vm.tabs[vm.tabs.length - 1]);
             vm.tabs.push(tab);

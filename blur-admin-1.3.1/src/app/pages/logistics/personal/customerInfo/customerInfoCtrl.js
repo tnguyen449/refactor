@@ -1,14 +1,16 @@
 (function() {
     'use strict';
     angular.module('BlurAdmin.pages.logistics')
-        .controller('customerInfoCtrl', ['$scope', '$rootScope', customerInfoCtrl]);
+        .controller('customerInfoCtrl', customerInfoCtrl);
 
-    function customerInfoCtrl($scope, $rootScope, shareDataService) {
+    customerInfoCtrl.$inject = ['$scope', '$rootScope'];
+
+    function customerInfoCtrl($scope, $rootScope) {
         var vm = this;
         vm.customerInfoVM = {};
 
         vm.emitEvent = function() {
-            $scope.$emit('storeValue', vm.customerInfoVM)
+            $scope.$emit('storeValue', vm.customerInfoVM);
         };
 
     }
