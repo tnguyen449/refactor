@@ -30,7 +30,7 @@
             createdDate: vm.dateOptions.minDate,
             createdBy: "",
             deliveryType: 0,
-            prepaid: null,
+            prepaid: "",
             liabilities: null
         };
 
@@ -57,20 +57,12 @@
             isSpecialDisabled: true
                 //end init
         }];
+        vm.deliveryTypeVM = [];
+        $scope.$on('initData', function(event, obj) {
+            console.log(obj.data.deliveryTypeVM);
+            vm.deliveryTypeVM = obj.data.deliveryTypeVM;
 
-        vm.deliveryTypeVM = [{
-                Name: 'Nhận Tại VP'
-            },
-            {
-                Name: 'Giao Nhận Tận Nơi'
-            },
-            {
-                Name: 'Đồng Giá'
-            },
-            {
-                Name: 'Giao Nhận Hẹn Giờ'
-            }
-        ];
+        });
 
         vm.addItem = function() {
             vm.inserted = {
@@ -81,7 +73,7 @@
                 isDeclaredValue: false,
                 isGuarantee: false,
                 isSpecialPrice: false,
-                declareValue: null,
+                declareValue: "",
                 description: null,
                 total: 0,
                 extraFee: 0,
@@ -93,17 +85,35 @@
 
         //Calculate item individually
         vm.calculateItem = function(item) {
-            item.total = ((parseFloat((item.enabledDeclare && item.declareValue !== "" ? item.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity) + parseInt((item.specialPrice == null ? 0 : item.specialPrice)); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
-            // vm.calculateBolTotal();
+            vm.declareValue = parseInt(item.declareValue.replace(/,/g, ""));
+            if (item.type.Description == 'Phương Tiện') {
+                item.total = item.type.Value + ((parseFloat((item.enabledDeclare && vm.declareValue !== "" ? vm.declareValue : 0)) * parseFloat(1) / 100));
+            } else if (item.type.Description == 'Hàng Đồng Giá') {
+                item.total = item.type.Value;
+            } else {
+                item.total = ((parseFloat((item.enabledDeclare && vm.declareValue !== "" ? vm.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity) + parseInt((item.specialPrice == null ? 0 : item.specialPrice)); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
+            }
+
+            vm.calculateBolTotal();
         };
+        vm.additionalFee = 0;
+        vm.additionalFee = vm.additionalFee.toLocaleString();
+        // vm.temp = 0;
         //Calculate bol total before extra fee
         vm.calculateBolTotal = function() {
+
+                if (vm.additionalFee !== undefined && typeof(vm.additionalFee) == 'string') {
+                    vm.additionalFeeTemp = parseInt(vm.additionalFee.replace(/,/g, ""));
+                } else {
+                    vm.additionalFeeTemp = vm.additionalFee;
+                }
                 vm.bolInfoVM.total = 0;
                 vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
                 angular.forEach(vm.merchandisesVM, function(item) {
-                    vm.bolInfoVM.total += item.total + vm.guaranteeValue;
+                    vm.bolInfoVM.total += item.total;
                 });
-                vm.bolInfoVM.total += parseInt(vm.bolInfoVM.extraFee);
+
+                vm.bolInfoVM.total += parseInt(vm.bolInfoVM.extraFee) + vm.guaranteeValue + vm.additionalFeeTemp;
                 vm.calculateBolLiabilities();
                 return vm.bolInfoVM.total;
             }
@@ -112,7 +122,8 @@
                 if (vm.merchandisesVM.length == 0) {
                     vm.bolInfoVM.prepaid = 0;
                 }
-                vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaid;
+                vm.bolInfoVM.prepaidTemp = parseInt(vm.bolInfoVM.prepaid.replace(/,/g, ""));
+                vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaidTemp;
             }
             //End
 
@@ -141,13 +152,12 @@
         };
 
         $scope.$on('setValue', function(event, obj) {
-            console.log(event);
             var front = obj.BolFromName.selected.BranchCode;
             var end = obj.BolToName.selected.BranchCode;
-            // var dateCode = $rootScope.serverTimeStampVM.getDate().toString() + $rootScope.serverTimeStampVM.getMonth().toString() + $rootScope.serverTimeStampVM.getFullYear().toString().substring(2);
-            // var timeCode = $rootScope.serverTimeStampVM.getHours().toString() + $rootScope.serverTimeStampVM.getMinutes().toString() + $rootScope.serverTimeStampVM.getSeconds().toString();
-            vm.test = front + $rootScope.serverTimeStampVM + end;
-            return vm.test;
+            var dateCode = $rootScope.serverTimeStampVM.substring(0, 5);
+            var timeCode = $rootScope.serverTimeStampVM.substring(6, 11);
+            vm.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
+            return vm.bolCode;
         });
 
         // format datepicker
@@ -160,8 +170,22 @@
         };
 
         function open() {
+            vm.sendDate = new Date(vm.bolInfoVM.createdDate.getFullYear(), vm.bolInfoVM.createdDate.getMonth(), vm.bolInfoVM.createdDate.getDate() + 1);
+            vm.receivedDate = {
+                minDate: new Date(vm.sendDate),
+            };
             $scope.opened = true;
         }
         // end
-    }
+
+        vm.calculateMinorFee = function(name) {
+            for (var i = 0; i < vm.deliveryTypeVM.length; i++) {
+                if (name == vm.deliveryTypeVM[i].Name) {
+                    vm.additionalFee = vm.deliveryTypeVM[i].Value;
+                }
+            }
+            return vm.additionalFee + "";
+        }
+    };
+
 })();

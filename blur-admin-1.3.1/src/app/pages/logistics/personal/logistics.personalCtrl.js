@@ -8,21 +8,28 @@
     function PersonalCtrl($scope, $rootScope, $http, shareDataService) {
         var vm = this;
         vm.branchInfoVM = [];
-        // vm.bolFrom = customerInfoCtrl.customerInfoVM.BolFromName.selected;
-
         vm.merchandiseTypeVM = [];
         $rootScope.serverTimeStampVM = {};
         vm.deliveryTypeVM = [];
+        vm.customerInfoVM = [];
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
                 $http.get('http://localhost:57363/NgocTrang/Api/Bol/GetComponent').then(
                     function(response) {
                         if (response.data.Branch.length > 0 && response.data.Type.length > 0) {
+                            var serverDate = response.data.CurrentTimeStamp;
                             vm.branchInfoVM = response.data.Branch;
                             vm.merchandiseTypeVM = response.data.Type;
-                            // $rootScope.serverTimeStampVM = response.data.CurrentTimeStamp;
-
+                            $rootScope.serverTimeStampVM = serverDate;
                             vm.deliveryTypeVM = response.data.DeliveryType;
+                            vm.initData = {
+                                data: {
+                                    branchInfoVM: vm.branchInfoVM,
+                                    merchandiseTypeVM: vm.merchandiseTypeVM,
+                                    deliveryTypeVM: vm.deliveryTypeVM
+                                }
+                            }
+                            $scope.$broadcast('initData', vm.initData);
                         }
                     },
                     function(response) {
@@ -40,7 +47,10 @@
             }
         };
 
+
+
         $scope.$on('storeValue', function(event, obj) {
+            vm.customerInfoVM = obj;
             $scope.$broadcast('setValue', obj);
         });
 
