@@ -2,7 +2,7 @@
     <!--start form wizard group-->
     <ba-wizard ng-init="personal.getTransactionComponent() ">
         <!--start step 1-->
-        <ba-wizard-step title="Thông Tin Khách Hàng">
+        <ba-wizard-step title="Thông Tin Khách Hàng" form="personal.customerForm">
             <div class="widgets ">
                 <div class="row ">
                     <ui-view name="customerInfo"></ui-view>
@@ -14,7 +14,7 @@
         <!--start step 2-->
         <ba-wizard-step title="Thông Tin Đơn Hàng">
             <div class="widgets ">
-                <ui-view name="bolInfo "></ui-view>
+                <ui-view name="bolInfo"></ui-view>
             </div>
         </ba-wizard-step>
         <!--end step 2-->

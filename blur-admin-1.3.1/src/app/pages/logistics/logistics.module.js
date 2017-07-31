@@ -14,25 +14,18 @@
                 url: '/logistics',
                 templateUrl: 'app/pages/logistics/main/logisticsMain.html',
                 title: 'Bảo Tiêu',
-                views: {
-                    ' view@logistics': {
-                        templateUrl: 'app/pages/logistics/viewPage/viewPage.html',
-                        controller: 'PersonalCtrl',
-                        controllerAs: 'viewInfo'
-                    }
-                },
                 sidebarMeta: {
                     icon: 'ion-compose',
                     order: 0
                 }
             })
-            // .state('logistics.view', {
-            //     url: '/view',
-            //     templateUrl: 'app/pages/logistics/viewPage/viewPage.html',
-            //     title: 'Xem Đơn Vận',
-            //     controller: 'PersonalCtrl',
-            //     controllerAs: 'viewInfo'
-            // })
+            .state('logistics.view', {
+                url: '/view',
+                templateUrl: 'app/pages/logistics/viewPage/viewPage.html',
+                title: 'Xem Đơn Vận',
+                controller: 'PersonalCtrl',
+                controllerAs: 'viewInfo'
+            })
             .state('logistics.personal', {
                 url: '/personal',
                 title: 'Bảo Tiêu Cá Nhân',

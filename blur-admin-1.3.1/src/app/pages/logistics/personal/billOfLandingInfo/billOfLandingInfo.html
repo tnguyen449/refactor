@@ -22,9 +22,10 @@
                     <div class="col-md-4" style="padding-top: 10px">
                         <label style="padding-top: 5px">Ngày Nhận:</label>
                     </div>
-                    <div class="col-md-3">
+                    <div class="datepicker col-md-3">
                         <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="bolInfo.bolInfoVM.createdDate" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"
+                            />
                             <span class="input-group-btn">
                              <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
