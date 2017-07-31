@@ -50,7 +50,6 @@
 
 
         $scope.$on('storeValue', function(event, obj) {
-            vm.customerInfoVM = obj;
             $scope.$broadcast('setValue', obj);
         });
 

@@ -39,27 +39,21 @@
         vm.merchandisesVM = [{
             //Init first empty row SmartTable
             id: 1,
-            type: {
-                name: null,
-                calculationUnit: 0,
-                value: 0
-            },
+            type: null,
             quantity: null,
             amount: null,
-            enabledDeclare: false,
-            isGuarantee: true,
+            isDeclaredValue: false,
+            isGuarantee: false,
+            isSpecialPrice: false,
             declareValue: "",
             description: null,
             total: 0,
-            //end init
-            //init checkbox properties for each row
+            extraFee: 0,
             isDeclareDisabled: true,
             isSpecialDisabled: true
-                //end init
         }];
         vm.deliveryTypeVM = [];
         $scope.$on('initData', function(event, obj) {
-            console.log(obj.data.deliveryTypeVM);
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
 
         });
@@ -152,6 +146,7 @@
         };
 
         $scope.$on('setValue', function(event, obj) {
+            console.log(obj);
             var front = obj.BolFromName.selected.BranchCode;
             var end = obj.BolToName.selected.BranchCode;
             var dateCode = $rootScope.serverTimeStampVM.substring(0, 5);

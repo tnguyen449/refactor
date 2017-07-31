@@ -36,7 +36,10 @@
                 <td>{{item.age}}</td>
             </tr>-->
             <tr>
-                <td class="table-id" st-sort="id" st-sort-default="true">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
+                <td class="table-id" st-sort="id" st-sort-default="true" data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                </div>
                 <td st-sort="email">Nguyễn Thành Trung</td>
                 <td st-sort="age">Phan Tiến Anh</td>
                 <td st-sort="age">Nha Trang</td>

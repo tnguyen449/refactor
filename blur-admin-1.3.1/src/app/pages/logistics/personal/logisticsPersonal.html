@@ -2,21 +2,12 @@
     <!--start form wizard group-->
     <ba-wizard ng-init="personal.getTransactionComponent() ">
         <!--start step 1-->
-<<<<<<< HEAD
         <ba-wizard-step title="Thông Tin Khách Hàng" form="personal.customerForm">
             <div class="widgets ">
                 <div class="row ">
                     <ui-view name="customerInfo"></ui-view>
-=======
-        <ba-wizard-step title="Thông Tin Khách Hàng" form="customerInfo.customerInfoVM">
-            <form name="customerInfo.customerInfoVM" novalidate>
-                <div class="widgets ">
-                    <div class="row ">
-                        <ui-view name="customerInfo "></ui-view>
-                    </div>
->>>>>>> cb3acb2446ec93175d66adcd0fc50aab2c6db6d4
                 </div>
-            </form>
+            </div>
         </ba-wizard-step>
         <!--end step 1-->
 
@@ -29,11 +20,11 @@
         <!--end step 2-->
 
         <!--start step 3-->
-        <!--<ba-wizard-step title="Hoàn Tất ">
+        <ba-wizard-step title="Hoàn Tất ">
             <div class="widgets ">
                 <ui-view name="bolReviewCtrl "></ui-view>
             </div>
-        </ba-wizard-step>-->
+        </ba-wizard-step>
         <!--end step 3-->
     </ba-wizard>
     <!--end form wizard group-->

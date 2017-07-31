@@ -24,12 +24,7 @@
                     </div>
                     <div class="datepicker col-md-3">
                         <p class="input-group">
-<<<<<<< HEAD
-                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="bolInfo.bolInfoVM.createdDate" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"
-                            />
-=======
                             <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="bolInfo.receivedDate" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
->>>>>>> cb3acb2446ec93175d66adcd0fc50aab2c6db6d4
                             <span class="input-group-btn">
                              <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
@@ -189,7 +184,7 @@
                                 </td>
                                 <!-- input quantity -->
                                 <td style="border-top:none">
-                                    <input class="input-sm form-control quantity" ng-model="item.amount" ng-value="item.amount =1">
+                                    <input class="input-sm form-control quantity" ng-model="item.amount">
                                 </td>
                                 <!-- bind calculation unit -->
                                 <td style="border-top:none">
@@ -322,3 +317,5 @@
             </div>
         </div>
         <!-- end bill of landing infomation -->
+    </div>
+</div>

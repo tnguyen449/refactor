@@ -142,13 +142,10 @@ textarea.form-control {
                 text-align: center;
                 color: white;
                 &.handle-off {
-<<<<<<< HEAD
                     background: $border;
                     color: black;
-=======
                     background: $danger;
                     color: white;
->>>>>>> cb3acb2446ec93175d66adcd0fc50aab2c6db6d4
                 }
             }
         }
@@ -649,11 +646,8 @@ fieldset[disabled] .form-control {
 
 .sub-little-text {
     font-size: 12px;
-<<<<<<< HEAD
 }
 
 .require {
     color: red;
-=======
->>>>>>> cb3acb2446ec93175d66adcd0fc50aab2c6db6d4
 }
