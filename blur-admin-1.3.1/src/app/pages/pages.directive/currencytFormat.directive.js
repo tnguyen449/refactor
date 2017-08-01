@@ -8,10 +8,9 @@
             restrict: 'A',
             require: 'ngModel',
             link: function(scope, element, attrs, ctrl) {
-
-                return ctrl.$parsers.push(function(inputValue) {
+                function currencyFormat(inputValue) {
                     var inputVal = element.val();
-
+                    inputVal = inputVal.replace(/[^0-9]/g, '');
                     //clearing left side zeros
                     while (inputVal.charAt(0) == '0') {
                         inputVal = inputVal.substr(1);
@@ -56,11 +55,9 @@
                         ctrl.$render();
 
                     }
-
                     return res;
-
-                });
-
+                }
+                ctrl.$parsers.push(currencyFormat);
             }
         };
     };

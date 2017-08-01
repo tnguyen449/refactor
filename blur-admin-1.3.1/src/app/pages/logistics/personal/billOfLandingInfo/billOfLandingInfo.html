@@ -184,15 +184,15 @@
                                 </td>
                                 <!-- input quantity -->
                                 <td style="border-top:none">
-                                    <input class="input-sm form-control quantity" ng-model="item.amount">
+                                    <input class="input-sm form-control quantity" only-digit ng-model="item.quantity">
                                 </td>
                                 <!-- bind calculation unit -->
                                 <td style="border-top:none">
-                                    <input class="input-sm form-control" style=" width: 55px" ng-model="item.type.CalculationUnit" readonly>
+                                    <div class="text-center">{{item.type.CalculationUnit.trim()}}</div>
                                 </td>
                                 <!-- input weight -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control weight" ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.Description == 'Hàng Hóa Đặc Biệt'">
+                                    <input type="text" class="input-sm form-control weight" only-digit ng-model="item.weight" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện'>
                                 </td>
                                 <!-- check box declare values -->
                                 <td class="text-center" style="border-top:none">
@@ -200,7 +200,7 @@
                                 </td>
                                 <!-- input declare values -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control" currency-format ng-disabled="!item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" ng-value="item.declareValue == null? '0' : item.declareValue" placeholder="Khai giá">
+                                    <input type="text" class="input-sm form-control" currency-format ng-disabled="!item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" placeholder="Khai giá">
                                 </td>
                                 <!-- input predictable values -->
                                 <td style="border-top:none">

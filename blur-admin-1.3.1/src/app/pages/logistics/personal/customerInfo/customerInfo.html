@@ -17,7 +17,7 @@
                 <!--input sender phone-->
                 <div class="form-group has-feedback" ng-class="{'has-error': personal.customerForm.senderPhone.$invalid && (personal.customerForm.senderPhone.$dirty || personal.customerForm.$submitted)}">
                     <label for="exampleInputEmail1"><span class="require">* </span>Số Điện Thoại</label>
-                    <input type="text" class="form-control" name="senderPhone" placeholder="Nhập Số Điện Thoại Người Gửi" ng-model="vm.customerInfoVM.senderPhone" required>
+                    <input type="text" class="form-control" only-digit name="senderPhone" placeholder="Nhập Số Điện Thoại Người Gửi" ng-model="vm.customerInfoVM.senderPhone" required>
                     <span class="help-block error-block basic-block">Nhập số điện thoại người gửi</span>
                 </div>
                 <!--dropdown send from-->
@@ -59,7 +59,7 @@
                 <!--input receiver phone-->
                 <div class="form-group has-feedback" ng-class="{'has-error':personal.customerForm.receiverPhone.$invalid && (personal.customerForm.receiverPhone.$dirty || personal.customerForm.$submitted)}">
                     <label for="exampleInputConfirmPassword1"><span class="require">* </span>Số Điện Thoại</label>
-                    <input type="text" class="form-control" name="receiverPhone" placeholder="Nhập Số Điện Thoại Người Nhận" ng-model="vm.customerInfoVM.receiverPhone" required>
+                    <input type="text" class="form-control" only-digit name="receiverPhone" placeholder="Nhập Số Điện Thoại Người Nhận" ng-model="vm.customerInfoVM.receiverPhone" required>
                     <span class="help-block error-block basic-block">Nhập số điện thoại người nhận</span>
                 </div>
                 <!--dropdown send to -->

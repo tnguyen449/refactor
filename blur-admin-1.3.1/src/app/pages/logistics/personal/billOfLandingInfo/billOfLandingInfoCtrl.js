@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
-        .controller('bolInfoCtrl', ['$scope', '$rootScope', bolInfoCtrl]);
+        .controller('bolInfoCtrl', ['$scope', 'toastr', bolInfoCtrl]);
 
-    function bolInfoCtrl($scope, $rootScope) {
+    function bolInfoCtrl($scope, toastr) {
         var vm = this;
         vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
         vm.ismeridian = true;
+        vm.deliveryTypeVM = [];
         vm.dateOptions = {
             formatYear: 'yyyy',
             maxDate: new Date(2099, 12, 31),
@@ -24,7 +25,7 @@
             isDeclared: false,
             declaredValue: null,
             isSpecialPrice: false,
-            specialPrice: 0,
+            specialPrice: null,
             extraFee: 0,
             statusId: 0,
             createdDate: vm.dateOptions.minDate,
@@ -34,25 +35,23 @@
             liabilities: null
         };
 
-        vm.test = '';
-
         vm.merchandisesVM = [{
             //Init first empty row SmartTable
             id: 1,
             type: null,
             quantity: null,
-            amount: null,
+            weight: null,
             isDeclaredValue: false,
             isGuarantee: false,
             isSpecialPrice: false,
-            declareValue: "",
+            specialPrice: null,
+            declareValue: null,
             description: null,
             total: 0,
             extraFee: 0,
-            isDeclareDisabled: true,
-            isSpecialDisabled: true
+            enabledDeclare: false
         }];
-        vm.deliveryTypeVM = [];
+
         $scope.$on('initData', function(event, obj) {
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
 
@@ -63,45 +62,49 @@
                 id: vm.merchandisesVM.length + 1,
                 type: null,
                 quantity: null,
-                amount: null,
+                weight: null,
                 isDeclaredValue: false,
                 isGuarantee: false,
                 isSpecialPrice: false,
-                declareValue: "",
+                specialPrice: null,
+                declareValue: null,
                 description: null,
                 total: 0,
                 extraFee: 0,
-                isDeclareDisabled: true,
-                isSpecialDisabled: true
+                enabledDeclare: false
             };
             vm.merchandisesVM.push(vm.inserted);
         };
 
         //Calculate item individually
         vm.calculateItem = function(item) {
-            vm.declareValue = parseInt(item.declareValue.replace(/,/g, ""));
-            if (item.type.Description == 'Phương Tiện') {
-                item.total = item.type.Value + ((parseFloat((item.enabledDeclare && vm.declareValue !== "" ? vm.declareValue : 0)) * parseFloat(1) / 100));
-            } else if (item.type.Description == 'Hàng Đồng Giá') {
-                item.total = item.type.Value;
-            } else {
-                item.total = ((parseFloat((item.enabledDeclare && vm.declareValue !== "" ? vm.declareValue : 0)) * parseFloat(1) / 100)) + (item.type.Value * item.quantity) + parseInt((item.specialPrice == null ? 0 : item.specialPrice)); // + parseInt(item.declaredValue) + parseInt(item.extraFee)
-            }
-
-            vm.calculateBolTotal();
+            vm.declareValue = convertToNumber(item.enabledDeclare && item.declareValue !== null ? item.declareValue : 0);
+            vm.specialPrice = convertToNumber(item.specialPrice == null ? 0 : item.specialPrice);
+            switch (item.type.Description) {
+                case 'Phương Tiện':
+                    item.total = item.type.Value + (parseFloat(vm.declareValue * 0.01)) + item.quantity;
+                    break;
+                case 'Hàng Đồng Giá':
+                    item.total = item.type.Value;
+                    break;
+                case 'Hàng Hóa Đặc Biệt':
+                    item.total = parseFloat(vm.declareValue * 0.01) + (vm.specialPrice * item.weight);
+                    break;
+                default:
+                    item.total = (parseFloat(vm.declareValue) * 0.01) + (item.type.Value * item.weight);
+                    break;
+            };
         };
-        vm.additionalFee = 0;
-        vm.additionalFee = vm.additionalFee.toLocaleString();
-        // vm.temp = 0;
+        vm.additionalFee = null;
+
         //Calculate bol total before extra fee
         vm.calculateBolTotal = function() {
-
-                if (vm.additionalFee !== undefined && typeof(vm.additionalFee) == 'string') {
-                    vm.additionalFeeTemp = parseInt(vm.additionalFee.replace(/,/g, ""));
+                vm.bolInfoVM.total = 0;
+                if (vm.additionalFee !== null && typeof(vm.additionalFee) == 'string') {
+                    vm.additionalFeeTemp = convertToNumber(vm.additionalFee);
                 } else {
                     vm.additionalFeeTemp = vm.additionalFee;
                 }
-                vm.bolInfoVM.total = 0;
                 vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
                 angular.forEach(vm.merchandisesVM, function(item) {
                     vm.bolInfoVM.total += item.total;
@@ -116,7 +119,11 @@
                 if (vm.merchandisesVM.length == 0) {
                     vm.bolInfoVM.prepaid = 0;
                 }
-                vm.bolInfoVM.prepaidTemp = parseInt(vm.bolInfoVM.prepaid.replace(/,/g, ""));
+                vm.bolInfoVM.prepaidTemp = convertToNumber(vm.bolInfoVM.prepaid);
+                if (vm.bolInfoVM.prepaidTemp > vm.bolInfoVM.total) {
+                    vm.bolInfoVM.prepaid = 0;
+                    vm.bolInfoVM.prepaidTemp = 0;
+                }
                 vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaidTemp;
             }
             //End
@@ -145,12 +152,11 @@
             });
         };
 
-        $scope.$on('setValue', function(event, obj) {
-            console.log(obj);
-            var front = obj.BolFromName.selected.BranchCode;
-            var end = obj.BolToName.selected.BranchCode;
-            var dateCode = $rootScope.serverTimeStampVM.substring(0, 5);
-            var timeCode = $rootScope.serverTimeStampVM.substring(6, 11);
+        $scope.$on('setValue', function(event, obj, serverTimeStampVM) {
+            var front = obj.BolFromName.selected.BranchCode.trim();
+            var end = obj.BolToName.selected.BranchCode.trim();
+            var dateCode = serverTimeStampVM.substring(0, 5);
+            var timeCode = serverTimeStampVM.substring(6, 11);
             vm.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
             return vm.bolCode;
         });
@@ -181,6 +187,15 @@
             }
             return vm.additionalFee + "";
         }
+
+        function convertToNumber(numberString) {
+            numberString.toString();
+            if (numberString == "" || numberString == null) {
+                return 0;
+            } else {
+                return parseInt(numberString.replace(/,/g, ""));
+            }
+        };
     };
 
 })();
