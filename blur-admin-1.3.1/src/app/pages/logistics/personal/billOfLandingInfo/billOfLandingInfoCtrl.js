@@ -2,7 +2,9 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
-        .controller('bolInfoCtrl', ['$scope', 'toastr', bolInfoCtrl]);
+        .controller('bolInfoCtrl', bolInfoCtrl);
+
+    bolInfoCtrl.$inject = ['$scope', 'toastr'];
 
     function bolInfoCtrl($scope, toastr) {
         var vm = this;
@@ -78,8 +80,8 @@
 
         //Calculate item individually
         vm.calculateItem = function(item) {
-            vm.declareValue = convertToNumber(item.enabledDeclare && item.declareValue !== null ? item.declareValue : 1);
-            vm.specialPrice = convertToNumber(item.specialPrice == null ? 1 : item.specialPrice);
+            vm.declareValue = convertToNumber(item.enabledDeclare || item.declareValue !== null ? item.declareValue : 0);
+            vm.specialPrice = convertToNumber(item.specialPrice == null || item.type.Description != 'Hàng Hóa Đặc Biệt' ? 0 : item.specialPrice);
             switch (item.type.Description) {
                 case 'Phương Tiện':
                     item.total = item.type.Value + (parseFloat(vm.declareValue * 0.01)) + item.quantity;
@@ -88,7 +90,11 @@
                     item.total = item.type.Value;
                     break;
                 case 'Hàng Hóa Đặc Biệt':
-                    item.total = parseFloat(vm.declareValue * 0.01) + (vm.specialPrice * item.quantity);
+                    if (item.type.MerchandiseType1.indexOf('Xe') > -1) {
+                        item.total = (parseFloat(vm.declareValue) * 0.01) + (vm.specialPrice * item.quantity);
+                    } else {
+                        item.total = parseFloat(vm.declareValue * 0.01) + (vm.specialPrice * item.weight);
+                    }
                     break;
                 default:
                     item.total = (parseFloat(vm.declareValue) * 0.01) + (item.type.Value * item.weight);

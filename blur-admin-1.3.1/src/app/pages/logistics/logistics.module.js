@@ -3,7 +3,8 @@
 
     angular.module('BlurAdmin.pages.logistics', [
             'ui.select',
-            'ngSanitize'
+            'ngSanitize',
+            'ngPatternRestrict'
         ])
         .config(routeConfig);
 
