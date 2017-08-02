@@ -184,7 +184,7 @@
                                 </td>
                                 <!-- input quantity -->
                                 <td style="border-top:none">
-                                    <input class="input-sm form-control quantity" only-digit ng-model="item.quantity">
+                                    <input class="input-sm form-control quantity" only-digit ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)">
                                 </td>
                                 <!-- bind calculation unit -->
                                 <td style="border-top:none">
@@ -192,7 +192,7 @@
                                 </td>
                                 <!-- input weight -->
                                 <td style="border-top:none">
-                                    <input type="text" class="input-sm form-control weight" only-digit ng-model="item.weight" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện'>
+                                    <input type="text" class="input-sm form-control weight" only-digit ng-model="item.weight" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.MerchandiseType1.match('/(^|\W)Xe($|\W)/')">
                                 </td>
                                 <!-- check box declare values -->
                                 <td class="text-center" style="border-top:none">

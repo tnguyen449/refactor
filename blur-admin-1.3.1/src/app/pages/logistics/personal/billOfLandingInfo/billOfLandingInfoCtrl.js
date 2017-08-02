@@ -78,8 +78,8 @@
 
         //Calculate item individually
         vm.calculateItem = function(item) {
-            vm.declareValue = convertToNumber(item.enabledDeclare && item.declareValue !== null ? item.declareValue : 0);
-            vm.specialPrice = convertToNumber(item.specialPrice == null ? 0 : item.specialPrice);
+            vm.declareValue = convertToNumber(item.enabledDeclare && item.declareValue !== null ? item.declareValue : 1);
+            vm.specialPrice = convertToNumber(item.specialPrice == null ? 1 : item.specialPrice);
             switch (item.type.Description) {
                 case 'Phương Tiện':
                     item.total = item.type.Value + (parseFloat(vm.declareValue * 0.01)) + item.quantity;
@@ -88,7 +88,7 @@
                     item.total = item.type.Value;
                     break;
                 case 'Hàng Hóa Đặc Biệt':
-                    item.total = parseFloat(vm.declareValue * 0.01) + (vm.specialPrice * item.weight);
+                    item.total = parseFloat(vm.declareValue * 0.01) + (vm.specialPrice * item.quantity);
                     break;
                 default:
                     item.total = (parseFloat(vm.declareValue) * 0.01) + (item.type.Value * item.weight);
