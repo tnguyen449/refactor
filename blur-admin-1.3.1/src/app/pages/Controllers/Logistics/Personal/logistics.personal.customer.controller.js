@@ -8,10 +8,10 @@
     function customerInfoCtrl($scope, $rootScope) {
         var vm = this;
         vm.customerInfoVM = {};
-
-        vm.emitEvent = function() {
-            $scope.$emit('storeValue', vm.customerInfoVM);
-        };
+        $rootScope.customerVM = vm.customerInfoVM;
+        console.log(vm.customerInfoVM);
+        console.log($rootScope.customerVM);
+        // $scope.$emit('customerValue', vm.customerInfoVM);
 
     }
 })();

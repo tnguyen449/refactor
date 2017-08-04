@@ -48,9 +48,8 @@
         };
 
 
-
         $scope.$on('storeValue', function(event, obj) {
-            $scope.$broadcast('setValue', obj, vm.serverTimeStampVM);
+            $scope.$broadcast('setValue', obj, serverTimeStampVM);
         });
 
 

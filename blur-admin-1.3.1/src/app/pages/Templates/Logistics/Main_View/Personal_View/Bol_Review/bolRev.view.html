@@ -8,7 +8,7 @@
                     <!-- start title -->
                     <div class="text-center">
                         <img ng-src="assets/img/ntl_logo.png " class="pull-left " id="logo "></img>
-                        <h2>Thông tin đơn hàng số {{bolReview.dateCode}}</h2>
+                        <h2>Thông tin đơn hàng số {{bolReview.bolCode}}</h2>
                     </div>
                     <hr>
                     <div class="row">
@@ -26,9 +26,6 @@
                                     <br>
                                     <br>
                                     <strong>Số Điện Thoại: </strong>{{bolReview.customerInfoVM.senderPhone}}
-                                    <br>
-                                    <br>
-                                    <strong>Số CMND( gửi đảm bảo): </strong> {{bolReview.customerInfoVM.SenderIdNumber}}
                                     <br>
                                     <br>
                                 </div>
@@ -64,25 +61,34 @@
                                     <strong>Ngày Gửi: </strong>{{bolReview.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
                                     <br>
                                     <br>
+                                    <strong>Ngày Nhận: </strong>{{bolReview.receivedDate.minDate | date:'dd/MM/yyyy'}}
+                                    <br>
+                                    <br>
                                     <strong>Giờ Gửi : </strong>{{bolReview.bolInfoVM.createdDate | date:'HH:mm:ss'}}
                                     <br>
                                     <br>
-                                    <strong>Phương thức gửi: </strong>{{bolReview.bolInfoVM.deliveryType.Name}}
+                                    <strong>Phương thức gửi: </strong>{{bolReview.bolInfoVM.deliveryType}}
                                     <br>
                                     <br>
-                                    <strong>Phụ phí/bảo hiểm: </strong>{{bolReview.bolInfoVM.isGuarantee ? 'Có':'Không' }}
+                                    <strong>Phụ phí/bảo hiểm: </strong>{{bolReview.merchandisesVM.isGuarantee == true ? 'Có':'Không' }}
                                     <br>
                                     <br>
-                                    <strong>Nơi Gửi:</strong>{{bolReview.bolInfoVM.bolFrom.Name}}
+                                    <strong>Khấu trừ: </strong>{{bolReview.isdiscount ? 'Có':'Không' }}
                                     <br>
                                     <br>
-                                    <strong>Địa chỉ :</strong>{{bolReview.bolInfoVM.bolFrom.Address}}
+                                    <strong>Thu hộ: </strong>{{bolReview.isdiscount ? 'Có':'Không' }}
                                     <br>
                                     <br>
-                                    <strong>Nơi Nhận:</strong>{{bolReview.bolInfoVM.bolTo.Name}}
+                                    <strong>Nơi Gửi:</strong> {{bolReview.customerInfoVM.BolFromName.selected.Name}}
                                     <br>
                                     <br>
-                                    <strong>Địa chỉ :</strong>{{bolReview.bolInfoVM.bolTo.Address}}
+                                    <strong>Địa chỉ:</strong> {{bolReview.customerInfoVM.BolFromName.selected.Address}}
+                                    <br>
+                                    <br>
+                                    <strong>Nơi Nhận:</strong> {{bolReview.customerInfoVM.BolToName.selected.Name}}
+                                    <br>
+                                    <br>
+                                    <strong>Địa chỉ:</strong> {{bolReview.customerInfoVM.BolToName.selected.Address}}
                                     <br>
                                     <br>
                                 </div>

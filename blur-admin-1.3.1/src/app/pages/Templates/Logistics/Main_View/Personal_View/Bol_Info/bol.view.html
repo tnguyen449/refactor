@@ -25,10 +25,10 @@
                         </div>
                         <div class="datepicker col-md-3" ng-class="{'has-error':personal.bolInfoForm.datePicker.$invalid && (personal.bolInfoForm.datePicker.$dirty || personal.bolInfoForm.$submitted)}">
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="bolInfo.receivedDate" ng-model="dt" is-open="opened" name="datePicker" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"
-                                />
+                                <input type="text" class="form-control" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receivedDate" ng-model="bolInfo.receivedDate.minDate" ng-value="bolInfo.receivedDate.minDate" is-open="bolInfo.opened" name="datePicker" close-text="Close"
+                                    alt-input-formats="altInputFormats" show-button-bar="false" />
                                 <span class="input-group-btn">
-                             <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                             <button type="button" class="btn btn-default" ng-click="bolInfo.open()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
                             </p>
                             <span class="help-block error-block basic-block">Chọn ngày nhận</span>
@@ -51,6 +51,22 @@
                         <div class="col-md-4">
                             <ba-switcher switcher-style="primary" switcher-value="bolInfo.merchandisesVM.isGuarantee"></ba-switcher>
                             <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- component discount all option -->
+                <div class="col-md-12" style="padding-top:8px">
+                    <div class="col-md-12">
+                        <div class="col-sm-4 control-label" style="padding-top:8px">
+                            <label>Khấu trừ:</label>
+                        </div>
+                        <!-- input guanrantee -->
+                        <div class="col-md-2">
+                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.isdiscount"></ba-switcher>
+                            <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
+                        </div>
+                        <div style="padding-top:10px">
+                            <span style="color:red;"> (dành cho nhân viên)</span>
                         </div>
                     </div>
                 </div>
@@ -135,11 +151,11 @@
                             <div class="row btns-row pull-right">
                                 <!-- button add item -->
                                 <div class="col-sm-6">
-                                    <button class="btn btn-primary" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
+                                    <button class="btn btn-primary" id="addItem" ng-click="bolInfo.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
                                 </div>
                                 <!-- button remove item -->
                                 <div class="col-sm-6">
-                                    <button class="btn btn-danger" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
+                                    <button class="btn btn-danger" id="removeItem" ng-click="bolInfo.removeItem()"><i class="fa fa-minus-circle" aria-hidden="false"></i> Xóa Hàng Gửi</button>
                                 </div>
                             </div>
                         </div>
@@ -157,17 +173,17 @@
                                         <input type="checkbox" ng-model="bolInfo.selectedAll" ng-click="bolInfo.selectAll()" />
                                     </th>
                                     <!-- input title block -->
-                                    <th class="col-md-2 text-left">Loại Đơn Hàng</th>
-                                    <th class="col-md-1 text-left">Số Lượng </th>
-                                    <th class="col-md-1 text-center">ĐVT </th>
-                                    <th class="col-md-1 text-left">Khối Lượng</th>
+                                    <th class="col-md-2 text-center bolHeader">Loại Đơn Hàng</th>
+                                    <th class="col-md-1 text-left bolHeader">Số Lượng </th>
+                                    <th class="col-md-1 text-center bolHeader">ĐVT </th>
+                                    <th class="col-md-1 text-left bolHeader">Khối Lượng</th>
                                     <!-- check box title declare value -->
-                                    <th class="col-md-0.5 text-center">KG</th>
+                                    <th class="col-md-0.5 text-center bolHeader">KG</th>
                                     <!-- input title block -->
-                                    <th class="col-md-2 text-left">Giá Khai</th>
-                                    <th class="col-md-2 text-left">Giá Ước Tính</th>
-                                    <th class="col-md-3 text-left">Ghi Chú</th>
-                                    <th class="col-md-2 text-left">Thành Tiền</th>
+                                    <th class="col-md-2 text-left bolHeader">Giá Khai</th>
+                                    <th class="col-md-2 text-left bolHeader">Giá Ước Tính</th>
+                                    <th class="col-md-3 text-left bolHeader">Ghi Chú</th>
+                                    <th class="col-md-2 text-left bolHeader">Thành Tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -187,7 +203,7 @@
                                     </td>
                                     <!-- input quantity -->
                                     <td style="border-top:none">
-                                        <input class="input-sm form-control quantity" only-digit ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)">
+                                        <input class="input-sm form-control quantity" id="quantity" only-digit ng-model="item.quantity" ng-change="bolInfo.calculateItem(item)">
                                     </td>
                                     <!-- bind calculation unit -->
                                     <td style="border-top:none">
@@ -195,11 +211,11 @@
                                     </td>
                                     <!-- input weight -->
                                     <td style="border-top:none">
-                                        <input type="text" class="input-sm form-control weight" only-digit ng-model="item.weight" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.MerchandiseType1.indexOf('Xe') > -1">
+                                        <input type="text" id="weight" class="input-sm form-control weight" only-digit ng-model="item.weight" ng-change="bolInfo.calculateItem(item)" ng-disabled="item.type.Description == 'Phương Tiện' || item.type.MerchandiseType1.indexOf('Xe') > -1">
                                     </td>
                                     <!-- check box declare values -->
                                     <td class="text-center" style="border-top:none">
-                                        <input type="checkbox" ng-model="item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" />
+                                        <input type="checkbox" id="isDeclareValue" ng-model="item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" />
                                     </td>
                                     <!-- input declare values -->
                                     <td style="border-top:none">

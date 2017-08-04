@@ -42,6 +42,11 @@
 
         vm.nextTab = function() {
             vm.selectTab(vm.tabNum + 1);
+            // $scope.$on('storeValue', function(evt, obj) {
+            //     vm.customerInfoVM = obj;
+            //     console.log(obj);
+            //     console.log(vm.customerInfoVM);
+            // });
         };
 
         vm.previousTab = function() {

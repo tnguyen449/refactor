@@ -1,15 +1,18 @@
-(function() {
+(function($) {
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
         .controller('bolInfoCtrl', bolInfoCtrl);
 
-    bolInfoCtrl.$inject = ['$scope', 'toastr'];
+    bolInfoCtrl.$inject = ['$scope', '$rootScope', 'toastr'];
 
-    function bolInfoCtrl($scope, toastr) {
+    function bolInfoCtrl($scope, $rootScope, toastr) {
         var vm = this;
         vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
         vm.ismeridian = true;
+        vm.customerInfoVM = $rootScope.customerVM;
+        vm.additionalFee = null;
+        vm.isdiscount = false;
         vm.deliveryTypeVM = [];
         vm.dateOptions = {
             formatYear: 'yyyy',
@@ -17,6 +20,7 @@
             minDate: new Date(),
             startingDay: 1
         };
+
         vm.bolInfoVM = {
             bolFrom: 0,
             bolTo: 0,
@@ -32,11 +36,12 @@
             statusId: 0,
             createdDate: vm.dateOptions.minDate,
             createdBy: "",
-            deliveryType: 0,
+            deliveryType: null,
             prepaid: "",
             liabilities: null
         };
 
+        console.log(vm.bolInfoVM);
         vm.merchandisesVM = [{
             //Init first empty row SmartTable
             id: 1,
@@ -56,7 +61,6 @@
 
         $scope.$on('initData', function(event, obj) {
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
-
         });
 
         vm.addItem = function() {
@@ -77,6 +81,7 @@
             };
             vm.merchandisesVM.push(vm.inserted);
         };
+
 
         //Calculate item individually
         vm.calculateItem = function(item) {
@@ -100,8 +105,23 @@
                     item.total = (parseFloat(vm.declareValue) * 0.01) + (item.type.Value * item.weight);
                     break;
             };
+
+            if (item.type.Description == 'Hàng Đồng Giá') {
+                vm.merchandisesVM.quantity = 1;
+                $("#addItem").attr('disabled', 'disabled');
+                $("#removeItem").attr('disabled', 'disabled');
+                $("#weight").attr('disabled', 'disabled');
+                $("#isDeclareValue").attr('disabled', 'disabled');
+                $("#quantity").attr('disabled', 'disabled');
+            } else {
+                $("#addItem").removeAttr('disabled');
+                $("#removeItem").removeAttr('disabled');
+                $("#weight").removeAttr('disabled');
+                $("#isDeclareValue").removeAttr('disabled');
+                $("#quantity").removeAttr('disabled');
+            }
+
         };
-        vm.additionalFee = null;
 
         //Calculate bol total before extra fee
         vm.calculateBolTotal = function() {
@@ -111,11 +131,16 @@
                 } else {
                     vm.additionalFeeTemp = vm.additionalFee;
                 }
-                vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
-                angular.forEach(vm.merchandisesVM, function(item) {
-                    vm.bolInfoVM.total += item.total;
-                });
 
+                if (vm.isdiscount == true) {
+                    vm.bolInfoVM.total = 0;
+                } else {
+                    vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
+                    angular.forEach(vm.merchandisesVM, function(item) {
+                        vm.bolInfoVM.total += item.total;
+
+                    });
+                }
                 vm.bolInfoVM.total += parseInt(vm.bolInfoVM.extraFee) + vm.guaranteeValue + vm.additionalFeeTemp;
                 vm.calculateBolLiabilities();
                 return vm.bolInfoVM.total;
@@ -168,21 +193,18 @@
         });
 
         // format datepicker
-        $scope.open = open;
-        $scope.opened = false;
-        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[0];
-        $scope.options = {
+        vm.opened = false;
+        vm.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+        vm.options = {
             showWeeks: false
         };
-
-        function open() {
-            vm.sendDate = new Date(vm.bolInfoVM.createdDate.getFullYear(), vm.bolInfoVM.createdDate.getMonth(), vm.bolInfoVM.createdDate.getDate() + 1);
-            vm.receivedDate = {
-                minDate: new Date(vm.sendDate),
-            };
-            $scope.opened = true;
-        }
+        vm.receivedDate = {
+            minDate: new Date(vm.bolInfoVM.createdDate.getFullYear(), vm.bolInfoVM.createdDate.getMonth(), vm.bolInfoVM.createdDate.getDate() + 1)
+        };
+        vm.open = function open() {
+            vm.opened = true;
+        };
         // end
 
         vm.calculateMinorFee = function(name) {
@@ -204,4 +226,4 @@
         };
     };
 
-})();
+})(jQuery);
