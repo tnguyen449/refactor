@@ -15,7 +15,7 @@
                             <label>Ngày Gửi:</label>
                         </div>
                         <div class="col-md-8">
-                            <label>{{bolInfo.bolInfoVM.createdDate | date: 'dd/MM/yyyy'}}</label>
+                            <label>{{bolInfo.bolInfoVM.sendDate | date: 'dd/MM/yyyy'}}</label>
                         </div>
                     </div>
                     <!-- input received date -->
@@ -25,7 +25,7 @@
                         </div>
                         <div class="datepicker col-md-3" ng-class="{'has-error':personal.bolInfoForm.datePicker.$invalid && (personal.bolInfoForm.datePicker.$dirty || personal.bolInfoForm.$submitted)}">
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receivedDate" ng-model="bolInfo.receivedDate.minDate" ng-value="bolInfo.receivedDate.minDate" is-open="bolInfo.opened" name="datePicker" close-text="Close"
+                                <input type="text" class="form-control" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receiveDate" ng-model="bolInfo.bolInfoVM.receiveDate" ng-value="bolInfo.receiveDate.minDate" is-open="bolInfo.opened" name="datePicker" close-text="Close"
                                     alt-input-formats="altInputFormats" show-button-bar="false" />
                                 <span class="input-group-btn">
                              <button type="button" class="btn btn-default" ng-click="bolInfo.open()"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -49,7 +49,7 @@
                         </div>
                         <!-- input guanrantee -->
                         <div class="col-md-4">
-                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.merchandisesVM.isGuarantee"></ba-switcher>
+                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.bolInfoVM.isGuarantee"></ba-switcher>
                             <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         </div>
                         <!-- input guanrantee -->
                         <div class="col-md-2">
-                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.isDiscount"></ba-switcher>
+                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.bolInfoVM.isDiscount"></ba-switcher>
                             <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
                         </div>
                         <div style="padding-top:10px">
@@ -78,7 +78,7 @@
                         </div>
                         <!-- input collect in behalf -->
                         <div class="col-md-3">
-                            <input type="text" class="form-control" placeholder="Tiền Cần Thu" />
+                            <input type="text" class="form-control" currency-format ng-model="bolInfo.collectInBehalf" placeholder="Tiền Cần Thu" />
                         </div>
                     </div>
                 </div>
@@ -91,9 +91,9 @@
                         </div>
                         <!-- radio button delivery methods -->
                         <div class="col-md-8">
-                            <div class="col-md-6" style="padding-top: 10px" ng-repeat="deliveryType in bolInfo.deliveryTypeVM" ng-init="bolInfo.bolInfoVM.deliveryType.Name = bolInfo.deliveryTypeVM[0].Name">
+                            <div class="col-md-6" style="padding-top: 10px" ng-repeat="deliveryType in bolInfo.deliveryTypeVM" ng-init="bolInfo.bolInfoVM.deliveryType.Id = bolInfo.deliveryTypeVM[0].Id">
                                 <label class="radio-inline custom-radio nowrap">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Name" ng-model="bolInfo.bolInfoVM.deliveryType.Name" ng-change="bolInfo.calculateMinorFee(bolInfo.bolInfoVM.deliveryType.Name)">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfo.bolInfoVM.deliveryType.Id" ng-change="bolInfo.calculateMinorFee(bolInfo.bolInfoVM.deliveryType.Id)">
                             <span>{{deliveryType.Name}}</span>
                         </label>
                             </div>
@@ -102,28 +102,28 @@
                 </div>
 
                 <!-- optional component for some delivery methods -->
-                <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Name">
-                    <div class="col-md-12" ng-hide="bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[0].Name || bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[3].Name">
+                <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Id">
+                    <div class="col-md-12" ng-hide="bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[0].Id || bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[3].Id">
                         <div class="col-md-4" style="padding-top: 45px">
-                            <label>Dịch Vụ {{bolInfo.bolInfoVM.deliveryType.Name}}</label>
+                            <label>Dịch Vụ {{bolInfo.deliveryTypeVM[bolInfo.bolInfoVM.deliveryType.Id].Name}}</label>
                         </div>
                         <div class="col-md-8">
                             <!-- sub-component Cash on Delivery -->
 
-                            <div class="row form-inline animate-switch" style="padding-top: 35px" ng-show="bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[2].Name">
+                            <div class="row form-inline animate-switch" style="padding-top: 35px" ng-show="bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[2].Id">
                                 <div class="form-group col-md-4 col-sm-3 col-xs-6 has-feedback" ng-class="{'has-error':personal.bolInfoForm.codAddress.$invalid && (personal.bolInfoForm.codAddress.$dirty || personal.bolInfoForm.$submitted)}">
-                                    <input type="text" class="form-control" name="codAddress" placeholder="Nhập Địa Chỉ Nhận" ng-model="bolInfo.codAddress" ng-required="bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[2].Name">
+                                    <input type="text" class="form-control" name="codAddress" placeholder="Nhập Địa Chỉ Nhận" ng-model="bolInfo.bolInfoVM.sendAddress" ng-required="bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[2].Id">
                                     <span class="help-block error-block basic-block">Nhập địa chỉ người nhận</span>
                                 </div>
                             </div>
                             <!-- sub-component Timed delivery -->
-                            <div class="row form-inline" ng-show="bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[1].Name">
+                            <div class="row form-inline" ng-show="bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[1].Id">
                                 <div class="form-group col-md-4 col-sm-3 col-xs-6 has-feedback" style="padding-top: 35px" ng-class="{'has-error':personal.bolInfoForm.timedAddress.$invalid && (personal.bolInfoForm.timedAddress.$dirty || personal.bolInfoForm.$submitted)}">
-                                    <input type="text" class="form-control" name="timedAddress" placeholder="Nhập Địa Chỉ Nhận" ng-model="bolInfo.timedAddress" ng-required="bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[1].Name">
+                                    <input type="text" class="form-control" name="timedAddress" placeholder="Nhập Địa Chỉ Nhận" ng-model="bolInfo.bolInfoVM.sendAddress" ng-required="bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[1].Id">
                                     <span class="help-block error-block basic-block">Nhập địa chỉ người nhận</span>
                                 </div>
                                 <div class="form-group col-sm-3 col-xs-6">
-                                    <div uib-timepicker ng-model="bolInfo.mytime" ng-change="bolInfo.changed()" show-meridian="!bolInfo.ismeridian"></div>
+                                    <div uib-timepicker ng-model="bolInfo.mytime" ng-change="bolInfo.change()" show-meridian="!bolInfo.ismeridian"></div>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                                     </td>
                                     <!-- dropdown merchandise types -->
                                     <td style="border-top:none">
-                                        <select style="width:140px" ng-change="bolInfo.calculateItem(item)" ng-model="item.type" class="input-sm form-control type" ng-options="type.MerchandiseType1 group by type.Description for type in personal.merchandiseTypeVM" name="sendTo" class="form-control">
+                                        <select style="width:140px" ng-change="bolInfo.calculateItem(item)" ng-model="item.merchandiseType" class="input-sm form-control type" ng-options="type.MerchandiseType1 group by type.Description for type in personal.merchandiseTypeVM" name="sendTo" class="form-control">
                                     <option>Chọn Loại Hàng</option>
                             </select>
                                     </td>
@@ -207,7 +207,7 @@
                                     </td>
                                     <!-- bind calculation unit -->
                                     <td style="border-top:none">
-                                        <div class="text-center">{{item.type.CalculationUnit.trim()}}</div>
+                                        <div class="text-center">{{item.merchandiseType.CalculationUnit.trim()}}</div>
                                     </td>
                                     <!-- input weight -->
                                     <td style="border-top:none">
@@ -215,11 +215,11 @@
                                     </td>
                                     <!-- check box declare values -->
                                     <td class="text-center" style="border-top:none">
-                                        <input type="checkbox" id="isDeclareValue" ng-model="item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" />
+                                        <input type="checkbox" id="isDeclareValue" ng-model="item.isDeclared" ng-change="bolInfo.calculateItem(item)" />
                                     </td>
                                     <!-- input declare values -->
                                     <td style="border-top:none">
-                                        <input type="text" class="input-sm form-control" currency-format ng-disabled="!item.enabledDeclare" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" placeholder="Khai giá">
+                                        <input type="text" class="input-sm form-control" currency-format ng-disabled="!item.isDeclared" ng-change="bolInfo.calculateItem(item)" ng-model="item.declareValue" placeholder="Khai giá">
                                     </td>
                                     <!-- input predictable values -->
                                     <td style="border-top:none">
@@ -231,7 +231,7 @@
                                     </td>
                                     <!-- binding total -->
                                     <td class="text-center" style="border-top:none">
-                                        <span>  {{item.total | number:0}}</span>
+                                        <span>  {{item.subTotal | number:0}}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -253,7 +253,7 @@
                                     <!-- input additional fee value -->
                                     <td style="border-top:none">
                                         <input type="text" currency-format ng-model="bolInfo.additionalFee" class="form-control input-sm">
-                                        <!--ng-value="bolInfo.additionalFee = (bolInfo.bolInfoVM.deliveryType.Name == bolInfo.deliveryTypeVM[1].Name? bolInfo.deliveryTypeVM[1].Value :bolInfo.additionalFee)"-->
+                                        <!--ng-value="bolInfo.additionalFee = (bolInfo.bolInfoVM.deliveryType.Id == bolInfo.deliveryTypeVM[1].Name? bolInfo.deliveryTypeVM[1].Value :bolInfo.additionalFee)"-->
                                     </td>
                                 </tr>
                                 <!--<tr>
@@ -338,4 +338,5 @@
             <!-- end bill of landing infomation -->
         </div>
     </div>
+    <button type="button" ng-click="bolInfo.post()">POST</button>
 </form>

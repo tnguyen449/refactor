@@ -7,7 +7,6 @@
             'ngPatternRestrict'
         ])
         .config(routeConfig);
-
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
