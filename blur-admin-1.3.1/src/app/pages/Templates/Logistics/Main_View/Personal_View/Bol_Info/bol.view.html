@@ -62,7 +62,7 @@
                         </div>
                         <!-- input guanrantee -->
                         <div class="col-md-2">
-                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.isdiscount"></ba-switcher>
+                            <ba-switcher switcher-style="primary" switcher-value="bolInfo.isDiscount"></ba-switcher>
                             <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
                         </div>
                         <div style="padding-top:10px">
@@ -223,7 +223,7 @@
                                     </td>
                                     <!-- input predictable values -->
                                     <td style="border-top:none">
-                                        <input type="text" class="input-sm form-control" currency-format ng-disabled="item.type.Description != 'Hàng Hóa Đặc Biệt'" ng-change="bolInfo.calculateItem(item)" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
+                                        <input type="text" class="input-sm form-control" id="isPredictableValue" currency-format ng-change="bolInfo.calculateItem(item)" ng-model="item.specialPrice" placeholder="Giá Ước Tính">
                                     </td>
                                     <!-- input description -->
                                     <td style="border-top:none">

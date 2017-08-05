@@ -48,8 +48,8 @@
         };
 
 
-        $scope.$on('storeValue', function(event, obj) {
-            $scope.$broadcast('setValue', obj, serverTimeStampVM);
+        $scope.$on('customerValue', function(event, obj) {
+            $scope.$broadcast('bolCodeValue', obj, vm.serverTimeStampVM);
         });
 
 

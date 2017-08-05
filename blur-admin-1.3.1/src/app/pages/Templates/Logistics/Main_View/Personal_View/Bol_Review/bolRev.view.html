@@ -8,7 +8,7 @@
                     <!-- start title -->
                     <div class="text-center">
                         <img ng-src="assets/img/ntl_logo.png " class="pull-left " id="logo "></img>
-                        <h2>Thông tin đơn hàng số {{bolReview.bolCode}}</h2>
+                        <h2>Thông tin đơn hàng số {{bolInfo.bolCode}}</h2>
                     </div>
                     <hr>
                     <div class="row">
@@ -22,10 +22,10 @@
                                 </div>
                                 <!-- body -->
                                 <div class="panel-body">
-                                    <strong>Người Gửi: </strong>{{bolReview.customerInfoVM.senderName}}
+                                    <strong>Người Gửi: </strong>{{bolInfo.customerInfoVM.senderName}}
                                     <br>
                                     <br>
-                                    <strong>Số Điện Thoại: </strong>{{bolReview.customerInfoVM.senderPhone}}
+                                    <strong>Số Điện Thoại: </strong>{{bolInfo.customerInfoVM.senderPhone}}
                                     <br>
                                     <br>
                                 </div>
@@ -39,10 +39,10 @@
                                 </div>
                                 <!-- body -->
                                 <div class="panel-body ">
-                                    <strong>Người Nhận: </strong>{{bolReview.customerInfoVM.receiverName}} {{bolReview.customerInfoVM.receiverIdNumber}}
+                                    <strong>Người Nhận: </strong>{{bolInfo.customerInfoVM.receiverName}} {{bolInfo.customerInfoVM.receiverIdNumber}}
                                     <br>
                                     <br>
-                                    <strong>Số Điện Thoại: </strong>{{bolReview.customerInfoVM.receiverPhone}}
+                                    <strong>Số Điện Thoại: </strong>{{bolInfo.customerInfoVM.receiverPhone}}
                                     <br>
                                     <br>
                                 </div>
@@ -58,37 +58,37 @@
                                 </div>
                                 <!-- body -->
                                 <div class="panel-body">
-                                    <strong>Ngày Gửi: </strong>{{bolReview.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
+                                    <strong>Ngày Gửi: </strong>{{bolInfo.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
                                     <br>
                                     <br>
-                                    <strong>Ngày Nhận: </strong>{{bolReview.receivedDate.minDate | date:'dd/MM/yyyy'}}
+                                    <strong>Ngày Nhận: </strong>{{bolInfo.receivedDate.minDate | date:'dd/MM/yyyy'}}
                                     <br>
                                     <br>
-                                    <strong>Giờ Gửi : </strong>{{bolReview.bolInfoVM.createdDate | date:'HH:mm:ss'}}
+                                    <strong>Giờ Gửi : </strong>{{bolInfo.bolInfoVM.createdDate | date:'HH:mm:ss'}}
                                     <br>
                                     <br>
-                                    <strong>Phương thức gửi: </strong>{{bolReview.bolInfoVM.deliveryType}}
+                                    <strong>Phương thức gửi: </strong>{{bolInfo.bolInfoVM.deliveryType}}
                                     <br>
                                     <br>
-                                    <strong>Phụ phí/bảo hiểm: </strong>{{bolReview.merchandisesVM.isGuarantee == true ? 'Có':'Không' }}
+                                    <strong>Phụ phí/bảo hiểm: </strong>{{bolInfo.merchandisesVM.isGuarantee == true ? 'Có':'Không' }}
                                     <br>
                                     <br>
-                                    <strong>Khấu trừ: </strong>{{bolReview.isdiscount ? 'Có':'Không' }}
+                                    <strong>Khấu trừ: </strong>{{bolInfo.testing}}
                                     <br>
                                     <br>
-                                    <strong>Thu hộ: </strong>{{bolReview.isdiscount ? 'Có':'Không' }}
+                                    <strong>Thu hộ: </strong>{{bolInfo.isDiscount}}
                                     <br>
                                     <br>
-                                    <strong>Nơi Gửi:</strong> {{bolReview.customerInfoVM.BolFromName.selected.Name}}
+                                    <strong>Nơi Gửi:</strong> {{bolInfo.customerInfoVM.BolFromName.selected.Name}}
                                     <br>
                                     <br>
-                                    <strong>Địa chỉ:</strong> {{bolReview.customerInfoVM.BolFromName.selected.Address}}
+                                    <strong>Địa chỉ:</strong> {{bolInfo.customerInfoVM.BolFromName.selected.Address}}
                                     <br>
                                     <br>
-                                    <strong>Nơi Nhận:</strong> {{bolReview.customerInfoVM.BolToName.selected.Name}}
+                                    <strong>Nơi Nhận:</strong> {{bolInfo.customerInfoVM.BolToName.selected.Name}}
                                     <br>
                                     <br>
-                                    <strong>Địa chỉ:</strong> {{bolReview.customerInfoVM.BolToName.selected.Address}}
+                                    <strong>Địa chỉ:</strong> {{bolInfo.customerInfoVM.BolToName.selected.Address}}
                                     <br>
                                     <br>
                                 </div>
@@ -121,7 +121,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in bolReview.merchandisesVM ">
+                                    <tr ng-repeat="item in bolInfo.merchandisesVM ">
                                         <td>
                                             <label>{{item.type.MerchandiseType1}}</label>
                                         </td>
@@ -148,7 +148,7 @@
                                         <td class="text-right ">
                                             <strong>Tổng Cộng: </strong>
                                         </td>
-                                        <td class="text-center "><strong>{{bolReview.bolInfoVM.total}}</strong></td>
+                                        <td class="text-center "><strong>{{bolInfo.calculateBolTotal()}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td style="border-top:none "></td>
@@ -158,7 +158,7 @@
                                         <td class="text-right " style="border-top:none ">
                                             <strong>Trả trước: </strong>
                                         </td>
-                                        <td style="border-top:none " class="text-center "><strong>{{bolReview.bolInfoVM.prepaid}}</strong></td>
+                                        <td style="border-top:none " class="text-center "><strong>{{bolInfo.bolInfoVM.prepaid}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td style="border-top:none "></td>
@@ -166,9 +166,9 @@
                                         <td style="border-top:none "></td>
 
                                         <td class="text-right " style="border-top:none ">
-                                            <strong>Còn  nợ: </strong>
+                                            <strong>Còn nợ: </strong>
                                         </td>
-                                        <td style="border-top:none " class="text-center "><strong>{{bolReview.bolInfoVM.liabilities}}</strong></td>
+                                        <td style="border-top:none " class="text-center "><strong>{{bolInfo.bolInfoVM.liabilities}}</strong></td>
                                     </tr>
                                 </tfoot>
                             </table>

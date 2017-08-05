@@ -64,7 +64,7 @@
                     'bolReviewCtrl@logistics.personal': {
                         templateUrl: 'app/pages/Templates/Logistics/Main_View/Personal_View/Bol_Review/bolRev.view.html',
                         controller: 'bolInfoCtrl',
-                        controllerAs: 'bolReview'
+                        controllerAs: 'bolInfo'
                     }
                 }
             })

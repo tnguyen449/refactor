@@ -12,7 +12,7 @@
         vm.ismeridian = true;
         vm.customerInfoVM = $rootScope.customerVM;
         vm.additionalFee = null;
-        vm.isdiscount = false;
+        vm.isDiscount;
         vm.deliveryTypeVM = [];
         vm.dateOptions = {
             formatYear: 'yyyy',
@@ -86,23 +86,27 @@
         //Calculate item individually
         vm.calculateItem = function(item) {
             vm.declareValue = convertToNumber(item.enabledDeclare || item.declareValue !== null ? item.declareValue : 0);
-            vm.specialPrice = convertToNumber(item.specialPrice == null || item.type.Description != 'Hàng Hóa Đặc Biệt' ? 0 : item.specialPrice);
+            vm.specialPrice = convertToNumber(item.specialPrice == null || item.specialPrice == 0 ? 0 : item.specialPrice);
             switch (item.type.Description) {
                 case 'Phương Tiện':
+                    if (vm.specialPrice == 0) {
+                        item.type.Value = item.type.Value;
+                    } else {
+                        item.type.Value = vm.specialPrice;
+                    }
+                    item.quantity = 1;
                     item.total = item.type.Value + (parseFloat(vm.declareValue * 0.01)) + item.quantity;
                     break;
                 case 'Hàng Đồng Giá':
                     item.total = item.type.Value;
                     break;
-                case 'Hàng Hóa Đặc Biệt':
-                    if (item.type.MerchandiseType1.indexOf('Xe') > -1) {
-                        item.total = (parseFloat(vm.declareValue) * 0.01) + (vm.specialPrice * item.quantity);
-                    } else {
-                        item.total = parseFloat(vm.declareValue * 0.01) + (vm.specialPrice * item.weight);
-                    }
-                    break;
                 default:
-                    item.total = (parseFloat(vm.declareValue) * 0.01) + (item.type.Value * item.weight);
+                    if (vm.specialPrice == 0) {
+                        item.type.Value = item.type.Value;
+                    } else {
+                        item.type.Value = vm.specialPrice;
+                    }
+                    item.total = (parseFloat(vm.declareValue) * 0.01) + (item.type.Value * parseFloat(item.weight));
                     break;
             };
 
@@ -112,12 +116,14 @@
                 $("#removeItem").attr('disabled', 'disabled');
                 $("#weight").attr('disabled', 'disabled');
                 $("#isDeclareValue").attr('disabled', 'disabled');
+                $("#isPredictableValue").attr('disabled', 'disabled');
                 $("#quantity").attr('disabled', 'disabled');
             } else {
                 $("#addItem").removeAttr('disabled');
                 $("#removeItem").removeAttr('disabled');
                 $("#weight").removeAttr('disabled');
                 $("#isDeclareValue").removeAttr('disabled');
+                $("#isPredictableValue").removeAttr('disabled');
                 $("#quantity").removeAttr('disabled');
             }
 
@@ -131,18 +137,15 @@
                 } else {
                     vm.additionalFeeTemp = vm.additionalFee;
                 }
-
-                if (vm.isdiscount == true) {
-                    vm.bolInfoVM.total = 0;
-                } else {
-                    vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
-                    angular.forEach(vm.merchandisesVM, function(item) {
-                        vm.bolInfoVM.total += item.total;
-
-                    });
-                }
+                vm.guaranteeValue = vm.merchandisesVM.isGuarantee ? 100000 : 0;
+                angular.forEach(vm.merchandisesVM, function(item) {
+                    vm.bolInfoVM.total += item.total;
+                });
                 vm.bolInfoVM.total += parseInt(vm.bolInfoVM.extraFee) + vm.guaranteeValue + vm.additionalFeeTemp;
                 vm.calculateBolLiabilities();
+                if (vm.isDiscount == true) {
+                    vm.bolInfoVM.total = 0;
+                }
                 return vm.bolInfoVM.total;
             }
             //Calculate bol liabilities
@@ -156,6 +159,9 @@
                     vm.bolInfoVM.prepaidTemp = 0;
                 }
                 vm.bolInfoVM.liabilities = vm.bolInfoVM.total - vm.bolInfoVM.prepaidTemp;
+                if (vm.isDiscount == true) {
+                    vm.bolInfoVM.liabilities = 0;
+                }
             }
             //End
 
@@ -183,12 +189,13 @@
             });
         };
 
-        $scope.$on('setValue', function(event, obj, serverTimeStampVM) {
+        $scope.$on('bolCodeValue', function(event, obj, serverTimeStampVM) {
             var front = obj.BolFromName.selected.BranchCode.trim();
             var end = obj.BolToName.selected.BranchCode.trim();
             var dateCode = serverTimeStampVM.substring(0, 5);
             var timeCode = serverTimeStampVM.substring(6, 11);
             vm.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
+            console.log(vm.bolCode);
             return vm.bolCode;
         });
 
@@ -224,6 +231,11 @@
                 return parseInt(numberString.replace(/,/g, ""));
             }
         };
+        vm.testing = "";
+        $('#test').on('change', function() {
+            alert(vm.isDiscount)
+
+        })
     };
 
 })(jQuery);

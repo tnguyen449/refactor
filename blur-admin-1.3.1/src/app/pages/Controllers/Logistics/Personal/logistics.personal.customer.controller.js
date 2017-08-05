@@ -11,7 +11,8 @@
         $rootScope.customerVM = vm.customerInfoVM;
         console.log(vm.customerInfoVM);
         console.log($rootScope.customerVM);
-        // $scope.$emit('customerValue', vm.customerInfoVM);
-
+        vm.emitEvent = function() {
+            $scope.$emit('customerValue', vm.customerInfoVM);
+        }
     }
 })();
