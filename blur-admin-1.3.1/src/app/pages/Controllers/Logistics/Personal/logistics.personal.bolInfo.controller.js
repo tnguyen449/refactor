@@ -29,7 +29,7 @@
             vm.test.setMinutes(vm.mytime.getMinutes());
         };
         vm.bolInfoVM = {
-            bolCode: vm.bolCode,
+            bolCode: null,
             sendDate: vm.dateOptions.minDate,
             receiveDate: vm.receiveDate.minDate,
             isGuarantee: false,
@@ -190,8 +190,8 @@
         $scope.$on('bolCodeValue', function(event, obj, serverTimeStampVM) {
             var front = obj.BolFromName.selected.BranchCode.trim();
             var end = obj.BolToName.selected.BranchCode.trim();
-            var dateCode = serverTimeStampVM.substring(0, 5);
-            var timeCode = serverTimeStampVM.substring(6, 11);
+            var dateCode = serverTimeStampVM.substring(0, 6);
+            var timeCode = serverTimeStampVM.substring(6, 12);
             vm.bolInfoVM.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
             return vm.bolInfoVM.bolCode;
         });
