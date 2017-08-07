@@ -1,5 +1,5 @@
 <!-- start form bill of landing review -->
-<div class="row">
+<div class="row" id="print-area">
     <div class="col-md-12">
         <div class="form-group">
             <!-- start bill of landing information -->
@@ -188,7 +188,7 @@
         </div>
         <!-- end bill of landing information -->
         <div>
-            <button class="btn btn-primary pull-right" ng-click="bolInfo.confirm()">Tạo Và In Biên Nhận</button>
+            <button class="btn btn-primary pull-right" ng-click="bolReview.post('print-area')">Tạo Và In Biên Nhận</button>
         </div>
     </div>
 </div>

@@ -30,7 +30,7 @@
             vm.test.setMinutes(vm.mytime.getMinutes());
         };
         vm.bolInfoVM = {
-            bolCode: "",
+            bolCode: vm.bolCode,
             sendDate: vm.dateOptions.minDate,
             receiveDate: vm.receiveDate.minDate,
             isGuarantee: false,
@@ -193,8 +193,8 @@
             var end = obj.BolToName.selected.BranchCode.trim();
             var dateCode = serverTimeStampVM.substring(0, 6);
             var timeCode = serverTimeStampVM.substring(6, 12);
-            vm.bolInfoVM.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
-            // return vm.bolInfoVM.bolCode;
+            vm.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
+            return vm.bolCode;
         });
 
         // format datepicker
@@ -241,7 +241,7 @@
 
         console.log(vm.transactionVM);
 
-        vm.post = function() {
+        vm.post = function(divName) {
             $.ajax({
                     method: "POST",
                     url: "http://localhost:57363/NgocTrang/Api/Bol/Add",
@@ -249,7 +249,7 @@
                 })
                 .done(function() {
                     toastr.success('Đơn vận đã được tạo thành công!', 'Thành Công');
-                    $state.go('logistics');
+                    vm.print = printInvoice(divName);
                 })
 
             // $http.post('http://localhost:57363/NgocTrang/Api/Bol/Add', vm.transactionVM).then(function(res) {
@@ -259,6 +259,16 @@
             // });
         };
         /** End post data */
+
+        /**Print area function */
+        function printInvoice(divName) {
+            var printContent = document.getElementById(divName).innerHTML;
+            var originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+        /**End print area */
     };
 
 })(jQuery);

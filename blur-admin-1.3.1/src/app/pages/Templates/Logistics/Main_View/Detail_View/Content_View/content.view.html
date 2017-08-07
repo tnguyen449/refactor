@@ -7,13 +7,15 @@
         <tr class="sortable ">
             <th class="table-id" st-sort="id" st-sort-default="true">Mã ĐH</th>
             <th st-sort="email">Người Gửi</th>
+            <th st-sort="email">Số Điện Thoại Người Gửi</th>
             <th st-sort="age">Người Nhận</th>
-            <th st-sort="age">Gửi Đến</th>
-            <th st-sort="firstName">Loại Hàng</th>
-            <th st-sort="lastName">SL</th>
-            <th st-sort="username">KL</th>
+            <th st-sort="email">Số Điện Thoại Người Nhận</th>
+            <th st-sort="email">Nơi Nhận</th>
+            <th st-sort="email">Địa Chỉ (nếu có)</th>
+            <th st-sort="email">Tổng Cộng</th>
+            <th st-sort="email">Ghi Chú</th>
             <th st-sort="age" class="text-center">Trạng Thái</th>
-            <th></th>
+            <th st-sort="age" class="text-center">Thông Tin Chi Tiết</th>
             <th></th>
             <th></th>
         </tr>
@@ -98,7 +100,7 @@
             <td st-sort="lastName">5</td>
             <td st-sort="username">10Kg</td>
             <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary">Chi Tiết</button></td>
+            <td><button class="status-button btn btn-sm btn-primary" ng-click="personal.detail($index)">Chi Tiết</button></td>
         </tr>
     </tbody>
     <tfoot>
