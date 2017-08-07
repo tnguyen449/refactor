@@ -2,14 +2,15 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
-        .controller('PersonalCtrl', ['$scope', '$http', PersonalCtrl]);
+        .controller('PersonalCtrl', PersonalCtrl);
+
+    PersonalCtrl.$inject = ['$scope', '$http', '$state', '$rootScope'];
 
     /** @ngInject */
-    function PersonalCtrl($scope, $http, shareDataService) {
+    function PersonalCtrl($scope, $http, $state, $rootScope) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
-        vm.serverTimeStampVM = {};
         vm.deliveryTypeVM = [];
         vm.customerInfoVM = [];
         vm.getTransactionComponent = function() {
@@ -47,6 +48,9 @@
             }
         };
 
+        $rootScope.view = function() {
+            $state.go('logistics');
+        };
 
         $scope.$on('customerValue', function(event, obj) {
             $scope.$broadcast('bolCodeValue', obj, vm.serverTimeStampVM);

@@ -4,9 +4,9 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('bolInfoCtrl', bolInfoCtrl);
 
-    bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', 'toastr'];
+    bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', '$state', 'toastr'];
 
-    function bolInfoCtrl($scope, $rootScope, $http, toastr) {
+    function bolInfoCtrl($scope, $rootScope, $http, $state, toastr) {
         var vm = this;
         vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
         vm.ismeridian = true;
@@ -14,6 +14,7 @@
         vm.additionalFee = null;
         vm.isDiscount;
         vm.deliveryTypeVM = [];
+        $rootScope.delivery = vm.deliveryTypeVM;
         vm.dateOptions = {
             formatYear: 'yyyy',
             maxDate: new Date(2099, 12, 31),
@@ -29,22 +30,21 @@
             vm.test.setMinutes(vm.mytime.getMinutes());
         };
         vm.bolInfoVM = {
-            bolCode: null,
+            bolCode: "",
             sendDate: vm.dateOptions.minDate,
             receiveDate: vm.receiveDate.minDate,
             isGuarantee: false,
             isDiscount: false,
             collectInBehalf: "",
-            sendAddress: null,
+            sendAddress: "",
             receiveTime: vm.test,
-            deliveryType: null,
+            deliveryType: "",
             additionalFee: "",
             total: 0,
             prepaid: "",
             liabilities: 0,
             statusCode: 0
         };
-
         vm.merchandisesVM =
             //Init first empty row SmartTable
             [{
@@ -55,12 +55,13 @@
                 isDeclared: false,
                 declareValue: "",
                 specialPrice: "",
-                description: null,
+                description: "",
                 subTotal: 0
             }];
 
         $scope.$on('initData', function(event, obj) {
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
+            return vm.deliveryTypeVM;
         });
 
         vm.addItem = function() {
@@ -72,7 +73,7 @@
                 isDeclared: false,
                 declareValue: "",
                 specialPrice: "",
-                description: null,
+                description: "",
                 subTotal: 0
             };
             vm.merchandisesVM.push(vm.inserted);
@@ -193,7 +194,7 @@
             var dateCode = serverTimeStampVM.substring(0, 6);
             var timeCode = serverTimeStampVM.substring(6, 12);
             vm.bolInfoVM.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
-            return vm.bolInfoVM.bolCode;
+            // return vm.bolInfoVM.bolCode;
         });
 
         // format datepicker
@@ -228,29 +229,27 @@
                 return parseInt(numberString.replace(/,/g, ""));
             }
         };
-        vm.testing = "";
-        $('#test').on('change', function() {
-            alert(vm.isDiscount)
-        })
 
         /*create Post Data*/
-        vm.transactionVM = {
+        $rootScope.transactionVM = {
             TransactionVM: {
                 CustomerInfo: vm.customerInfoVM,
                 MerchandiseInfo: vm.merchandisesVM,
                 BillOfLandingInfo: vm.bolInfoVM
             }
-        }
+        };
+
+        console.log(vm.transactionVM);
 
         vm.post = function() {
-            console.log(vm.transactionVM.TransactionVM);
             $.ajax({
                     method: "POST",
                     url: "http://localhost:57363/NgocTrang/Api/Bol/Add",
                     data: vm.transactionVM.TransactionVM
                 })
                 .done(function() {
-                    toastr.success('POST SUCCESS');
+                    toastr.success('Đơn vận đã được tạo thành công!', 'Thành Công');
+                    $state.go('logistics');
                 })
 
             // $http.post('http://localhost:57363/NgocTrang/Api/Bol/Add', vm.transactionVM).then(function(res) {

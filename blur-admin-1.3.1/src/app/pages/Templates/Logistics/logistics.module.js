@@ -14,32 +14,34 @@
                 url: '/logistics',
                 templateUrl: 'app/pages/Templates/Logistics/Main_View/main.view.html',
                 title: 'Bảo Tiêu',
+                controller: 'PersonalCtrl',
+                controllerAs: 'mainInfo',
                 sidebarMeta: {
                     icon: 'ion-compose',
                     order: 0
                 }
             })
-            // .state('logistics.view1', {
-            //     url: '/view1',
+            // .state('logistics.view', {
+            //     url: '/view',
             //     title: 'Xem Đơn Vận',
             //     views: {
             //         'viewRoot': {
-            //             templateUrl: 'app/pages/logistics/viewPage/viewMainPage.html'
+            //             templateUrl: '/app/pages/Templates/Logistics/Main_View/Detail_View/cover.view.html'
             //         },
             //         'viewPage@logistics.view': {
-            //             templateUrl: 'app/pages/logistics/viewPage/viewPage.html',
+            //             templateUrl: 'app/pages/Templates/Logistics/Main_View/Detail_View/Content_View/content.view.html',
             //             controller: 'PersonalCtrl',
             //             controllerAs: 'viewInfo'
             //         }
             //     }
             // })
-            .state('logistics.view', {
-                url: '/view',
-                title: 'Xem Đơn Vận',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View/Detail_View/Content_View/content.view.html',
-                controller: 'PersonalCtrl',
-                controllerAs: 'viewInfo'
-            })
+            // .state('logistics.view', {
+            //     url: '/view',
+            //     title: 'Xem Đơn Vận',
+            //     templateUrl: 'app/pages/Templates/Logistics/Main_View/Detail_View/Content_View/content.view.html',
+            //     controller: 'bolInfoCtrl',
+            //     controllerAs: 'viewInfo'
+            // })
             .state('logistics.personal', {
                 url: '/personal',
                 title: 'Bảo Tiêu Cá Nhân',
@@ -62,8 +64,8 @@
                     },
                     'bolReviewCtrl@logistics.personal': {
                         templateUrl: 'app/pages/Templates/Logistics/Main_View/Personal_View/Bol_Review/bolRev.view.html',
-                        controller: 'bolInfoCtrl',
-                        controllerAs: 'bolInfo'
+                        controller: 'bolReviewCtrl',
+                        controllerAs: 'bolReview'
                     }
                 }
             })

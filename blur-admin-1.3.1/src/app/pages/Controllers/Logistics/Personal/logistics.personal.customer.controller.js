@@ -9,8 +9,6 @@
         var vm = this;
         vm.customerInfoVM = {};
         $rootScope.customerVM = vm.customerInfoVM;
-        console.log(vm.customerInfoVM);
-        console.log($rootScope.customerVM);
         vm.emitEvent = function() {
             $scope.$emit('customerValue', vm.customerInfoVM);
         }

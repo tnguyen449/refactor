@@ -25,7 +25,7 @@
                     <label class="control-label"><span class="require">* </span>Gửi Từ:</label>
                     <!--Dropdown Gửi Từ-->
                     <div class="form-group has-feedback" ng-class="{'has-error': personal.customerForm.bolFrom.$invalid && (personal.customerForm.bolFrom.$dirty || personal.customerForm.$submitted)}">
-                        <ui-select ng-model="customerInfo.customerInfoVM.BolFromName.selected" class="btn-group bootstrap-select form-control" name="bolFrom" ng-disabled="false" append-to-body="true" search-enabled="true" required>
+                        <ui-select ng-model="customerInfo.customerInfoVM.BolFromName.selected" class="btn-group bootstrap-select form-control" name="bolFrom" on-select="customerInfo.emitEvent()" ng-disabled="false" append-to-body="true" search-enabled="true" required>
                             <ui-select-match placeholder="Chọn Nơi Gửi">
                                 {{$select.selected.Name}}
                             </ui-select-match>
