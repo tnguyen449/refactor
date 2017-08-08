@@ -1,107 +1,66 @@
-<table class="table" st-table="smartTableData">
-    <thead>
-        <tr class="sortable">
-            <th class="table-id" st-sort="id" st-sort-default="true">Mã ĐH</th>
-            <th st-sort="email">Người Gửi</th>
-            <th st-sort="email">Số Điện Thoại Người Gửi</th>
-            <th st-sort="age">Người Nhận</th>
-            <th st-sort="email">Số Điện Thoại Người Nhận</th>
-            <th st-sort="email">Nơi Nhận</th>
-            <th st-sort="email">Địa Chỉ (nếu có)</th>
-            <th st-sort="email">Tổng Cộng</th>
-            <th st-sort="email">Ghi Chú</th>
-            <th st-sort="age" class="text-center">Trạng Thái</th>
-            <th st-sort="age" class="text-center">Thông Tin Chi Tiết</th>
-        </tr>
-        <!--<tr>
-                <th></th>
-                <th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input" type="search" /></th>
-                <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input" type="search" /></th>
-                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input" type="search" /></th>
-                <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search" />
-            </tr>-->
-    </thead>
-    <tbody>
-        <!--<tr ng-repeat="item in smartTableData">
-                <td class="table-id">{{item.id}}</td>
-                <td> <input type="checkbox" ng-model="product.selected" /></td>
-                <td><span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span></td>
-                <td>{{item.username}}</td>
-                <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-                <td>{{item.age}}</td>
-            </tr>-->
-        <tr>
-            <td class="table-id" st-sort="id" st-sort-default="true" data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
-            <td st-sort="email">Nguyễn Thành Trung</td>
-            <td st-sort="age">Phan Tiến Anh</td>
-            <td st-sort="age">Nha Trang</td>
-            <td st-sort="firstName">Hàng Đồng Giá 30k</td>
-            <td st-sort="lastName">5</td>
-            <td st-sort="username">10Kg</td>
-            <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary">Chi Tiết</button></td>
-        </tr>
-        <tr>
-            <td class="table-id" st-sort="id" st-sort-default="true">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
-            <td st-sort="email">Nguyễn Thành Trung</td>
-            <td st-sort="age">Phan Tiến Anh</td>
-            <td st-sort="age">Nha Trang</td>
-            <td st-sort="firstName">Hàng Đồng Giá 30k</td>
-            <td st-sort="lastName">5</td>
-            <td st-sort="username">10Kg</td>
-            <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary">Chi Tiết</button></td>
-        </tr>
-        <tr>
-            <td class="table-id" st-sort="id" st-sort-default="true">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
-            <td st-sort="email">Nguyễn Thành Trung</td>
-            <td st-sort="age">Phan Tiến Anh</td>
-            <td st-sort="age">Nha Trang</td>
-            <td st-sort="firstName">Hàng Đồng Giá 30k</td>
-            <td st-sort="lastName">5</td>
-            <td st-sort="username">10Kg</td>
-            <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary">Chi Tiết</button></td>
-        </tr>
-        <tr>
-            <td class="table-id" st-sort="id" st-sort-default="true">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
-            <td st-sort="email">Nguyễn Thành Trung</td>
-            <td st-sort="age">Phan Tiến Anh</td>
-            <td st-sort="age">Nha Trang</td>
-            <td st-sort="firstName">Hàng Đồng Giá 30k</td>
-            <td st-sort="lastName">5</td>
-            <td st-sort="username">10Kg</td>
-            <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary">Chi Tiết</button></td>
-        </tr>
-        <tr>
-            <td class="table-id" st-sort="id" st-sort-default="true">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
-            <td st-sort="email">Nguyễn Thành Trung</td>
-            <td st-sort="age">Phan Tiến Anh</td>
-            <td st-sort="age">Nha Trang</td>
-            <td st-sort="firstName">Hàng Đồng Giá 30k</td>
-            <td st-sort="lastName">5</td>
-            <td st-sort="username">10Kg</td>
-            <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary">Chi Tiết</button></td>
-        </tr>
-        <tr>
-            <td class="table-id" st-sort="id" st-sort-default="true">{{('SG1201217NT151130' | limitTo: 7) + ('SG1201217NT151130'.length > 7 ? '...' : '')}} </td>
-            <td st-sort="email">Nguyễn Thành Trung</td>
-            <td st-sort="age">Phan Tiến Anh</td>
-            <td st-sort="age">Nha Trang</td>
-            <td st-sort="firstName">Hàng Đồng Giá 30k</td>
-            <td st-sort="lastName">5</td>
-            <td st-sort="username">10Kg</td>
-            <td><button class="btn btn-sm btn-info">Đang kiểm hàng</button></td>
-            <td><button class="status-button btn btn-sm btn-primary" ng-click="personal.detail($index)">Chi Tiết</button></td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6" class="text-center">
-                <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-            </td>
-        </tr>
-    </tfoot>
-</table>
+<div class="panel panel-default height">
+    <!-- heading -->
+    <div class="panel-heading text-center">
+        <h2>TỔNG HỢP ĐƠN VẬN</h2>
+    </div>
+    <!-- body -->
+    <div class="panel-body">
+        <!-- button group -->
+        <div class="add-row-editable-table col-md-12 pull-right">
+            <div class="col-md-12">
+                <div class="col-md-6 pull-left">
+                    <div class="row btns-row">
+                        <!-- button add item -->
+                        <div class="col-md-3" style="padding-top: 10px;">
+                            <label>Tìm kiếm: </label>
+                        </div>
+                        <!-- button remove item -->
+                        <div class="col-md-4">
+                            <input type="text" class="input-sm form-control search-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!--add another view-->
+                </div>
+            </div>
+            <!-- end button group -->
+            <!-- table bill of landing details -->
+            <div class="horizontal-scroll col-md-12">
+                <!-- start smart table-->
+                <table class="table" st-table="smartTableData">
+                    <thead>
+                        <tr>
+                            <!-- input title block -->
+                            <th class="col-md-1 text-center bolHeader">Mã ĐH</th>
+                            <th class="col-md-2 text-center bolHeader">Người Gửi</th>
+                            <th class="col-md-1 text-center bolHeader">SĐT Người Gủi</th>
+                            <th class="col-md-2 text-center bolHeader">Người Nhận</th>
+                            <!-- check box title declare value -->
+                            <th class="col-md-1 text-center bolHeader">SĐT Người Nhận</th>
+                            <!-- input title block -->
+                            <th class="col-md-1 text-center bolHeader">Nơi Nhận</th>
+                            <th class="col-md-1 text-center bolHeader">Địa Chỉ (nếu có)</th>
+                            <th class="col-md-2 text-center bolHeader">Ghi Chú</th>
+                            <th class="col-md-1 text-center bolHeader">Thành Tiền</th>
+                            <th class="col-md-1 text-center bolHeader">Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- canvas form -->
+                        <tr></tr>
+                        <!-- primary table body components -->
+                        <tr ng-repeat="item in bolInfo.merchandisesVM">
+                        </tr>
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+                <!-- end smart table -->
+            </div>
+            <!-- end bill of landing details -->
+        </div>
+    </div>
+    <!-- end bill of landing infomation -->
+</div>

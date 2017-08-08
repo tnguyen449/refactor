@@ -15,12 +15,8 @@
             // console.log(vm.merchandiseType);
             // console.log(vm.transactionVM);
         });
-        vm.printInvoice = function(divName) {
-            var printContent = document.getElementById(divName).innerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent;
+        vm.printInvoice = function() {
             window.print();
-            document.body = originalContent;
         };
     }
 })(jQuery);

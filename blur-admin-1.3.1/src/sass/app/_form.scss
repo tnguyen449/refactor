@@ -656,14 +656,62 @@ fieldset[disabled] .form-control {
     font-weight: bold;
 }
 
-@media print {
-    body * {
-        display: none;
-    }
-    #print-area {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-}
+// @media print {
+//     .al-sidebar-list,
+//     .no-print,
+//     .page-top,
+//     .ba-wizard-navigation-container,
+//     .panel-heading,
+//     .al-footer,
+//     .btn,
+//     .content-top,
+//     .nav {
+//         display: none !important;
+//     }
+//     .al-sidebar-list,
+//     .no-print,
+//     .page-top,
+//     .ba-wizard-navigation-container,
+//     .panel-heading,
+//     .al-footer,
+//     .btn,
+//     .content-top,
+//     .nav {
+//         margin-left: 0 !important;
+//         min-height: 0 !important;
+//         -webkit-transform: translate(0, 0) !important;
+//         -ms-transform: translate(0, 0) !important;
+//         -o-transform: translate(0, 0) !important;
+//         transform: translate(0, 0) !important;
+//     }
+//     .al-sidebar-list,
+//     .no-print,
+//     .page-top,
+//     .ba-wizard-navigation-container,
+//     .panel-heading,
+//     .al-footer,
+//     .btn,
+//     .content-top,
+//     .nav {
+//         padding-top: 0 !important;
+//     }
+//     .invoice,
+//     .panel-body,
+//     .wrapper {
+//         width: 100%;
+//         border: 0;
+//         margin: 0;
+//         padding: 0;
+//     }
+//     .invoice-col {
+//         float: left;
+//         width: 33.3333333%;
+//     }
+//     .table-responsive {
+//         overflow: auto;
+//     }
+//     .table-responsive>.table tr th,
+//     .table-responsive>.table tr td {
+//         white-space: normal !important;
+//     }
+// }

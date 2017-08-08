@@ -109,21 +109,26 @@
             };
 
             if (item.merchandiseType.Description == 'Hàng Đồng Giá') {
-                $("#addItem").attr('disabled', 'disabled');
-                $("#removeItem").attr('disabled', 'disabled');
-                $("#weight").attr('disabled', 'disabled');
-                $("#isDeclareValue").attr('disabled', 'disabled');
-                $("#isPredictableValue").attr('disabled', 'disabled');
-                $("#quantity").attr('disabled', 'disabled');
+                $(".addItem").attr('disabled', 'disabled');
+                $(".removeItem").attr('disabled', 'disabled');
+                $(".weight").attr('disabled', 'disabled');
+                $(".isDeclareValue").attr('disabled', 'disabled');
+                $(".isPredictableValue").attr('disabled', 'disabled');
+                $(".quantity").attr('disabled', 'disabled');
             } else if (item.merchandiseType.Description == 'Phương Tiện') {
-                $("#isDeclareValue").attr('disabled', 'disabled');
+                $(".isDeclareValue").attr('disabled', 'disabled');
+                $(".addItem").removeAttr('disabled');
+                $(".removeItem").removeAttr('disabled');
+                $(".isPredictableValue").removeAttr('disabled');
+                $(".weight").attr('disabled', 'disabled');
+                $(".quantity").attr('disabled', 'disabled');
             } else {
-                $("#addItem").removeAttr('disabled');
-                $("#removeItem").removeAttr('disabled');
-                $("#weight").removeAttr('disabled');
-                $("#isDeclareValue").removeAttr('disabled');
-                $("#isPredictableValue").removeAttr('disabled');
-                $("#quantity").removeAttr('disabled');
+                $(".addItem").removeAttr('disabled');
+                $(".removeItem").removeAttr('disabled');
+                $(".weight").removeAttr('disabled');
+                $(".isDeclareValue").removeAttr('disabled');
+                $(".isPredictableValue").removeAttr('disabled');
+                $(".quantity").removeAttr('disabled');
             }
 
 
@@ -288,7 +293,7 @@
         /** End post data */
 
         /**Print area function */
-        function printInvoice(divName) {
+        function printInvoice() {
             var printContent = document.getElementById(divName).innerHTML;
             var originalContent = document.body.innerHTML;
             document.body.innerHTML = printContent;
