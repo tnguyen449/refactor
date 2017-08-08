@@ -11,6 +11,7 @@
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
+        $rootScope.serverTimeStampVM = "";
         vm.deliveryTypeVM = [];
         vm.customerInfoVM = [];
         vm.getTransactionComponent = function() {
@@ -18,10 +19,9 @@
                 $http.get('http://localhost:57363/NgocTrang/Api/Bol/GetComponent').then(
                     function(response) {
                         if (response.data.Branch.length > 0 && response.data.Type.length > 0) {
-                            var serverDate = response.data.CurrentTimeStamp;
                             vm.branchInfoVM = response.data.Branch;
                             vm.merchandiseTypeVM = response.data.Type;
-                            vm.serverTimeStampVM = serverDate;
+                            $rootScope.serverTimeStampVM = response.data.CurrentTimeStamp;
                             vm.deliveryTypeVM = response.data.DeliveryType;
                             vm.initData = {
                                 data: {
@@ -53,7 +53,7 @@
         };
 
         $scope.$on('customerValue', function(event, obj) {
-            $scope.$broadcast('bolCodeValue', obj, vm.serverTimeStampVM);
+            $scope.$broadcast('bolCodeValue', obj);
         });
 
 

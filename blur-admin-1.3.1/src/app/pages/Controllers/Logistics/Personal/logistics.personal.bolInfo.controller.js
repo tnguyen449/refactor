@@ -13,6 +13,7 @@
         vm.customerInfoVM = $rootScope.customerVM;
         vm.additionalFee = null;
         vm.isDiscount;
+        vm.bolCode;
         vm.deliveryTypeVM = [];
         $rootScope.delivery = vm.deliveryTypeVM;
         vm.dateOptions = {
@@ -30,7 +31,7 @@
             vm.test.setMinutes(vm.mytime.getMinutes());
         };
         vm.bolInfoVM = {
-            bolCode: vm.bolCode,
+            bolCode: "",
             sendDate: vm.dateOptions.minDate,
             receiveDate: vm.receiveDate.minDate,
             isGuarantee: false,
@@ -188,13 +189,13 @@
             });
         };
 
-        $scope.$on('bolCodeValue', function(event, obj, serverTimeStampVM) {
-            var front = obj.BolFromName.selected.BranchCode.trim();
+        $scope.$on('bolCodeValue', function(event, obj) {
             var end = obj.BolToName.selected.BranchCode.trim();
-            var dateCode = serverTimeStampVM.substring(0, 6);
-            var timeCode = serverTimeStampVM.substring(6, 12);
-            vm.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
-            return vm.bolCode;
+            var front = obj.BolFromName.selected.BranchCode.trim();
+            var dateCode = $rootScope.serverTimeStampVM.substring(0, 6);
+            var timeCode = $rootScope.serverTimeStampVM.substring(6, 12);
+            vm.bolInfoVM.bolCode = front + "-" + dateCode + "-" + end + "-" + timeCode;
+            return vm.bolInfoVM.bolCode;
         });
 
         // format datepicker
@@ -231,26 +232,52 @@
         };
 
         /*create Post Data*/
-        $rootScope.transactionVM = {
-            TransactionVM: {
-                CustomerInfo: vm.customerInfoVM,
-                MerchandiseInfo: vm.merchandisesVM,
-                BillOfLandingInfo: vm.bolInfoVM
-            }
-        };
+        // $rootScope.transactionVM = {
+        //     TransactionVM: {
+        //         CustomerInfo: vm.customerInfoVM,
+        //         MerchandiseInfo: vm.merchandisesVM,
+        //         BillOfLandingInfo: vm.bolInfoVM
+        //     }
+        // };
 
-        console.log(vm.transactionVM);
+        vm.post = function() {
+            console.log(vm.customerInfoVM.BolFromName.selected.Id);
+            console.log(vm.merchandisesVM);
+            $rootScope.transactionVM = {
+                TransactionVM: {
+                    CustomerInfo: {
+                        senderName: vm.customerInfoVM.senderName,
+                        senderPhone: vm.customerInfoVM.senderPhone,
+                        BolFromId: vm.customerInfoVM.BolFromName.selected.Id,
+                        receiverName: vm.customerInfoVM.receiverName,
+                        senderPhone: vm.customerInfoVM.receiverPhone,
+                        BolToId: vm.customerInfoVM.BolToName.selected.Id
+                    },
+                    MerchandiseInfo: [{
+                        id: vm.merchandisesVM.id,
+                        merchandiseTypeId: vm.merchandisesVM,
+                        isDeclared: vm.merchandisesVM.isDeclared,
+                        declareValue: vm.merchandisesVM.declareValue == "" ? 0 : convertToNumber(vm.merchandisesVM.declareValue),
+                        specialPrice: vm.merchandisesVM.specialPrice == "" ? 0 : convertToNumber(vm.merchandisesVM.specialPrice),
+                        quantity: vm.merchandisesVM.quantity == "" ? 0 : convertToNumber(vm.merchandisesVM.quantity),
+                        weight: vm.merchandisesVM.weight == "" ? 0 : convertToNumber(vm.merchandisesVM.weight),
+                        subTotal: vm.merchandisesVM.subTotal,
+                        description: vm.merchandisesVM.description
+                    }],
+                    BillOfLandingInfo: vm.bolInfoVM
+                }
+            };
 
-        vm.post = function(divName) {
-            $.ajax({
-                    method: "POST",
-                    url: "http://localhost:57363/NgocTrang/Api/Bol/Add",
-                    data: vm.transactionVM.TransactionVM
-                })
-                .done(function() {
-                    toastr.success('Đơn vận đã được tạo thành công!', 'Thành Công');
-                    vm.print = printInvoice(divName);
-                })
+            console.log($rootScope.transactionVM);
+            // $.ajax({
+            //         method: "POST",
+            //         url: "http://localhost:57363/NgocTrang/Api/Bol/Add",
+            //         data: vm.transactionVM.TransactionVM
+            //     })
+            //     .done(function() {
+            //         toastr.success('Đơn vận đã được tạo thành công!', 'Thành Công');
+            //         vm.print = printInvoice(divName);
+            //     })
 
             // $http.post('http://localhost:57363/NgocTrang/Api/Bol/Add', vm.transactionVM).then(function(res) {
             //     alert("POST SUCCESS");

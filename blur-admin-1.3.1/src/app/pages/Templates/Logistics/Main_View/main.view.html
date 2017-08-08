@@ -4,7 +4,9 @@
             <!--Start Tabs Navigation-->
             <uib-tabset active="active">
                 <uib-tab heading="XEM ĐƠN VẬN" ui-sref="logistics">
-                    <div data-ng-include="'app/pages/Templates/Logistics/Main_View/Detail_View/Content_View/content.view.html'"></div>
+                    <div class="col-md-12">
+                        <div data-ng-include="'app/pages/Templates/Logistics/Main_View/Detail_View/Content_View/content.view.html'"></div>
+                    </div>
                 </uib-tab>
                 <uib-tab heading=" BẢO TIÊU CÁ NHÂN " ui-sref="logistics.personal">
                     <ui-view name="bolInfoRoot"></ui-view>
