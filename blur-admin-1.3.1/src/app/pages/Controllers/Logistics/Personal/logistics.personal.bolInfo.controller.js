@@ -59,7 +59,7 @@
                 description: "",
                 subTotal: 0
             }];
-
+        console.log(vm.merchandisesVM);
         $scope.$on('initData', function(event, obj) {
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
             return vm.deliveryTypeVM;
@@ -115,14 +115,16 @@
                 $(".isDeclareValue").attr('disabled', 'disabled');
                 $(".isPredictableValue").attr('disabled', 'disabled');
                 $(".quantity").attr('disabled', 'disabled');
-            } else if (item.merchandiseType.Description == 'Phương Tiện') {
-                $(".isDeclareValue").attr('disabled', 'disabled');
-                $(".addItem").removeAttr('disabled');
-                $(".removeItem").removeAttr('disabled');
-                $(".isPredictableValue").removeAttr('disabled');
-                $(".weight").attr('disabled', 'disabled');
-                $(".quantity").attr('disabled', 'disabled');
-            } else {
+            }
+            // else if (item.merchandiseType.Description == 'Phương Tiện') {
+            //     $(".isDeclareValue").attr('disabled', 'disabled');
+            //     $(".addItem").removeAttr('disabled');
+            //     $(".removeItem").removeAttr('disabled');
+            //     $(".isPredictableValue").removeAttr('disabled');
+            //     $(".weight").attr('disabled', 'disabled');
+            //     $(".quantity").attr('disabled', 'disabled');
+            // }
+            else {
                 $(".addItem").removeAttr('disabled');
                 $(".removeItem").removeAttr('disabled');
                 $(".weight").removeAttr('disabled');
@@ -248,6 +250,22 @@
         // };
 
         $rootScope.post = function() {
+            vm.merchandiseList = [];
+            angular.forEach(vm.merchandisesVM, function(merchandise) {
+                vm.merchandisesRefactor = {
+                    Id: merchandise.id,
+                    MerchandiseTypeId: merchandise.merchandiseType === null ? "" : merchandise.merchandiseType.Id,
+                    IsDeclared: merchandise.isDeclared,
+                    DeclareValue: merchandise.declareValue == "" || merchandise.declareValue == null ? 0 : convertToNumber(merchandise.declareValue),
+                    SpecialPrice: merchandise.specialPrice == "" || merchandise.specialPrice == null ? 0 : convertToNumber(merchandise.specialPrice),
+                    Quantity: merchandise.quantity == "" || merchandise.quantity == null ? 0 : merchandise.quantity,
+                    Weight: merchandise.weight == "" || merchandise.weight == null ? 0 : merchandise.weight,
+                    SubTotal: merchandise.subTotal,
+                    Description: merchandise.description
+                }
+                vm.merchandiseList.push(vm.merchandisesRefactor);
+            });
+
             $rootScope.transactionVM = {
                 TransactionVM: {
                     CustomerInfo: {
@@ -258,17 +276,7 @@
                         ReceiverPhone: vm.customerInfoVM.receiverPhone,
                         BolToId: vm.customerInfoVM.BolToName.selected.Id
                     },
-                    MerchandiseInfo: [{
-                        Id: vm.merchandisesVM.id,
-                        MerchandiseTypeId: vm.merchandisesVM,
-                        IsDeclared: vm.merchandisesVM.isDeclared,
-                        DeclareValue: vm.merchandisesVM.declareValue == "" || vm.merchandisesVM.declareValue == null ? 0 : convertToNumber(vm.merchandisesVM.declareValue),
-                        SpecialPrice: vm.merchandisesVM.specialPrice == "" || vm.merchandisesVM.specialPrice == null ? 0 : convertToNumber(vm.merchandisesVM.specialPrice),
-                        Quantity: vm.merchandisesVM.quantity == "" || vm.merchandisesVM.quantity == null ? 0 : convertToNumber(vm.merchandisesVM.quantity),
-                        Weight: vm.merchandisesVM.weight == "" || vm.merchandisesVM.weight == null ? 0 : convertToNumber(vm.merchandisesVM.weight),
-                        SubTotal: vm.merchandisesVM.subTotal,
-                        Description: vm.merchandisesVM.description
-                    }],
+                    MerchandiseInfo: vm.merchandiseList,
                     BillOfLandingInfo: {
                         BolCode: vm.bolInfoVM.bolCode,
                         SendDate: vm.bolInfoVM.sendDate,
@@ -287,7 +295,8 @@
                     }
                 }
             };
-            if ($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false && $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.Total == 0) {
+            console.log($rootScope.transactionVM);
+            if (($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false || $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == true) && $rootScope.transactionVM.TransactionVM.MerchandiseInfo[0].MerchandiseTypeId == "") {
                 toastr.error('Đơn vận không tồn tại hàng hóa! Vui lòng thêm hàng hóa', 'Thất Bại');
             } else {
                 $state.go('logistics', {}, { reload: 'logistics' });
