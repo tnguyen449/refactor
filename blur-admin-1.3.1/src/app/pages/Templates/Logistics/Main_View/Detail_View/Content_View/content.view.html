@@ -1,4 +1,4 @@
-<div class="panel panel-default height">
+<div class="panel panel-default height" ng-controller="detailCtrl as detail">
     <!-- heading -->
     <div class="panel-heading text-center">
         <h2>TỔNG HỢP ĐƠN VẬN</h2>
@@ -8,20 +8,23 @@
         <!-- button group -->
         <div class="add-row-editable-table col-md-12 pull-right">
             <div class="col-md-12">
-                <div class="col-md-6 pull-left">
-                    <div class="row btns-row">
-                        <!-- button add item -->
-                        <div class="col-md-3" style="padding-top: 10px;">
-                            <label>Tìm kiếm: </label>
-                        </div>
-                        <!-- button remove item -->
-                        <div class="col-md-4">
-                            <input type="text" class="input-sm form-control search-input">
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <!--add another view-->
+                </div>
+                <div class="col-md-6 pull-right">
+                    <div class="row btns-row">
+                        <div class="col-md-9 pull-right">
+                            <div class="col-md-4" style="padding-top: 10px;">
+                                <label>Tìm kiếm: </label>
+                            </div>
+                            <!-- button remove item -->
+                            <div class="col-md-8">
+                                <input type="text" class="input-sm form-control search-input">
+                            </div>
+                        </div>
+                        <!-- button add item -->
+
+                    </div>
                 </div>
             </div>
             <!-- end button group -->
@@ -40,9 +43,9 @@
                             <th class="col-md-1 text-center bolHeader">SĐT Người Nhận</th>
                             <!-- input title block -->
                             <th class="col-md-1 text-center bolHeader">Nơi Nhận</th>
-                            <th class="col-md-1 text-center bolHeader">Địa Chỉ (nếu có)</th>
-                            <th class="col-md-2 text-center bolHeader">Ghi Chú</th>
-                            <th class="col-md-1 text-center bolHeader">Thành Tiền</th>
+                            <!-- <th class="col-md-1 text-center bolHeader">Địa Chỉ (nếu có)</th> -->
+                            <!-- <th class="col-md-2 text-center bolHeader">Ghi Chú</th> -->
+                            <th class="col-md-1 text-center bolHeader">Tong Cong</th>
                             <th class="col-md-1 text-center bolHeader">Trạng Thái</th>
                         </tr>
                     </thead>
@@ -50,7 +53,13 @@
                         <!-- canvas form -->
                         <tr></tr>
                         <!-- primary table body components -->
-                        <tr ng-repeat="item in bolInfo.merchandisesVM">
+                        <tr ng-repeat="detail in detail.details">
+                            <td>{{(detail.TransactionVM.BillOfLandingInfo.bolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.bolCode | limitTo: 6 : 15)}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.senderName}}</td>
+                            <td>0{{detail.TransactionVM.CustomerInfo.senderPhone}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.receiverName}}</td>
+                            <td>0{{detail.TransactionVM.CustomerInfo.receiverPhone}}</td>
+                            <td>0{{detail.TransactionVM.CustomerInfo.receiverPhone}}</td>
                         </tr>
                     </tbody>
                     <tfoot>

@@ -14,6 +14,7 @@
         $rootScope.serverTimeStampVM = "";
         vm.deliveryTypeVM = [];
         vm.customerInfoVM = [];
+        vm.activeTab = 0;
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
                 $http.get('http://localhost:57363/NgocTrang/Api/Bol/GetComponent').then(

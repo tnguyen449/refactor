@@ -4,9 +4,9 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('bolInfoCtrl', bolInfoCtrl);
 
-    bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', '$state', 'toastr'];
+    bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', '$state', 'toastr', 'shareDataService'];
 
-    function bolInfoCtrl($scope, $rootScope, $http, $state, toastr) {
+    function bolInfoCtrl($scope, $rootScope, $http, $state, toastr, shareDataService) {
         var vm = this;
         vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
         vm.ismeridian = true;
@@ -255,25 +255,26 @@
                         senderPhone: vm.customerInfoVM.senderPhone,
                         BolFromId: vm.customerInfoVM.BolFromName.selected.Id,
                         receiverName: vm.customerInfoVM.receiverName,
-                        senderPhone: vm.customerInfoVM.receiverPhone,
+                        receiverPhone: vm.customerInfoVM.receiverPhone,
                         BolToId: vm.customerInfoVM.BolToName.selected.Id
                     },
                     MerchandiseInfo: [{
                         id: vm.merchandisesVM.id,
                         merchandiseTypeId: vm.merchandisesVM,
                         isDeclared: vm.merchandisesVM.isDeclared,
-                        declareValue: vm.merchandisesVM.declareValue == "" ? 0 : convertToNumber(vm.merchandisesVM.declareValue),
-                        specialPrice: vm.merchandisesVM.specialPrice == "" ? 0 : convertToNumber(vm.merchandisesVM.specialPrice),
-                        quantity: vm.merchandisesVM.quantity == "" ? 0 : convertToNumber(vm.merchandisesVM.quantity),
-                        weight: vm.merchandisesVM.weight == "" ? 0 : convertToNumber(vm.merchandisesVM.weight),
+                        declareValue: vm.merchandisesVM.declareValue == "" || vm.merchandisesVM.declareValue == null ? 0 : convertToNumber(vm.merchandisesVM.declareValue),
+                        specialPrice: vm.merchandisesVM.specialPrice == "" || vm.merchandisesVM.specialPrice == null ? 0 : convertToNumber(vm.merchandisesVM.specialPrice),
+                        quantity: vm.merchandisesVM.quantity == "" || vm.merchandisesVM.quantity == null ? 0 : convertToNumber(vm.merchandisesVM.quantity),
+                        weight: vm.merchandisesVM.weight == "" || vm.merchandisesVM.weight == null ? 0 : convertToNumber(vm.merchandisesVM.weight),
                         subTotal: vm.merchandisesVM.subTotal,
                         description: vm.merchandisesVM.description
                     }],
                     BillOfLandingInfo: vm.bolInfoVM
                 }
             };
+            $state.go('logistics', {}, { reload: 'logistics' });
+            shareDataService.addItem($rootScope.transactionVM);
 
-            console.log($rootScope.transactionVM);
             // $.ajax({
             //         method: "POST",
             //         url: "http://localhost:57363/NgocTrang/Api/Bol/Add",

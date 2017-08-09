@@ -2,16 +2,16 @@
     <div class="row">
         <div class="col-md-12">
             <!--Start Tabs Navigation-->
-            <uib-tabset active="active">
-                <uib-tab heading="XEM ĐƠN VẬN" ui-sref="logistics">
+            <uib-tabset active="mainInfo.activeTab">
+                <uib-tab heading="XEM ĐƠN VẬN" index="0" ui-sref="logistics">
                     <div class="widgets">
                         <div class="row" data-ng-include="'app/pages/Templates/Logistics/Main_View/Detail_View/Content_View/content.view.html'"></div>
                     </div>
                 </uib-tab>
-                <uib-tab heading=" BẢO TIÊU CÁ NHÂN " ui-sref="logistics.personal">
+                <uib-tab heading=" BẢO TIÊU CÁ NHÂN " index="1" ui-sref="logistics.personal">
                     <ui-view name="bolInfoRoot"></ui-view>
                 </uib-tab>
-                <uib-tab heading="BẢO TIÊU KHU VỰC " ui-sref="logistics.area ">
+                <uib-tab heading="BẢO TIÊU KHU VỰC " index="2" ui-sref="logistics.area ">
                     <ui-view></ui-view>
                 </uib-tab>
             </uib-tabset>
