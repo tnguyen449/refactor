@@ -8,6 +8,7 @@
     function detailCtrl($scope, $rootScope, shareDataService) {
         var vm = this;
         vm.details = shareDataService.getList();
-        console.log(vm.details);
+        vm.BolToName = $rootScope.customerVM;
+        console.log(vm.BolToName.BolToName.selected.Name);
     }
 })();

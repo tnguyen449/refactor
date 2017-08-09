@@ -57,6 +57,8 @@
             $scope.$broadcast('bolCodeValue', obj);
         });
 
-
+        $scope.$on('bolname', function(event, obj) {
+            $scope.$broadcast('bolToName', obj);
+        });
     };
 })();

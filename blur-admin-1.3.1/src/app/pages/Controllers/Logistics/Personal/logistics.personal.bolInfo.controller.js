@@ -59,7 +59,7 @@
                 description: "",
                 subTotal: 0
             }];
-        console.log(vm.merchandisesVM);
+        // console.log(vm.merchandisesVM);
         $scope.$on('initData', function(event, obj) {
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
             return vm.deliveryTypeVM;
@@ -199,6 +199,7 @@
         };
 
         $scope.$on('bolCodeValue', function(event, obj) {
+            $scope.$emit('bolNameValue', obj);
             var end = obj.BolToName.selected.BranchCode.trim();
             var front = obj.BolFromName.selected.BranchCode.trim();
             var dateCode = $rootScope.serverTimeStampVM.substring(0, 6);
