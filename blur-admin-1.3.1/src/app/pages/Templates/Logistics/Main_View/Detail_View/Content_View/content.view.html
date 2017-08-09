@@ -35,7 +35,7 @@
                     <thead>
                         <tr>
                             <!-- input title block -->
-                            <th class="col-md-1 text-center bolHeader">Mã ĐH</th>
+                            <th class="col-sm-1 text-left bolHeader">Mã ĐH</th>
                             <th class="col-md-2 text-center bolHeader">Người Gửi</th>
                             <th class="col-md-1 text-center bolHeader">SĐT Người Gủi</th>
                             <th class="col-md-2 text-center bolHeader">Người Nhận</th>
@@ -45,8 +45,8 @@
                             <th class="col-md-1 text-center bolHeader">Nơi Nhận</th>
                             <!-- <th class="col-md-1 text-center bolHeader">Địa Chỉ (nếu có)</th> -->
                             <!-- <th class="col-md-2 text-center bolHeader">Ghi Chú</th> -->
-                            <th class="col-md-1 text-center bolHeader">Tong Cong</th>
-                            <th class="col-md-1 text-center bolHeader">Trạng Thái</th>
+                            <th class="col-md-1 text-left bolHeader">Tổng Cộng</th>
+                            <th class="col-md-1 text-center bolHeader">Trạng Thái Đơn Hàng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,12 +54,18 @@
                         <tr></tr>
                         <!-- primary table body components -->
                         <tr ng-repeat="detail in detail.details">
-                            <td>{{(detail.TransactionVM.BillOfLandingInfo.bolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.bolCode | limitTo: 6 : 15)}}</td>
-                            <td>{{detail.TransactionVM.CustomerInfo.senderName}}</td>
-                            <td>0{{detail.TransactionVM.CustomerInfo.senderPhone}}</td>
-                            <td>{{detail.TransactionVM.CustomerInfo.receiverName}}</td>
-                            <td>0{{detail.TransactionVM.CustomerInfo.receiverPhone}}</td>
-                            <td>0{{detail.TransactionVM.CustomerInfo.receiverPhone}}</td>
+                            <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.SenderPhone}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.ReceiverPhone}}</td>
+                            <td>{{detail.TransactionVM.CustomerInfo.ReceiverPhone}}</td>
+                            <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
+                            <td>
+                                <div style="padding-left:30px">
+                                    <button type="button" class="align-center btn btn-xs btn-primary">Đang Kiểm hàng</button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                     <tfoot>

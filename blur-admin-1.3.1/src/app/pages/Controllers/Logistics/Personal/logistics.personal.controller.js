@@ -50,7 +50,7 @@
         };
 
         $rootScope.view = function() {
-            $state.go('logistics');
+            $state.go('logistics.view', {}, { reload: 'logistics.view' });
         };
 
         $scope.$on('customerValue', function(event, obj) {

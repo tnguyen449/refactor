@@ -134,26 +134,28 @@
 
         };
 
+
         //Calculate bol total before extra fee
         vm.calculateBolTotal = function() {
-                vm.bolInfoVM.total = 0;
-                if (vm.additionalFee !== null && typeof(vm.additionalFee) == 'string') {
-                    vm.additionalFeeTemp = convertToNumber(vm.additionalFee);
-                } else {
-                    vm.additionalFeeTemp = vm.additionalFee;
-                }
-                vm.guaranteeValue = vm.bolInfoVM.isGuarantee ? 100000 : 0;
-                angular.forEach(vm.merchandisesVM, function(item) {
-                    vm.bolInfoVM.total += item.subTotal;
-                });
-                vm.bolInfoVM.total += vm.guaranteeValue + vm.additionalFeeTemp;
-                vm.calculateBolLiabilities();
-                if (vm.bolInfoVM.isDiscount == true) {
-                    vm.bolInfoVM.total = 0;
-                }
-                return vm.bolInfoVM.total;
+            vm.bolInfoVM.total = 0;
+            if (vm.additionalFee !== null && typeof(vm.additionalFee) == 'string') {
+                vm.additionalFeeTemp = convertToNumber(vm.additionalFee);
+            } else {
+                vm.additionalFeeTemp = vm.additionalFee;
             }
-            //Calculate bol liabilities
+            vm.guaranteeValue = vm.bolInfoVM.isGuarantee ? 100000 : 0;
+            angular.forEach(vm.merchandisesVM, function(item) {
+                vm.bolInfoVM.total += item.subTotal;
+            });
+            vm.bolInfoVM.total += vm.guaranteeValue + vm.additionalFeeTemp;
+            vm.calculateBolLiabilities();
+            if (vm.bolInfoVM.isDiscount == true) {
+                vm.bolInfoVM.total = 0;
+            };
+            return vm.bolInfoVM.total;
+        }
+
+        //Calculate bol liabilities
         vm.calculateBolLiabilities = function() {
                 if (vm.merchandisesVM.length == 0) {
                     vm.bolInfoVM.prepaid = 0;
@@ -245,35 +247,53 @@
         //     }
         // };
 
-        vm.post = function() {
-            console.log(vm.customerInfoVM.BolFromName.selected.Id);
-            console.log(vm.merchandisesVM);
+        $rootScope.post = function() {
             $rootScope.transactionVM = {
                 TransactionVM: {
                     CustomerInfo: {
-                        senderName: vm.customerInfoVM.senderName,
-                        senderPhone: vm.customerInfoVM.senderPhone,
+                        SenderName: vm.customerInfoVM.senderName,
+                        SenderPhone: vm.customerInfoVM.senderPhone,
                         BolFromId: vm.customerInfoVM.BolFromName.selected.Id,
-                        receiverName: vm.customerInfoVM.receiverName,
-                        receiverPhone: vm.customerInfoVM.receiverPhone,
+                        ReceiverName: vm.customerInfoVM.receiverName,
+                        ReceiverPhone: vm.customerInfoVM.receiverPhone,
                         BolToId: vm.customerInfoVM.BolToName.selected.Id
                     },
                     MerchandiseInfo: [{
-                        id: vm.merchandisesVM.id,
-                        merchandiseTypeId: vm.merchandisesVM,
-                        isDeclared: vm.merchandisesVM.isDeclared,
-                        declareValue: vm.merchandisesVM.declareValue == "" || vm.merchandisesVM.declareValue == null ? 0 : convertToNumber(vm.merchandisesVM.declareValue),
-                        specialPrice: vm.merchandisesVM.specialPrice == "" || vm.merchandisesVM.specialPrice == null ? 0 : convertToNumber(vm.merchandisesVM.specialPrice),
-                        quantity: vm.merchandisesVM.quantity == "" || vm.merchandisesVM.quantity == null ? 0 : convertToNumber(vm.merchandisesVM.quantity),
-                        weight: vm.merchandisesVM.weight == "" || vm.merchandisesVM.weight == null ? 0 : convertToNumber(vm.merchandisesVM.weight),
-                        subTotal: vm.merchandisesVM.subTotal,
-                        description: vm.merchandisesVM.description
+                        Id: vm.merchandisesVM.id,
+                        MerchandiseTypeId: vm.merchandisesVM,
+                        IsDeclared: vm.merchandisesVM.isDeclared,
+                        DeclareValue: vm.merchandisesVM.declareValue == "" || vm.merchandisesVM.declareValue == null ? 0 : convertToNumber(vm.merchandisesVM.declareValue),
+                        SpecialPrice: vm.merchandisesVM.specialPrice == "" || vm.merchandisesVM.specialPrice == null ? 0 : convertToNumber(vm.merchandisesVM.specialPrice),
+                        Quantity: vm.merchandisesVM.quantity == "" || vm.merchandisesVM.quantity == null ? 0 : convertToNumber(vm.merchandisesVM.quantity),
+                        Weight: vm.merchandisesVM.weight == "" || vm.merchandisesVM.weight == null ? 0 : convertToNumber(vm.merchandisesVM.weight),
+                        SubTotal: vm.merchandisesVM.subTotal,
+                        Description: vm.merchandisesVM.description
                     }],
-                    BillOfLandingInfo: vm.bolInfoVM
+                    BillOfLandingInfo: {
+                        BolCode: vm.bolInfoVM.bolCode,
+                        SendDate: vm.bolInfoVM.sendDate,
+                        ReceiveDate: vm.bolInfoVM.receiveDate,
+                        IsGuarantee: vm.bolInfoVM.isGuarantee,
+                        IsDiscount: vm.bolInfoVM.isDiscount,
+                        CollectInBehalf: vm.bolInfoVM.collectInBehalf,
+                        SendAddress: vm.bolInfoVM.sendAddress,
+                        ReceiveTime: vm.bolInfoVM.receiveTime,
+                        DeliveryType: vm.bolInfoVM.deliveryType,
+                        AdditionalFee: vm.bolInfoVM.additionalFee,
+                        Total: vm.bolInfoVM.total,
+                        Prepaid: vm.bolInfoVM.prepaid,
+                        Liabilities: vm.bolInfoVM.liabilities,
+                        StatusCode: vm.bolInfoVM.statusCode
+                    }
                 }
             };
-            $state.go('logistics', {}, { reload: 'logistics' });
-            shareDataService.addItem($rootScope.transactionVM);
+            if ($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false && $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.Total == 0) {
+                toastr.error('Đơn vận không tồn tại hàng hóa! Vui lòng thêm hàng hóa', 'Thất Bại');
+            } else {
+                $state.go('logistics', {}, { reload: 'logistics' });
+                shareDataService.addItem($rootScope.transactionVM);
+                toastr.success('Đơn vận đã được tạo thành công!');
+            }
 
             // $.ajax({
             //         method: "POST",
@@ -292,16 +312,6 @@
             // });
         };
         /** End post data */
-
-        /**Print area function */
-        function printInvoice() {
-            var printContent = document.getElementById(divName).innerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-        }
-        /**End print area */
     };
 
 })(jQuery);
