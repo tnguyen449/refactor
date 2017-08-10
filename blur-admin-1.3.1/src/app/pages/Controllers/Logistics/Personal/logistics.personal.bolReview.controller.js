@@ -9,12 +9,12 @@
     function bolReviewCtrl($scope, $rootScope) {
         var vm = this;
         vm.transactionVM = $rootScope.transactionVM;
-        $scope.$on('initData', function(evt, obj) {
-            vm.deliveryType = obj.data.deliveryTypeVM;
-            vm.merchandiseType = obj.data.merchandiseTypeVM;
-            // console.log(vm.merchandiseType);
-            // console.log(vm.transactionVM);
-        });
+        // $rootScope.$on('bolCodeValue', function(evt, obj) {
+        //     vm.deliveryType = obj.data.deliveryTypeVM;
+        //     vm.merchandiseType = obj.data.merchandiseTypeVM;
+        //     // console.log(vm.merchandiseType);
+        //     // console.log(vm.transactionVM);
+        // });
 
 
 

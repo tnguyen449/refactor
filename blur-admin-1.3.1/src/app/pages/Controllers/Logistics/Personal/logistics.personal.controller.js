@@ -32,6 +32,7 @@
                                 }
                             }
                             $scope.$broadcast('initData', vm.initData);
+                            $rootScope.branchInfo = vm.branchInfoVM;
                         }
                     },
                     function(response) {
@@ -55,10 +56,6 @@
 
         $scope.$on('customerValue', function(event, obj) {
             $scope.$broadcast('bolCodeValue', obj);
-        });
-
-        $scope.$on('bolname', function(event, obj) {
-            $scope.$broadcast('bolToName', obj);
         });
     };
 })();

@@ -51,8 +51,8 @@
             [{
                 id: 1,
                 merchandiseType: null,
-                quantity: "",
-                weight: "",
+                quantity: "1",
+                weight: "1",
                 isDeclared: false,
                 declareValue: "",
                 specialPrice: "",
@@ -69,8 +69,8 @@
             vm.inserted = {
                 id: vm.merchandisesVM.length + 1,
                 merchandiseType: null,
-                quantity: "",
-                weight: "",
+                quantity: "1",
+                weight: "1",
                 isDeclared: false,
                 declareValue: "",
                 specialPrice: "",
@@ -223,13 +223,14 @@
         };
         // end
 
-        vm.calculateMinorFee = function(name) {
+        vm.calculateMinorFee = function(id) {
             for (var i = 0; i < vm.deliveryTypeVM.length; i++) {
-                if (name == vm.deliveryTypeVM[i].Name) {
+                if (id == vm.deliveryTypeVM[i].Id) {
                     vm.additionalFee = vm.deliveryTypeVM[i].Value;
                 }
             }
-            return vm.additionalFee + "";
+            vm.additionalFee = vm.additionalFee.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            return vm.additionalFee;
         }
 
         function convertToNumber(numberString) {
@@ -280,13 +281,13 @@
                     MerchandiseInfo: vm.merchandiseList,
                     BillOfLandingInfo: {
                         BolCode: vm.bolInfoVM.bolCode,
-                        SendDate: vm.bolInfoVM.sendDate,
-                        ReceiveDate: vm.bolInfoVM.receiveDate,
+                        SendDate: vm.bolInfoVM.sendDate.toLocaleDateString('en-GB'),
+                        ReceiveDate: vm.bolInfoVM.receiveDate.toLocaleDateString('en-GB'),
                         IsGuarantee: vm.bolInfoVM.isGuarantee,
                         IsDiscount: vm.bolInfoVM.isDiscount,
                         CollectInBehalf: vm.bolInfoVM.collectInBehalf,
                         SendAddress: vm.bolInfoVM.sendAddress,
-                        ReceiveTime: vm.bolInfoVM.receiveTime,
+                        ReceiveTime: vm.bolInfoVM.deliveryType.Id == 2 ? vm.bolInfoVM.receiveTime.toLocaleTimeString('en-GB') : "",
                         DeliveryType: vm.bolInfoVM.deliveryType,
                         AdditionalFee: vm.bolInfoVM.additionalFee,
                         Total: vm.bolInfoVM.total,

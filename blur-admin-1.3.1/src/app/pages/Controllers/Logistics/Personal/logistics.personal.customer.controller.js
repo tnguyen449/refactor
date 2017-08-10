@@ -10,7 +10,7 @@
         vm.customerInfoVM = {};
         $rootScope.customerVM = vm.customerInfoVM;
         vm.emitEvent = function() {
-            $scope.$emit('customerValue', vm.customerInfoVM);
+            $rootScope.$emit('customerValue', vm.customerInfoVM);
         }
     }
 })();

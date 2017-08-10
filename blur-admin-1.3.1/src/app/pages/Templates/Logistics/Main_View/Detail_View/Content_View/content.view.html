@@ -1,4 +1,4 @@
-<div class="panel panel-default height" ng-controller="detailCtrl as detail">
+<div class="panel panel-default height" ng-controller="detailCtrl as detailInfo">
     <!-- heading -->
     <div class="panel-heading text-center">
         <h2>TỔNG HỢP ĐƠN VẬN</h2>
@@ -53,13 +53,13 @@
                         <!-- canvas form -->
                         <tr></tr>
                         <!-- primary table body components -->
-                        <tr ng-repeat="detail in detail.details">
+                        <tr ng-repeat="detail in detailInfo.details">
                             <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.SenderPhone}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.ReceiverPhone}}</td>
-                            <td>{{detail.BolToName.BolToName.selected.Name}}</td>
+                            <td>{{branchInfo[branchInfo.indexOf({Id:detail.TransactionVM.CustomerInfo.BolToId})].Name}}</td>
                             <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
                             <td>
                                 <div style="padding-left:30px">
