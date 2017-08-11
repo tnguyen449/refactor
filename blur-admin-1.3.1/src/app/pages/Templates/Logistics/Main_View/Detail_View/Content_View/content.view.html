@@ -19,7 +19,7 @@
                             </div>
                             <!-- button remove item -->
                             <div class="col-md-8">
-                                <input type="text" class="input-sm form-control search-input">
+                                <input type="text" class="input-sm form-control search-input" placeholder="Nhập từ khóa tìm kiếm">
                             </div>
                         </div>
                         <!-- button add item -->
@@ -31,9 +31,9 @@
             <!-- table bill of landing details -->
             <div class="horizontal-scroll col-md-12">
                 <!-- start smart table-->
-                <table class="table" st-table="smartTableData">
+                <table class="table research" st-table="smartTableData">
                     <thead>
-                        <tr>
+                        <tr class="accordion">
                             <!-- input title block -->
                             <th class="col-sm-1 text-left bolHeader">Mã ĐH</th>
                             <th class="col-md-2 text-center bolHeader">Người Gửi</th>
@@ -49,17 +49,17 @@
                             <th class="col-md-1 text-center bolHeader">Trạng Thái Đơn Hàng</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody ng-repeat="detail in detailInfo.details">
                         <!-- canvas form -->
                         <tr></tr>
                         <!-- primary table body components -->
-                        <tr ng-repeat="detail in detailInfo.details">
+                        <tr class="accordion">
                             <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.SenderPhone}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.ReceiverPhone}}</td>
-                            <td>{{branchInfo[branchInfo.indexOf({Id:detail.TransactionVM.CustomerInfo.BolToId})].Name}}</td>
+                            <td>{{test}}</td>
                             <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
                             <td>
                                 <div style="padding-left:30px">
@@ -67,7 +67,11 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>test</td>
+                        </tr>
                     </tbody>
+
                     <tfoot>
 
                     </tfoot>

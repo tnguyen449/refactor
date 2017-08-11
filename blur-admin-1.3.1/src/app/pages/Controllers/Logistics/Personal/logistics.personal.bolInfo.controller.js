@@ -199,7 +199,6 @@
         };
 
         $scope.$on('bolCodeValue', function(event, obj) {
-            $scope.$emit('bolNameValue', obj);
             var end = obj.BolToName.selected.BranchCode.trim();
             var front = obj.BolFromName.selected.BranchCode.trim();
             var dateCode = $rootScope.serverTimeStampVM.substring(0, 6);
@@ -251,7 +250,7 @@
         //     }
         // };
 
-        $rootScope.post = function() {
+        vm.post = function() {
             vm.merchandiseList = [];
             angular.forEach(vm.merchandisesVM, function(merchandise) {
                 vm.merchandisesRefactor = {
@@ -301,6 +300,11 @@
             if (($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false || $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == true) && $rootScope.transactionVM.TransactionVM.MerchandiseInfo[0].MerchandiseTypeId == "") {
                 toastr.error('Đơn vận không tồn tại hàng hóa! Vui lòng thêm hàng hóa', 'Thất Bại');
             } else {
+                $uibModal.open({
+                    animation: true,
+                    templateUrl: 'app/pages/components/notifications/confirm.component.html',
+                    size: 'lg'
+                });
                 $state.go('logistics', {}, { reload: 'logistics' });
                 shareDataService.addItem($rootScope.transactionVM);
                 toastr.success('Đơn vận đã được tạo thành công!');
