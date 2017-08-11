@@ -10,7 +10,6 @@
         vm.details = shareDataService.getList();
         vm.customerView = $rootScope.customerVM;
         vm.branchView = $rootScope.branchInfo;
-        console.log(vm.details);
         $(function() {
             var $research = $('.research');
             $research.find('tr').not('.accordion').hide();

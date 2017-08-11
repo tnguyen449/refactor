@@ -4,38 +4,31 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('bolReviewCtrl', bolReviewCtrl);
 
-    bolReviewCtrl.$inject = ['$scope', '$rootScope', '$uibModal'];
+    bolReviewCtrl.$inject = ['$scope', '$rootScope', '$state', 'toastr', 'shareDataService', '$uibModalStack'];
 
-    function bolReviewCtrl($scope, $rootScope, $uibModal) {
+    function bolReviewCtrl($scope, $rootScope, $state, toastr, shareDataService, $uibModalStack) {
         var vm = this;
         vm.transactionVM = $rootScope.transactionVM;
-        // $rootScope.$on('bolCodeValue', function(evt, obj) {
-        //     vm.deliveryType = obj.data.deliveryTypeVM;
-        //     vm.merchandiseType = obj.data.merchandiseTypeVM;
-        //     // console.log(vm.merchandiseType);
-        //     // console.log(vm.transactionVM);
-        // });
-
-        vm.post = function() {
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'app/pages/components/notifications/confirm.component.html',
-                size: 'lg',
-                controller: 'bolReviewCtrl',
-                controllerAs: 'bolConfirm'
-            });
-        }
-
+        vm.cancel = function() {
+            $uibModalStack.dismissAll();
+        };
         vm.printInvoice = function() {
-            // var divContents = $(".wrapper").html();
-            // var printWindow = window.open('', '', 'height=400,width=800');
-            // printWindow.document.write('<html><head> <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">');
-            // printWindow.document.write('</head><body style="display: inline-block">');
-            // printWindow.document.write(divContents);
-            // printWindow.document.write('</body></html>');
-            // printWindow.document.close();
-            // printWindow.print();
-            window.print();
+            // $.ajax({
+            //         method: "POST",
+            //         url: "http://localhost:57363/NgocTrang/Api/Bol/Add",
+            //         data: vm.transactionVM.TransactionVM
+            //     })
+            //     .done(function() {
+            shareDataService.addItem(vm.transactionVM);
+            vm.cancel();
+            //window.onload();
+            //window.print();
+            $state.go('logistics', {}, { reload: 'logistics' });
+            toastr.success('Đơn vận đã được tạo thành công!');
+            //})
+            // .fail(function() {
+            //     toastr.error('Đã xảy ra lỗi. Đơn vận không không thể khởi tạo', 'LỖI');
+            // })
         };
     }
 })(jQuery);

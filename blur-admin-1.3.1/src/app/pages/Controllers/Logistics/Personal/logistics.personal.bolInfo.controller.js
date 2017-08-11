@@ -4,9 +4,9 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('bolInfoCtrl', bolInfoCtrl);
 
-    bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', '$state', 'toastr', 'shareDataService'];
+    bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', '$state', 'toastr', '$uibModal', 'shareDataService'];
 
-    function bolInfoCtrl($scope, $rootScope, $http, $state, toastr, shareDataService) {
+    function bolInfoCtrl($scope, $rootScope, $http, $state, toastr, $uibModal, shareDataService) {
         var vm = this;
         vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
         vm.ismeridian = true;
@@ -59,7 +59,6 @@
                 description: "",
                 subTotal: 0
             }];
-        // console.log(vm.merchandisesVM);
         $scope.$on('initData', function(event, obj) {
             vm.deliveryTypeVM = obj.data.deliveryTypeVM;
             return vm.deliveryTypeVM;
@@ -242,15 +241,7 @@
         };
 
         /*create Post Data*/
-        // $rootScope.transactionVM = {
-        //     TransactionVM: {
-        //         CustomerInfo: vm.customerInfoVM,
-        //         MerchandiseInfo: vm.merchandisesVM,
-        //         BillOfLandingInfo: vm.bolInfoVM
-        //     }
-        // };
-
-        vm.post = function() {
+        $rootScope.post = function() {
             vm.merchandiseList = [];
             angular.forEach(vm.merchandisesVM, function(merchandise) {
                 vm.merchandisesRefactor = {
@@ -288,7 +279,7 @@
                         SendAddress: vm.bolInfoVM.sendAddress,
                         ReceiveTime: vm.bolInfoVM.deliveryType.Id == 2 ? vm.bolInfoVM.receiveTime.toLocaleTimeString('en-GB') : "",
                         DeliveryType: vm.bolInfoVM.deliveryType,
-                        AdditionalFee: vm.bolInfoVM.additionalFee,
+                        AdditionalFee: vm.additionalFee,
                         Total: vm.bolInfoVM.total,
                         Prepaid: vm.bolInfoVM.prepaid,
                         Liabilities: vm.bolInfoVM.liabilities,
@@ -296,18 +287,16 @@
                     }
                 }
             };
-            console.log($rootScope.transactionVM);
             if (($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false || $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == true) && $rootScope.transactionVM.TransactionVM.MerchandiseInfo[0].MerchandiseTypeId == "") {
                 toastr.error('Đơn vận không tồn tại hàng hóa! Vui lòng thêm hàng hóa', 'Thất Bại');
             } else {
                 $uibModal.open({
                     animation: true,
                     templateUrl: 'app/pages/components/notifications/confirm.component.html',
-                    size: 'lg'
+                    size: 'lg',
+                    controller: 'bolReviewCtrl',
+                    controllerAs: 'bolConfirm'
                 });
-                $state.go('logistics', {}, { reload: 'logistics' });
-                shareDataService.addItem($rootScope.transactionVM);
-                toastr.success('Đơn vận đã được tạo thành công!');
             }
 
             // $.ajax({
@@ -319,12 +308,6 @@
             //         toastr.success('Đơn vận đã được tạo thành công!', 'Thành Công');
             //         vm.print = printInvoice(divName);
             //     })
-
-            // $http.post('http://localhost:57363/NgocTrang/Api/Bol/Add', vm.transactionVM).then(function(res) {
-            //     alert("POST SUCCESS");
-            // }, function(err) {
-            //     alert("POST FAILED");
-            // });
         };
         /** End post data */
     };

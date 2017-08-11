@@ -1,15 +1,6 @@
-<!-- <div class="modal-content">
-    <div class="modal-header bg-info">
-        <i class="ion-information-circled modal-icon"></i><span> Xác Nhận</span>
-    </div>
-    <div class="modal-body text-center">Bạn có muốn tạo đơn hàng này!</div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-info" ng-click="$dismiss()">CÓ</button>
-    </div>
-</div> -->
 <div class="modal-content">
     <div class="modal-header bg-info">
-        <i class="ion-information-circled modal-icon"></i><span> Xác Nhận</span>
+        <i class="ion-information-circled modal-icon"></i><span> Xác Nhận Đơn Hàng Số {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}</span>
     </div>
     <div class="modal-body text-center">
         <div class="wrapper">
@@ -19,8 +10,8 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h2 class="page-header">
-                            <i class="fa fa-globe"></i> Ngọc Trang Logisitics
-                            <small class="pull-right">Date: 2/10/2014</small>
+                            <i class="fa fa-globe"></i> Ngọc Trang Tiêu Cục
+                            <small class="pull-right">Ngày: {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendDate}}</small>
                         </h2>
                     </div>
                     <!-- /.col -->
@@ -28,33 +19,97 @@
                 <!-- info row -->
                 <div class="row invoice-info col-sm-12">
                     <div class="col-sm-4 invoice-col">
-                        <span><strong>Gửi Từ</strong></span>
-                        <address>
-                            <strong>Admin, Inc.</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    Phone: (804) 123-5432<br>
-                                    Email: info@almasaeedstudio.com
-                        </address>
+                        <div class="panel panel-default height">
+                            <div class="panel-heading text-center"><strong>Gửi Từ</strong></div>
+                            <div class="panel-body">
+                                <div class="text-left">
+                                    <strong>Người Gửi: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.SenderName}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Số Điện Thoại: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.SenderPhone}}<br>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default height">
+                            <div class="panel-heading text-center"><strong>Gửi Từ</strong></div>
+                            <div class="panel-body">
+                                <div class="text-left">
+                                    <strong>Người Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.ReceiverName}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Số Điện Thoại: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.ReceiverPhone}}<br>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+
+                    <div class="col-sm-4 invoice-col">
+                        <div class="panel panel-default height" style="height: 300px">
+                            <div class="panel-heading  text-center"><strong>Thông Tin Đơn Hàng</strong></div>
+                            <div class="panel-body">
+                                <div class="text-left">
+                                    <strong>Đơn Hàng Số</strong>
+                                </div>
+                                <br>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}
+                                <br>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Gửi Đến: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.BolToId}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Ngày Tạo: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendDate}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Dịch Vụ Giao Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryType.Id}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Ngày Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.ReceiveDate}}<br>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-4 invoice-col">
-                        <span><strong>Gửi Đến</strong></span>
-                        <address>
-                            <strong>John Doe</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    Phone: (555) 539-1037<br>
-                                    Email: john.doe@example.com
-                        </address>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-4 invoice-col">
-                        <b>Invoice #007612</b><br>
-                        <br>
-                        <b>Order ID:</b> 4F3S8J<br>
-                        <b>Payment Due:</b> 2/22/2014<br>
-                        <b>Account:</b> 968-34567
+                        <div class="panel panel-default height" style="height: 300px">
+                            <div class="panel-heading  text-center"><strong>Thông Tin Bổ Sung</strong></div>
+                            <div class="panel-body">
+                                <div class="text-left">
+                                    <strong>Đảm Bảo: </strong> {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.IsGuarantee == false? 'Không': 'Có'}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Thu Hộ: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.CollectInBehalf =="" ? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.CollectInBehalf}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Khấu Trừ: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false? 'Không' : 'Có'}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Giờ Giao (nếu có): </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.ReceiveTime ==""? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.ReceiveTime}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Địa Chỉ Giao (nếu có): </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress ==""? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Trạng Thái Đơn Hàng: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.StatusCode}}<br>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -72,37 +127,18 @@
                                     <th>ĐVT</th>
                                     <th>Khối Lượng</th>
                                     <th>Ghi Chú</th>
-                                    <th>Subtotal</th>
+                                    <th>Thành Tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Call of Duty</td>
-                                    <td>455-981-221</td>
-                                    <td>El snort testosterone trophy driving gloves handsome</td>
-                                    <td>$64.50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Need for Speed IV</td>
-                                    <td>247-925-726</td>
-                                    <td>Wes Anderson umami biodiesel</td>
-                                    <td>$50.00</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Monsters DVD</td>
-                                    <td>735-845-642</td>
-                                    <td>Terry Richardson helvetica tousled street art master</td>
-                                    <td>$10.70</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Grown Ups Blue Ray</td>
-                                    <td>422-568-642</td>
-                                    <td>Tousled lomo letterpress</td>
-                                    <td>$25.99</td>
+                                <tr ng-repeat="merchandise in bolConfirm.transactionVM.TransactionVM.MerchandiseInfo">
+                                    <td>{{merchandise.Id}}</td>
+                                    <td>{{merchandise.MerchandiseTypeId}}</td>
+                                    <td>{{merchandise.Quantity}}</td>
+                                    <td>Cái</td>
+                                    <td>{{merchandise.Weight}}</td>
+                                    <td>{{merchandise.Description}}</td>
+                                    <td>{{merchandise.SubTotal | currency : "" : 0}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -114,25 +150,24 @@
                 <div class="row">
                     <!-- accepted payments column -->
                     <div class="col-xs-6 pull-right">
-                        <p class="lead">Amount Due 2/22/2014</p>
-
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
-                                    <th style="width:50%">Subtotal:</th>
-                                    <td>$250.30</td>
+                                    <th style="width:50%">Tổng Cộng:</th>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Total | currency : "" : 0}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Tax (9.3%)</th>
-                                    <td>$10.34</td>
+                                    <th>Cước Vận Chuyển: </th>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryType.Id == 2 || bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryType.Id == 3? bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.AdditionalFee
+                                        : ""}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping:</th>
-                                    <td>$5.80</td>
+                                    <th>Trả Trước:</th>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Prepaid}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Total:</th>
-                                    <td>$265.24</td>
+                                    <th>Còn Lại:</th>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Liabilities | currency : "" : 0}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -142,7 +177,7 @@
                 <div class="row">
                     <div class="col-xs-6 pull-left">
                         <div class="panel panel-default height">
-                            <div class="panel-heading  text-center"><strong>Delivery's Signature</strong></div>
+                            <div class="panel-heading  text-center"><strong>Nhân Viên Ký Tên</strong></div>
                             <div class="panel-body" style="height: 200px">
 
                             </div>
@@ -150,7 +185,7 @@
                     </div>
                     <div class="col-xs-6 pull-right">
                         <div class="panel panel-default height">
-                            <div class="panel-heading text-center"><strong>Customer's Signature</strong></div>
+                            <div class="panel-heading text-center"><strong>Khách Hàng Ký Tên</strong></div>
                             <div class="panel-body" style="height: 200px">
 
                             </div>

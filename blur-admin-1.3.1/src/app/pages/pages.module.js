@@ -3,6 +3,7 @@
 
     angular.module('BlurAdmin.pages', [
             'ui.router',
+            'ui.bootstrap',
             'BlurAdmin.pages.logistics'
         ])
         .constant('API_URL', '')

@@ -659,6 +659,7 @@ fieldset[disabled] .form-control {
 @media print {
     @page {
         size: letter;
+        size: landscape;
     }
     .wrapper {
         height: 100%;
@@ -670,6 +671,13 @@ fieldset[disabled] .form-control {
     }
     #print-content * {
         visibility: visible;
+    }
+    #print-content {
+        margin: 0;
+        //height: 50%;
+        width: 120%;
+        border: 0;
+        padding: 0;
     }
     .modal {
         position: absolute;
@@ -686,6 +694,7 @@ fieldset[disabled] .form-control {
     }
     .invoice-col {
         float: left;
+        //width: 33.3366667%;
         width: 33.3333333%;
     }
     .table-responsive {
