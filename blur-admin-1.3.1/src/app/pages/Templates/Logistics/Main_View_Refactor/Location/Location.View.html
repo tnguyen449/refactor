@@ -1,0 +1,66 @@
+<form name="location" novalidate>
+    <div class="panel panel-warning height">
+        <div class="panel-heading">
+            <h2>Chọn Nơi Giao Nhận</h2>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="col-md-12 text-center">
+                        <span><h2>Cảm Ơn Đã Sử Dụng Dịch Vụ Của Ngọc Trang</h2></span>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <span><h3>Xin vui lòng chọn</h3></span>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" style="margin-top: 20px;">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-4 text-right" style="margin-top: 10px">
+                                <label class="control-label"><h4>Nơi Gửi</h4></label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <!--Dropdown Gửi Từ-->
+                                <div class="form-group has-feedback" ng-class="{'has-error': personal.customerForm.bolFrom.$invalid && (personal.customerForm.bolFrom.$dirty || personal.customerForm.$submitted)}">
+                                    <ui-select ng-model="customerInfo.customerInfoVM.BolFromName.selected" class="btn-group bootstrap-select form-control" name="bolFrom" ng-disabled="false" append-to-body="true" search-enabled="true" required>
+                                        <ui-select-match placeholder="Chọn Nơi Gửi">
+                                            {{$select.selected.Name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="branch in personal.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                                            <span ng-bind-html="branch.Name | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-block basic-block">Chọn nơi gửi</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-md-4 text-right" style="margin-top: 10px">
+                                <label class="control-label"><h4>Nơi Nhận</h4></label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <div class="form-group has-feedback" ng-class="{'has-error': personal.customerForm.bolTo.$invalid && (personal.customerForm.bolTo.$dirty || personal.customerForm.$submitted)}">
+                                    <ui-select name="bolTo" ng-model="customerInfo.customerInfoVM.BolToName.selected" on-select="customerInfo.emitEvent()" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true" required>
+                                        <ui-select-match placeholder="Chọn Nơi Gửi">
+                                            {{$select.selected.Name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="branch in personal.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                                            <span ng-bind-html="branch.Name | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="help-block error-block basic-block">Chọn nơi nhận</span>
+                                </div>
+                            </div>
+                            <!--Dropdown gửi từ-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4 pull-right">
+                    <div class="col-md-6 pull-right">
+                        <button class="btn btn-lg btn-primary" ui-sref="bol"><i class="fa fa-check-square-o" aria-hidden="true"></i> Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

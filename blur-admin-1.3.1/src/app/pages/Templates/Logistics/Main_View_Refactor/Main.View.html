@@ -1,0 +1,83 @@
+<div class="panel panel-warning height" ng-controller="detailCtrl as detailInfo">
+    <!-- heading -->
+    <div class="panel-heading">
+        <h2>Tổng Hợp Đơn Vận</h2>
+    </div>
+    <!-- body -->
+    <div class="panel-body">
+        <!-- button group -->
+        <div class="add-row-editable-table col-md-12 pull-right">
+            <div class="col-md-12">
+                <div class="col-md-6 pull-left">
+                    <div class="row btns-row">
+                        <div class="col-md-6 pull-left">
+                            <div class="col-md-4" style="padding-top: 10px;">
+                                <label>Tìm kiếm: </label>
+                            </div>
+                            <!-- button search item -->
+                            <div class="col-md-8">
+                                <input type="text" class="input-sm form-control search-input" placeholder="Nhập từ khóa tìm kiếm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pull-right">
+                    <!-- button add item -->
+                    <div class="col-md-4 pull-right">
+                        <button type="button" ui-sref="location" class="btn btn-md btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Vận Đơn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end button group -->
+        <!-- table bill of landing details -->
+        <div class="horizontal-scroll col-md-12">
+            <!-- start smart table-->
+            <table class="table research" st-table="smartTableData">
+                <thead>
+                    <tr class="accordion">
+                        <!-- input title block -->
+                        <th class="col-sm-1 text-left bolHeader">Mã ĐH</th>
+                        <th class="col-md-2 text-center bolHeader">Người Gửi</th>
+                        <th class="col-md-1 text-center bolHeader">SĐT Người Gủi</th>
+                        <th class="col-md-2 text-center bolHeader">Người Nhận</th>
+                        <!-- check box title declare value -->
+                        <th class="col-md-1 text-center bolHeader">SĐT Người Nhận</th>
+                        <!-- input title block -->
+                        <th class="col-md-1 text-center bolHeader">Nơi Nhận</th>
+                        <!-- <th class="col-md-1 text-center bolHeader">Địa Chỉ (nếu có)</th> -->
+                        <!-- <th class="col-md-2 text-center bolHeader">Ghi Chú</th> -->
+                        <th class="col-md-1 text-left bolHeader">Tổng Cộng</th>
+                        <th class="col-md-1 text-center bolHeader">Trạng Thái Đơn Hàng</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="detail in detailInfo.details">
+                    <!-- canvas form -->
+                    <tr></tr>
+                    <!-- primary table body components -->
+                    <tr class="accordion">
+                        <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td>
+                        <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
+                        <td>{{detail.TransactionVM.CustomerInfo.SenderPhone}}</td>
+                        <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
+                        <td>{{detail.TransactionVM.CustomerInfo.ReceiverPhone}}</td>
+                        <td>{{test}}</td>
+                        <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
+                        <td class="statusButton">
+                            <div style="padding-left:30px">
+                                <button type="button" class="align-center btn btn-xs btn-primary">Đang Kiểm hàng</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+            <!-- end smart table -->
+        </div>
+        <!-- end bill of landing details -->
+    </div>
+</div>
+<!-- end bill of landing infomation -->
+</div>

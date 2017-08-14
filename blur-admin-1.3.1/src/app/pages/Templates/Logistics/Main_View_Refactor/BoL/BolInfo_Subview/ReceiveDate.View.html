@@ -1,0 +1,15 @@
+<div class="col-md-12">
+    <div class="col-md-4" style="padding-top: 10px">
+        <label style="padding-top: 5px">Ngày Nhận:</label>
+    </div>
+    <div class="datepicker col-md-3" ng-class="{'has-error':personal.bolInfoForm.datePicker.$invalid && (personal.bolInfoForm.datePicker.$dirty || personal.bolInfoForm.$submitted)}">
+        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receiveDate" ng-model="bolInfo.bolInfoVM.receiveDate" ng-value="bolInfo.receiveDate.minDate" is-open="bolInfo.opened" name="datePicker" close-text="Close"
+                alt-input-formats="altInputFormats" show-button-bar="false" />
+            <span class="input-group-btn">
+                             <button type="button" class="btn btn-default" ng-click="bolInfo.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+        </p>
+        <span class="help-block error-block basic-block">Chọn ngày nhận</span>
+    </div>
+</div>
