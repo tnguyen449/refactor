@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="panel panel-warning height">
                 <div class=" panel-heading">
-                    <h2>Thông Tin Đơn Vận Số</h2>
+                    <h2>Thông Tin Đơn Vận Số {{bolInfo.bolInfoVM.bolCode}}</h2>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-5">
@@ -12,7 +12,7 @@
                                 <h2>Thông Tin Khách Hàng</h2>
                             </div>
                             <div class="panel-body">
-                                <uib-accordion close-others="true|false">
+                                <uib-accordion>
                                     <uib-accordion-group panel-class="panel-danger bootstrap-panel accordion-panel">
                                         <uib-accordion-heading>
                                             Người Gửi <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
                                 <h2>Thông Tin Đơn Vận</h2>
                             </div>
                             <div class="panel-body">
-                                <uib-accordion close-others="true|false">
+                                <uib-accordion>
                                     <uib-accordion-group panel-class="panel-danger bootstrap-panel accordion-panel">
                                         <uib-accordion-heading>
                                             Thông Tin Đơn hàng <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -129,20 +129,9 @@
                                                 <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
                                             </div>
                                         </div>
-                                        <!--component additional fee-->
-                                        <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-5" style="padding-top:8px">
-                                                <label>Tra Truoc:</label>
-                                            </div>
-                                            <!-- input collect in behalf -->
-                                            <div class="col-md-7">
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                            </div>
-                                        </div>
-
                                         <!-- component delivery method -->
                                         <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-4" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
                                                 <label>Dịch Vụ Giao Nhận:</label>
                                             </div>
                                             <!-- radio button delivery methods -->
@@ -157,7 +146,7 @@
                                         </div>
 
                                         <!-- optional component for some delivery methods -->
-                                        <div class="col-md-12" style="height: 90px" ng-switch on="bolInfo.bolInfoVM.deliveryType.Id">
+                                        <div class="col-md-12" ng-switch on="bolInfo.bolInfoVM.deliveryType.Id">
                                             <div class="col-md-12" ng-hide="bolInfo.deliveryTypeVM[bolInfo.bolInfoVM.deliveryType.Id-1].Name == bolInfo.deliveryTypeVM[0].Name">
                                                 <div class="col-md-4" style="padding-top: 45px">
                                                     <label>Dịch Vụ {{bolInfo.deliveryTypeVM[bolInfo.bolInfoVM.deliveryType.Id -1].Name}}</label>
@@ -184,7 +173,16 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!--component additional fee-->
+                                        <div class="col-md-12" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
+                                                <label>Tra Truoc:</label>
+                                            </div>
+                                            <!-- input collect in behalf -->
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                            </div>
+                                        </div>
                                     </uib-accordion-group>
                                 </uib-accordion>
                             </div>

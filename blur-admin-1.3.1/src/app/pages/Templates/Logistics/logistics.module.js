@@ -120,11 +120,15 @@
             })
             .state('location', {
                 url: '/logistics/location',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Location/Location.View.html'
+                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Location/Location.View.html',
+                controller: 'PersonalCtrl',
+                controllerAs: 'personal',
             })
             .state('bol', {
                 url: '/logistics/bol',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html'
+                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
+                controller: 'bolInfoCtrl',
+                controllerAs: 'bolInfo'
             })
     };
 })();

@@ -1,5 +1,5 @@
 <form name="location" novalidate>
-    <div class="panel panel-warning height">
+    <div class="panel panel-warning height" ng-init="personal.getTransactionComponent()">
         <div class="panel-heading">
             <h2>Chọn Nơi Giao Nhận</h2>
         </div>
@@ -12,8 +12,7 @@
                     <div class="col-md-12 text-center">
                         <span><h3>Xin vui lòng chọn</h3></span>
                     </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10" style="margin-top: 20px;">
+                    <div class="col-md-12" style="margin-top: 20px;">
                         <div class="col-md-6">
                             <div class="form-group col-md-5 col-lg-4 text-right" style="margin-top: 10px">
                                 <label class="control-label"><h4>Nơi Gửi</h4></label>
@@ -54,7 +53,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1"></div>
                 <div class="col-md-4 pull-right">
                     <div class="col-md-6 pull-right">
                         <button class="btn btn-md btn-primary" ui-sref="bol"><i class="fa fa-check-square-o" aria-hidden="true"></i> Xác nhận</button>
