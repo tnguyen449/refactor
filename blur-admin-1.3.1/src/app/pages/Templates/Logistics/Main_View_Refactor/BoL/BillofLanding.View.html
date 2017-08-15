@@ -6,7 +6,7 @@
                     <h2>Thông Tin Đơn Vận Số</h2>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="panel panel-default height">
                             <div class="text-center panel-heading">
                                 <h2>Thông Tin Khách Hàng</h2>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="panel panel-default height">
                             <div class="text-center panel-heading">
                                 <h2>Thông Tin Đơn Vận</h2>
@@ -57,10 +57,10 @@
                                         </uib-accordion-heading>
                                         <!--component received date-->
                                         <div class="col-md-12">
-                                            <div class="col-md-4" style="padding-top: 10px">
+                                            <div class="col-md-5" style="padding-top: 10px">
                                                 <label style="padding-top: 5px">Ngày Nhận:</label>
                                             </div>
-                                            <div class="datepicker col-md-6" ng-class="{'has-error':personal.bolInfoForm.datePicker.$invalid && (personal.bolInfoForm.datePicker.$dirty || personal.bolInfoForm.$submitted)}">
+                                            <div class="datepicker col-md-7" ng-class="{'has-error':personal.bolInfoForm.datePicker.$invalid && (personal.bolInfoForm.datePicker.$dirty || personal.bolInfoForm.$submitted)}">
                                                 <p class="input-group">
                                                     <input type="text" class="form-control" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receiveDate" ng-model="bolInfo.bolInfoVM.receiveDate" ng-value="bolInfo.receiveDate.minDate" is-open="bolInfo.opened" name="datePicker" close-text="Close"
                                                         alt-input-formats="altInputFormats" show-button-bar="false" />
@@ -74,11 +74,11 @@
 
                                         <!--component collect in behalf-->
                                         <div class="col-md-12">
-                                            <div class="col-md-4" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
                                                 <label>Thu Hộ:</label>
                                             </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
                                             </div>
                                         </div>
@@ -90,42 +90,52 @@
                                         </uib-accordion-heading>
                                         <!--component guarantee-->
                                         <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-3 control-label" style="padding-top:8px">
+                                            <div class="col-md-5 control-label" style="padding-top:8px">
                                                 <label>Đảm Bảo:</label>
                                             </div>
                                             <!-- input guanrantee -->
-                                            <div class="col-md-4">
+                                            <div class="col-md-7">
                                                 <ba-switcher switcher-style="primary" switcher-value="bolInfo.bolInfoVM.isGuarantee"></ba-switcher>
                                                 <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
                                             </div>
                                         </div>
                                         <!--component discount-->
                                         <div class="col-md-12" style="padding-top:2px">
-                                            <div class="col-md-3" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
                                                 <label>Khấu trừ:</label>
                                             </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
                                             </div>
                                         </div>
                                         <!--component declare price-->
                                         <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-3" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
                                                 <label>Khai Giá:</label>
                                             </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
                                             </div>
                                         </div>
                                         <!--component additional fee-->
                                         <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-3" style="padding-top:8px">
-                                                <label>Khai Giá:</label>
+                                            <div class="col-md-5" style="padding-top:8px">
+                                                <label>Phu Phi:</label>
                                             </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                            </div>
+                                        </div>
+                                        <!--component additional fee-->
+                                        <div class="col-md-12" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
+                                                <label>Tra Truoc:</label>
+                                            </div>
+                                            <!-- input collect in behalf -->
+                                            <div class="col-md-7">
                                                 <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
                                             </div>
                                         </div>
@@ -180,9 +190,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pull-right">
-                        <div class="col-md-6 pull-right">
-                            <button type="button" class="btn btn-lg btn-primary"><i class="ion-android-create" aria-hidden="true"></i> Tạo Vận Đơn</button>
+                    <div class="col-md-2 pull-right">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-md btn-primary"><i class="ion-android-create" aria-hidden="true"></i> Tạo Vận Đơn</button>
                         </div>
                     </div>
                 </div>
