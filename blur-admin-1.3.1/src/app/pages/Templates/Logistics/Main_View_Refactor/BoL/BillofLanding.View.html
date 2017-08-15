@@ -73,13 +73,67 @@
                                         </div>
 
                                         <!--component collect in behalf-->
+
                                         <div class="col-md-12">
                                             <div class="col-md-5" style="padding-top:8px">
                                                 <label>Thu Hộ:</label>
                                             </div>
-                                            <!-- input collect in behalf -->
+                                            <!-- input collect in behalf-->
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                <div class="col-md-7 input-group">
+                                                    <input type="text" class="form-control with-primary-addon" currency-format placeholder="Thu Hộ" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:10px">
+                                            <div class="col-md-5">
+                                                <label>Chi Tiết Đơn Vận: </label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-5" style="padding-top:10px">
+                                                    <ui-select name="bolTo" ng-model="customerInfo.customerInfoVM.BolToName.selected" on-select="customerInfo.emitEvent()" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true" required>
+                                                        <ui-select-match placeholder="Chọn Loại Hàng">
+                                                            {{$select.selected.Name}}
+                                                        </ui-select-match>
+                                                        <ui-select-choices repeat="branch in personal.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                                                            <span ng-bind-html="branch.Name | highlight: $select.search"></span>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </div>
+                                                <!-- input collect in behalf-->
+                                                <div class="col-md-7" style="padding-top:10px">
+                                                    <input type="text" class="form-control" currency-format placeholder="Chi Tiêt Tổng Hợp" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <!--quantity-->
+                                                <div class="col-md-5">
+                                                    <div class="col-md-5 input-group" style="padding-top:10px">
+                                                        <input type="text" class="form-control with-primary-addon" currency-format placeholder="Số Lượng" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                        <span class="input-group-addon addon-right input-group-addon-primary" style="width: 10px">Cái</span>
+                                                    </div>
+                                                </div>
+                                                <!--weight-->
+                                                <div class="col-md-7" style="padding-top:10px">
+                                                    <div class="col-md-7 input-group">
+                                                        <input type="text" class="form-control " currency-format placeholder="Khối Lượng" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                        <span class="input-group-addon addon-right input-group-addon-primary">Kg</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-5">
+                                                    <div class="col-md-5 input-group">
+                                                        <input type="text" class="form-control" currency-format placeholder="Giá Cước Chính" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                        <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                    </div>
+                                                </div>
+                                                <!-- input collect in behalf-->
+                                                <div class="col-md-7">
+                                                    <input type="text" class="form-control " currency-format placeholder="Ghi Chú" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                </div>
                                             </div>
                                         </div>
                                     </uib-accordion-group>
@@ -88,8 +142,9 @@
                                         <uib-accordion-heading>
                                             Giá Trị Gia Tăng <i class="fa fa-caret-down" aria-hidden="true"></i>
                                         </uib-accordion-heading>
+                                        <!-- component delivery method -->
                                         <!--component guarantee-->
-                                        <div class="col-md-12" style="padding-top:8px">
+                                        <div class="col-md-12">
                                             <div class="col-md-5 control-label" style="padding-top:8px">
                                                 <label>Đảm Bảo:</label>
                                             </div>
@@ -99,37 +154,6 @@
                                                 <!-- <input type="checkbox" ng-model="bolInfo.merchandisesVM.isGuarantee" /> -->
                                             </div>
                                         </div>
-                                        <!--component discount-->
-                                        <div class="col-md-12" style="padding-top:2px">
-                                            <div class="col-md-5" style="padding-top:8px">
-                                                <label>Khấu trừ:</label>
-                                            </div>
-                                            <!-- input collect in behalf -->
-                                            <div class="col-md-7">
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                            </div>
-                                        </div>
-                                        <!--component declare price-->
-                                        <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-5" style="padding-top:8px">
-                                                <label>Khai Giá:</label>
-                                            </div>
-                                            <!-- input collect in behalf -->
-                                            <div class="col-md-7">
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                            </div>
-                                        </div>
-                                        <!--component additional fee-->
-                                        <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-5" style="padding-top:8px">
-                                                <label>Phu Phi:</label>
-                                            </div>
-                                            <!-- input collect in behalf -->
-                                            <div class="col-md-7">
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                            </div>
-                                        </div>
-                                        <!-- component delivery method -->
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-5" style="padding-top:8px">
                                                 <label>Dịch Vụ Giao Nhận:</label>
@@ -176,11 +200,47 @@
                                         <!--component additional fee-->
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-5" style="padding-top:8px">
-                                                <label>Tra Truoc:</label>
+                                                <label>Cước Vận Chuyển:</label>
                                             </div>
                                             <!-- input collect in behalf -->
                                             <div class="col-md-7">
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                                <div class="col-md-7 input-group">
+                                                    <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--component discount-->
+                                        <div class="col-md-12">
+                                            <div class="col-md-5" style="padding-top:8px">
+                                                <div class="col-md-5 input-group">
+                                                    <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Khấu Trừ" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
+                                            </div>
+                                            <!-- input collect in behalf -->
+                                            <div class="col-md-7" style="padding-top:8px">
+                                                <div class="col-md-7 input-group">
+                                                    <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Khai Giá" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--component declare price-->
+                                        <div class="col-md-12" style="padding-top:8px">
+                                            <div class="col-md-5" style="padding-top:8px">
+                                                <div class="col-md-5 input-group">
+                                                    <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Phụ Phí" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
+                                            </div>
+                                            <!-- input collect in behalf -->
+                                            <div class="col-md-7" style="padding-top:8px">
+                                                <div class="col-md-7 input-group">
+                                                    <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Trả Trước" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </uib-accordion-group>
