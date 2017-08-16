@@ -57,42 +57,37 @@
                                         </uib-accordion-heading>
                                         <!--component received date-->
                                         <div class="col-md-12">
-                                            <div class="col-md-5" style="padding-top: 10px">
-                                                <label style="padding-top: 5px">Ngày Nhận:</label>
-                                            </div>
-                                            <div class="datepicker col-md-7" ng-class="{'has-error':personal.bolInfoForm.datePicker.$invalid && (personal.bolInfoForm.datePicker.$dirty || personal.bolInfoForm.$submitted)}">
-                                                <p class="input-group">
-                                                    <input type="text" class="form-control" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receiveDate" ng-model="bolInfo.bolInfoVM.receiveDate" ng-value="bolInfo.receiveDate.minDate" is-open="bolInfo.opened" name="datePicker" close-text="Close"
-                                                        alt-input-formats="altInputFormats" show-button-bar="false" />
-                                                    <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default" ng-click="bolInfo.open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                </span>
-                                                </p>
-                                                <span class="help-block error-block basic-block">Chọn ngày nhận</span>
+                                            <div class="col-md-12 datepicker" style="height: 50px">
+                                                <div class="col-md-7 input-group" style="padding-bottom: 0">
+                                                    <p class="input-group">
+                                                        <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Ngày Nhận</span>
+                                                        <input type="text" class="form-control form-control with-primary-addon" uib-datepicker-popup="{{bolInfo.format}}" datepicker-options="bolInfo.receiveDate" ng-model="bolInfo.bolInfoVM.receiveDate" ng-value="bolInfo.receiveDate.minDate" is-open="bolInfo.opened"
+                                                            name="datePicker" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default" ng-click="bolInfo.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                        </span>
+                                                    </p>
+                                                    <span class="help-block error-block basic-block">Chọn ngày nhận</span>
+                                                </div>
                                             </div>
                                         </div>
-
                                         <!--component collect in behalf-->
 
                                         <div class="col-md-12">
-                                            <div class="col-md-5" style="padding-top:8px">
-                                                <label>Thu Hộ:</label>
-                                            </div>
                                             <!-- input collect in behalf-->
-                                            <div class="col-md-7">
+                                            <div class="col-md-12">
                                                 <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Thu Hộ</span>
                                                     <input type="text" class="form-control with-primary-addon" currency-format placeholder="Thu Hộ" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
                                                     <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12" style="margin-top:10px">
-                                            <div class="col-md-5">
-                                                <label>Chi Tiết Đơn Vận: </label>
-                                            </div>
+                                        <div class="col-md-12">
                                             <div class="col-md-12">
-                                                <div class="col-md-5" style="padding-top:10px">
-                                                    <ui-select name="bolTo" ng-model="customerInfo.customerInfoVM.BolToName.selected" on-select="customerInfo.emitEvent()" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true" required>
+                                                <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Loại Hàng</span>
+                                                    <ui-select name="bolTo" ng-model="customerInfo.customerInfoVM.BolToName.selected" on-select="customerInfo.emitEvent()" class="btn-group bootstrap-select form-control with-primary-addon" ng-disabled="false" append-to-body="true" search-enabled="true" required>
                                                         <ui-select-match placeholder="Chọn Loại Hàng">
                                                             {{$select.selected.Name}}
                                                         </ui-select-match>
@@ -101,38 +96,45 @@
                                                         </ui-select-choices>
                                                     </ui-select>
                                                 </div>
-                                                <!-- input collect in behalf-->
-                                                <div class="col-md-7" style="padding-top:10px">
-                                                    <input type="text" class="form-control" currency-format placeholder="Chi Tiêt Tổng Hợp" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                            </div>
+                                            <!-- input collect in behalf-->
+                                            <div class="col-md-12">
+                                                <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Chi Tiết Tổng Hợp</span>
+                                                    <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
                                                 </div>
                                             </div>
+                                        </div>
 
+                                        <div class="col-md-12">
+                                            <!--quantity-->
                                             <div class="col-md-12">
-                                                <!--quantity-->
-                                                <div class="col-md-5">
-                                                    <div class="col-md-5 input-group" style="padding-top:10px">
-                                                        <input type="text" class="form-control with-primary-addon" currency-format placeholder="Số Lượng" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                                        <span class="input-group-addon addon-right input-group-addon-primary" style="width: 10px">Cái</span>
-                                                    </div>
-                                                </div>
-                                                <!--weight-->
-                                                <div class="col-md-7" style="padding-top:10px">
-                                                    <div class="col-md-7 input-group">
-                                                        <input type="text" class="form-control " currency-format placeholder="Khối Lượng" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                                        <span class="input-group-addon addon-right input-group-addon-primary">Kg</span>
-                                                    </div>
+                                                <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Số Lượng</span>
+                                                    <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
                                                 </div>
                                             </div>
+                                            <!--weight-->
                                             <div class="col-md-12">
-                                                <div class="col-md-5">
-                                                    <div class="col-md-5 input-group">
-                                                        <input type="text" class="form-control" currency-format placeholder="Giá Cước Chính" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
-                                                        <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
-                                                    </div>
+                                                <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Khối Lượng</span>
+                                                    <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
                                                 </div>
-                                                <!-- input collect in behalf-->
-                                                <div class="col-md-7">
-                                                    <input type="text" class="form-control " currency-format placeholder="Ghi Chú" ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Tiền Cần Thu" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Gía Cước Chính</span>
+                                                    <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
+                                                    <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                                </div>
+                                            </div>
+                                            <!-- input collect in behalf-->
+                                            <div class="col-md-12">
+                                                <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Ghi Chú</span>
+                                                    <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
                                                 </div>
                                             </div>
                                         </div>
@@ -199,12 +201,10 @@
                                         </div>
                                         <!--component additional fee-->
                                         <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-5" style="padding-top:8px">
-                                                <label>Cước Vận Chuyển:</label>
-                                            </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-7">
+                                            <div class="col-md-12">
                                                 <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default">Cước Vận Chuyển</span>
                                                     <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" />
                                                     <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                                 </div>
@@ -213,15 +213,17 @@
 
                                         <!--component discount-->
                                         <div class="col-md-12">
-                                            <div class="col-md-5" style="padding-top:8px">
+                                            <div class="col-md-12" style="padding-top:8px">
                                                 <div class="col-md-5 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Khấu Trừ</span>
                                                     <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Khấu Trừ" />
                                                     <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                                 </div>
                                             </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-7" style="padding-top:8px">
+                                            <div class="col-md-12" style="padding-top:8px">
                                                 <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Khai Giá</span>
                                                     <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Khai Giá" />
                                                     <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                                 </div>
@@ -229,19 +231,23 @@
                                         </div>
                                         <!--component declare price-->
                                         <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-5" style="padding-top:8px">
+                                            <div class="col-md-12" style="padding-top:8px">
                                                 <div class="col-md-5 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Phụ Phí</span>
                                                     <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Phụ Phí" />
                                                     <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                                 </div>
                                             </div>
                                             <!-- input collect in behalf -->
-                                            <div class="col-md-7" style="padding-top:8px">
+                                            <div class="col-md-12" style="padding-top:8px">
                                                 <div class="col-md-7 input-group">
+                                                    <span class="input-group-addon addon-left input-group-addon-default" style="width: 137px">Trả Trước</span>
                                                     <input type="text" class="form-control" currency-format ng-model="bolInfo.bolInfoVM.collectInBehalf" placeholder="Trả Trước" />
                                                     <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                                 </div>
                                             </div>
+                                            <hr>
+
                                         </div>
                                     </uib-accordion-group>
                                 </uib-accordion>
