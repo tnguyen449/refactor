@@ -31,6 +31,7 @@
                                     deliveryTypeVM: vm.deliveryTypeVM
                                 }
                             }
+                            console.log(vm.branchInfoVM);
                             $scope.$broadcast('initData', vm.initData);
                             $rootScope.branchInfo = vm.branchInfoVM;
                         }

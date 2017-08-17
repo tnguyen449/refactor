@@ -116,19 +116,21 @@
                 sidebarMeta: {
                     icon: 'ion-compose',
                     order: 0
-                }
+                },
+                controller: 'PersonalMainController',
+                controllerAs: 'mainCtrl'
             })
             .state('location', {
                 url: '/logistics/location',
                 templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Location/Location.View.html',
-                controller: 'PersonalCtrl',
-                controllerAs: 'personal',
+                controller: 'LocationController',
+                controllerAs: 'locationCtrl',
             })
             .state('bol', {
                 url: '/logistics/bol',
                 templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
-                controller: 'bolInfoCtrl',
-                controllerAs: 'bolInfo'
+                controller: 'BolInfoController',
+                controllerAs: 'bolInfoCtrl'
             })
     };
 })();
