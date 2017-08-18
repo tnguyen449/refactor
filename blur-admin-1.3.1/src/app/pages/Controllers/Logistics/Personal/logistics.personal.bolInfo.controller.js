@@ -22,6 +22,7 @@
             minDate: new Date(),
             startingDay: 1
         };
+        vm.sendDate = vm.dateOptions;
         vm.receiveDate = {
             minDate: new Date(vm.dateOptions.minDate.getFullYear(), vm.dateOptions.minDate.getMonth(), vm.dateOptions.minDate.getDate() + 1)
         };
