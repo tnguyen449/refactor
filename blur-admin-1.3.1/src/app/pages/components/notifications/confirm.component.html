@@ -1,5 +1,5 @@
 <div class="modal-content">
-    <div class="modal-header bg-info">
+    <div class="modal-header bg-primary">
         <i class="ion-information-circled modal-icon"></i><span> Xác Nhận Đơn Hàng Số {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}</span>
     </div>
     <div class="modal-body text-center">
@@ -10,8 +10,10 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h2 class="page-header">
-                            <i class="fa fa-globe"></i> Ngọc Trang Tiêu Cục
-                            <small class="pull-right">Ngày: {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendDate}}</small>
+                            <small class="pull-right">Nơi tạo: {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolFromName}}, ngày: {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendDate}}</small>
+                            <div style="display: block">
+                                <img src="assets/logo/ntl_logo.png" style="width: 300px; margin-left:265px">
+                            </div>
                         </h2>
                     </div>
                     <!-- /.col -->
@@ -34,7 +36,7 @@
                         </div>
 
                         <div class="panel panel-default height">
-                            <div class="panel-heading text-center"><strong>Gửi Từ</strong></div>
+                            <div class="panel-heading text-center"><strong>Gửi Đến</strong></div>
                             <div class="panel-body">
                                 <div class="text-left">
                                     <strong>Người Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.ReceiverName}}<br>
@@ -210,7 +212,9 @@
             <!-- ./wrapper -->
         </div>
         <div class="modal-footer">
-            <button class="btn btn-lg btn-primary" ng-click="bolConfirm.printInvoice()">In</button>
+            <button class="btn btn-lg btn-primary" ng-click="bolConfirm.printInvoice()"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+ Tạo</button>
+            <button class="btn btn-lg btn-primary" ng-click="bolConfirm.printInvoice()"><i class="fa fa-print fa-lg"></i> In và Tạo</button>
         </div>
 
     </div>

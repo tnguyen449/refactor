@@ -8,7 +8,8 @@
         ])
         .config(routeConfig);
     /** @ngInject */
-    function routeConfig($stateProvider) {
+    function routeConfig($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/logistics/main');
         $stateProvider
         // .state('logistics', {
         //     url: '/logistics',
@@ -109,12 +110,13 @@
         //         order: 2
         //     }
         // })
+
             .state('main', {
                 url: '/logistics/main',
-                title: 'Bảo Tiêu Refactor',
+                title: 'Bảo Tiêu',
                 templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Main.View.html',
                 sidebarMeta: {
-                    icon: 'ion-compose',
+                    icon: 'fa fa-pencil-square-o fa-lg',
                     order: 0
                 },
                 controller: 'PersonalMainController',

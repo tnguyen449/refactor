@@ -1,6 +1,6 @@
 <form name="locationCtrl.form" ng-submit="locationCtrl.emitEvent(locationCtrl.form.$valid)" novalidate>
-    <div class="panel panel-warning height">
-        <div class="panel-heading">
+    <div class="panel panel-primary height">
+        <div class="panel-heading ">
             <h2>Chọn Nơi Giao Nhận</h2>
         </div>
         <div class="panel-body">
@@ -14,8 +14,9 @@
                     </div>
                     <div class="col-md-12" style="margin-top: 20px;">
                         <div class="col-md-6">
-                            <div class="form-group col-md-5 col-lg-4 text-right" style="margin-top: 10px">
-                                <label class="control-label"><h4>Nơi Gửi</h4></label>
+                            <div class="form-group col-md-5 col-lg-4 text-right" style="margin-top: 4px">
+                                <span><label class="control-label"><h4>Nơi Gửi <img src="assets/icons/delivery-truck.png"></h4></label></span>
+
                             </div>
                             <div class="form-group col-md-7">
                                 <!--Dropdown Gửi Từ-->
@@ -33,8 +34,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group col-md-5 col-lg-4 text-left" style="margin-top: 10px">
-                                <label class="control-label"><h4>Nơi Nhận</h4></label>
+                            <div class="form-group col-md-5 col-lg-4 text-right" style="margin-top: 4px">
+                                <span><label class="control-label"><h4>Nơi Nhận <img src="assets/icons/delivery-truck.png"></h4></label></span>
                             </div>
                             <div class="form-group col-md-7">
                                 <div class="form-group has-feedback" ng-class="{'has-error': locationCtrl.form.bolTo.$invalid && (locationCtrl.form.bolTo.$dirty || locationCtrl.form.$submitted)}">
@@ -55,7 +56,7 @@
                 </div>
                 <div class="col-md-4 pull-right">
                     <div class="col-md-6 pull-right">
-                        <button class="btn btn-md btn-primary"><i class="fa fa-check-square-o" aria-hidden="true"></i> Xác nhận</button>
+                        <button class="btn btn-md btn-primary"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i> Xác nhận</button>
                     </div>
                 </div>
             </div>
