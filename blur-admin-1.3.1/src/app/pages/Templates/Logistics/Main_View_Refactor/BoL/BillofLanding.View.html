@@ -170,9 +170,10 @@
                                         <div class="col-md-8" style="padding-left: 0">
                                             <div class="col-md-6" style="padding-top: 10px" ng-repeat="deliveryType in bolInfoCtrl.deliveryTypeVM" ng-init="bolInfoCtrl.deliveryType.Id = bolInfoCtrl.deliveryTypeVM[0].Id">
                                                 <label class="radio-inline custom-radio nowrap">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfoCtrl.deliveryType.Id" ng-change="bolInfoCtrl.calculateMinorFee(bolInfoCtrl.bolInfoVM.deliveryType.Id)">
-                                                        <span>{{deliveryType.Name}}</span> 
-                                                    </label>
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfoCtrl.deliveryType.Id" ng-change="bolInfoCtrl.calculateMinorFee(bolInfoCtrl.deliveryType.Id)">
+                                                        <span>{{deliveryType.Name}}</span>
+                                                </label>
+
                                             </div>
                                         </div>
                                     </div>
@@ -255,7 +256,7 @@
                 </div>
                 <div class="col-md-2 pull-right">
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-md btn-primary" ng-click="bolInfoCtrl.post()"><i class="ion-android-create" aria-hidden="true"></i> Tạo Vận Đơn</button>
+                        <button type="button" class="btn btn-md btn-primary" ng-click="bolInfoCtrl.post(bolInfoCtrl.deliveryType.Id)"><i class="ion-android-create" aria-hidden="true"></i> Tạo Vận Đơn</button>
                     </div>
                 </div>
             </div>

@@ -57,25 +57,30 @@
                                 <div class="text-left">
                                     <strong>Đơn Hàng Số</strong>
                                 </div>
-                                <br>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}
-                                <br>
-                                <br>
                                 <div class="text-left">
-                                    <strong>Gửi Đến: </strong>{{bolConfirm.transactionVM.TransactionVM.CustomerInfo.BolToId}}<br>
+                                    {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Ngày Tạo: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendDate}}<br>
+                                    <strong>Dịch Vụ Giao Nhận: </strong>
+                                </div>
+                                <div class="text-left">
+                                    {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryName}}
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Dịch Vụ Giao Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryType.Id}}<br>
+                                    <strong>Gửi Đến: </strong> {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolToName}}
+
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Ngày Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.ReceiveDate}}<br>
+                                    <strong>Ngày Gửi: </strong> {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendDate}}
+
                                 </div>
                                 <br>
+                                <div class="text-left">
+                                    <strong>Ngày Nhận: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.ReceiveDate}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,13 +106,18 @@
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Địa Chỉ Giao (nếu có): </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress ==""? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress}}<br>
+                                    <strong>Địa Chỉ Giao (nếu có): </strong>
+                                </div>
+                                <div class="text-left">
+                                    {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress ==""? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress}}
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Trạng Thái Đơn Hàng: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.StatusCode}}<br>
+                                    <strong>Trạng Thái Đơn Hàng: </strong>
                                 </div>
-                                <br>
+                                <div class="text-left">
+                                    {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.StatusName}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,24 +131,23 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Mã HH</th>
-                                    <th>Loại Hàng</th>
-                                    <th>Số Lượng</th>
-                                    <th>ĐVT</th>
-                                    <th>Khối Lượng</th>
-                                    <th>Ghi Chú</th>
-                                    <th>Thành Tiền</th>
+                                    <th class="text-center">Mã HH</th>
+                                    <th class="text-center">Loại Hàng</th>
+                                    <th class="text-center">Số Lượng</th>
+                                    <!--<th>ĐVT</th>-->
+                                    <th class="text-center">Khối Lượng</th>
+                                    <th class="text-center">Ghi Chú</th>
+                                    <th class="text-right">Thành Tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="merchandise in bolConfirm.transactionVM.TransactionVM.MerchandiseInfo">
-                                    <td>{{merchandise.Id}}</td>
-                                    <td>{{merchandise.MerchandiseTypeId}}</td>
-                                    <td>{{merchandise.Quantity}}</td>
-                                    <td>Cái</td>
-                                    <td>{{merchandise.Weight}}</td>
-                                    <td>{{merchandise.Description}}</td>
-                                    <td>{{merchandise.SubTotal | currency : "" : 0}}</td>
+                                <tr>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}</td>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.MerchandiseName}}</td>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Quantity}}</td>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Weight}}</td>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Description}}</td>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SubTotal}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -153,21 +162,24 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
-                                    <th style="width:50%">Tổng Cộng:</th>
-                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Total | currency : "" : 0}}</td>
+                                    <th style="width:66%">Cước Vận Chuyển: </th>
+                                    <td class="text-right" style="border-top:none">{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryPrice}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Cước Vận Chuyển: </th>
-                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryType.Id == 2 || bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.DeliveryType.Id == 3? bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.AdditionalFee
-                                        : ""}}</td>
+                                    <th style="width:66%">Phụ Phí: </th>
+                                    <td class="text-right" style="border-top:none">{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.AdditionalFee}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Trả Trước:</th>
-                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Prepaid}}</td>
+                                    <th style="width:66%">Tổng Cộng:</th>
+                                    <td class="text-right" style="border-top:none">{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Total}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Còn Lại:</th>
-                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Liabilities | currency : "" : 0}}</td>
+                                    <th style="width:66%">Trả Trước:</th>
+                                    <td class="text-right" style="border-top:none">{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Prepaid}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width:66%">Còn Lại:</th>
+                                    <td class="text-right" style="border-top:none">{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Liabilities}}</td>
                                 </tr>
                             </table>
                         </div>

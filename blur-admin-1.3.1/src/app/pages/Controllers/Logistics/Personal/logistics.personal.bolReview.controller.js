@@ -8,7 +8,8 @@
 
     function bolReviewCtrl($scope, $rootScope, $state, toastr, shareDataService, $uibModalStack) {
         var vm = this;
-        vm.transactionVM = $rootScope.transactionVM;
+        var transaction = shareDataService.getList();
+        vm.transactionVM = transaction[0];
         vm.cancel = function() {
             $uibModalStack.dismissAll();
         };
@@ -19,11 +20,11 @@
             //         data: vm.transactionVM.TransactionVM
             //     })
             //     .done(function() {
-            shareDataService.addItem(vm.transactionVM);
+            //shareDataService.addItem(vm.transactionVM);
             vm.cancel();
             //window.onload();
             //window.print();
-            $state.go('logistics', {}, { reload: 'logistics' });
+            $state.go('main', {}, { reload: 'main' });
             toastr.success('Đơn vận đã được tạo thành công!');
             //})
             // .fail(function() {

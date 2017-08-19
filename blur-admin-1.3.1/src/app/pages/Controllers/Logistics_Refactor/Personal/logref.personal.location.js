@@ -16,8 +16,8 @@
          */
         vm.emitEvent = function(formValid) {
                 if (formValid) {
-                    $state.go('bol');
                     shareDataService.getBranchCode(vm.branchCode);
+                    $state.go('bol');
                 }
             }
             /** end */

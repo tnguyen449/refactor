@@ -8,17 +8,25 @@
         var liabilities = 0;
 
         return {
-            calculateLiabilities: calculateLiabilities
+            calculateLiabilities: calculateLiabilities,
+            calculateTotal: calculateTotal
+        }
+
+        function calculateTotal(subTotal, declareValue, discount, additionalFee, deliveryPrice, isGurantee) {
+            var total = convertToNumber(subTotal) + (convertToNumber(declareValue) * 0.01) + convertToNumber(deliveryPrice) + convertToNumber(additionalFee) - convertToNumber(discount);
+            if (isGurantee) {
+                total += 100000;
+            }
+            return total;
         }
 
         function calculateLiabilities(total, prepaid) {
-            var intTotal = converToNumber(total);
-            var intPrepaid = converToNumber(prepaid);
+            var intTotal = convertToNumber(total);
+            var intPrepaid = convertToNumber(prepaid);
             return liabilities = intTotal - intPrepaid;
         }
 
         function convertToNumber(numberString) {
-            numberString.toString();
             if (numberString == "" || numberString == null) {
                 return 0;
             } else {

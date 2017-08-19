@@ -47,5 +47,7 @@
                 )
             }
         };
+        vm.bolDetails = shareDataService.getList();
+        console.log(vm.bolDetails);
     }
 })();
