@@ -5,11 +5,12 @@
         .factory('businessService', businessService);
 
     function businessService() {
-        var liabilities = 0;
 
         return {
             calculateLiabilities: calculateLiabilities,
-            calculateTotal: calculateTotal
+            calculateTotal: calculateTotal,
+            calculateDeclareFee: calculateDeclareFee,
+            convertToNumber: convertToNumber
         }
 
         function calculateTotal(subTotal, declareValue, discount, additionalFee, deliveryPrice, isGurantee) {
@@ -21,9 +22,15 @@
         }
 
         function calculateLiabilities(total, prepaid) {
+            var liabilities = 0;
             var intTotal = convertToNumber(total);
             var intPrepaid = convertToNumber(prepaid);
             return liabilities = intTotal - intPrepaid;
+        }
+
+        function calculateDeclareFee(declareValue) {
+            var declareFee = 0;
+            return declareFee = convertToNumber(declareValue) * 0.01;
         }
 
         function convertToNumber(numberString) {

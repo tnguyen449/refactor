@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="panel panel-primary height">
             <div class=" panel-heading ">
-                <h2>Thông Tin Đơn Vận Số {{bolInfoCtrl.bolCode}}</h2>
+                <h2>Thông Tin Vận Đơn Số {{bolInfoCtrl.bolCode}}</h2>
             </div>
             <div class="panel-body">
                 <div class="col-md-5">
@@ -17,16 +17,16 @@
                                         <span><img src="assets/icons/sender.png"> Người Gửi<i class="fa fa-caret-down pull-right" aria-hidden="true"></i></span>
                                     </uib-accordion-heading>
                                     <div class="col-md-12" ng-class="{'has-error': bolInfoCtrl.bol.senderName.$invalid && (bolInfoCtrl.bol.senderName.$dirty || bolInfoCtrl.bol.$submitted)}">
-                                        <div class="col-md-7 form-group input-group has-feedback">
-                                            <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="text-align: left">Họ Tên</span>
-                                            <input type="text" name="senderName" class="form-control" ng-model="bolInfoCtrl.customerInfo.senderName">
-                                        </div>
-                                        <span class="help-block error-block basic-block">Nhập họ tên người gửi</span>
                                         <div class="col-md-7 form-group input-group has-feedback" ng-class="{'has-error': bolInfoCtrl.bol.senderPhone.$invalid && (bolInfoCtrl.bol.senderPhone.$dirty || bolInfoCtrl.bol.$submitted)}">
                                             <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style=" text-align: left; width: 70px">Số ĐT</span>
                                             <input type="text" name="senderPhone" class="form-control" ng-model="bolInfoCtrl.customerInfo.senderPhone">
                                         </div>
                                         <span class="help-block error-block basic-block">Nhập số điện thoại người gửi</span>
+                                        <div class="col-md-7 form-group input-group has-feedback">
+                                            <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="text-align: left">Họ Tên</span>
+                                            <input type="text" name="senderName" class="form-control" ng-model="bolInfoCtrl.customerInfo.senderName">
+                                        </div>
+                                        <span class="help-block error-block basic-block">Nhập họ tên người gửi</span>
                                     </div>
                                 </uib-accordion-group>
                                 <uib-accordion-group panel-class="panel-primary bootstrap-panel accordion-panel">
@@ -34,16 +34,16 @@
                                         <span><img src="assets/icons/receiver.png"> Người Nhận<i class="fa fa-caret-down pull-right" aria-hidden="true"></i></span>
                                     </uib-accordion-heading>
                                     <div class="col-md-12">
-                                        <div class="col-md-7 form-group input-group has-feedback" ng-class="{'has-error': bolInfoCtrl.bol.receiverName.$invalid && (bolInfoCtrl.bol.receiverName.$dirty || bolInfoCtrl.bol.$submitted)}">
-                                            <span class="input-group-addon addon-left input-group-addon-primary bolHeader" style="text-align: left">Họ Tên</span>
-                                            <input type="text" name="receiverName" class="form-control" ng-model="bolInfoCtrl.customerInfo.receiverName">
-                                        </div>
-                                        <span class="help-block error-block basic-block">Nhập họ tên người nhận</span>
                                         <div class="col-md-7 form-group input-group has-feedback" ng-class="{'has-error': bolInfoCtrl.bol.receiverPhone.$invalid && (bolInfoCtrl.bol.receiverPhone.$dirty || bolInfoCtrl.bol.$submitted)}">
                                             <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="text-align: left; width: 70px">Số ĐT</span>
                                             <input type="text" name="receiverPhone" class="form-control" ng-model="bolInfoCtrl.customerInfo.receiverPhone">
                                         </div>
                                         <span class="help-block error-block basic-block">Nhập số điện thoại người nhận</span>
+                                        <div class="col-md-7 form-group input-group has-feedback" ng-class="{'has-error': bolInfoCtrl.bol.receiverName.$invalid && (bolInfoCtrl.bol.receiverName.$dirty || bolInfoCtrl.bol.$submitted)}">
+                                            <span class="input-group-addon addon-left input-group-addon-primary bolHeader" style="text-align: left">Họ Tên</span>
+                                            <input type="text" name="receiverName" class="form-control" ng-model="bolInfoCtrl.customerInfo.receiverName">
+                                        </div>
+                                        <span class="help-block error-block basic-block">Nhập họ tên người nhận</span>
                                     </div>
                                 </uib-accordion-group>
                             </uib-accordion>
@@ -159,72 +159,92 @@
                                         <!-- input guanrantee -->
                                         <div class="col-md-8">
                                             <ba-switcher switcher-style="primary" switcher-value="bolInfoCtrl.isGuarantee"></ba-switcher>
-                                            <!-- <input type="checkbox" ng-model="bolInfoCtrl.merchandisesVM.isGuarantee" /> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-4 control-label" style="padding-top:8px">
+                                            <label>Giao Tận Tay:</label>
+                                        </div>
+                                        <!-- input declare value -->
+                                        <div class="col-md-8">
+                                            <ba-switcher switcher-style="primary" switcher-value="bolInfoCtrl.isOnHandDelivery"></ba-switcher>
+                                        </div>
+                                    </div>
+                                    <!-- component declare value -->
+                                    <div class="col-md-12">
+                                        <div class="col-md-4 control-label" style="padding-top:8px">
+                                            <label>Khai Giá:</label>
+                                        </div>
+                                        <!-- input declare value -->
+                                        <div class="col-md-8">
+                                            <ba-switcher switcher-style="primary" switcher-value="bolInfoCtrl.isDeclare"></ba-switcher>
+                                        </div>
+                                        <!-- input declare price -->
+                                        <div class="col-md-12" style="padding-top:8px" ng-show="bolInfoCtrl.isDeclare == true">
+                                            <div class="col-md-7 input-group">
+                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Số Tiền Khai</span>
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.declaredPrice" ng-change="bolInfoCtrl.bindingDeclareValue(bolInfoCtrl.declaredPrice)" />
+                                                <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="padding-top:8px">
-                                        <div class="col-md-4" style="padding-top:8px">
+                                        <div class="col-md-4" style="padding-top:12px">
                                             <label>Dịch Vụ Giao Nhận:</label>
                                         </div>
                                         <!-- radio button delivery methods -->
-                                        <div class="col-md-8" style="padding-left: 0">
-                                            <div class="col-md-6" style="padding-top: 10px" ng-repeat="deliveryType in bolInfoCtrl.deliveryTypeVM" ng-init="bolInfoCtrl.deliveryType.Id = bolInfoCtrl.deliveryTypeVM[0].Id">
+                                        <div class="col-md-8">
+                                            <div class="col-md-4" style="padding-top: 10px" ng-repeat="deliveryType in bolInfoCtrl.deliveryTypeVM" ng-init="bolInfoCtrl.deliveryType.Id = bolInfoCtrl.deliveryTypeVM[0].Id">
                                                 <label class="radio-inline custom-radio nowrap">
                                                         <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfoCtrl.deliveryType.Id" ng-change="bolInfoCtrl.calculateMinorFee(bolInfoCtrl.deliveryType.Id)">
                                                         <span>{{deliveryType.Name}}</span>
                                                 </label>
-
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- optional component for some delivery methods -->
-                                    <div class="col-md-12" ng-hide="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id-1].Name == bolInfoCtrl.deliveryTypeVM[0].Name">
+                                    <div class="col-md-12" ng-hide="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id-1].Name == bolInfoCtrl.deliveryTypeVM[0].Name" style="padding-top:8px">
                                         <!-- sub-component Cash on Delivery -->
                                         <div class="col-md-12" ng-show="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id-1].Name == bolInfoCtrl.deliveryTypeVM[2].Name">
-                                            <div class="col-md-7 form-group has-feedback input-group" style="padding-top:8px">
+                                            <!-- <div class="col-md-6"> -->
+                                            <div class="col-md-12 form-group has-feedback input-group">
                                                 <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Địa Chỉ Người Nhận</span>
                                                 <input type="text" class="form-control with-primary-addon" name="codAddress" ng-model="bolInfoCtrl.sendAddress" ng-required="bolInfoCtrl.deliveryType.Id == bolInfoCtrl.deliveryTypeVM[2].Id">
                                             </div>
+                                            <!-- </div> -->
+                                            <!--component additional fee-->
+                                            <!-- <div class="col-md-6"> -->
+                                            <div class="col-md-12 form-group input-group">
+                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader ">Phụ Phí</span>
+                                                <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfoCtrl.deliveryPrice" ng-change="bolInfoCtrl.bindingFinalTotal()" />
+                                                <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                            </div>
+                                            <!-- </div> -->
                                         </div>
                                         <!-- sub-component Timed delivery -->
                                         <div class="col-md-12" ng-show="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id -1].Name == bolInfoCtrl.deliveryTypeVM[1].Name">
-                                            <div class="col-md-8 form-group" style="padding-top: 35px">
-                                                <input class="form-control with-primary-addon" name="timedAddress" ng-model="bolInfoCtrl.sendAddress" ng-required="bolInfoCtrl.deliveryType.Id == bolInfoCtrl.deliveryTypeVM[1].Id">
+                                            <div class="col-md-8">
+                                                <div class="col-md-12 form-group input-group" style="padding-top: 35px">
+                                                    <span class="input-group-addon addon-left input-group-addon-primary bolHeader ">Địa Chỉ Giao</span>
+                                                    <input class="form-control with-primary-addon" name="timedAddress" ng-model="bolInfoCtrl.sendAddress" ng-required="bolInfoCtrl.deliveryType.Id == bolInfoCtrl.deliveryTypeVM[1].Id">
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="col-sm-5 col-xs-6">
-                                                    <div uib-timepicker ng-model="bolInfoCtrl.receivedTime" ng-change="bolInfoCtrl.change()" show-meridian="!bolInfoCtrl.ismeridian"></div>
+                                                <div class="col-md-4">
+                                                    <div class="col-sm-5 col-xs-6">
+                                                        <div uib-timepicker ng-model="bolInfoCtrl.receivedTime" ng-change="bolInfoCtrl.change()" show-meridian="!bolInfoCtrl.ismeridian"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--component additional fee-->
-                                    <div class="col-md-12" style="padding-top:8px">
-                                        <!-- delivery price -->
-                                        <div class="col-md-12">
-                                            <div class="col-md-7 input-group">
-                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader ">Cước Vận Chuyển</span>
-                                                <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfoCtrl.deliveryPrice" />
-                                                <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--component discount-->
                                     <div class="col-md-12">
-                                        <div class="col-md-12" style="padding-top:8px">
-                                            <div class="col-md-5 input-group">
-                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Khấu Trừ</span>
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.discount" />
-                                                <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
-                                            </div>
-                                        </div>
                                         <!-- input declare price -->
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-7 input-group">
-                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Khai Giá</span>
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.declaredPrice" />
+                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Khai Giá (1%)</span>
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.declareFee" />
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>
                                         </div>
@@ -233,8 +253,16 @@
                                     <div class="col-md-12" style="padding-top:8px">
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-5 input-group">
-                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Phụ Phí</span>
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.additionalFee" />
+                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader" uib-tooltip="Tổng cước bao gồm cước chính cộng với phí phát sinh của các lựa chọn giá trị gia tăng" style="width: 137px; text-align: left">Tổng Cước <i class="fa fa-question-circle fa-lg pull-right" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.finalTotal" ng-bind="bolInfoCtrl.bindFinalTotal()" />
+                                                <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                            </div>
+                                        </div>
+                                        <!--component discount-->
+                                        <div class="col-md-12" style="padding-top:8px">
+                                            <div class="col-md-5 input-group">
+                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Khấu Trừ</span>
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.discount" />
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>
                                         </div>
@@ -242,6 +270,14 @@
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-7 input-group">
                                                 <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Trả Trước</span>
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.prepaid" />
+                                                <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
+                                            </div>
+                                        </div>
+                                        <!-- liabilities -->
+                                        <div class="col-md-12" style="padding-top:8px">
+                                            <div class="col-md-7 input-group">
+                                                <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Còn Lại</span>
                                                 <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.prepaid" />
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>

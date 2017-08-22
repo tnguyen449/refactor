@@ -15,6 +15,8 @@
         vm.bolCode = shareDataService.setBolCode();
         vm.sendDate = new Date();
         vm.isGuarantee = false;
+        vm.isDeclare = false;
+        vm.isOnHandDeliverry = false;
         vm.merchandiseTypeVM = initDataList[0].data.merchandiseTypeVM;
         vm.merchandiseType = {};
         vm.deliveryTypeVM = initDataList[0].data.deliveryTypeVM;
@@ -66,9 +68,20 @@
         };
         /** end */
 
+        /** input process */
 
+        /** function binding calculated declared fee 
+         *  @input mainDeclarePrice 
+         *  @output declareFee with currency format */
+        vm.bindingDeclareValue = function(mainDeclarePrice) {
+            vm.declareFee = businessService.calculateDeclareFee(mainDeclarePrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            return vm.declareFee;
+        };
+
+        /** end */
 
         /** controller function */
+
         vm.post = function(id) {
                 vm.calculateMinorFee(id);
                 //  if (($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false || $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == true) && $rootScope.transactionVM.TransactionVM.MerchandiseInfo[0].MerchandiseTypeId == "") {

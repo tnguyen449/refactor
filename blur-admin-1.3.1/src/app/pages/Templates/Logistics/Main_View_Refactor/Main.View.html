@@ -1,88 +1,38 @@
-<div class="panel panel-primary height">
-    <!-- heading -->
-    <div class="panel-heading ">
-        <h2>Tổng Hợp Đơn Vận</h2>
-    </div>
-    <!-- body -->
-    <div class="panel-body">
-        <!-- button group -->
-        <div class="add-row-editable-table col-md-12 pull-right">
+<form name="locationCtrl.form" ng-submit="locationCtrl.emitEvent(locationCtrl.form.$valid)" novalidate>
+    <div class="panel panel-primary height">
+        <!-- <div class="panel-heading ">
+            <h2>Chọn Nơi Giao Nhận</h2>
+        </div> -->
+        <div class="panel-body">
             <div class="col-md-12">
-                <div class="col-md-7 pull-left">
-                    <div class="row btns-row">
-                        <div class="col-md-7 pull-left">
-                            <div class="col-md-4" style="padding-top: 10px;">
-                                <label>Tìm kiếm: </label>
-                            </div>
-                            <!-- button search item -->
-                            <div class="col-md-8">
-                                <input type="text" class="input-sm form-control search-input" placeholder="Nhập từ khóa tìm kiếm">
-                            </div>
+                <div class="col-md-12">
+                    <div class="col-md-12 align-center">
+                        <img src="assets/logo/ntl_logo.png" style="width: 300px; margin-left:40%">
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <span><h2>Cảm Ơn Quý Khách Đã Sử Dụng Dịch Vụ Của Ngọc Trang</h2></span>
+                    </div>
+                    <!-- <div class="col-md-12 text-center">
+                        <span><h3>Xin vui lòng chọn</h3></span>
+                    </div> -->
+                    <div class="col-md-6 col-md-offset-3" style="margin-top: 60px">
+                        <div class="input-group ">
+                            <input type="text" class="form-control with-danger-addon" placeholder="Nhập mã đơn hàng cần tra cứu...">
+                            <span class="input-group-btn datepicker">
+                                <button class="btn btn-primary" type="button"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 pull-right">
-                    <!-- button add item -->
-                    <div class="col-md-4 pull-right">
-                        <button type="button" ui-sref="location" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
+                <div class="col-md-5 col-md-offset-4">
+                    <div class="col-md-6">
+                        <button class="btn btn-md btn-primary"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>Tra Cứu Trạng Thái</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-md btn-primary"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>Tạo Vận Đơn Mới</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end button group -->
-        <!-- table bill of landing details -->
-        <div class="horizontal-scroll col-md-12">
-            <!-- start smart table-->
-            <table class="table research" st-table="smartTableData">
-                <thead>
-                    <tr class="accordion">
-                        <!-- input title block -->
-                        <th class="col-sm-1 text-left bolHeaderView">Mã ĐH</th>
-                        <th class="col-md-2 text-center bolHeaderView">Người Gửi</th>
-                        <th class="col-md-1 text-center bolHeaderView">SĐT Người Gủi</th>
-                        <th class="col-md-2 text-center bolHeaderView">Người Nhận</th>
-                        <!-- check box title declare value -->
-                        <th class="col-md-1 text-center bolHeaderView">SĐT Người Nhận</th>
-                        <!-- input title block -->
-                        <th class="col-md-1 text-center bolHeaderView">Nơi Nhận</th>
-                        <!-- <th class="col-md-1 text-center bolHeaderView">Địa Chỉ (nếu có)</th> -->
-                        <!-- <th class="col-md-2 text-center bolHeaderView">Ghi Chú</th> -->
-                        <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
-                        <th class="col-md-1 text-center bolHeaderView">Trạng Thái Đơn Hàng</th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="detail in mainCtrl.bolDetails">
-                    <!-- canvas form -->
-                    <tr></tr>
-                    <!-- primary table body components -->
-                    <tr class="accordion">
-                        <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td>
-                        <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
-                        <td>{{detail.TransactionVM.CustomerInfo.SenderPhone}}</td>
-                        <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
-                        <td>{{detail.TransactionVM.CustomerInfo.ReceiverPhone}}</td>
-                        <td>{{test}}</td>
-                        <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
-                        <td class="statusButton">
-                            <div style="padding-left:30px">
-                                <button type="button" class="align-center btn btn-xs btn-primary">Đang Kiểm hàng</button>
-                            </div>
-                        </td>
-                        <!--<td class="statusButton">
-                            <div>
-                                <button type="button" class="btn btn-success btn-icon"><i class="fa fa-print"></i></button>
-                            </div>
-                        </td>-->
-                    </tr>
-                </tbody>
-                <tfoot>
-
-                </tfoot>
-            </table>
-            <!-- end smart table -->
-        </div>
-        <!-- end bill of landing details -->
     </div>
-</div>
-<!-- end bill of landing infomation -->
-</div>
+</form>
