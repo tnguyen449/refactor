@@ -189,11 +189,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="padding-top:8px">
-                                        <div class="col-md-4" style="padding-top:12px">
+                                        <div class="col-md-12" style="padding-top:12px">
                                             <label>Dịch Vụ Giao Nhận:</label>
                                         </div>
                                         <!-- radio button delivery methods -->
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="col-md-4" style="padding-top: 10px" ng-repeat="deliveryType in bolInfoCtrl.deliveryTypeVM" ng-init="bolInfoCtrl.deliveryType.Id = bolInfoCtrl.deliveryTypeVM[0].Id">
                                                 <label class="radio-inline custom-radio nowrap">
                                                         <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfoCtrl.deliveryType.Id" ng-change="bolInfoCtrl.calculateMinorFee(bolInfoCtrl.deliveryType.Id)">
@@ -217,7 +217,7 @@
                                             <!-- <div class="col-md-6"> -->
                                             <div class="col-md-12 form-group input-group">
                                                 <span class="input-group-addon addon-left input-group-addon-primary bolHeader ">Phụ Phí</span>
-                                                <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfoCtrl.deliveryPrice" ng-change="bolInfoCtrl.bindingFinalTotal()" />
+                                                <input type="text" class="form-control with-primary-addon" currency-format ng-model="bolInfoCtrl.deliveryPrice" ng-change="bolInfoCtrl.bindingFinalTotal(bolInfoCtrl.deliveryPrice)" />
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>
                                             <!-- </div> -->
@@ -244,7 +244,7 @@
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-7 input-group">
                                                 <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Khai Giá (1%)</span>
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.declareFee" />
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.declareFee" ng-bind="bolInfoCtrl.bindingDeclareValue(bolInfoCtrl.declaredPrice)" disabled/>
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>
                                         </div>
@@ -254,7 +254,7 @@
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-5 input-group">
                                                 <span class="input-group-addon addon-left input-group-addon-primary bolHeader" uib-tooltip="Tổng cước bao gồm cước chính cộng với phí phát sinh của các lựa chọn giá trị gia tăng" style="width: 137px; text-align: left">Tổng Cước <i class="fa fa-question-circle fa-lg pull-right" aria-hidden="true"></i></span>
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.finalTotal" ng-bind="bolInfoCtrl.bindFinalTotal()" />
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.finalTotal" ng-bind="bolInfoCtrl.bindingFinalTotal()" disabled/>
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>
                                         </div>
@@ -278,7 +278,7 @@
                                         <div class="col-md-12" style="padding-top:8px">
                                             <div class="col-md-7 input-group">
                                                 <span class="input-group-addon addon-left input-group-addon-primary bolHeader " style="width: 137px; text-align: left">Còn Lại</span>
-                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.prepaid" />
+                                                <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.prepaid" disabled/>
                                                 <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                             </div>
                                         </div>

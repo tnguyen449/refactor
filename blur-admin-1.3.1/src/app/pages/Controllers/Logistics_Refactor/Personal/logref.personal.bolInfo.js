@@ -16,7 +16,8 @@
         vm.sendDate = new Date();
         vm.isGuarantee = false;
         vm.isDeclare = false;
-        vm.isOnHandDeliverry = false;
+        vm.isOnHandDelivery = false;
+        vm.declareFee;
         vm.merchandiseTypeVM = initDataList[0].data.merchandiseTypeVM;
         vm.merchandiseType = {};
         vm.deliveryTypeVM = initDataList[0].data.deliveryTypeVM;
@@ -74,11 +75,26 @@
          *  @input mainDeclarePrice 
          *  @output declareFee with currency format */
         vm.bindingDeclareValue = function(mainDeclarePrice) {
-            vm.declareFee = businessService.calculateDeclareFee(mainDeclarePrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            if (vm.isDeclare == true) {
+                vm.declareFee = businessService.calculateDeclareFee(mainDeclarePrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            } else {
+                vm.declareFee = "";
+                vm.declaredPrice = "";
+            }
+
             return vm.declareFee;
         };
 
-        /** end */
+        vm.bindingFinalTotal = function() {
+                var subTotal = businessService.convertToNumber(vm.subTotal);
+                var declareFee = vm.declareFee == "" ? 0 : businessService.convertToNumber(vm.declareFee);
+                var onHandFee = vm.isOnHandDelivery == false ? 0 : 40000;
+                var guaranteeFee = vm.isGuarantee == false ? 0 : 100000;
+                var deliveryPrice = businessService.convertToNumber(vm.deliveryPrice);
+                vm.finalTotal = (subTotal + declareFee + onHandFee + guaranteeFee + deliveryPrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                return vm.finalTotal;
+            }
+            /** end */
 
         /** controller function */
 
