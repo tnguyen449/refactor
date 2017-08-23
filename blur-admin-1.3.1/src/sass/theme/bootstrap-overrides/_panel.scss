@@ -68,6 +68,7 @@ $panel-heading-font-size: 16px;
     font-size: $panel-heading-font-size;
     $vertical-padding: ($panel-title-height - $panel-heading-font-size) / 2;
     padding: $vertical-padding 22px;
+    padding-bottom: 38px;
 }
 
 .panel-title {

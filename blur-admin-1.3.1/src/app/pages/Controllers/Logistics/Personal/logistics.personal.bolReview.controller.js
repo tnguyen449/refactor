@@ -14,7 +14,7 @@
             $uibModalStack.dismissAll();
         };
 
-        $('#qrcode').qrcode(vm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode);
+        // $('#qrcode').qrcode(vm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode);
         vm.printInvoice = function() {
             // $.ajax({
             //         method: "POST",

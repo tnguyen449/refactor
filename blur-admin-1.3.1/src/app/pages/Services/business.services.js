@@ -4,41 +4,37 @@
     angular.module('BlurAdmin.pages.logistics')
         .factory('businessService', businessService);
 
-    function businessService() {
+    businessService.$inject = ['businessConst', 'formatDataService'];
+
+    function businessService(businessConst, formatDataService) {
 
         return {
             calculateLiabilities: calculateLiabilities,
             calculateTotal: calculateTotal,
-            calculateDeclareFee: calculateDeclareFee,
-            convertToNumber: convertToNumber
+            calculateDeclareFee: calculateDeclareFee
         }
 
-        function calculateTotal(subTotal, declareValue, discount, additionalFee, deliveryPrice, isGurantee) {
-            var total = convertToNumber(subTotal) + (convertToNumber(declareValue) * 0.01) + convertToNumber(deliveryPrice) + convertToNumber(additionalFee) - convertToNumber(discount);
-            if (isGurantee) {
-                total += 100000;
-            }
-            return total;
+        function calculateTotal(subTotal, declareValue, deliveryPrice, discount, onHandFee, guaranteeFee) {
+            var total = convertToNumber(subTotal) + convertToNumber(declareValue) + convertToNumber(deliveryPrice) + convertToNumber(onHandFee) + convertToNumber(guaranteeFee) - convertToNumber(discount);
+            return formatCurrency(total);
         }
 
-        function calculateLiabilities(total, prepaid) {
-            var liabilities = 0;
-            var intTotal = convertToNumber(total);
-            var intPrepaid = convertToNumber(prepaid);
-            return liabilities = intTotal - intPrepaid;
+        function calculateLiabilities(finalTotal, prepaid) {
+            var liabilities = convertToNumber(finalTotal) - convertToNumber(prepaid);
+            return formatCurrency(liabilities);
         }
 
         function calculateDeclareFee(declareValue) {
-            var declareFee = 0;
-            return declareFee = convertToNumber(declareValue) * 0.01;
+            var declareFee = convertToNumber(declareValue) * businessConst.intDeclaredFee;
+            return formatCurrency(declareFee);
         }
 
         function convertToNumber(numberString) {
-            if (numberString == "" || numberString == null) {
-                return 0;
-            } else {
-                return parseInt(numberString.replace(/,/g, ""));
-            }
+            return formatDataService.convertToNumber(numberString);
+        };
+
+        function formatCurrency(currency) {
+            return formatDataService.formatCurrency(currency);
         };
     }
 })();

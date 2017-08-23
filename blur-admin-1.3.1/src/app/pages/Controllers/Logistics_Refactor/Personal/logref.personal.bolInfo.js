@@ -4,9 +4,9 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('BolInfoController', BolInfoController);
 
-    BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService']
+    BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService', 'formatDataService', 'hostDomain', 'businessConst']
 
-    function BolInfoController($scope, $rootScope, $uibModal, shareDataService, businessService) {
+    function BolInfoController($scope, $rootScope, $uibModal, shareDataService, businessService, formatDataService, hostDomain, businessConst) {
         var vm = this;
 
         /** init data and create object */
@@ -28,7 +28,7 @@
                         vm.deliveryName = vm.deliveryTypeVM[i].Name;
                     }
                 }
-                vm.deliveryPrice = vm.deliveryPrice.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                vm.deliveryPrice = formatDataService.formatCurrency(vm.deliveryPrice);
                 return vm.deliveryPrice;
             }
             /** end */
@@ -55,7 +55,6 @@
 
         /** setup datepicker */
         vm.opened = false;
-        // vm.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = 'dd/MM/yyyy';
         vm.options = {
             showWeeks: false
@@ -76,23 +75,30 @@
          *  @output declareFee with currency format */
         vm.bindingDeclareValue = function(mainDeclarePrice) {
             if (vm.isDeclare == true) {
-                vm.declareFee = businessService.calculateDeclareFee(mainDeclarePrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                vm.declareFee = businessService.calculateDeclareFee(mainDeclarePrice);
             } else {
                 vm.declareFee = "";
                 vm.declaredPrice = "";
             }
-
             return vm.declareFee;
         };
 
         vm.bindingFinalTotal = function() {
-                var subTotal = businessService.convertToNumber(vm.subTotal);
-                var declareFee = vm.declareFee == "" ? 0 : businessService.convertToNumber(vm.declareFee);
-                var onHandFee = vm.isOnHandDelivery == false ? 0 : 40000;
-                var guaranteeFee = vm.isGuarantee == false ? 0 : 100000;
-                var deliveryPrice = businessService.convertToNumber(vm.deliveryPrice);
-                vm.finalTotal = (subTotal + declareFee + onHandFee + guaranteeFee + deliveryPrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                return vm.finalTotal;
+            var subTotal = vm.subTotal;
+            var declareFee = vm.declareFee == "" ? '0' : vm.declareFee;
+            var onHandFee = vm.isOnHandDelivery == false ? '0' : businessConst.StrOnHandFee;
+            var guaranteeFee = vm.isGuarantee == false ? '0' : businessConst.StrGuaranteeFee;
+            var deliveryPrice = vm.deliveryPrice;
+            var discount = vm.discount == "" ? '0' : vm.discount;
+            // vm.finalTotal = (subTotal + declareFee + onHandFee + guaranteeFee + deliveryPrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            vm.finalTotal = businessService.calculateTotal(subTotal, declareFee, deliveryPrice, discount, onHandFee, guaranteeFee);
+            return vm.finalTotal;
+        };
+        vm.bindingLiabilities = function() {
+                var finalTotal = vm.finalTotal;
+                var prepaid = vm.prepaid == "" ? "0" : vm.prepaid;
+                vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
+                return vm.finalLiabilities;
             }
             /** end */
 
@@ -115,6 +121,8 @@
                         sendDate: vm.dateOptions.minDate === undefined ? "" : vm.dateOptions.minDate,
                         receiveDate: vm.receivedDate === undefined ? "" : vm.receivedDate,
                         isGuarantee: vm.isGuarantee,
+                        isDeclare: vm.isDeclare,
+                        isOnHand: vm.isOnHandDelivery,
                         mixedValue: vm.mixedValue === undefined ? "" : vm.mixedValue,
                         quantity: vm.quantity === undefined ? "" : vm.quantity,
                         weight: vm.weight === undefined ? "" : vm.weight,
@@ -131,7 +139,7 @@
                         statusCodeId: 1,
                         statusCodeName: "Inactive",
                         //end status key-value
-                        subTotal: vm.subTotal === undefined ? '0' : vm.subTotal,
+                        subTotal: vm.subTotal,
                         declaredPrice: vm.declaredPrice === undefined ? '0' : vm.declaredPrice,
                         additionalFee: vm.additionalFee === undefined ? '0' : vm.additionalFee,
                         prepaid: vm.prepaid === undefined ? '0' : vm.prepaid,
@@ -140,7 +148,7 @@
                         bolToId: vm.branchInfo.receivedBranchCode.selected.Id,
                         bolToName: vm.branchInfo.receivedBranchCode.selected.Name,
                         description: vm.description,
-                        total: businessService.calculateTotal(vm.subTotal, vm.declaredPrice, vm.discount, vm.additionalFee, vm.deliveryPrice, vm.isGuarantee).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+                        total: vm.finalTotal
 
                     }
                     /** end */
@@ -159,6 +167,8 @@
                             SendDate: vm.bolInfo.sendDate.toLocaleDateString('en-GB'),
                             ReceiveDate: vm.bolInfo.receiveDate.toLocaleDateString('en-GB'),
                             IsGuarantee: vm.bolInfo.isGuarantee,
+                            IsDeclare: vm.bolInfo.isDeclare,
+                            IsOnHand: vm.bolInfo.isOnHand,
                             CollectInBehalf: vm.bolInfo.collectInBehalf,
                             SendAddress: vm.bolInfo.sendAddress,
                             ReceiveTime: vm.receivedTime.toLocaleTimeString('en-GB'),
@@ -167,12 +177,12 @@
                             DeliveryPrice: vm.bolInfo.deliveryPrice,
                             DeclareValue: vm.bolInfo.declaredPrice,
                             AdditionalFee: vm.bolInfo.additionalFee,
-                            SubTotal: vm.bolInfo.subTotal.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+                            SubTotal: vm.bolInfo.subTotal,
                             Total: vm.bolInfo.total,
                             Prepaid: vm.bolInfo.prepaid,
                             Quantity: vm.bolInfo.quantity,
                             Weight: vm.bolInfo.weight,
-                            Liabilities: businessService.calculateLiabilities(vm.bolInfo.total, vm.bolInfo.prepaid).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+                            Liabilities: vm.finalLiabilities,
                             StatusCode: vm.bolInfo.statusCodeId,
                             StatusName: vm.bolInfo.statusCodeName,
                             BolFromId: vm.bolInfo.bolFromId,
