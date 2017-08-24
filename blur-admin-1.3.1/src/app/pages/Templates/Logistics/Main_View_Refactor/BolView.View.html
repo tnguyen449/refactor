@@ -38,12 +38,12 @@
                     <thead>
                         <tr class="accordion">
                             <!-- input title block -->
-                            <th class="col-sm-1 text-left bolHeaderView">Mã ĐH</th>
+                            <th class="col-sm-4 text-left bolHeaderView">Mã ĐH</th>
                             <th class="col-md-2 text-center bolHeaderView">Người Gửi</th>
                             <th class="col-md-2 text-center bolHeaderView">Người Nhận</th>
                             <th class="col-md-1 text-center bolHeaderView">Số Lượng</th>
                             <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
-                            <th class="col-md-1 text-left bolHeaderView">Xác Nhận</th>
+                            <th class="col-md-1 text-center bolHeaderView">Xác Nhận</th>
                             <th class="col-md-1 text-center bolHeaderView">Trạng Thái</th>
                         </tr>
                     </thead>
@@ -53,19 +53,19 @@
                         <!-- primary table body components -->
                         <tr class="accordion">
                             <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
-                            <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode}}</td>
+                            <td>{{detail.TransactionVM.BillOfLandingInfo.BolCode}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
                             <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
                             <td>{{detail.TransactionVM.BillOfLandingInfo.Quantity}}</td>
                             <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
                             <td class="statusButton">
-                                <div style="padding-left:30px">
-                                    <button type="button" class="align-center btn btn-xs btn-primary">Mới Tạo</button>
+                                <div class="align-center">
+                                    <button type="button" class="btn btn-xs btn-primary">Mới Tạo</button>
                                 </div>
                             </td>
                             <td class="statusButton">
-                                <div style="padding-left:30px">
-                                    <button type="button" class="align-center btn btn-xs btn-primary">Đang Kiểm hàng</button>
+                                <div class="align-center">
+                                    <button type="button" class="btn btn-xs btn-primary">Đang Kiểm hàng</button>
                                 </div>
                             </td>
                         </tr>

@@ -26,7 +26,7 @@
             vm.cancel();
             //window.onload();
             //window.print();
-            $state.go('main', {}, { reload: 'main' });
+            $state.go('view', {}, { reload: 'view' });
             toastr.success('Đơn vận đã được tạo thành công!');
             //})
             // .fail(function() {

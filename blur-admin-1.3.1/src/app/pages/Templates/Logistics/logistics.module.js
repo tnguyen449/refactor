@@ -30,8 +30,8 @@
                     icon: 'fa fa-eye fa-lg',
                     order: 0
                 },
-                controller: 'PersonalMainController',
-                controllerAs: 'mainCtrl'
+                controller: 'bolInfoCtrl',
+                controllerAs: 'viewInfo'
             })
             .state('create', {
                 url: '/logistics/create',
