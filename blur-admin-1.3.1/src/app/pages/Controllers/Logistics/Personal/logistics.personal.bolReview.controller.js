@@ -6,6 +6,7 @@
 
     bolReviewCtrl.$inject = ['$scope', '$rootScope', '$state', 'toastr', 'shareDataService', '$uibModalStack'];
 
+    /** @ngInject */
     function bolReviewCtrl($scope, $rootScope, $state, toastr, shareDataService, $uibModalStack) {
         var vm = this;
         var transaction = shareDataService.getList();
@@ -13,8 +14,9 @@
         vm.cancel = function() {
             $uibModalStack.dismissAll();
         };
-
+        vm.link = "http://192.168.1.193:57364/API/NgocTrang/Api/Bol/GetComponent";
         // $('#qrcode').qrcode(vm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode);
+
         vm.printInvoice = function() {
             // $.ajax({
             //         method: "POST",

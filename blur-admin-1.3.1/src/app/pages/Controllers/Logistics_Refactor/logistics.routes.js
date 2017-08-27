@@ -1,12 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('BlurAdmin.pages.logistics', [
-            'ui.select',
-            'ngSanitize',
-            'ngPatternRestrict'
-        ])
+    angular.module('BlurAdmin.pages.logistics')
         .config(routeConfig);
+
     /** @ngInject */
     function routeConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/logistics/main');

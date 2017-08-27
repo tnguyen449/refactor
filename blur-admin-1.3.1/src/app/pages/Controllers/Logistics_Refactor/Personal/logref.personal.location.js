@@ -6,6 +6,7 @@
 
     LocationController.$inject = ['$scope', '$rootScope', '$state', 'shareDataService']
 
+    /** @ngInject */
     function LocationController($scope, $rootScope, $state, shareDataService) {
         var vm = this;
         var initDataList = shareDataService.setInitData();

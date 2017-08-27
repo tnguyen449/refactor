@@ -4,22 +4,19 @@
             <h2>Chọn Nơi Giao Nhận</h2>
         </div>
         <div class="panel-body">
-            <div class="col-md-12">
-                <div class="col-md-12">
-                    <div class="col-md-12 text-center">
-                        <span><h2>Cảm Ơn Đã Sử Dụng Dịch Vụ Của Ngọc Trang</h2></span>
-                    </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-12 text-center">
                         <span><h3>Xin vui lòng chọn</h3></span>
                     </div>
-                    <div class="col-md-12" style="margin-top: 20px;">
-                        <div class="col-md-6">
-                            <div class="form-group col-md-5 col-lg-5 text-left" style="margin-top: 4px">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group col-md-5 col-lg-5 col-sm-12 col-xs-12 text-left" style="margin-top: 4px">
                                 <span class="require">* </span><span><label class="control-label"><h4>Nơi Gửi <img src="assets/icons/delivery-truck.png"></h4>
                                 </label>
                                 </span>
                             </div>
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-md-7 col-sm-12 col-xs-12">
                                 <!--Dropdown Gửi Từ-->
                                 <div class="form-group has-feedback" ng-class="{'has-error': locationCtrl.form.bolFrom.$invalid && (locationCtrl.form.bolFrom.$dirty || locationCtrl.form.$submitted)}">
                                     <ui-select ng-model="locationCtrl.branchCode.sentBranchCode.selected" class="btn-group bootstrap-select form-control" name="bolFrom" ng-disabled="false" append-to-body="true" search-enabled="true" required>
@@ -34,13 +31,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group col-md-5 col-lg-5 text-left" style="margin-top: 4px">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group col-md-5 col-lg-5 col-sm-12 col-xs-12 text-left" style="margin-top: 4px">
                                 <span class="require">* </span><span><label class="control-label"><h4>Nơi Nhận <img src="assets/icons/delivery-truck.png"></h4>
                                 </label>
                                 </span>
                             </div>
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-md-7 col-sm-12 col-xs-12">
                                 <div class="form-group has-feedback" ng-class="{'has-error': locationCtrl.form.bolTo.$invalid && (locationCtrl.form.bolTo.$dirty || locationCtrl.form.$submitted)}">
                                     <ui-select name="bolTo" ng-model="locationCtrl.branchCode.receivedBranchCode.selected" on-select="customerInfo.emitEvent()" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true" required>
                                         <ui-select-match placeholder="Chọn Nơi Gửi">

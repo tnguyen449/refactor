@@ -5,6 +5,7 @@
 
     customerInfoCtrl.$inject = ['$scope', '$rootScope'];
 
+    /** @ngInject */
     function customerInfoCtrl($scope, $rootScope) {
         var vm = this;
         vm.customerInfoVM = {};

@@ -6,6 +6,7 @@
 
     BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService', 'formatDataService', 'hostDomain', 'businessConst']
 
+    /** @ngInject */
     function BolInfoController($scope, $rootScope, $uibModal, shareDataService, businessService, formatDataService, hostDomain, businessConst) {
         var vm = this;
 
@@ -197,13 +198,17 @@
                 };
                 /** end */
                 shareDataService.addItem(vm.transactionVM);
-                $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/pages/components/notifications/confirm.component.html',
-                    size: 'lg',
-                    controller: 'bolReviewCtrl',
-                    controllerAs: 'bolConfirm'
-                });
+                if (window.innerWidth < 768 && window.innerHeight < 768) {
+                    alert('Completed');
+                } else {
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/pages/components/notifications/confirm.component.html',
+                        size: 'lg',
+                        controller: 'bolReviewCtrl',
+                        controllerAs: 'bolConfirm'
+                    });
+                }
                 console.log(vm.transactionVM);
             }
             /** end */

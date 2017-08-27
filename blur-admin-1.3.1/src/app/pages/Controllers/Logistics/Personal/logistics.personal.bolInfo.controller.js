@@ -6,6 +6,7 @@
 
     bolInfoCtrl.$inject = ['$scope', '$rootScope', '$http', '$state', 'toastr', '$uibModal', 'shareDataService'];
 
+    /** @ngInject */
     function bolInfoCtrl($scope, $rootScope, $http, $state, toastr, $uibModal, shareDataService) {
         var vm = this;
         vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
