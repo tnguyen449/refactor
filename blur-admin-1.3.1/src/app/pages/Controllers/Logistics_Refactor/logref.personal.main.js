@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'Url']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, Url) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -16,7 +16,7 @@
         vm.customerInfoVM = [];
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
-                $http.get('http://192.168.1.193:57364/API/NgocTrang/Api/Bol/GetComponent').then(
+                $http.get(Url.hostDomain + '/Bol/GetComponent').then(
                     function(response) {
                         if (response.data.Branch.length > 0 && response.data.Type.length > 0) {
                             vm.branchInfoVM = response.data.Branch;
@@ -31,7 +31,6 @@
                                     serverTimeStamp: vm.serverTimeStampVM
                                 }
                             }
-                            console.log(response.data);
                             shareDataService.getInitData(vm.initData);
                         }
                     },

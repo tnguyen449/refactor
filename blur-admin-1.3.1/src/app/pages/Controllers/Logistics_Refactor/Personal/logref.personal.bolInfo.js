@@ -1,13 +1,13 @@
-(function() {
+(function($) {
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
         .controller('BolInfoController', BolInfoController);
 
-    BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService', 'formatDataService', 'hostDomain', 'businessConst']
+    BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService', 'formatDataService', 'toastr','Url', 'businessConst']
 
     /** @ngInject */
-    function BolInfoController($scope, $rootScope, $uibModal, shareDataService, businessService, formatDataService, hostDomain, businessConst) {
+    function BolInfoController($scope, $rootScope, $uibModal, shareDataService, businessService, formatDataService, toastr, Url, businessConst) {
         var vm = this;
 
         /** init data and create object */
@@ -71,8 +71,8 @@
 
         /** input process */
 
-        /** function binding calculated declared fee 
-         *  @input mainDeclarePrice 
+        /** function binding calculated declared fee
+         *  @input mainDeclarePrice
          *  @output declareFee with currency format */
         vm.bindingDeclareValue = function(mainDeclarePrice) {
             if (vm.isDeclare == true) {
@@ -82,6 +82,17 @@
                 vm.declaredPrice = "";
             }
             return vm.declareFee;
+        };
+
+        vm.selectSamePrice = function(merchandiseType){
+          if (merchandiseType.Description === 'Hàng Đồng Giá') {
+            vm.subTotal = '30,000';
+            $('#mainPrice').attr('disabled', 'disabled');
+          } else {
+            vm.subTotal = "";
+            $('#mainPrice').removeAttr('disabled');
+          }
+            return vm.subTotal;
         };
 
         vm.bindingFinalTotal = function() {
@@ -98,7 +109,13 @@
         vm.bindingLiabilities = function() {
                 var finalTotal = vm.finalTotal;
                 var prepaid = vm.prepaid == "" ? "0" : vm.prepaid;
-                vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
+                if (formatDataService.convertToNumber(prepaid) > formatDataService.convertToNumber(finalTotal)) {
+                  toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO')
+                  vm.bindingFinalTotal();
+                  vm.prepaid = "";
+                } else {
+                  vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
+                }
                 return vm.finalLiabilities;
             }
             /** end */
@@ -213,4 +230,4 @@
             }
             /** end */
     }
-})();
+})(jQuery);
