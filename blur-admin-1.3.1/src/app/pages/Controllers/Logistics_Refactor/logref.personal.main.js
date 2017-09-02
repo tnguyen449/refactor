@@ -14,6 +14,7 @@
         vm.serverTimeStampVM = "";
         vm.deliveryTypeVM = [];
         vm.customerInfoVM = [];
+        vm.bolDetails = {};
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
                 $http.get(Url.hostDomain + '/Bol/GetComponent').then(
@@ -48,7 +49,17 @@
                 )
             }
         };
-        vm.bolDetails = shareDataService.getList();
-        console.log(vm.bolDetails);
+
+        vm.getAllBol = function() {
+            $http.get(Url.hostDomain + '/Bol/GetAllBol').then(
+                function(response) {
+                    shareDataService.addItem(response.data);
+                    vm.bolDetails = shareDataService.getList();
+                    console.log(vm.bolDetails);
+                }
+            )
+        }
+
+
     }
 })();

@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="panel panel-primary height">
+    <div class="panel panel-primary height" ng-init="mainCtrl.getAllBol()">
         <!-- heading -->
         <div class="panel-heading ">
             <h2>Tổng Hợp Vận Đơn</h2>
@@ -53,11 +53,11 @@
                         <!-- primary table body components -->
                         <tr class="accordion">
                             <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
-                            <td>{{detail.TransactionVM.BillOfLandingInfo.BolCode}}</td>
-                            <td>{{detail.TransactionVM.CustomerInfo.SenderName}}</td>
-                            <td>{{detail.TransactionVM.CustomerInfo.ReceiverName}}</td>
-                            <td>{{detail.TransactionVM.BillOfLandingInfo.Quantity}}</td>
-                            <td>{{detail.TransactionVM.BillOfLandingInfo.Total | currency: "" : 0}}đ</td>
+                            <td>{{detail.BolCode}}</td>
+                            <td>{{detail.CustomerInfo.SenderName}}</td>
+                            <td>{{detail.CustomerInfo.ReceiverName}}</td>
+                            <td>{{detail.Quantity}}</td>
+                            <td>{{detail.Total}}đ</td>
                             <td class="statusButton">
                                 <div class="align-center">
                                     <button type="button" class="btn btn-xs btn-primary">Mới Tạo</button>

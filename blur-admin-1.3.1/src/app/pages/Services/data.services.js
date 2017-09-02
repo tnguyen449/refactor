@@ -6,7 +6,7 @@
     shareDataService.$inject = ['$rootScope']
 
     function shareDataService($rootScope) {
-        var dataList = [];
+        var dataList = {};
         var initDataList = [];
         var branchCode = {};
         return {
@@ -47,7 +47,8 @@
         }
 
         function addItem(item) {
-            dataList.push(item);
+            dataList = item;
+            console.log(dataList);
         }
 
         function getList() {
