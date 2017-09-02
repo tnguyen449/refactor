@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'Url']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', '$uibModal', 'Url']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, Url) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, $uibModal, Url) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -58,8 +58,29 @@
                     console.log(vm.bolDetails);
                 }
             )
-        }
-
+        };
+        vm.stampCode = [];
+        vm.printStamps = function(bolCode, quantity) {
+            var count = 1;
+            while (count <= quantity) {
+                var stampCode = bolCode + "-" + count + "/" + quantity;
+                vm.stampCode.push({ stampCode: stampCode });
+                count++;
+            }
+            $uibModal.open({
+                animation: true,
+                templateUrl: '/app/pages/Templates/Logistics/Main_View_Refactor/stampRecipe.html',
+                size: 'lg',
+                controller: 'bolReviewCtrl',
+                controllerAs: 'stampViewCtrl',
+                resolve: {
+                    stampCode: function() {
+                        return vm.stampCode;
+                    }
+                }
+            });
+            vm.stampCode = [];
+        };
 
     }
 })();

@@ -76,6 +76,18 @@
                 controller: 'BolInfoController',
                 controllerAs: 'bolInfoCtrl'
             })
+            .state('qr', {
+                url: '/logistics/qr',
+                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/TestQr.html',
+                controller: 'bolReviewCtrl',
+                controllerAs: 'bolConfirm'
+                    //,
+                    // title: "QR Test",
+                    // sidebarMeta: {
+                    //     icon: 'fa fa-user fa-lg',
+                    //     order: 0,
+                    // }
+            })
     };
 })();
 

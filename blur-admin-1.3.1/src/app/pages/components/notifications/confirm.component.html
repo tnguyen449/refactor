@@ -8,7 +8,9 @@
             <section class="invoice" id="print-content">
                 <!-- title row -->
                 <div class="col-xs-12">
-                    <!--<qr class="pull-right" correction-level="'M'" size="50" text="bolConfirm.link"></qr>-->
+                    <!--<qr-scanner width="50" height="50" ng-success="bolConfirm.onSuccess(bolConfirm.link)" ng-error="bolConfirm.onError(error)" />-->
+
+                    <qr class="pull-right" correction-level="'M'" size="50" text="bolConfirm.link"></qr>
                     <!--<qrcode data="bolConfirm.link" href="bolConfirm.link"></qrcode>-->
                 </div>
                 <div class="row">

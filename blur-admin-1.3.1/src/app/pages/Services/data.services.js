@@ -48,7 +48,7 @@
 
         function addItem(item) {
             dataList = item;
-            console.log(dataList);
+
         }
 
         function getList() {

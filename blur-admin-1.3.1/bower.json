@@ -56,7 +56,9 @@
         "ng-js-tree": "~0.0.7",
         "ng-pattern-restrict": "~0.2.3",
         "angular-ui-select": "^0.19.6",
-        "angular-qr": "latest"
+        "angular-qr": "latest",
+        "qrcode": "latest",
+        "angular-qr-scanner": "latest"
     },
     "resolutions": {
         "angular": "~1.5.9",
@@ -92,8 +94,17 @@
         "slimScroll": {
             "main": "./jquery.slimscroll.js"
         },
-        "jquery.qrcode": {
-            "main": "./dist/jquery-qrcode.min.js"
+        "qrcode": {
+            "main": "./lib/qrcode.js"
+        },
+        "angular-qr": {
+            "main": "./src/angular-qr.js"
+        },
+        "angular-qr-scanner": {
+            "main": [
+                "./qr-scanner.js",
+                "./src/jsqrcode-combined.min.js"
+            ]
         },
         "font-awesome": {
             "main": [

@@ -13,6 +13,8 @@ angular.module('BlurAdmin', [
     'ngJsTree',
     'ngPatternRestrict',
     'angular-progress-button-styles',
+    'ja.qr',
+    'qrScanner',
 
     'BlurAdmin.theme',
     'BlurAdmin.pages',

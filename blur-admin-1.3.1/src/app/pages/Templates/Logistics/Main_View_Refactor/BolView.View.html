@@ -24,8 +24,11 @@
                     </div>
                     <div class="col-md-5 pull-right">
                         <!-- button add item -->
-                        <div class="col-md-4 pull-right">
+                        <div class="col-md-6 pull-right">
                             <button type="button" ui-sref="location" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
+                        </div>
+                        <div class="col-md-6 pull-right">
+                            <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> In Báo Cáo</button>
                         </div>
                     </div>
                 </div>
@@ -41,7 +44,7 @@
                             <th class="col-sm-4 text-left bolHeaderView">Mã ĐH</th>
                             <th class="col-md-2 text-center bolHeaderView">Người Gửi</th>
                             <th class="col-md-2 text-center bolHeaderView">Người Nhận</th>
-                            <th class="col-md-1 text-center bolHeaderView">Số Lượng</th>
+                            <th class="col-md-1 text-center bolHeaderView">SL</th>
                             <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
                             <th class="col-md-1 text-center bolHeaderView">Xác Nhận</th>
                             <th class="col-md-1 text-center bolHeaderView">Trạng Thái</th>
@@ -53,14 +56,17 @@
                         <!-- primary table body components -->
                         <tr class="accordion">
                             <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
-                            <td>{{detail.BolCode}}</td>
-                            <td>{{detail.CustomerInfo.SenderName}}</td>
-                            <td>{{detail.CustomerInfo.ReceiverName}}</td>
-                            <td>{{detail.Quantity}}</td>
-                            <td>{{detail.Total}}đ</td>
+                            <td class="text-justify">{{detail.BolCode}}</td>
+                            <td class="text-center">{{detail.CustomerInfo.SenderName}}</td>
+                            <td class="text-center">{{detail.CustomerInfo.ReceiverName}}</td>
+                            <td class="text-center">{{detail.Quantity}}</td>
+                            <td class="text-center">{{detail.Total}}đ</td>
                             <td class="statusButton">
-                                <div class="align-center">
-                                    <button type="button" class="btn btn-xs btn-primary">Mới Tạo</button>
+                                <div class="align-center col-sm-12">
+                                    <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>
+                                </div>
+                                <div class="align-center col-sm-12">
+                                    <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.printStamps(detail.BolCode, detail.Quantity)"><i class="fa fa-print fa-lg"></i></button>
                                 </div>
                             </td>
                             <td class="statusButton">

@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('BolInfoController', BolInfoController);
 
-    BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService', 'formatDataService', 'toastr','Url', 'businessConst']
+    BolInfoController.$inject = ['$scope', '$rootScope', '$uibModal', 'shareDataService', 'businessService', 'formatDataService', 'toastr', 'Url', 'businessConst']
 
     /** @ngInject */
     function BolInfoController($scope, $rootScope, $uibModal, shareDataService, businessService, formatDataService, toastr, Url, businessConst) {
@@ -84,14 +84,15 @@
             return vm.declareFee;
         };
 
-        vm.selectSamePrice = function(merchandiseType){
-          if (merchandiseType.Description === 'Hàng Đồng Giá') {
-            vm.subTotal = '30,000';
-            $('#mainPrice').attr('disabled', 'disabled');
-          } else {
-            vm.subTotal = "";
-            $('#mainPrice').removeAttr('disabled');
-          }
+        vm.selectSamePrice = function(merchandiseType) {
+            if (merchandiseType.Description === 'Hàng Đồng Giá') {
+                vm.subTotal = '30,000';
+                vm.quantity = 1;
+                $('#mainPrice').attr('disabled', 'disabled');
+            } else {
+                vm.subTotal = "";
+                $('#mainPrice').removeAttr('disabled');
+            }
             return vm.subTotal;
         };
 
@@ -110,11 +111,11 @@
                 var finalTotal = vm.finalTotal;
                 var prepaid = vm.prepaid == "" ? "0" : vm.prepaid;
                 if (formatDataService.convertToNumber(prepaid) > formatDataService.convertToNumber(finalTotal)) {
-                  toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO')
-                  vm.bindingFinalTotal();
-                  vm.prepaid = "";
+                    toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO')
+                    vm.bindingFinalTotal();
+                    vm.prepaid = "";
                 } else {
-                  vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
+                    vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
                 }
                 return vm.finalLiabilities;
             }
