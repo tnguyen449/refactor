@@ -177,9 +177,9 @@
                     TransactionVM: {
                         CustomerInfo: {
                             SenderName: vm.bolInfo.senderName,
-                            SenderPhone: vm.bolInfo.senderPhone,
+                            SenderPhone: "0" + vm.bolInfo.senderPhone.toString(),
                             ReceiverName: vm.bolInfo.receiverName,
-                            ReceiverPhone: vm.bolInfo.receiverPhone,
+                            ReceiverPhone: "0" + vm.bolInfo.receiverPhone.toString(),
                         },
                         BillOfLandingInfo: {
                             BolCode: vm.bolInfo.bolCode,
@@ -228,6 +228,7 @@
                     });
                 }
                 console.log(vm.transactionVM);
+
             }
             /** end */
     }

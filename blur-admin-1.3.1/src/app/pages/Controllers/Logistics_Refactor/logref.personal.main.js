@@ -15,6 +15,7 @@
         vm.deliveryTypeVM = [];
         vm.customerInfoVM = [];
         vm.bolDetails = {};
+        vm.itemsByPage = 2;
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
                 $http.get(Url.hostDomain + '/Bol/GetComponent').then(
@@ -54,8 +55,7 @@
             $http.get(Url.hostDomain + '/Bol/GetAllBol').then(
                 function(response) {
                     shareDataService.addItem(response.data);
-                    vm.bolDetails = shareDataService.getList();
-                    console.log(vm.bolDetails);
+                    vm.bolDetails = shareDataService.getList().reverse();
                 }
             )
         };
