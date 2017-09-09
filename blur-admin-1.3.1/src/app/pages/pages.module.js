@@ -4,6 +4,7 @@
     angular.module('BlurAdmin.pages', [
         'ui.router',
         'ui.bootstrap',
-        'BlurAdmin.pages.logistics'
+        'BlurAdmin.pages.logistics',
+        'BlurAdmin.pages.branch'
     ]);
 })();

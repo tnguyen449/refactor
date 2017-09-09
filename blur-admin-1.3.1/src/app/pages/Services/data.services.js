@@ -8,6 +8,7 @@
     function shareDataService($rootScope) {
         var dataList = {};
         var initDataList = [];
+        var bolList = [];
         var branchCode = {};
         return {
             setInitData: setInitData,
@@ -16,7 +17,9 @@
             setBranchCode: setBranchCode,
             setBolCode: setBolCode,
             addItem: addItem,
-            getList: getList
+            getList: getList,
+            getAllBol: getAllBol,
+            setAllBol: setAllBol
         };
 
         /** initData {get; set;} */
@@ -48,7 +51,14 @@
 
         function addItem(item) {
             dataList = item;
+        }
 
+        function getAllBol(bol) {
+            bolList.push(bol);
+        }
+
+        function setAllBol() {
+            return bolList;
         }
 
         function getList() {

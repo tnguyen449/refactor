@@ -7,18 +7,16 @@
         <!-- body -->
         <div class="panel-body">
             <!-- button group -->
-            <div class="add-row-editable-table col-md-12 pull-right">
+            <div class="add-row-editable-table col-md-12">
                 <div class="col-md-12">
                     <div class="col-md-7 pull-left">
-                        <div class="row btns-row">
-                            <div class="col-md-7 pull-left">
-                                <div class="col-md-4" style="padding-top: 10px;">
-                                    <label>Tìm kiếm: </label>
-                                </div>
-                                <!-- button search item -->
-                                <div class="col-md-8">
-                                    <input type="text" class="input-sm form-control search-input" ng-model="mainCtrl.searchQuery" placeholder="Nhập từ khóa tìm kiếm">
-                                </div>
+                        <div class="col-md-7 pull-left">
+                            <div class="col-md-4" style="padding-top: 10px;">
+                                <label>Tìm kiếm: </label>
+                            </div>
+                            <!-- button search item -->
+                            <div class="col-md-8">
+                                <input type="text" class="input-sm form-control search-input" ng-model="mainCtrl.searchQuery" placeholder="Nhập từ khóa tìm kiếm">
                             </div>
                         </div>
                     </div>
@@ -37,22 +35,23 @@
             </div>
             <!-- end button group -->
             <!-- table bill of landing details -->
-            <div class="horizontal-scroll col-md-12">
+            <div class="horizontal-scroll col-md-12" ng-show="mainCtrl.bolDetails.length !== 0">
                 <!-- start smart table-->
                 <table class="table" st-table="mainCtrl.bolDetails">
                     <thead>
                         <tr>
                             <!-- input title block -->
                             <th class="col-md-2 text-left bolHeaderView">Mã ĐH</th>
-                            <th class="col-md-2 text-center bolHeaderView">Người Gửi</th>
-                            <th class="col-md-2 text-center bolHeaderView">Người Nhận</th>
+                            <th class="col-md-1 text-center bolHeaderView">Người Gửi</th>
+                            <th class="col-md-1 text-center bolHeaderView">Người Nhận</th>
                             <th class="col-md-1 text-center bolHeaderView">SL</th>
                             <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
                             <th class="col-md-1 text-left bolHeaderView">Xác Nhận/In Tem</th>
                             <th class="col-md-1 text-left bolHeaderView">Trạng Thái</th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="detail in mainCtrl.bolDetails | searchFor: mainCtrl.searchQuery">
+                    <tbody ng-repeat="detail in mainCtrl.bolDetails">
+                        <!--| searchFor: mainCtrl.searchQuery-->
                         <!-- canvas form -->
                         <tr></tr>
                         <!-- primary table body components -->
@@ -61,8 +60,8 @@
                             <td class="text-left">{{detail.BolCode}}</td>
                             <td class="text-left">{{detail.CustomerInfo.SenderName}}</td>
                             <td class="text-left">{{detail.CustomerInfo.ReceiverName}}</td>
-                            <td class="text-left">{{detail.Quantity}}</td>
-                            <td class="text-left">{{detail.Total | currency: '':0}}đ</td>
+                            <td class="text-left">{{detail.Quantity | currency: '':0}}</td>
+                            <td class="text-left">{{detail.Total }}đ</td>
                             <td>
                                 <div class="row btn-rows">
                                     <div class="col-sm-5">
@@ -89,6 +88,9 @@
                     </tfoot>
                 </table>
                 <!-- end smart table -->
+            </div>
+            <div ng-show="mainCtrl.bolDetails.length == 0">
+                Không có Dữ liệu
             </div>
             <!-- end bill of landing details -->
         </div>

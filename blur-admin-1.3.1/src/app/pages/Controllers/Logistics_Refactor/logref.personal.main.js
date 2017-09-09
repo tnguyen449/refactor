@@ -56,6 +56,7 @@
                 function(response) {
                     shareDataService.addItem(response.data);
                     vm.bolDetails = shareDataService.getList().reverse();
+                    console.log(vm.bolDetails);
                 }
             )
         };

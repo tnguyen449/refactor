@@ -18,5 +18,6 @@ angular.module('BlurAdmin', [
 
     'BlurAdmin.theme',
     'BlurAdmin.pages',
-    'BlurAdmin.pages.logistics'
+    // 'BlurAdmin.pages.logistics',
+    // 'BlurAdmin.pages.branch'
 ]);

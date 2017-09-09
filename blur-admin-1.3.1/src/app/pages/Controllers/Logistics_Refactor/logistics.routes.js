@@ -27,8 +27,8 @@
                     icon: 'fa fa-eye fa-lg',
                     order: 0
                 },
-                controller: 'bolInfoCtrl',
-                controllerAs: 'viewInfo'
+                controller: 'PersonalMainController',
+                controllerAs: 'mainCtrl'
             })
             .state('create', {
                 url: '/logistics/create',
@@ -88,6 +88,18 @@
                     //     order: 0,
                     // }
             })
+            .state('branch', {
+                url: '/branch',
+                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Branch/Branch-List.View.html',
+                controller: 'branchListCtrl',
+                controllerAs: 'branchListCtrl',
+                title: 'Quản Lý Chi Nhánh',
+                sidebarMeta: {
+                    icon: 'fa fa-globe fa-lg',
+                    order: 2
+                }
+            })
+
     };
 })();
 
@@ -181,15 +193,6 @@
 //         order: 2
 //     }
 // })
-// .state('branch', {
-//     url: '/branch',
-//     templateUrl: 'app/pages/branch_manage/branch.view.html',
-//     controller: 'branchCtrl',
-//     controllerAs: 'vm',
-//     title: 'Quản Lý Chi Nhánh',
-//     sidebarMeta: {
-//         icon: 'ion-compose',
-//         order: 2
-//     }
+
 // })
 /** end */

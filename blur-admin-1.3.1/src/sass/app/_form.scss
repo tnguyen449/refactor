@@ -662,6 +662,15 @@ fieldset[disabled] .form-control {
     color: black;
 }
 
+.control-label-modal {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.custom-width {
+    width: 47px;
+}
+
 @media print {
     @page {
         size: letter;
