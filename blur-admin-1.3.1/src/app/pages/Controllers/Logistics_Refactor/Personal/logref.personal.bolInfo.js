@@ -11,9 +11,9 @@
         var vm = this;
 
         /** init data and create object */
-        var initDataList = shareDataService.setInitData();
-        vm.branchInfo = shareDataService.setBranchCode();
-        vm.bolCode = shareDataService.setBolCode();
+        var initDataList = shareDataService.getInitData();
+        vm.branchInfo = shareDataService.getBranchCode();
+        vm.bolCode = shareDataService.getBolCode();
         vm.sendDate = new Date();
         vm.isGuarantee = false;
         vm.isDeclare = false;

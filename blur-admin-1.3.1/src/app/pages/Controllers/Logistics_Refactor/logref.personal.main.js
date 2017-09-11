@@ -33,7 +33,7 @@
                                     serverTimeStamp: vm.serverTimeStampVM
                                 }
                             }
-                            shareDataService.getInitData(vm.initData);
+                            shareDataService.addInitData(vm.initData);
                         }
                     },
                     function(response) {

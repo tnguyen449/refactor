@@ -1,0 +1,41 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <div class="col-md-12">
+            <h3>TẠO MỚI KHU VỰC</h3>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+                <h1>In Progress...</h1>
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3  control-label-modal bolHeader"><strong>Tên</strong></label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-id-card-o fa-lg fa-primary" aria-hidden="true"></i></span>
+                                <input type="text" name="receiverPhone" class="form-control" ng-model="branchAddCtrl.branchInfo.branchName" placeholder="Nhập tên chi nhánh">
+                            </div>
+                        </div>
+                        <span class="help-block error-block basic-block">Nhập tên chi nhánh</span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="col-sm-3  control-label-modal align-left bolHeader"><strong>Mô Tả</strong></label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-envelope fa-lg fa-primary"></i></span>
+                                <textarea type="text" colspan="5" name="receiverName" class="form-control" ng-model="branchAddCtrl.branchInfo.branchEmail" placeholder="Nhập mô tả"></textarea>
+                            </div>
+                        </div>
+                        <span class="help-block error-block basic-block">Nhập họ tên người nhận</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-lg" ng-click="branchAddCtrl.branchCreate()"><i class="fa fa-plus-square fa-log fa-primary" aria-hidden="true"></i> Tạo</button>
+        <button class="btn btn-primary btn-lg" ng-click="branchAddCtrl.cancel()"><i class="fa fa-minus-square fa-log fa-primary" aria-hidden="true"></i> Hủy</button>
+    </div>
+</div>

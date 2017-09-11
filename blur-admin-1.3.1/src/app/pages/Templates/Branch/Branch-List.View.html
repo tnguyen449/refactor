@@ -2,14 +2,15 @@
     <div class="panel panel-primary height" ng-init="mainCtrl.getAllBol()">
         <!-- heading -->
         <div class="panel-heading ">
-            <h2>Tổng Hợp Vận Đơn</h2>
+            <h2>Danh Sách Chi Nhánh</h2>
         </div>
         <!-- body -->
         <div class="panel-body">
+            <h1>In Progress...</h1>
             <!-- button group -->
             <div class="add-row-editable-table col-md-12">
                 <div class="col-md-12">
-                    <div class="col-md-7 pull-left">
+                    <div class="col-md-6 pull-left">
                         <div class="col-md-7 pull-left">
                             <div class="col-md-4" style="padding-top: 10px;">
                                 <label>Tìm kiếm: </label>
@@ -20,14 +21,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="row btns-row pull-right">
                             <!-- button add item -->
-                            <div class="col-md-6">
-                                <button type="button" ui-sref="location" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
+                            <div class="col-md-4">
+                                <button type="button" ng-click="branchListCtrl.createBranch()" class="btn btn-md btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm</span></button>
                             </div>
-                            <div class="col-md-6">
-                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-print fa-lg" aria-hidden="true"></i> In Báo Cáo</button>
+                            <div class="col-md-4">
+                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><span><i class="fa fa-print fa-lg" aria-hidden="true"></i> Sửa</span></button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><span><i class="fa fa-print fa-lg" aria-hidden="true"></i> Xóa</span></button>
                             </div>
                         </div>
                     </div>
@@ -41,13 +45,15 @@
                     <thead>
                         <tr>
                             <!-- input title block -->
-                            <th class="col-xs-2 text-left bolHeaderView">Mã ĐH</th>
-                            <th class="col-md-1 text-center bolHeaderView">Người Gửi</th>
-                            <th class="col-md-1 text-center bolHeaderView">Người Nhận</th>
-                            <th class="col-md-1 text-center bolHeaderView">SL</th>
-                            <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
-                            <th class="col-md-1 text-left bolHeaderView">Xác Nhận/In Tem</th>
-                            <th class="col-md-1 text-left bolHeaderView">Trạng Thái</th>
+                            <th>
+                                <input type="checkbox"/>
+                            </th>
+                            <th class="col-xs-2 text-left bolHeaderView">#</th>
+                            <th class="col-md-1 text-center bolHeaderView">Tên</th>
+                            <th class="col-md-1 text-center bolHeaderView">Mã Chi Nhánh</th>
+                            <th class="col-md-1 text-center bolHeaderView">Khu Vực</th>
+                            <th class="col-md-1 text-left bolHeaderView">Địa Chỉ</th>
+                            <th class="col-md-1 text-left bolHeaderView">Điện Thoại</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="detail in mainCtrl.bolDetails | searchFor: mainCtrl.searchQuery">
@@ -55,12 +61,14 @@
                         <tr></tr>
                         <!-- primary table body components -->
                         <tr>
-                            <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
-                            <td class="text-left">{{detail.BolCode}}</td>
+                            <th>
+                                <input type="checkbox"/>
+                            </th>
+                            <td class="text-left">{{$index}}</td>
                             <td class="text-left">{{detail.CustomerInfo.SenderName}}</td>
                             <td class="text-left">{{detail.CustomerInfo.ReceiverName}}</td>
                             <td class="text-left">{{detail.Quantity}}</td>
-                            <td class="text-left">{{detail.Total }}đ</td>
+                            <td class="text-left">{{detail.Total}}đ</td>
                             <td>
                                 <div class="row btn-rows">
                                     <div class="col-sm-5">

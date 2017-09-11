@@ -5,6 +5,7 @@
         'ui.router',
         'ui.bootstrap',
         'BlurAdmin.pages.logistics',
-        'BlurAdmin.pages.branch'
+        'BlurAdmin.pages.branch',
+        'BlurAdmin.pages.location'
     ]);
 })();

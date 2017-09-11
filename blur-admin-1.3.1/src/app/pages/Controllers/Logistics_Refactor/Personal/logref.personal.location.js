@@ -2,14 +2,14 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
-        .controller('LocationController', LocationController);
+        .controller('DestinationController', DestinationController);
 
-    LocationController.$inject = ['$scope', '$rootScope', '$state', 'shareDataService']
+        DestinationController.$inject = ['$scope', '$rootScope', '$state', 'shareDataService']
 
     /** @ngInject */
-    function LocationController($scope, $rootScope, $state, shareDataService) {
+    function DestinationController($scope, $rootScope, $state, shareDataService) {
         var vm = this;
-        var initDataList = shareDataService.setInitData();
+        var initDataList = shareDataService.getInitData();
         vm.branchInfoVM = initDataList[0].data.branchInfoVM;
 
         /** validate data in form
@@ -17,7 +17,7 @@
          */
         vm.emitEvent = function(formValid) {
                 if (formValid) {
-                    shareDataService.getBranchCode(vm.branchCode);
+                    shareDataService.addBranchCode(vm.branchCode);
                     $state.go('bol');
                 }
             }

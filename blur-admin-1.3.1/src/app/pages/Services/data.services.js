@@ -11,36 +11,39 @@
         var bolList = [];
         var branchCode = {};
         return {
-            setInitData: setInitData,
             getInitData: getInitData,
+            addInitData: addInitData,
             getBranchCode: getBranchCode,
-            setBranchCode: setBranchCode,
-            setBolCode: setBolCode,
+            addBranchCode: addBranchCode,
+            getBolCode: getBolCode,
             addItem: addItem,
             getList: getList,
             getAllBol: getAllBol,
-            setAllBol: setAllBol
+            addAllBol: addAllBol
         };
 
-        /** initData {get; set;} */
-        function setInitData() {
+       /**init data { get; set; } */
+        function getInitData() {
             return initDataList;
         }
 
-        function getInitData(initData) {
+        function addInitData(initData) {
             initDataList.push(initData);
         }
-        /** end */
+        /**end */
 
-        function getBranchCode(branch) {
+        /**branchCode { get; set; } */
+        function addBranchCode(branch) {
             branchCode = branch;
         }
 
-        function setBranchCode() {
+        function getBranchCode() {
             return branchCode;
         }
-
-        function setBolCode() {
+        /**end */
+        
+        /**Bol Code { get; } */
+        function getBolCode() {
             var to = branchCode.receivedBranchCode.selected.BranchCode.trim();
             var from = branchCode.sentBranchCode.selected.BranchCode.trim();
             var dateCode = initDataList[0].data.serverTimeStamp.substring(0, 6);
@@ -49,16 +52,19 @@
             return bolCode;
         }
 
-        function addItem(item) {
-            dataList = item;
-        }
-
-        function getAllBol(bol) {
+        /**get all Bol { get; set; } */
+        function addAllBol(bol) {
             bolList.push(bol);
         }
 
-        function setAllBol() {
+        function getAllBol() {
             return bolList;
+        }
+        /**end */
+
+        /** */
+        function addItem(item) {
+            dataList = item;
         }
 
         function getList() {
