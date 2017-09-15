@@ -6,8 +6,8 @@
 
     /** @ngInject */
     function routeConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/logistics/main');
-       
+        $urlRouterProvider.otherwise('/ngoc-trang/trang-chu');
+
         $stateProvider
             .state('main', {
                 url: '/ngoc-trang/trang-chu',
@@ -19,68 +19,68 @@
                 }
             })
 
-            .state('view', {
-                url: '/ngoc-trang/van-don/view',
-                title: 'Xem Vận Đơn',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BolView.View.html',
-                sidebarMeta: {
-                    icon: 'fa fa-eye fa-lg',
-                    order: 0
-                },
-                controller: 'PersonalMainController',
-                controllerAs: 'mainCtrl'
-            })
+        .state('view', {
+            url: '/ngoc-trang/van-don/danh-sach',
+            title: 'Xem Vận Đơn',
+            templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BolView.View.html',
+            sidebarMeta: {
+                icon: 'fa fa-eye fa-lg',
+                order: 0
+            },
+            controller: 'PersonalMainController',
+            controllerAs: 'mainCtrl'
+        })
 
-            .state('create', {
-                url: '/logistics/create',
-                template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
-                abstract: true,
-                title: 'Tạo Vận Đơn',
-                sidebarMeta: {
-                    icon: 'fa fa-pencil-square-o fa-lg',
-                    order: 0,
-                }
-            })
+        .state('create', {
+            url: '/van-don/tao',
+            template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
+            abstract: true,
+            title: 'Tạo Vận Đơn',
+            sidebarMeta: {
+                icon: 'fa fa-pencil-square-o fa-lg',
+                order: 0,
+            }
+        })
 
-            .state('create.personal', {
-                url: '/personal',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Destination/Destination.View.html',
-                controller: 'DestinationController',
-                controllerAs: 'destinationCtrl',
-                title: 'Cá Nhân',
-                sidebarMeta: {
-                    icon: 'fa fa-user fa-lg',
-                    order: 0,
-                }
-            })
+        .state('create.personal', {
+            url: '/ca-nhan',
+            templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Destination/Destination.View.html',
+            controller: 'DestinationController',
+            controllerAs: 'destinationCtrl',
+            title: 'Cá Nhân',
+            sidebarMeta: {
+                icon: 'fa fa-user fa-lg',
+                order: 0,
+            }
+        })
 
-            // .state('destination', {
-            //         url: '/logistics/location',
-            //         templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Destination/Destination.View.html',
-            //         controller: 'DestinationController',
-            //         controllerAs: 'destinationCtrl',
-            // })
+        // .state('destination', {
+        //         url: '/logistics/location',
+        //         templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Destination/Destination.View.html',
+        //         controller: 'DestinationController',
+        //         controllerAs: 'destinationCtrl',
+        // })
 
-            .state('bol', {
-                url: '/logistics/bol',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
-                controller: 'BolInfoController',
-                controllerAs: 'bolInfoCtrl'
-            })
+        .state('bol', {
+            url: '/logistics/bol',
+            templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
+            controller: 'BolInfoController',
+            controllerAs: 'bolInfoCtrl'
+        })
 
-            .state('create.area', {
-                url: '/area',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Location/Location.View.html',
-                controller: 'LocationController',
-                controllerAs: 'locationCtrl',
-                title: 'Khu Vực',
-                sidebarMeta: {
-                    icon: 'fa fa-users fa-lg',
-                    order: 0,
-                }
-            })
+        .state('create.area', {
+            url: '/area',
+            templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Location/Location.View.html',
+            controller: 'LocationController',
+            controllerAs: 'locationCtrl',
+            title: 'Khu Vực',
+            sidebarMeta: {
+                icon: 'fa fa-users fa-lg',
+                order: 0,
+            }
+        })
 
-            .state('qr', {
+        .state('qr', {
                 url: '/logistics/qr',
                 templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/TestQr.html',
                 controller: 'bolReviewCtrl',
@@ -92,30 +92,40 @@
                     //     order: 0,
                     // }
             })
+            .state('manage', {
+                url: '/quan-ly',
+                template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
+                abstract: true,
+                title: 'Quản Lý',
+                sidebarMeta: {
+                    icon: 'fa fa-pencil-square-o fa-lg',
+                    order: 0,
+                }
 
-            .state('branch', {
+            })
+            .state('manage.branch', {
                 url: '/chi-nhanh',
                 templateUrl: 'app/pages/Templates/Branch/Branch-List.View.html',
                 controller: 'branchListCtrl',
                 controllerAs: 'branchListCtrl',
-                title: 'Quản Lý Chi Nhánh',
+                title: 'Chi Nhánh',
                 sidebarMeta: {
                     icon: 'fa fa-globe fa-lg',
                     order: 2
                 }
             })
 
-            .state('locations', {
-                url: '/khu-vuc',
-                templateUrl: 'app/pages/Templates/Location/Location-List.View.html',
-                controller: 'locationListCtrl',
-                controllerAs: 'locationListCtrl',
-                title: 'Quản Lý Khu Vực',
-                sidebarMeta: {
-                    icon: 'fa fa-globe fa-lg',
-                    order: 2
-                }
-            })
+        .state('manage.locations', {
+            url: '/khu-vuc',
+            templateUrl: 'app/pages/Templates/Location/Location-List.View.html',
+            controller: 'locationListCtrl',
+            controllerAs: 'locationListCtrl',
+            title: 'Khu Vực',
+            sidebarMeta: {
+                icon: 'fa fa-globe fa-lg',
+                order: 2
+            }
+        })
     };
 })();
 

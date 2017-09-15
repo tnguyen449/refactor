@@ -10,6 +10,8 @@
         var initDataList = [];
         var bolList = [];
         var branchCode = {};
+        var branchList = [];
+
         return {
             getInitData: getInitData,
             addInitData: addInitData,
@@ -19,10 +21,12 @@
             addItem: addItem,
             getList: getList,
             getAllBol: getAllBol,
-            addAllBol: addAllBol
+            addAllBol: addAllBol,
+            addBranch: addBranch,
+            getAllBranch: getAllBranch
         };
 
-       /**init data { get; set; } */
+        /**init data { get; set; } */
         function getInitData() {
             return initDataList;
         }
@@ -41,7 +45,7 @@
             return branchCode;
         }
         /**end */
-        
+
         /**Bol Code { get; } */
         function getBolCode() {
             var to = branchCode.receivedBranchCode.selected.BranchCode.trim();
@@ -70,5 +74,15 @@
         function getList() {
             return dataList;
         }
+
+        /**get branch { get; set; } */
+        function addBranch(branch) {
+            branchList.push(branch);
+        }
+
+        function getAllBranch() {
+            return branchList;
+        }
+        /**end */
     }
 })();

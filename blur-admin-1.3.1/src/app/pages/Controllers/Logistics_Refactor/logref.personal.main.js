@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', '$uibModal', 'Url']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'utility', '$uibModal', 'Url', 'backendController']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, $uibModal, Url) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, utility, $uibModal, Url, backendController) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -18,13 +18,14 @@
         vm.itemsByPage = 2;
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
-                $http.get(Url.hostDomain + '/Bol/GetComponent').then(
+
+                utility.getData(backendController.getAllComponent).then(
                     function(response) {
-                        if (response.data.Branch.length > 0 && response.data.Type.length > 0) {
-                            vm.branchInfoVM = response.data.Branch;
-                            vm.merchandiseTypeVM = response.data.Type;
-                            vm.serverTimeStampVM = response.data.CurrentTimeStamp;
-                            vm.deliveryTypeVM = response.data.DeliveryType;
+                        if (response.Branch.length > 0 && response.Type.length > 0) {
+                            vm.branchInfoVM = response.Branch;
+                            vm.merchandiseTypeVM = response.Type;
+                            vm.serverTimeStampVM = response.CurrentTimeStamp;
+                            vm.deliveryTypeVM = response.DeliveryType;
                             vm.initData = {
                                 data: {
                                     branchInfoVM: vm.branchInfoVM,
@@ -51,15 +52,25 @@
             }
         };
 
+        // vm.getAllBol = function() {
+        //     $http.get(Url.hostDomain + '/Bol/GetAllBol').then(
+        //         function(response) {
+        //             shareDataService.addItem(response.data);
+        //             vm.bolDetails = shareDataService.getList().reverse();
+        //             console.log(vm.bolDetails);
+        //         }
+        //     )
+        // };
+
+
         vm.getAllBol = function() {
-            $http.get(Url.hostDomain + '/Bol/GetAllBol').then(
+            utility.getData(backendController.getAllBol).then(
                 function(response) {
-                    shareDataService.addItem(response.data);
-                    vm.bolDetails = shareDataService.getList().reverse();
-                    console.log(vm.bolDetails);
+                    vm.bolDetails = response.reverse();
                 }
             )
         };
+
         vm.stampCode = [];
         vm.printStamps = function(bolCode, quantity) {
             var count = 1;

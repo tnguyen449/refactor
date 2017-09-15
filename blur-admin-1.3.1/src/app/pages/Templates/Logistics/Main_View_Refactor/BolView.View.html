@@ -27,7 +27,7 @@
                                 <button type="button" ui-sref="location" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-print fa-lg" aria-hidden="true"></i> In Báo Cáo</button>
+                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i> Tạo Báo Cáo</button>
                             </div>
                         </div>
                     </div>
@@ -46,8 +46,9 @@
                             <th class="col-md-1 text-center bolHeaderView">Người Nhận</th>
                             <th class="col-md-1 text-center bolHeaderView">SL</th>
                             <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
-                            <th class="col-md-1 text-left bolHeaderView">Xác Nhận/In Tem</th>
-                            <th class="col-md-1 text-left bolHeaderView">Trạng Thái</th>
+                            <th class="col-md-1 text-left bolHeaderView">Xác Nhận</th>
+                            <th class="col-md-1 text-left bolHeaderView">In Tem</th>
+                            <th class="col-md-2 text-left bolHeaderView">Trạng Thái</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="detail in mainCtrl.bolDetails | searchFor: mainCtrl.searchQuery">
@@ -61,15 +62,13 @@
                             <td class="text-left">{{detail.CustomerInfo.ReceiverName}}</td>
                             <td class="text-left">{{detail.Quantity}}</td>
                             <td class="text-left">{{detail.Total }}đ</td>
-                            <td>
-                                <div class="row btn-rows">
-                                    <div class="col-sm-5">
-                                        <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.printStamps(detail.BolCode, detail.Quantity)"><i class="fa fa-print fa-lg"></i></button>
-                                    </div>
+                            <td class="mx-auto">
+                                <div class="col-xs-4">
+                                    <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>
                                 </div>
+                            </td>
+                            <td class="align-center">
+                                <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.printStamps(detail.BolCode, detail.Quantity)"><i class="fa fa-print fa-lg"></i></button>
                             </td>
                             <td>
                                 <div class="align-center">

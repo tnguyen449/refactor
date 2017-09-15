@@ -62,7 +62,6 @@
                     data: vm.transactionVM.TransactionVM
                 })
                 .done(function() {
-                    shareDataService.addItem(vm.transactionVM);
                     vm.cancel();
                     //window.onload();
                     //window.print();

@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="panel panel-primary height" ng-init="mainCtrl.getAllBol()">
+    <div class="panel panel-primary height" ng-init="branchListCtrl.initBranchList()">
         <!-- heading -->
         <div class="panel-heading ">
             <h2>Danh Sách Chi Nhánh</h2>
@@ -46,7 +46,7 @@
                         <tr>
                             <!-- input title block -->
                             <th>
-                                <input type="checkbox"/>
+                                <input type="checkbox" />
                             </th>
                             <th class="col-xs-2 text-left bolHeaderView">#</th>
                             <th class="col-md-1 text-center bolHeaderView">Tên</th>
@@ -56,17 +56,17 @@
                             <th class="col-md-1 text-left bolHeaderView">Điện Thoại</th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="detail in mainCtrl.bolDetails | searchFor: mainCtrl.searchQuery">
+                    <tbody ng-repeat="branch in branchListCtrl.branchList | searchFor: mainCtrl.searchQuery">
                         <!-- canvas form -->
                         <tr></tr>
                         <!-- primary table body components -->
                         <tr>
                             <th>
-                                <input type="checkbox"/>
+                                <input type="checkbox" />
                             </th>
                             <td class="text-left">{{$index}}</td>
-                            <td class="text-left">{{detail.CustomerInfo.SenderName}}</td>
-                            <td class="text-left">{{detail.CustomerInfo.ReceiverName}}</td>
+                            <td class="text-left">{{branch.branchName}}</td>
+                            <td class="text-left">{{branch.branchCode}}</td>
                             <td class="text-left">{{detail.Quantity}}</td>
                             <td class="text-left">{{detail.Total}}đ</td>
                             <td>

@@ -12,7 +12,7 @@
                         <label class="col-sm-3  control-label-modal bolHeader"><strong>Tên Chi Nhánh</strong></label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-id-card-o fa-lg fa-primary" aria-hidden="true"></i></span>
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
                                 <input type="text" name="receiverPhone" class="form-control" ng-model="branchAddCtrl.branchInfo.branchName" placeholder="Nhập tên chi nhánh">
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                         <label class="col-sm-3  control-label-modal bolHeader" tooltip-placement="top-left" uib-tooltip="Gồm chữ đầu tiên của khu vực.&nbsp Ví dụ: SQ1, STB (Quận 1, Quận Tân Bình)"><strong>Mã Chi Nhánh <i class="fa fa-question-circle fa-lg fa-primary" aria-hidden="true"></i></strong></label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-lightbulb-o fa-lg fa-primary" aria-hidden="true"></i> </span>
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
                                 <input type="text" name="receiverPhone" class="form-control" ng-model="branchAddCtrl.branchInfo.branchCode" placeholder="Nhập mã chi nhánh">
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="col-sm-9">
                             <div class="has-feedback" ng-class="{'has-error': locationCtrl.form.bolFrom.$invalid && (locationCtrl.form.bolFrom.$dirty || locationCtrl.form.$submitted)}">
                                 <div class="input-group">
-                                    <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-map-marker fa-lg fa-primary"></i></span>
+                                    <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
                                     <ui-select ng-model="branchAddCtrl.locationInfo.selected" class="btn-group bootstrap-select form-control" style="z-index: 1050" name="bolFrom" ng-disabled="false" append-to-body="true" search-enabled="true" required>
                                         <ui-select-match placeholder="Chọn khu vực">
                                             {{$select.selected}}
@@ -51,7 +51,7 @@
                         <label class="col-sm-3  control-label-modal bolHeader"><strong>Địa Chỉ</strong></label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-location-arrow fa-lg fa-primary" aria-hidden="true"></i></i></span>
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></i></i></span>
                                 <input type="text" name="receiverName" class="form-control" ng-model="branchAddCtrl.branchInfo.branchAddress" placeholder="Nhập địa chỉ chi nhánh">
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         <label class="col-sm-3  control-label-modal align-left bolHeader"><strong>Điện Thoại</strong></label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-phone fa-lg fa-primary"></i></span>
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
                                 <input type="text" name="receiverName" class="form-control" ng-model="branchAddCtrl.branchInfo.branchPhone" placeholder="Nhập điện thoại chi nhánh">
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         <label class="col-sm-3  control-label-modal align-left bolHeader"><strong>Email</strong></label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"><i class="fa fa-envelope fa-lg fa-primary"></i></span>
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
                                 <input type="text" name="receiverName" class="form-control" ng-model="branchAddCtrl.branchInfo.branchEmail" placeholder="Nhập email chi nhánh">
                             </div>
                         </div>
