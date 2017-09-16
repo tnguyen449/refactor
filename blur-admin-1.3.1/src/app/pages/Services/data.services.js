@@ -11,6 +11,7 @@
         var bolList = [];
         var branchCode = {};
         var branchList = [];
+        var stampCodeList = [];
 
         return {
             getInitData: getInitData,
@@ -23,7 +24,9 @@
             getAllBol: getAllBol,
             addAllBol: addAllBol,
             addBranch: addBranch,
-            getAllBranch: getAllBranch
+            getAllBranch: getAllBranch,
+            addStampCode: addStampCode,
+            getStampCode: getStampCode
         };
 
         /**init data { get; set; } */
@@ -84,5 +87,13 @@
             return branchList;
         }
         /**end */
+
+        function addStampCode(stampCode) {
+            stampCodeList.push(stampCode);
+        }
+
+        function getStampCode() {
+            return stampCodeList;
+        }
     }
 })();

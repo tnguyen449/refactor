@@ -44,9 +44,9 @@
                             <th class="col-xs-2 text-left bolHeaderView">Mã ĐH</th>
                             <th class="col-md-1 text-center bolHeaderView">Người Gửi</th>
                             <th class="col-md-1 text-center bolHeaderView">Người Nhận</th>
-                            <th class="col-md-1 text-center bolHeaderView">SL</th>
-                            <th class="col-md-1 text-left bolHeaderView">Tổng Cộng</th>
-                            <th class="col-md-1 text-left bolHeaderView">Xác Nhận</th>
+                            <th class="col-xs-1 text-center bolHeaderView">SL</th>
+                            <th class="col-md-1 text-center bolHeaderView">Tổng Cộng</th>
+                            <th class="col-md-1 text-center bolHeaderView">Xác Nhận</th>
                             <th class="col-md-1 text-left bolHeaderView">In Tem</th>
                             <th class="col-md-2 text-left bolHeaderView">Trạng Thái</th>
                         </tr>
@@ -58,10 +58,10 @@
                         <tr>
                             <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
                             <td class="text-left">{{detail.BolCode}}</td>
-                            <td class="text-left">{{detail.CustomerInfo.SenderName}}</td>
-                            <td class="text-left">{{detail.CustomerInfo.ReceiverName}}</td>
-                            <td class="text-left">{{detail.Quantity}}</td>
-                            <td class="text-left">{{detail.Total }}đ</td>
+                            <td class="text-center">{{detail.Customers[0].Phone == detail.Contact ? detail.Customers[0].Name: ''}}</td>
+                            <td class="text-center">{{detail.Customers[1].Phone !== detail.Contact ? detail.Customers[1].Name: ''}}</td>
+                            <td class="text-center">{{detail.Quantity}}</td>
+                            <td class="text-center">{{detail.Total}}đ</td>
                             <td class="mx-auto">
                                 <div class="col-xs-4">
                                     <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>

@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'utility', '$uibModal', 'Url', 'backendController']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'utility', '$uibModal', '$uibModalStack', 'Url', 'backendController']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, utility, $uibModal, Url, backendController) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, utility, $uibModal, $uibModalStack, Url, backendController) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -71,28 +71,38 @@
             )
         };
 
-        vm.stampCode = [];
+        $scope.stampCode = [];
         vm.printStamps = function(bolCode, quantity) {
+            $scope.stampCode = [];
             var count = 1;
             while (count <= quantity) {
                 var stampCode = bolCode + "-" + count + "/" + quantity;
-                vm.stampCode.push({ stampCode: stampCode });
+                $scope.stampCode.push(stampCode);
                 count++;
             }
+
             $uibModal.open({
                 animation: true,
                 templateUrl: '/app/pages/Templates/Logistics/Main_View_Refactor/stampRecipe.html',
                 size: 'lg',
-                controller: 'bolReviewCtrl',
+                controller: 'PersonalMainController',
                 controllerAs: 'stampViewCtrl',
-                resolve: {
-                    stampCode: function() {
-                        return vm.stampCode;
-                    }
-                }
+                bindToController: true,
+                scope: $scope
+                    //,
+                    // resolve: {
+                    //     items: function() {
+                    //         return $scope.stampCode;
+                    //     }
+                    // }
             });
-            vm.stampCode = [];
         };
-
+        vm.print = function() {
+            window.print();
+            vm.cancel();
+        };
+        vm.cancel = function() {
+            $uibModalStack.dismissAll();
+        };
     }
 })();

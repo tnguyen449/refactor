@@ -4,19 +4,16 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('bolReviewCtrl', bolReviewCtrl);
 
-    // bolReviewCtrl.$inject = ['$scope', '$rootScope', '$state', 'toastr', 'shareDataService', 'Url', '$uibModal', '$uibModalStack', 'stampCode'];
     bolReviewCtrl.$inject = ['$scope', '$rootScope', '$state', 'toastr', 'shareDataService', 'Url', '$uibModal', '$uibModalStack'];
+    //bolReviewCtrl.$inject = ['$scope', '$rootScope', '$state', 'toastr', 'shareDataService', 'Url', '$uibModal', '$uibModalStack'];
 
     /** @ngInject */
-    //function bolReviewCtrl($scope, $rootScope, $state, toastr, shareDataService, Url, $uibModal, $uibModalStack, stampCode) {
     function bolReviewCtrl($scope, $rootScope, $state, toastr, shareDataService, Url, $uibModal, $uibModalStack) {
+        //function bolReviewCtrl($scope, $rootScope, $state, toastr, shareDataService, Url, $uibModal, $uibModalStack) {
         var vm = this;
         var transaction = shareDataService.getList();
         vm.transactionVM = transaction;
-        vm.cancel = function() {
 
-            $uibModalStack.dismissAll();
-        };
 
         //vm.link = "/Bol/Search?bolid=" + vm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode;
         vm.link = "Test Qr";
@@ -34,8 +31,7 @@
         //     console.log(error);
         // };
 
-        // vm.stampCode = stampCode;
-        // console.log(vm.stampCode);
+
         // vm.printStamps = function(bolCode, quantity) {
         //     var count = 1;
         //     while (count <= quantity) {
@@ -51,11 +47,9 @@
         //         controllerAs: 'bolConfirm'
         //     })
         // };
-        vm.printStamps = function() {
-            window.print();
-            vm.cancel();
-        };
+
         vm.printInvoice = function() {
+
             $.ajax({
                     method: "POST",
                     url: "http://localhost:57363/NgocTrang/Api/Bol/Add",

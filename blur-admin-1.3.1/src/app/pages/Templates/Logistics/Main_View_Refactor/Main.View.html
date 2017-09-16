@@ -1,4 +1,4 @@
-<form name="locationCtrl.form" ng-submit="locationCtrl.emitEvent(locationCtrl.form.$valid)" novalidate>
+<form name="locationCtrl.form" ng-submit="locationCtrl.emitEvent(locationCtrl.form.$valid)" novalidate ng-init="mainCtrl.getAllComponent()">
     <div class="panel panel-primary height">
         <!-- <div class="panel-heading ">
             <h2>Chọn Nơi Giao Nhận</h2>

@@ -16,7 +16,9 @@
                 sidebarMeta: {
                     icon: 'fa fa-home fa-lg',
                     order: 0
-                }
+                },
+                controller: 'PersonalMainController',
+                controllerAs: 'mainCtrl'
             })
 
         .state('view', {

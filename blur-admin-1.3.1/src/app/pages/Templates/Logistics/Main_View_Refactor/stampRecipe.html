@@ -1,17 +1,17 @@
-<!-- <div class="modal-content height">
+<div class="modal-content height">
     <div class="modal-header bg-primary">
         <i class="ion-information-circled modal-icon"></i><span> Xác Nhận Đơn Hàng Số {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}</span>
     </div>
     <div class="modal-body">
         <div class="wrapper">
-            <section class="invoice" id="print-content" ng-repeat="stampCode in stampViewCtrl.stampCode">
+            <section class="invoice" id="print-content" ng-repeat="stampCode in stampViewCtrl.stampCode track by $index">
                 <div class="row invoice-info">
                     <div class="col-md-12 invoice-col">
                         <div class="col-md-7">
-                            <h1>{{stampCode.stampCode}}</h1>
+                            <h1>{{stampCode}}</h1>
                         </div>
                         <div class="col-md-5">
-                            <qr class="pull-right" correction-level="'M'" size="100" text="stampCode.stampCode"></qr>
+                            <qr class="pull-right" correction-level="'M'" size="100" text="stampCode"></qr>
                         </div>
                     </div>
                 </div>
@@ -24,9 +24,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-lg btn-primary" ng-click="stampViewCtrl.printStamps()"><i class="fa fa-print fa-lg"></i> In Tem</button>
+        <button class="btn btn-lg btn-primary" ng-click="stampViewCtrl.print()"><i class="fa fa-print fa-lg"></i> In Tem</button>
         <button class="btn btn-lg btn-primary" ng-click="stampViewCtrl.cancel()"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>Hủy</button>
 
     </div>
 
-</div> -->
+</div>

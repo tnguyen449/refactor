@@ -1,12 +1,12 @@
-(function() {
+(function($) {
     'use strict';
 
     angular.module('BlurAdmin.pages.branch')
         .controller('branchAddCtrl', branchAddCtrl);
 
-    branchAddCtrl.$inject = ['shareDataService', '$scope', '$state', 'toastr', '$uibModalStack']
+    branchAddCtrl.$inject = ['shareDataService', 'utility', '$scope', '$state', 'toastr', '$uibModalStack', 'Url', 'backendController']
         /** ngInject */
-    function branchAddCtrl(shareDataService, $scope, $state, toastr, $uibModalStack) {
+    function branchAddCtrl(shareDataService, utility, $scope, $state, toastr, $uibModalStack, Url, backendController) {
         var vm = this;
         //init view model data
         vm.branchArea = [];
@@ -16,15 +16,35 @@
             $uibModalStack.dismissAll();
         };
 
+
         vm.branchCreate = function() {
+            vm.Branch = {
+                branchVM: {
+                    Name: vm.branchInfo.branchName,
+                    Address: vm.branchInfo.branchAddress,
+                    Phone: vm.branchInfo.branchPhone,
+                    Email: vm.branchInfo.branchEmail,
+                    BranchCode: vm.branchInfo.branchCode,
+                    Description: vm.locationInfo.selected
+                }
+            }
             console.log(vm.branchInfo);
             console.log(vm.locationInfo);
-            shareDataService.addBranch(vm.branchInfo);
-            vm.branchList = shareDataService.getAllBranch();
-            vm.cancel();
-            // $state.go('branch', {}, { reload: 'branch' });
-            toastr.success('Chi nhánh đã được tạo thành công!');
-            console.log(vm.branchList);
+            $.ajax({
+                    method: "POST",
+                    url: Url.hostDomain + backendController.addBranch,
+                    data: vm.Branch.branchVM
+                })
+                .done(function() {
+                    vm.cancel();
+                    $state.go('manage.branch', {}, { reload: true });
+                    vm.branchList = utility.getData(backendController.getAllBranches).then(function(response) {
+                        shareDataService.addInitData(response);
+                    });
+
+                    toastr.success('Chi nhánh đã được tạo thành công!');
+                    console.log(response);
+                })
         };
 
         vm.initBranchList = function() {
@@ -48,4 +68,4 @@
 
 
     };
-})();
+})(jQuery);

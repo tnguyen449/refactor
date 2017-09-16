@@ -7,7 +7,9 @@
         })
         .constant('backendController', {
             'getAllComponent': '/Bol/GetComponent',
+            'getAllBranches': '/Bol/GetBranches',
             'getAllBol': '/Bol/GetAllBol',
+            'addBranch': '/Bol/AddBranch',
             'getAllLocation': '',
             'getAllBranch': '',
         })
