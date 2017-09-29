@@ -3,15 +3,34 @@
 
     angular.module('BlurAdmin.pages')
         .constant('Url', {
-            'hostDomain': 'http://localhost:57363/NgocTrang/Api',
+            'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
         })
         .constant('backendController', {
-            'getAllComponent': '/Bol/GetComponent',
-            'getAllBranches': '/Bol/GetBranches',
-            'getAllBol': '/Bol/GetAllBol',
-            'addBranch': '/Bol/AddBranch',
-            'getAllLocation': '',
-            'getAllBranch': '',
+            //Bill of landing const
+            'getComponents': 'Bol/GetComponent',
+            'getAllBol': 'Bol/GetAllBol',
+            'addBol': 'Bol/Add',
+            'updateStatus': 'Bol/UpdateStatus',
+            //Branches const
+            'getAllBranches': 'Branch/GetAll',
+            'addBranch': 'Branch/Add',
+            'updateBranchName': 'Branch/UpdateName',
+            'updateBranchAddress': 'Branch/UpdateAddress',
+            'updateBranchPhone': 'Branch/UpdatePhone',
+            'updateBranchEmail': 'Branch/UpdateEmail',
+            'updateBranchCode': 'Branch/UpdateCode',
+            'deleteBranch': "Branch/Delete",
+            //Delivery types const
+            'getAllDeliveryTypes': 'DeliveryType/GetAll',
+            //Merchandise type const
+            'getAllMerchandiseTypes': 'MerchandiseType/GetAll',
+            'addMerchandiseType': 'MerchandiseType/Add',
+            'deleteMerchandiseType': 'MerchandiseType/Delete',
+            //Status const
+            'getStatus': 'Status/GetStatus',
+            //User const
+            'login': 'User/Login'
+
         })
         // .constant('hostDomain', 'http://localhost::57363/NgocTrang/Api')
         // .constant('StrBolView', 'http://localhost::3000/#/logistics/view')
