@@ -7,11 +7,11 @@
         })
         .constant('backendController', {
             'getAllComponent': '/Bol/GetComponent',
-            'getAllBranches': '/Bol/GetBranches',
-            'getAllBol': '/Bol/GetAllBol',
-            'addBranch': '/Bol/AddBranch',
-            'getAllLocation': '',
-            'getAllBranch': '',
+            'getAllBranches': '/Branch/GetAll',
+            'getAllBol': '/Bol/GetAll',
+            'addBranch': '/Branch/Add',
+            'getAllLocation': ''
+
         })
         // .constant('hostDomain', 'http://localhost::57363/NgocTrang/Api')
         // .constant('StrBolView', 'http://localhost::3000/#/logistics/view')
