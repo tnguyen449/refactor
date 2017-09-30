@@ -19,7 +19,7 @@
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
 
-                utility.getData(backendController.getAllComponent).then(
+                utility.getData(backendController.getComponents).then(
                     function(response) {
                         if (response.Branch.length > 0 && response.Type.length > 0) {
                             vm.branchInfoVM = response.Branch;
@@ -70,6 +70,21 @@
                 }
             )
         };
+
+        vm.updateStatus = function(id) {
+            $.ajax({
+                    method: 'POST',
+                    url: Url.hostDomain + backendController.updateStatus + '?bolId=' + id,
+                    data: id
+                })
+                .done(function() {
+                    $state.reload();
+                });
+        };
+
+        vm.confimBol = function(id) {
+
+        }
 
         $scope.stampCode = [];
         vm.printStamps = function(bolCode, quantity) {

@@ -39,49 +39,47 @@
             </div>
             <!-- end button group -->
             <!-- table bill of landing details -->
-            <div class="horizontal-scroll col-md-12" ng-show="mainCtrl.bolDetails.length !== 0">
+            <div class="horizontal-scroll col-md-12" ng-show="branchListCtrl.branchList.length !== 0">
                 <!-- start smart table-->
                 <table class="table" st-table="mainCtrl.bolDetails">
                     <thead>
                         <tr>
                             <!-- input title block -->
-                            <th>
+                            <th class="col-xs-1">
                                 <input type="checkbox" />
                             </th>
-                            <th class="col-xs-2 text-left bolHeaderView">#</th>
-                            <th class="col-md-1 text-center bolHeaderView">Tên</th>
-                            <th class="col-md-1 text-center bolHeaderView">Mã Chi Nhánh</th>
+                            <!-- <th class="col-xs-1 text-center bolHeaderView">#</th> -->
+                            <th class="col-xs-1 text-center bolHeaderView">Tên</th>
+                            <th class="col-xs-1 text-center bolHeaderView">Mã CN</th>
                             <th class="col-md-1 text-center bolHeaderView">Khu Vực</th>
-                            <th class="col-md-1 text-left bolHeaderView">Địa Chỉ</th>
-                            <th class="col-md-1 text-left bolHeaderView">Điện Thoại</th>
+                            <th class="col-md-2 text-center bolHeaderView">Địa Chỉ</th>
+                            <th class="col-md-1 text-center bolHeaderView">Điện Thoại</th>
+                            <!-- <th class="col-md-1 text-center"></th> -->
+                            <th class="col-md-1 text-center"></th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="branch in branchListCtrl.branchList | searchFor: mainCtrl.searchQuery">
+                    <tbody ng-repeat="branch in branchListCtrl.branchList">
                         <!-- canvas form -->
                         <tr></tr>
                         <!-- primary table body components -->
-                        <tr>
-                            <th>
+                        <tr style="border: none">
+                            <td>
                                 <input type="checkbox" />
-                            </th>
-                            <td class="text-left">{{$index}}</td>
-                            <td class="text-left">{{branch.branchName}}</td>
-                            <td class="text-left">{{branch.branchCode}}</td>
-                            <td class="text-left">{{detail.Quantity}}</td>
-                            <td class="text-left">{{detail.Total}}đ</td>
+                            </td>
+                            <!-- <td class="text-center">{{branch.Id}}</td> -->
+                            <td class="text-left">{{branch.Name}}</td>
+                            <td class="text-center">{{branch.BranchCode}}</td>
+                            <td class="text-center">{{branch.Description}}</td>
+                            <td class="text-left">{{branch.Address}}</td>
+                            <td class="text-center">{{branch.Phone}}</td>
                             <td>
                                 <div class="row btn-rows">
-                                    <div class="col-sm-5">
+                                    <!-- <div class="col-sm-5">
                                         <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-5">
-                                        <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.printStamps(detail.BolCode, detail.Quantity)"><i class="fa fa-print fa-lg"></i></button>
+                                        <button type="button" class="btn btn-md btn-danger" ng-click="branchListCtrl.deleteBranch(branch.Id)"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></button>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="align-center">
-                                    <button type="button" class="btn btn-xs btn-primary">Đang Kiểm hàng</button>
                                 </div>
                             </td>
                         </tr>
@@ -96,7 +94,7 @@
                 </table>
                 <!-- end smart table -->
             </div>
-            <div ng-show="mainCtrl.bolDetails.length == 0">
+            <div ng-show="branchListCtrl.branchList.length == 0">
                 Không có Dữ liệu
             </div>
             <!-- end bill of landing details -->

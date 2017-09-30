@@ -28,8 +28,6 @@
                     Description: vm.locationInfo.selected
                 }
             }
-            console.log(vm.branchInfo);
-            console.log(vm.locationInfo);
             $.ajax({
                     method: "POST",
                     url: Url.hostDomain + backendController.addBranch,
@@ -41,21 +39,17 @@
                     vm.branchList = utility.getData(backendController.getAllBranches).then(function(response) {
                         shareDataService.addInitData(response);
                     });
-
                     toastr.success('Chi nhánh đã được tạo thành công!');
-                    console.log(response);
                 })
         };
 
-        vm.initBranchList = function() {
-            return vm.branchList = shareDataService.getAllBranch();
+        // vm.initBranchList = function() {
+        //     return vm.branchList = shareDataService.getAllBranch();
 
-        }
-
-        //get data from service
+        // }
         var branchVM = shareDataService.getInitData();
 
-        /**test Location function (delete after server completed) */
+        /**test Location function (delete after backend completed) */
         angular.forEach(branchVM, function(item) {
             var branchList = item.data.branchInfoVM;
             angular.forEach(branchList, function(item) {
