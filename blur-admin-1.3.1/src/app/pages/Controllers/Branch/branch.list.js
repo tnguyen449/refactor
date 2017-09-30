@@ -9,6 +9,8 @@
     function branchListCtrl($uibModal, $scope, $state, utility, Url, backendController) {
         var vm = this;
         vm.branchList = [];
+        vm.hover = false;
+
         vm.createBranch = function() {
             $uibModal.open({
                 animaton: true,

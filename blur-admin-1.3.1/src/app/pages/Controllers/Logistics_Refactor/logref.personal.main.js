@@ -67,6 +67,7 @@
             utility.getData(backendController.getAllBol).then(
                 function(response) {
                     vm.bolDetails = response.reverse();
+                    console.log(vm.bolDetails);
                 }
             )
         };

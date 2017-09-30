@@ -20,7 +20,10 @@
         vm.isOnHandDelivery = false;
         vm.declareFee;
         vm.merchandiseTypeVM = initDataList[0].data.merchandiseTypeVM;
+
         vm.merchandiseType = {};
+        vm.merchandiseType.selected = vm.merchandiseTypeVM[0];
+
         vm.deliveryTypeVM = initDataList[0].data.deliveryTypeVM;
         vm.calculateMinorFee = function(id) {
                 for (var i = 0; i < vm.deliveryTypeVM.length; i++) {
@@ -125,15 +128,16 @@
 
         vm.post = function(id) {
                 vm.calculateMinorFee(id);
+
                 //  if (($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false || $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == true) && $rootScope.transactionVM.TransactionVM.MerchandiseInfo[0].MerchandiseTypeId == "") {
                 //     toastr.error('Đơn vận không tồn tại hàng hóa! Vui lòng thêm hàng hóa', 'Thất Bại');
                 // } else {
                 /** binding object */
                 vm.bolInfo = {
                         senderName: vm.customerInfo.senderName === undefined ? "" : vm.customerInfo.senderName,
-                        senderPhone: vm.customerInfo.senderPhone === undefined ? "" : vm.customerInfo.senderPhone,
+                        senderPhone: vm.customerInfo.senderPhone === undefined ? "" : "0" + vm.customerInfo.senderPhone,
                         receiverName: vm.customerInfo.receiverName === undefined ? "" : vm.customerInfo.receiverName,
-                        receiverPhone: vm.customerInfo.receiverPhone === undefined ? "" : vm.customerInfo.receiverPhone,
+                        receiverPhone: vm.customerInfo.receiverPhone === undefined ? "" : "0" + vm.customerInfo.receiverPhone,
                         merchandiseId: vm.merchandiseType.selected.Id === undefined ? "" : vm.merchandiseType.selected.Id,
                         merchandiseName: vm.merchandiseType.selected.MerchandiseType1,
                         bolCode: vm.bolCode === undefined ? "" : vm.bolCode,
@@ -149,6 +153,8 @@
                         sendAddress: vm.sendAddress === undefined ? "" : vm.sendAddress,
                         receivedTime: vm.deliveryType.Id == 2 ? vm.receivedTime : "",
                         discount: vm.discount === undefined ? '0' : vm.discount,
+                        contact: "0" + vm.customerInfo.senderPhone,
+
                         //delivery key-value
                         deliveryTypeId: vm.deliveryType.Id === undefined ? "" : vm.deliveryType.Id,
                         deliveryTypeName: vm.deliveryName,
@@ -167,7 +173,8 @@
                         bolToId: vm.branchInfo.receivedBranchCode.selected.Id,
                         bolToName: vm.branchInfo.receivedBranchCode.selected.Name,
                         description: vm.description,
-                        total: vm.finalTotal
+                        total: vm.finalTotal,
+                        start: vm.branchInfo.sentBranchCode.selected.Id
 
                     }
                     /** end */
@@ -177,9 +184,9 @@
                     TransactionVM: {
                         CustomerInfo: {
                             SenderName: vm.bolInfo.senderName,
-                            SenderPhone: "0" + vm.bolInfo.senderPhone.toString(),
+                            SenderPhone: vm.bolInfo.senderPhone,
                             ReceiverName: vm.bolInfo.receiverName,
-                            ReceiverPhone: "0" + vm.bolInfo.receiverPhone.toString(),
+                            ReceiverPhone: vm.bolInfo.receiverPhone,
                         },
                         BillOfLandingInfo: {
                             BolCode: vm.bolInfo.bolCode,
@@ -208,6 +215,8 @@
                             BolToId: vm.bolInfo.bolToId,
                             BolFromName: vm.bolInfo.bolFromName,
                             BolToName: vm.bolInfo.bolToName,
+                            Contact: vm.bolInfo.contact,
+                            Start: vm.bolInfo.start,
                             MerchandiseTypeId: vm.bolInfo.merchandiseId,
                             MerchandiseName: vm.bolInfo.merchandiseName,
                             Description: vm.description

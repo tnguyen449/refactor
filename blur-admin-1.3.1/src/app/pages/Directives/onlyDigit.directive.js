@@ -16,7 +16,7 @@
                             ctrl.$setViewValue(digits);
                             ctrl.$render();
                         }
-                        return parseFloat(digits, 10);
+                        return digits;
                     }
                     return undefined;
                 }

@@ -34,13 +34,13 @@ $angle-right: "\f101";
     position: relative;
     float: none;
     padding: 0;
-    &.selected:not(.with-sub-menu) {
+    &.selected:not(.with-sub-menu)>a {
+        border: none;
         background-color: $primary;
-        a.al-sidebar-list-link {
+        color: white;
+        font-weight: bold;
+        &:hover {
             color: white;
-            b {
-                color: $sidebar-text;
-            }
         }
     }
 }

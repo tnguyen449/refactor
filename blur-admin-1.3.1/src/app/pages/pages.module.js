@@ -6,6 +6,8 @@
         'ui.bootstrap',
         'BlurAdmin.pages.logistics',
         'BlurAdmin.pages.branch',
-        'BlurAdmin.pages.location'
+        'BlurAdmin.pages.location',
+        'BlurAdmin.pages.merchandise',
+        'BlurAdmin.pages.statistics'
     ]);
 })();

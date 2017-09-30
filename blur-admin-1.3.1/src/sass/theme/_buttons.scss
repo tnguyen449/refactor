@@ -13,8 +13,11 @@ $hover: 24;
     transition: all 0.1s ease;
 }
 
-.btn:hover {
-    transform: scale(1.2);
+button.btn.btn-primary:hover {
+    background: #ff6600;
+    border-color: #ff6600;
+    color: white;
+    font-weight: bold;
 }
 
 @mixin styleButton($color, $borderColor) {
@@ -81,7 +84,21 @@ $hover: 24;
 }
 
 button.btn.btn-primary {
-    @include buttonColor($primary, $primary);
+    // @include buttonColor($primary, $primary);
+    background: transparent;
+    border-color: transparent;
+    color: black;
+    &:active,
+    &:target {
+        background-color: $primary-dark;
+    }
+}
+
+button.status.btn.btn-primary {
+    // @include buttonColor($primary, $primary);
+    background: $primary;
+    border-color: $primary;
+    color: white;
     &:active,
     &:target {
         background-color: $primary-dark;

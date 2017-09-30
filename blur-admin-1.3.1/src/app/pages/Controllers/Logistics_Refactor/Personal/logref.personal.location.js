@@ -26,7 +26,12 @@
                 utility.getData(backendController.getAllBranches).then(
                     function(response) {
                         vm.branchInfoVM = response;
-                        console.log(vm.branchInfoVM);
+                        vm.branchCode = {};
+                        vm.branchCode.sentBranchCode = {};
+                        vm.branchCode.sentBranchCode.selected = vm.branchInfoVM[0];
+                        vm.branchCode.receivedBranchCode = {};
+                        vm.branchCode.receivedBranchCode.selected = vm.branchInfoVM[1];
+
                     })
             }
             /** end */

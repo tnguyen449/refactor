@@ -6,13 +6,6 @@
             'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
         })
         .constant('backendController', {
-<<<<<<< HEAD
-            'getAllComponent': '/Bol/GetComponent',
-            'getAllBranches': '/Branch/GetAll',
-            'getAllBol': '/Bol/GetAll',
-            'addBranch': '/Branch/Add',
-            'getAllLocation': ''
-=======
             //Bill of landing const
             'getComponents': 'Bol/GetComponent',
             'getAllBol': 'Bol/GetAllBol',
@@ -36,8 +29,11 @@
             //Status const
             'getStatus': 'Status/GetStatus',
             //User const
-            'login': 'User/Login'
->>>>>>> c6f50b322ecc89840520cd2a983a5fecdb4a15cd
+            'login': 'User/Login',
+
+            //Statistic
+            //BolData
+            'bolData': 'Statistic/GetBolData'
 
         })
         // .constant('hostDomain', 'http://localhost::57363/NgocTrang/Api')

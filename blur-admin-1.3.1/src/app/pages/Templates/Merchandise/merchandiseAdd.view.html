@@ -1,0 +1,39 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <div class="col-md-12">
+            <h3>TẠO MỚI CHI NHÁNH</h3>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3  control-label-modal bolHeader"><strong>Tên Mặt Hàng</strong></label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
+                                <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.MerchandiseType1" placeholder="Nhập tên loại hàng">
+                            </div>
+                        </div>
+                        <span class="help-block error-block basic-block">Nhập tên mặt hàng</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3  control-label-modal bolHeader" tooltip-placement="top-left" uib-tooltip="Gồm chữ đầu tiên của khu vực.&nbsp Ví dụ: SQ1, STB (Quận 1, Quận Tân Bình)"><strong>Loại Hàng<i class="fa fa-question-circle fa-lg fa-primary" aria-hidden="true"></i></strong></label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <span class="input-group-addon addon-left input-group-addon-primary custom-width"></span>
+                                <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.Description" placeholder="Nhập mã chi nhánh">
+                            </div>
+                        </div>
+                        <span class="help-block error-block basic-block">Chọn loại hàng</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-lg" ng-click="merchandiseAddCtrl.add()"><i class="fa fa-plus-square fa-log fa-primary" aria-hidden="true"></i> Tạo</button>
+        <button class="btn btn-primary btn-lg" ng-click="merchandiseAddCtrl.cancel()"><i class="fa fa-minus-square fa-log fa-primary" aria-hidden="true"></i> Hủy</button>
+    </div>
+</div>

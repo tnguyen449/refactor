@@ -1,11 +1,12 @@
 <div class="col-md-12">
     <div class="panel panel-primary height" ng-init="mainCtrl.getAllBol()">
         <!-- heading -->
-        <div class="panel-heading ">
+        <!--<div class="panel-heading ">
             <h2>Tổng Hợp Vận Đơn</h2>
-        </div>
+        </div>-->
         <!-- body -->
         <div class="panel-body">
+            <h1>Danh Sách Vận Đơn</h1>
             <!-- button group -->
             <div class="add-row-editable-table col-md-12">
                 <div class="col-md-12">
@@ -37,7 +38,7 @@
             <!-- table bill of landing details -->
             <div class="horizontal-scroll col-md-12" ng-show="mainCtrl.bolDetails.length !== 0">
                 <!-- start smart table-->
-                <table class="table" st-table="mainCtrl.bolDetails">
+                <table class="table table-no-borders" st-table="mainCtrl.bolDetails">
                     <thead>
                         <tr>
                             <!-- input title block -->
@@ -58,8 +59,8 @@
                         <tr>
                             <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
                             <td class="text-left">{{detail.BolCode}}</td>
-                            <td class="text-center">{{detail.Customers[0].Phone == detail.Contact ? detail.Customers[0].Name: ''}}</td>
-                            <td class="text-center">{{detail.Customers[1].Phone !== detail.Contact ? detail.Customers[1].Name: ''}}</td>
+                            <td class="text-center">{{detail.Customers[0].Phone == detail.Contact ? detail.Customers[0].Name: detail.Customers[1].Name}}</td>
+                            <td class="text-center">{{detail.Customers[1].Phone !== detail.Contact ? detail.Customers[1].Name: detail.Customers[0].Name}}</td>
                             <td class="text-center">{{detail.Quantity}}</td>
                             <td class="text-center">{{detail.Total}}đ</td>
                             <td class="mx-auto">
@@ -72,7 +73,7 @@
                             </td>
                             <td>
                                 <div class="align-center">
-                                    <button type="button" class="btn btn-xs btn-primary" ng-click="mainCtrl.updateStatus(detail.Id)">{{detail.Status.StatusName}}</button>
+                                    <button type="button" class="btn btn-xs status btn-default" ng-click="mainCtrl.updateStatus(detail.Id)">{{detail.Status.StatusName}}</button>
                                 </div>
                             </td>
                         </tr>
