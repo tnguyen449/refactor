@@ -11,11 +11,9 @@ angular.module('BlurAdmin', [
     "xeditable",
     'ui.slimscroll',
     'ngJsTree',
-    'ngPatternRestrict',
     'angular-progress-button-styles',
     'ja.qr',
     'qrScanner',
-
     'BlurAdmin.theme',
     'BlurAdmin.pages',
     // 'BlurAdmin.pages.logistics',

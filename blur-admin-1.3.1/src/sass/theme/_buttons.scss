@@ -310,3 +310,12 @@ button.progress-button {
         transition: none;
     }
 }
+
+.search-button {
+    background: $primary;
+}
+
+.search-button:hover {
+    color: white;
+    font-weight: bold
+}

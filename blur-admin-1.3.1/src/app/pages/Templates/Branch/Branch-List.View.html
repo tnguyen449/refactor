@@ -63,11 +63,11 @@
                         <tr>
 
                             <!-- <td class="text-center">{{branch.Id}}</td> -->
-                            <td class="text-left">{{branch.Name}}</td>
-                            <td class="text-center">{{branch.BranchCode}}</td>
+                            <td class="text-left"><span editable-text="branch.Name" onaftersave="branchListCtrl.updateBranchName(branch.Id, branch.Name)" blur="cancel">{{branch.Name}}</span></td>
+                            <td class="text-center"><span editable-text="branch.BranchCode" onaftersave="branchListCtrl.updateBranchCode(branch.Id, branch.BranchCode)" blur="cancel">{{branch.BranchCode}}</span></td>
                             <td class="text-center">{{branch.Description}}</td>
-                            <td class="text-left">{{branch.Address}}</td>
-                            <td class="text-center">{{branch.Phone}}</td>
+                            <td class="text-left"><span editable-text="branch.Address" onaftersave="branchListCtrl.updateBranchAddress(branch.Id, branch.Address)" blur="cancel">{{branch.Address}}</span></td>
+                            <td class="text-center"><span editable-text="branch.Phone" onaftersave="branchListCtrl.updateBranchPhone(branch.Id, branch.Phone)" blur="cancel">{{branch.Phone}}</span></td>
                             <td>
                                 <div class="row btn-rows">
                                     <!-- <div class="col-sm-5">

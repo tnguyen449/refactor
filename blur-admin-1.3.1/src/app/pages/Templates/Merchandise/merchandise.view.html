@@ -33,7 +33,7 @@
             </div>
             <!-- end button group -->
             <!-- table bill of landing details -->
-            <div class="horizontal-scroll col-md-12" ng-show="branchListCtrl.branchList.length !== 0">
+            <div class="horizontal-scroll col-md-12" ng-show="merchandiseCtrl.merchandiseList.length !== 0">
                 <!-- start smart table-->
                 <table class="table table-no-borders" st-table="mainCtrl.bolDetails">
                     <thead>
@@ -62,7 +62,7 @@
                                         <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>
                                     </div> -->
                                     <div class="col-sm-5">
-                                        <button type="button" class="btn btn-md btn-danger" ng-click="branchListCtrl.deleteBranch(branch.Id)"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-md btn-danger" ng-click="merchandiseCtrl.deleteMerchandise(merchandise.Id)"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
                             </td>
@@ -78,7 +78,7 @@
                 </table>
                 <!-- end smart table -->
             </div>
-            <div ng-show="branchListCtrl.branchList.length == 0">
+            <div ng-show="merchandiseCtrl.merchandiseList.length == 0">
                 Không có Dữ liệu
             </div>
             <!-- end bill of landing details -->

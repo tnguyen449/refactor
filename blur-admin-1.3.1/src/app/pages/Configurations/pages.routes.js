@@ -50,24 +50,23 @@
             controller: 'DestinationController',
             controllerAs: 'destinationCtrl',
             title: 'Cá Nhân',
+            lazyLoad: function() {
+                $state.reload();
+            },
             sidebarMeta: {
                 icon: 'fa fa-user fa-lg',
                 order: 0,
             }
         })
 
-        // .state('destination', {
-        //         url: '/logistics/location',
-        //         templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Destination/Destination.View.html',
-        //         controller: 'DestinationController',
-        //         controllerAs: 'destinationCtrl',
-        // })
-
         .state('bol', {
             url: '/logistics/bol',
             templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
             controller: 'BolInfoController',
-            controllerAs: 'bolInfoCtrl'
+            controllerAs: 'bolInfoCtrl',
+            lazyLoad: function() {
+                $state.reload();
+            },
         })
 
         .state('create.area', {

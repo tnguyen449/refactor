@@ -4,9 +4,9 @@
     angular.module('BlurAdmin.pages.merchandise')
         .controller('merchandiseCtrl', merchandiseCtrl);
 
-    merchandiseCtrl.$inject = ['$scope', '$uibModal', 'utility', 'Url', 'backendController', ];
+    merchandiseCtrl.$inject = ['$scope', '$uibModal', '$state', 'utility', 'Url', 'backendController', ];
 
-    function merchandiseCtrl($scope, $uibModal, utility, Url, backendController) {
+    function merchandiseCtrl($scope, $uibModal, $state, utility, Url, backendController) {
         var vm = this;
         vm.openModal = function() {
             $uibModal.open({
@@ -24,15 +24,20 @@
             )
         }
 
-        vm.deleteBranch = function(id) {
-            $.ajax({
-                    method: 'POST',
-                    url: Url.hostDomain + backendController.deleteBranch + '?id=' + id,
-                    data: id
-                })
-                .done(function() {
+
+
+        vm.deleteMerchandise = function(id) {
+            utility.postData(backendController.deleteMerchandiseType + '/' + id).then(function() {
                     $state.reload();
-                });
+                })
+                // $.ajax({
+                //         method: 'POST',
+                //         url: Url.hostDomain + backendController.deleteMerchandiseType + '?id=' + id,
+                //         data: id
+                //     })
+                //     .done(function() {
+                //         $state.reload();
+                //     });
         }
     }
 

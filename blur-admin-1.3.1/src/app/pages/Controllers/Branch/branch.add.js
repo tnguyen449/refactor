@@ -4,9 +4,9 @@
     angular.module('BlurAdmin.pages.branch')
         .controller('branchAddCtrl', branchAddCtrl);
 
-    branchAddCtrl.$inject = ['shareDataService', 'utility', '$scope', '$state', 'toastr', '$uibModalStack', 'Url', 'backendController']
+    branchAddCtrl.$inject = ['shareDataService', 'utility', '$scope', '$state', '$http', 'toastr', '$uibModalStack', 'Url', 'backendController']
         /** ngInject */
-    function branchAddCtrl(shareDataService, utility, $scope, $state, toastr, $uibModalStack, Url, backendController) {
+    function branchAddCtrl(shareDataService, utility, $scope, $state, $http, toastr, $uibModalStack, Url, backendController) {
         var vm = this;
         //init view model data
         vm.branchArea = [];
@@ -28,19 +28,35 @@
                     Description: vm.locationInfo.selected
                 }
             }
-            $.ajax({
-                    method: "POST",
-                    url: Url.hostDomain + backendController.addBranch,
-                    data: vm.Branch.branchVM
-                })
-                .done(function() {
-                    vm.cancel();
-                    $state.go('manage.branch', {}, { reload: true });
-                    vm.branchList = utility.getData(backendController.getAllBranches).then(function(response) {
-                        shareDataService.addInitData(response);
-                    });
-                    toastr.success('Chi nhánh đã được tạo thành công!');
-                })
+
+            utility.postData(backendController.addBranch, vm.Branch.branchVM).then(function() {
+                vm.cancel();
+                $state.go('manage.branch', {}, { reload: true });
+                vm.branchList = utility.getData(backendController.getAllBranches).then(function(response) {
+                    shareDataService.addInitData(response);
+                });
+                toastr.success('Chi nhánh đã được tạo thành công!');
+            })
+
+            // $http.post(Url.hostDomain + backendController.addBranch, vm.Branch.branchVM).then(
+            //     function() {
+
+            //     }
+            // )
+
+            // $.ajax({
+            //         method: "POST",
+            //         url: Url.hostDomain + backendController.addBranch,
+            //         data: vm.Branch.branchVM
+            //     })
+            //     .done(function() {
+            //         vm.cancel();
+            //         $state.go('manage.branch', {}, { reload: true });
+            //         vm.branchList = utility.getData(backendController.getAllBranches).then(function(response) {
+            //             shareDataService.addInitData(response);
+            //         });
+            //         toastr.success('Chi nhánh đã được tạo thành công!');
+            //     })
         };
 
         // vm.initBranchList = function() {

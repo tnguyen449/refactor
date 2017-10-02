@@ -10,16 +10,16 @@
             'getComponents': 'Bol/GetComponent',
             'getAllBol': 'Bol/GetAllBol',
             'addBol': 'Bol/Add',
-            'updateStatus': 'Bol/UpdateStatus',
+            'updateStatus': 'Bol/UpdateStatus/',
             //Branches const
             'getAllBranches': 'Branch/GetAll',
             'addBranch': 'Branch/Add',
-            'updateBranchName': 'Branch/UpdateName',
-            'updateBranchAddress': 'Branch/UpdateAddress',
-            'updateBranchPhone': 'Branch/UpdatePhone',
-            'updateBranchEmail': 'Branch/UpdateEmail',
-            'updateBranchCode': 'Branch/UpdateCode',
-            'deleteBranch': "Branch/Delete",
+            'updateBranchName': 'Branch/UpdateName/',
+            'updateBranchAddress': 'Branch/UpdateAddress/',
+            'updateBranchPhone': 'Branch/UpdatePhone/',
+            'updateBranchEmail': 'Branch/UpdateEmail/',
+            'updateBranchCode': 'Branch/UpdateCode/',
+            'deleteBranch': 'Branch/Delete/',
             //Delivery types const
             'getAllDeliveryTypes': 'DeliveryType/GetAll',
             //Merchandise type const

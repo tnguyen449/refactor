@@ -25,7 +25,7 @@
                         <div class="row btns-row pull-right">
                             <!-- button add item -->
                             <div class="col-md-6">
-                                <button type="button" ui-sref="location" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
+                                <button type="button" ui-sref="create.personal" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
                             </div>
                             <div class="col-md-6">
                                 <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i> Tạo Báo Cáo</button>
@@ -73,7 +73,7 @@
                             </td>
                             <td>
                                 <div class="align-center">
-                                    <button type="button" class="btn btn-xs status btn-default" ng-click="mainCtrl.updateStatus(detail.Id)">{{detail.Status.StatusName}}</button>
+                                    <button type="button" class="btn btn-xs status btn-default" ng-disabled="detail.StatusCode == 6" ng-click="mainCtrl.updateStatus(detail.Id)">{{detail.Status.StatusName}}</button>
                                 </div>
                             </td>
                         </tr>

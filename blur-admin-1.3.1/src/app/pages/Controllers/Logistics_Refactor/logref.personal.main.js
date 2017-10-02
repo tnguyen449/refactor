@@ -21,21 +21,20 @@
 
                 utility.getData(backendController.getComponents).then(
                     function(response) {
-                        if (response.Branch.length > 0 && response.Type.length > 0) {
-                            vm.branchInfoVM = response.Branch;
-                            vm.merchandiseTypeVM = response.Type;
-                            vm.serverTimeStampVM = response.CurrentTimeStamp;
-                            vm.deliveryTypeVM = response.DeliveryType;
-                            vm.initData = {
-                                data: {
-                                    branchInfoVM: vm.branchInfoVM,
-                                    merchandiseTypeVM: vm.merchandiseTypeVM,
-                                    deliveryTypeVM: vm.deliveryTypeVM,
-                                    serverTimeStamp: vm.serverTimeStampVM
-                                }
+
+                        vm.branchInfoVM = response.Branch;
+                        vm.merchandiseTypeVM = response.Type;
+                        //vm.serverTimeStampVM = response.CurrentTimeStamp;
+                        vm.deliveryTypeVM = response.DeliveryType;
+                        vm.initData = {
+                            data: {
+                                branchInfoVM: vm.branchInfoVM,
+                                merchandiseTypeVM: vm.merchandiseTypeVM,
+                                deliveryTypeVM: vm.deliveryTypeVM,
+                                //serverTimeStamp: vm.serverTimeStampVM
                             }
-                            shareDataService.addInitData(vm.initData);
                         }
+                        shareDataService.addInitData(vm.initData);
                     },
                     function(response) {
                         vm.branchInfoVM = [{
@@ -52,40 +51,19 @@
             }
         };
 
-        // vm.getAllBol = function() {
-        //     $http.get(Url.hostDomain + '/Bol/GetAllBol').then(
-        //         function(response) {
-        //             shareDataService.addItem(response.data);
-        //             vm.bolDetails = shareDataService.getList().reverse();
-        //             console.log(vm.bolDetails);
-        //         }
-        //     )
-        // };
-
-
         vm.getAllBol = function() {
             utility.getData(backendController.getAllBol).then(
                 function(response) {
                     vm.bolDetails = response.reverse();
-                    console.log(vm.bolDetails);
                 }
             )
         };
 
         vm.updateStatus = function(id) {
-            $.ajax({
-                    method: 'POST',
-                    url: Url.hostDomain + backendController.updateStatus + '?bolId=' + id,
-                    data: id
-                })
-                .done(function() {
-                    $state.reload();
-                });
+            utility.postData(backendController.updateStatus + id).then(function() {
+                $state.reload();
+            })
         };
-
-        vm.confimBol = function(id) {
-
-        }
 
         $scope.stampCode = [];
         vm.printStamps = function(bolCode, quantity) {
@@ -105,12 +83,6 @@
                 controllerAs: 'stampViewCtrl',
                 bindToController: true,
                 scope: $scope
-                    //,
-                    // resolve: {
-                    //     items: function() {
-                    //         return $scope.stampCode;
-                    //     }
-                    // }
             });
         };
         vm.print = function() {

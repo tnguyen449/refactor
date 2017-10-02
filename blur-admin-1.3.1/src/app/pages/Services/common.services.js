@@ -7,18 +7,15 @@
 
     function utilityService($http, Url) {
         return {
-            getData: getData
-                // postData: postData
+            getData: getData,
+            postData: postData
         };
 
-        // function postData(controller, dataObject) {
-        //     $http.post(Url.hostDomain + controller, dataObject).then(
-        //         function(response) {
-        //             var result = response.data;
-        //             return result;
-        //         }
-        //     )
-        // };
+        function postData(controller, dataObject) {
+            return $http.post(Url.hostDomain + controller, dataObject).then(function() {
+
+            });
+        };
 
         function getData(controller) {
             var data = {};

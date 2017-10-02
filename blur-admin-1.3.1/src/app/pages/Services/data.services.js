@@ -12,12 +12,14 @@
         var branchCode = {};
         var branchList = [];
         var stampCodeList = [];
+        var bolCode = {};
 
         return {
             getInitData: getInitData,
             addInitData: addInitData,
             getBranchCode: getBranchCode,
             addBranchCode: addBranchCode,
+            addBolCode: addBolCode,
             getBolCode: getBolCode,
             addItem: addItem,
             getList: getList,
@@ -50,12 +52,11 @@
         /**end */
 
         /**Bol Code { get; } */
+        function addBolCode(code) {
+            bolCode = code;
+        }
+
         function getBolCode() {
-            var to = branchCode.receivedBranchCode.selected.BranchCode.trim();
-            var from = branchCode.sentBranchCode.selected.BranchCode.trim();
-            var dateCode = initDataList[0].data.serverTimeStamp.substring(0, 6);
-            var timeCode = initDataList[0].data.serverTimeStamp.substring(6, 12);
-            var bolCode = from + "-" + dateCode + "-" + to + "-" + timeCode;
             return bolCode;
         }
 

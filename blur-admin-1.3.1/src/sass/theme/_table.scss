@@ -211,6 +211,7 @@ input.search-input {
         input {
             line-height: 1px;
             height: 30px;
+            width: 200px
         }
     }
 }
@@ -356,4 +357,18 @@ th {
 
 .table-responsive {
     margin-top: 10px;
+}
+
+.editable-click:hover,
+a.editable-click:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-bottom-color: white;
+}
+
+#toast-container {
+    position: absolute !important;
+    z-index: 999999;
+    top: 67px !important;
 }
