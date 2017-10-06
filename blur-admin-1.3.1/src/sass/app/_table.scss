@@ -1,3 +1,18 @@
 .table-panel {
-  height: 295px;
+    height: 295px;
+}
+
+.start-status {
+    background-color: $primary;
+    color: white;
+}
+
+.progress-status {
+    background-color: #A569BD;
+    color: white;
+}
+
+.complete-status {
+    background: #1F618D;
+    color: white;
 }

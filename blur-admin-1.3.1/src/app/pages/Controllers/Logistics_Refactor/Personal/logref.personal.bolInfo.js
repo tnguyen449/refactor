@@ -162,8 +162,8 @@
                         deliveryPrice: vm.deliveryPrice,
                         //end delivery key-value
                         //status key-value
-                        statusCodeId: 6,
-                        statusCodeName: "Chờ xác nhận",
+                        statusCodeId: 1,
+                        statusCodeName: "Đã nhận hàng",
                         //end status key-value
                         subTotal: vm.subTotal,
                         declaredPrice: vm.declaredPrice === undefined ? '0' : vm.declaredPrice,

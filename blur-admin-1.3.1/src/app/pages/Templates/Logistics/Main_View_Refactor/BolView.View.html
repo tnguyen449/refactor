@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="panel panel-primary height" ng-init="mainCtrl.getAllBol()">
+    <div class="panel panel-primary height" st-table="mainCtrl.bolDetails" ng-init="mainCtrl.getAllBol()">
         <!-- heading -->
         <!--<div class="panel-heading ">
             <h2>Tổng Hợp Vận Đơn</h2>
@@ -25,7 +25,7 @@
                         <div class="row btns-row pull-right">
                             <!-- button add item -->
                             <div class="col-md-6">
-                                <button type="button" ui-sref="create.personal" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm Vận Đơn</button>
+                                <button type="button" ui-sref="create.personal" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Tạo Vận Đơn</button>
                             </div>
                             <div class="col-md-6">
                                 <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i> Tạo Báo Cáo</button>
@@ -45,11 +45,11 @@
                             <th class="col-xs-2 text-left bolHeaderView">Mã ĐH</th>
                             <th class="col-md-1 text-center bolHeaderView">Người Gửi</th>
                             <th class="col-md-1 text-center bolHeaderView">Người Nhận</th>
-                            <th class="col-xs-1 text-center bolHeaderView">SL</th>
+                            <th class="col-xs-1 text-center bolHeaderView">Số Lượng</th>
                             <th class="col-md-1 text-center bolHeaderView">Tổng Cộng</th>
-                            <th class="col-md-1 text-left bolHeaderView">Xác Nhận</th>
+                            <!-- <th class="col-md-1 text-left bolHeaderView">Xác Nhận</th> -->
                             <th class="col-md-1 text-left bolHeaderView">In Tem</th>
-                            <th class="col-md-2 text-left bolHeaderView">Trạng Thái</th>
+                            <th class="col-md-2 text-left bolHeaderView" st-sort="Status.StatusName">Trạng Thái</th>
                         </tr>
                     </thead>
                     <tbody st-select-row="detail" st-select-mode="multiple" ng-repeat="detail in mainCtrl.bolDetails | searchFor: mainCtrl.searchQuery">
@@ -63,17 +63,17 @@
                             <td class="text-center">{{detail.Customers[1].Phone !== detail.Contact ? detail.Customers[1].Name: detail.Customers[0].Name}}</td>
                             <td class="text-center">{{detail.Quantity}}</td>
                             <td class="text-center">{{detail.Total}}đ</td>
-                            <td class="mx-auto">
+                            <!-- <td class="mx-auto">
                                 <div class="col-xs-4">
                                     <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.confimBol(detail.Id)"><i class="fa fa-check-square fa-lg"></i></button>
                                 </div>
-                            </td>
+                            </td> -->
                             <td class="align-center">
                                 <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.printStamps(detail.BolCode, detail.Quantity)"><i class="fa fa-print fa-lg"></i></button>
                             </td>
                             <td>
                                 <div class="align-center">
-                                    <button type="button" class="btn btn-xs status btn-default" ng-disabled="detail.StatusCode == 6" ng-click="mainCtrl.updateStatus(detail.Id)">{{detail.Status.StatusName}}</button>
+                                    <button type="button" class="btn btn-xs status btn-default" ng-class="detail.Status.Id==1? 'start-status':(detail.Status.Id ==5 ? 'complete-status':'progress-status')" ng-click="mainCtrl.updateStatus(detail.BolCode, detail.Status.Id, detail.Id)">{{detail.Status.StatusName}}</button>
                                 </div>
                             </td>
                         </tr>

@@ -33,7 +33,8 @@
 
             //Statistic
             //BolData
-            'bolData': 'Statistic/GetBolData'
+            'bolData': 'Statistic/GetBolData',
+            'bolBasedLocationData': 'Statistic/GetBolOnLocationData'
 
         })
         // .constant('hostDomain', 'http://localhost::57363/NgocTrang/Api')

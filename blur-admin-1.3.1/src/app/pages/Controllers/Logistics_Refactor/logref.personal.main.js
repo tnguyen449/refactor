@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'utility', '$uibModal', '$uibModalStack', 'Url', 'backendController']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, utility, $uibModal, $uibModalStack, Url, backendController) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -59,10 +59,16 @@
             )
         };
 
-        vm.updateStatus = function(id) {
-            utility.postData(backendController.updateStatus + id).then(function() {
-                $state.reload();
-            })
+        vm.updateStatus = function(bolCode, sttCode, id) {
+            if (sttCode == 5) {
+
+            } else {
+                utility.postData(backendController.updateStatus + id).then(function() {
+                    $state.reload();
+                    toastr.success("Vận đơn " + bolCode + " cập nhật trạng thái thành công!")
+                })
+            }
+
         };
 
         $scope.stampCode = [];

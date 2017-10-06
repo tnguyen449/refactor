@@ -1,3 +1,63 @@
-<div>
-    <div id="bolChart"></div>
+<div class="col-md-12">
+    <div class="panel panel-primary height">
+        <div class="panel-body">
+            <h1>Thống Kê</h1>
+            <!-- button group -->
+            <div class="add-row-editable-table col-md-12">
+                <div class="col-md-12">
+                    <div class="col-md-6 pull-left">
+                        <div class="col-md-7 pull-left">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row btns-row pull-right">
+                            <!-- button add item -->
+                            <div class="col-md-6">
+                                <button type="button" ng-click="merchandiseCtrl.openModal()" class="btn btn-lg btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thống Kê Vận Đơn Trong Ngày</span></button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" ng-click="merchandiseCtrl.openModal()" class="btn btn-lg btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thống Kê Hàng Đã Nhận Trong Ngày</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end button group -->
+            <!-- table bill of landing details -->
+            <div class="horizontal-scroll col-md-12" ng-show="merchandiseCtrl.merchandiseList.length !== 0">
+
+                <div class="row pie-charts">
+                    <div class="pie-chart-item-container" ng-repeat="chart in charts">
+                        <div ba-panel>
+                            <div class="pie-chart-item">
+                                <div class="chart" rel="{{ ::chart.color }}" data-percent="60"> <span class="percent"></span> </div>
+                                <div class="description">
+                                    <div>{{ ::chart.description }}</div>
+                                    <div class="description-stats">{{ ::chart.stats }}</div>
+                                </div>
+                                <i class="chart-icon i-{{ ::chart.icon }}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div id="bolDailyChart"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div id="bolBasedLocationChart"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end bill of landing details -->
+        </div>
+    </div>
+    <!-- end bill of landing infomation -->
 </div>

@@ -4,11 +4,13 @@
     angular.module('BlurAdmin.pages.merchandise')
         .controller('merchandiseAddCtrl', merchandiseAddCtrl);
 
-    merchandiseAddCtrl.$inject = ['$scope', '$uibModal', 'Url', 'backendController'];
+    merchandiseAddCtrl.$inject = ['$scope', '$uibModal', '$uibModalStack', 'Url', 'backendController'];
 
-    function merchandiseAddCtrl($scope, $uibModal, Url, backendController) {
+    function merchandiseAddCtrl($scope, $uibModal, $uibModalStack, Url, backendController) {
         var vm = this;
-        console.log(Url.hostDomain + backendController.addMerchandiseType);
+        vm.cancel = function() {
+            $uibModalStack.dismissAll();
+        };
         vm.add = function() {
             $.ajax({
                     url: Url.hostDomain + backendController.addMerchandiseType,
@@ -24,6 +26,5 @@
                     toastr.success('Mặt hàng đã được tạo thành công!');
                 })
         }
-
     }
 })(jQuery);

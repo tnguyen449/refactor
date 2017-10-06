@@ -11,7 +11,7 @@
         var vm = this;
         var transaction = shareDataService.getList();
         vm.transactionVM = transaction;
-
+        vm.link = vm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode;
         vm.cancel = function() {
             $uibModalStack.dismissAll();
         };
