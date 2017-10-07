@@ -1,0 +1,27 @@
+<div class="col-md-12">
+    <div class="panel panel-primary height">
+        <div class="wrapper" id="print-here">
+
+            <div class="invoice" ng-repeat="stampCode in stampViewCtrl.stampCode track by $index">
+                <div class="row stamp-info">
+                    adfsadfsdfsdf
+                    <div class="col-md-12 stamp-col">
+                        <div class="col-md-7">
+                            adfsadfsdfsdf
+                            <h1>{{stampCode}}</h1>
+                        </div>
+                        <div class="col-md-5" class="replace-me">
+                            <qr name="code" class="pull-right" correction-level="'M'" size="100" text="stampCode" id="{{stampCode}}"></qr>
+                        </div>
+                    </div>
+                </div>
+                </br>
+
+                <div>
+                    <img src="assets/img/cut-here.png" style="width: 100%" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

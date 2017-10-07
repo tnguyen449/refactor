@@ -19,13 +19,13 @@
                         <div class="row btns-row pull-right">
                             <!-- button add item -->
                             <div class="col-md-4">
-                                <button type="button" ng-click="merchandiseCtrl.openModal()" class="btn btn-md btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm</span></button>
+                                <button type="button" ng-click="merchandiseCtrl.openModal()" class="btn btn-lg btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Thêm</span></button>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><span><i class="fa fa-print fa-lg" aria-hidden="true"></i> Sửa</span></button>
+                                <!--<button type="button" ui-sref="qr" class="btn btn-md btn-primary"><span><i class="fa fa-print fa-lg" aria-hidden="true"></i> Sửa</span></button>-->
                             </div>
                             <div class="col-md-4">
-                                <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><span><i class="fa fa-print fa-lg" aria-hidden="true"></i> Xóa</span></button>
+                                <!--<button type="button" ui-sref="qr" class="btn btn-md btn-primary"><span><i class="fa fa-print fa-lg" aria-hidden="true"></i> Xóa</span></button>-->
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <th class="col-md-4 text-left bolHeaderView">Tên</th>
                             <th class="col-md-4 text-left bolHeaderView">Loại Hàng</th>
                             <!-- <th class="col-md-1 text-center"></th> -->
-                            <th class="col-md-4 text-center"></th>
+                            <th class="col-md-4 text-center">Xóa</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="merchandise in merchandiseCtrl.merchandiseList">
@@ -56,13 +56,13 @@
                             <!-- <td class="text-center">{{branch.Id}}</td> -->
                             <td class="text-left">{{merchandise.MerchandiseType1}}</td>
                             <td class="text-left">{{merchandise.Description}}</td>
-                            <td class="text-left">
-                                <div class="row btn-rows">
-                                    <!-- <div class="col-sm-5">
-                                        <button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>
-                                    </div> -->
+                            <td class="text-center">
+                                <div class="align-right row btn-rows">
                                     <div class="col-sm-5">
                                         <button type="button" class="btn btn-md btn-danger" ng-click="merchandiseCtrl.deleteMerchandise(merchandise.Id)"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></button>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <!--<button type="button" class="btn btn-md btn-primary"><i class="fa fa-check-square fa-lg"></i></button>-->
                                     </div>
                                 </div>
                             </td>

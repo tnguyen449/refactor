@@ -15,7 +15,5 @@ angular.module('BlurAdmin', [
     'ja.qr',
     'qrScanner',
     'BlurAdmin.theme',
-    'BlurAdmin.pages',
-    // 'BlurAdmin.pages.logistics',
-    // 'BlurAdmin.pages.branch'
+    'BlurAdmin.pages'
 ]);

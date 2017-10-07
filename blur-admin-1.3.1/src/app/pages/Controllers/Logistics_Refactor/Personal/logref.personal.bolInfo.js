@@ -12,7 +12,6 @@
 
         /** init data and create object */
         var initDataList = shareDataService.getInitData();
-        console.log(initDataList);
         vm.branchInfo = shareDataService.getBranchCode();
         vm.bolCode = shareDataService.getBolCode();
         vm.sendDate = new Date();
@@ -237,8 +236,6 @@
                         controllerAs: 'bolConfirm'
                     });
                 }
-                console.log(vm.transactionVM);
-
             }
             /** end */
     }
