@@ -3,23 +3,23 @@
     </div>
     <div class="modal-body">
         <div class="wrapper">
-            <section class="invoice" id="print-content" ng-repeat="stampCode in stampViewCtrl.stampCode track by $index">
-                <div class="row invoice-info">
-                    <div class="col-md-12 invoice-col">
-                        <div class="col-md-7">
+            <div class="invoice print-stamp-content" ng-repeat="stampCode in stampViewCtrl.stampCode track by $index">
+                <div class="row stamp-info">
+                    <div class="col-md-12 stamp-col">
+                        <div class="col-md-7 stamp-code">
                             <h1>{{stampCode}}</h1>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 qr-code">
                             <qr class="pull-right" correction-level="'M'" size="100" text="stampCode"></qr>
                         </div>
                     </div>
                 </div>
                 </br>
-                <div>
+                <div class="cut-here">
                     <img src="assets/img/cut-here.png" style="width: 100%" />
                 </div>
                 </br>
-            </section>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

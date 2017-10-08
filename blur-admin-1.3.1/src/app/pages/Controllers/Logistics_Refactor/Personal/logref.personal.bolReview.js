@@ -18,21 +18,21 @@
 
         vm.printInvoice = function() {
 
-            $.ajax({
-                    method: "POST",
-                    url: Url.hostDomain + backendController.addBol,
-                    data: vm.transactionVM.TransactionVM
-                })
-                .done(function() {
-                    vm.cancel();
-                    //window.onload();
-                    //window.print();
-                    $state.go('view', {}, { reload: 'view' });
-                    toastr.success('Đơn vận đã được tạo thành công!');
-                })
-                .fail(function() {
-                    toastr.error('Đã xảy ra lỗi. Đơn vận không không thể khởi tạo', 'LỖI');
-                })
+            // $.ajax({
+            //         method: "POST",
+            //         url: Url.hostDomain + backendController.addBol,
+            //         data: vm.transactionVM.TransactionVM
+            //     })
+            //     .done(function() {
+            //vm.cancel();
+            //window.onload();
+            window.print();
+            // $state.go('view', {}, { reload: 'view' });
+            // toastr.success('Đơn vận đã được tạo thành công!');
+            // })
+            // .fail(function() {
+            //     toastr.error('Đã xảy ra lỗi. Đơn vận không không thể khởi tạo', 'LỖI');
+            // })
 
         };
     }
