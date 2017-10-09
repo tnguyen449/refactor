@@ -729,7 +729,7 @@ fieldset[disabled] .form-control {
 //setup printing page for stamp code
 @media print {
     @page {
-        size: A4 portrait;
+        size: auto;
     }
     .wrapper {
         height: 100%;
@@ -741,10 +741,6 @@ fieldset[disabled] .form-control {
     }
     .print-stamp-content * {
         visibility: visible;
-    }
-    .page-break {
-        display: block !important;
-        page-break-before: always !important;
     }
     // .print-stamp-content {
     //     width: 120%;
@@ -758,18 +754,21 @@ fieldset[disabled] .form-control {
         width: 100%;
     }
     .print-stamp-content {
-        margin-top: 5px;
+        margin-bottom: calc(1% + 30px);
         width: 120%;
         border: 0;
         padding: 0;
-        page-break-before: always !important;
+        ;
         display: block;
     }
     .stamp-code {
         width: 58.33333333%
     }
+    .stamp-info {
+        margin-bottom: 2%
+    }
     .qr-code {
-        top: 0;
+        top: 20px;
         margin: 0;
         bottom: 30px;
         position: absolute;
@@ -781,6 +780,5 @@ fieldset[disabled] .form-control {
     .stamp-col {
         //width: 33.3366667%;
         width: 100%;
-        page-break-before: always;
     }
 }
