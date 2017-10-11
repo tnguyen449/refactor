@@ -108,8 +108,14 @@
             var discount = vm.discount == "" ? '0' : vm.discount;
             // vm.finalTotal = (subTotal + declareFee + onHandFee + guaranteeFee + deliveryPrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
             vm.finalTotal = businessService.calculateTotal(subTotal, declareFee, deliveryPrice, discount, onHandFee, guaranteeFee);
+        
             return vm.finalTotal;
         };
+
+        $scope.$watch("bolInfoCtrl.finalTotal", function (newValue) {
+			vm.prepaid = newValue;
+        });
+        
         vm.bindingLiabilities = function() {
                 var finalTotal = vm.finalTotal;
                 var prepaid = vm.prepaid == "" ? "0" : vm.prepaid;
@@ -117,7 +123,8 @@
                     toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO')
                     vm.bindingFinalTotal();
                     vm.prepaid = "";
-                } else {
+                }
+                else {
                     vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
                 }
                 return vm.finalLiabilities;
