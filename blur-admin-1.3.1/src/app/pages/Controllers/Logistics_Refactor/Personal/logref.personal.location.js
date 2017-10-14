@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('DestinationController', DestinationController);
 
-    DestinationController.$inject = ['$scope', '$rootScope', '$state', '$uibModal', '$uibModalStack', 'shareDataService', 'backendController', 'utility']
+    DestinationController.$inject = ['$scope', '$rootScope', '$state', '$uibModal', '$uibModalStack', 'toastr', 'shareDataService', 'backendController', 'utility']
 
     /** @ngInject */
-    function DestinationController($scope, $rootScope, $state, $uibModal, $uibModalStack, shareDataService, backendController, utility) {
+    function DestinationController($scope, $rootScope, $state, $uibModal, $uibModalStack, toastr, shareDataService, backendController, utility) {
         var vm = this;
         var initDataList = shareDataService.getInitData();
 
@@ -27,14 +27,15 @@
                 minute: '2-digit',
                 second: '2-digit'
             };
-            if (initDataList[0].data.merchandiseTypeVM.length == 0) {
-                $uibModal.open({
-                    animation: true,
-                    templateUrl: 'app/pages/components/notifications/NoMerchandise.alert.html',
-                    controller: 'DestinationController',
-                    controllerAs: 'DestinationController'
-                })
-            } else {
+            // if (initDataList[0].data.merchandiseTypeVM.length == 0) {
+            //     $uibModal.open({
+            //         animation: true,
+            //         templateUrl: 'app/pages/components/notifications/NoMerchandise.alert.html',
+            //         controller: 'DestinationController',
+            //         controllerAs: 'DestinationController'
+            //     })
+            // }
+            if (vm.branchCode.receivedBranchCode.selected !== vm.branchCode.sentBranchCode.selected) {
                 shareDataService.addBranchCode(vm.branchCode);
                 var currentTime = new Date();
                 var dateCode = currentTime.getDate().toLocaleString('en-GB', options) + (currentTime.getMonth() + 1).toLocaleString('en-GB', options) + currentTime.getFullYear().toLocaleString('en-GB', options).substring(5, 3);
@@ -44,6 +45,9 @@
                 var bolCode = from + "-" + dateCode + "-" + to + "-" + timeCode;
                 shareDataService.addBolCode(bolCode);
                 $state.go('bol');
+            } else {
+                console.log("test dfatda");
+                toastr.warning("Nơi nhận không được trùng với Nơi gửi", "THÔNG BÁO");
             }
         }
 

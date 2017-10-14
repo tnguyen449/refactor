@@ -671,114 +671,113 @@ fieldset[disabled] .form-control {
     width: 47px;
 }
 
-@media print {
-    @page {
-        size: A4;
-    }
-    .wrapper {
-        height: 100%;
-        position: relative;
-        margin: 0 auto;
-    }
-    body * {
-        visibility: hidden;
-    }
-    #print-content * {
-        visibility: visible;
-    }
-    #print-content {
-        margin-top: 10px;
-        //height: 50%;
-        width: 120%;
-        border: 0;
-        padding: 0;
-        display: block !important;
-        page-break-before: always !important;
-    }
-    .modal {
-        position: absolute;
-        left: 0;
-        top: 0;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        overflow: visible !important
-    }
-    .invoice {
-        width: 100%;
-        border: 0;
-        margin: 0;
-        padding: 0;
-    }
-    .invoice-col {
-        float: left;
-        //width: 33.3366667%;
-        width: 33.3333333%;
-        page-break-before: always;
-    }
-    .table-responsive {
-        overflow: auto;
-    }
-    .table-responsive>.table tr th,
-    .table-responsive>.table tr td {
-        white-space: normal !important;
-    }
-}
-
+// @media print {
+//     @page {
+//         size: A4;
+//     }
+//     .wrapper {
+//         height: 100%;
+//         position: relative;
+//         margin: 0 auto;
+//     }
+//     body * {
+//         visibility: hidden;
+//     }
+//     #print-content * {
+//         visibility: visible;
+//     }
+//     #print-content {
+//         margin-top: 10px;
+//         //height: 50%;
+//         width: 120%;
+//         border: 0;
+//         padding: 0;
+//         display: block !important;
+//         page-break-before: always !important;
+//     }
+//     .modal {
+//         position: absolute;
+//         left: 0;
+//         top: 0;
+//         margin: 0;
+//         padding: 0;
+//         height: 100%;
+//         width: 100%;
+//         overflow: visible !important
+//     }
+//     .invoice {
+//         width: 100%;
+//         border: 0;
+//         margin: 0;
+//         padding: 0;
+//     }
+//     .invoice-col {
+//         float: left;
+//         //width: 33.3366667%;
+//         width: 33.3333333%;
+//         page-break-before: always;
+//     }
+//     .table-responsive {
+//         overflow: auto;
+//     }
+//     .table-responsive>.table tr th,
+//     .table-responsive>.table tr td {
+//         white-space: normal !important;
+//     }
+// }
 //setup printing page for stamp code
-@media print {
-    @page {
-        size: auto;
-    }
-    .wrapper {
-        height: 100%;
-        position: relative;
-        margin: 0 auto;
-    }
-    body * {
-        visibility: hidden;
-    }
-    .print-stamp-content * {
-        visibility: visible;
-    }
-    // .print-stamp-content {
-    //     width: 120%;
-    //     border: 0;
-    //     padding: 0;
-    //     display: block !important;
-    //     page-break-before: always !important;
-    // }
-    .modal {
-        height: 100%;
-        width: 100%;
-    }
-    .print-stamp-content {
-        margin-bottom: calc(1% + 30px);
-        width: 120%;
-        border: 0;
-        padding: 0;
-        ;
-        display: block;
-    }
-    .stamp-code {
-        width: 58.33333333%
-    }
-    .stamp-info {
-        margin-bottom: 2%
-    }
-    .qr-code {
-        top: 20px;
-        margin: 0;
-        bottom: 30px;
-        position: absolute;
-        width: 80.66666667%
-    }
-    .cut-here {
-        margin-top: 60px
-    }
-    .stamp-col {
-        //width: 33.3366667%;
-        width: 100%;
-    }
-}
+// @media print {
+//     @page {
+//         size: auto;
+//     }
+//     .wrapper {
+//         height: 100%;
+//         position: relative;
+//         margin: 0 auto;
+//     }
+//     body * {
+//         visibility: hidden;
+//     }
+//     .print-stamp-content * {
+//         visibility: visible;
+//     }
+//     // .print-stamp-content {
+//     //     width: 120%;
+//     //     border: 0;
+//     //     padding: 0;
+//     //     display: block !important;
+//     //     page-break-before: always !important;
+//     // }
+//     .modal {
+//         height: 100%;
+//         width: 100%;
+//     }
+//     .print-stamp-content {
+//         margin-bottom: calc(1% + 30px);
+//         width: 120%;
+//         border: 0;
+//         padding: 0;
+//         ;
+//         display: block;
+//     }
+//     .stamp-code {
+//         width: 58.33333333%
+//     }
+//     .stamp-info {
+//         margin-bottom: 2%
+//     }
+//     .qr-code {
+//         top: 20px;
+//         margin: 0;
+//         bottom: 30px;
+//         position: absolute;
+//         width: 80.66666667%
+//     }
+//     .cut-here {
+//         margin-top: 60px
+//     }
+//     .stamp-col {
+//         //width: 33.3366667%;
+//         width: 100%;
+//     }
+// }

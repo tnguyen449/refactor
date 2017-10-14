@@ -108,14 +108,14 @@
             var discount = vm.discount == "" ? '0' : vm.discount;
             // vm.finalTotal = (subTotal + declareFee + onHandFee + guaranteeFee + deliveryPrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
             vm.finalTotal = businessService.calculateTotal(subTotal, declareFee, deliveryPrice, discount, onHandFee, guaranteeFee);
-        
+
             return vm.finalTotal;
         };
 
-        $scope.$watch("bolInfoCtrl.finalTotal", function (newValue) {
-			vm.prepaid = newValue;
+        $scope.$watch("bolInfoCtrl.finalTotal", function(newValue) {
+            vm.prepaid = newValue;
         });
-        
+
         vm.bindingLiabilities = function() {
                 var finalTotal = vm.finalTotal;
                 var prepaid = vm.prepaid == "" ? "0" : vm.prepaid;
@@ -123,8 +123,7 @@
                     toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO')
                     vm.bindingFinalTotal();
                     vm.prepaid = "";
-                }
-                else {
+                } else {
                     vm.finalLiabilities = businessService.calculateLiabilities(finalTotal, prepaid);
                 }
                 return vm.finalLiabilities;
@@ -142,9 +141,9 @@
                 /** binding object */
                 vm.bolInfo = {
                         senderName: vm.customerInfo.senderName === undefined ? "" : vm.customerInfo.senderName,
-                        senderPhone: vm.customerInfo.senderPhone === undefined ? "" : "0" + vm.customerInfo.senderPhone,
+                        senderPhone: vm.customerInfo.senderPhone === undefined ? "" : vm.customerInfo.senderPhone,
                         receiverName: vm.customerInfo.receiverName === undefined ? "" : vm.customerInfo.receiverName,
-                        receiverPhone: vm.customerInfo.receiverPhone === undefined ? "" : "0" + vm.customerInfo.receiverPhone,
+                        receiverPhone: vm.customerInfo.receiverPhone === undefined ? "" : vm.customerInfo.receiverPhone,
                         merchandiseId: vm.merchandiseType.selected.Id === undefined ? "" : vm.merchandiseType.selected.Id,
                         merchandiseName: vm.merchandiseType.selected.MerchandiseType1,
                         bolCode: vm.bolCode === undefined ? "" : vm.bolCode,
@@ -160,7 +159,7 @@
                         sendAddress: vm.sendAddress === undefined ? "" : vm.sendAddress,
                         receivedTime: vm.deliveryType.Id == 2 ? vm.receivedTime : "",
                         discount: vm.discount === undefined ? '0' : vm.discount,
-                        contact: "0" + vm.customerInfo.senderPhone,
+                        contact: vm.customerInfo.senderPhone,
 
                         //delivery key-value
                         deliveryTypeId: vm.deliveryType.Id === undefined ? "" : vm.deliveryType.Id,

@@ -1,16 +1,15 @@
 <div class="modal-content height">
     <div class="modal-body">
         <div class="wrapper" id="test">
-            <div class="print-stamp-content" ng-repeat="stampCode in stampViewCtrl.stampCode track by $index">
+            <div class="print-stamp-content" ng-repeat="stampCode in stampViewCtrl.stampCode track by $index" style="page-break-inside: avoid">
                 <div class="row stamp-info">
                     <div class="col-md-12 stamp-col">
                         <div class="col-md-7 stamp-code-50">
                             <h1>{{stampCode}}</h1>
                         </div>
-                        <div class="col-md-5 qr-code">
-                            <qr class="pull-right" correction-level="'M'" size="100" text="stampCode"></qr>
+                        <div class="col-md-5 qr-code modify-here">
+                            <qr name="convert-here" class="pull-right convert-here" correction-level="'M'" size="100" text="stampCode"></qr>
                         </div>
-                        <div class="page-break"></div>
                     </div>
                 </div>
                 </br>

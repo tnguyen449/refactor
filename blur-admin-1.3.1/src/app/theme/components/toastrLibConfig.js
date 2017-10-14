@@ -13,7 +13,7 @@
         angular.extend(toastrConfig, {
             closeButton: true,
             closeHtml: '<button>&times;</button>',
-            timeOut: 5000,
+            timeOut: 500000,
             autoDismiss: false,
             containerId: 'toast-container',
             maxOpened: 0,

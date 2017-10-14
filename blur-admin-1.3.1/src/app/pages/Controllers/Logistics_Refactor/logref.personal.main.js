@@ -1,4 +1,4 @@
-(function() {
+(function($) {
     'use strict';
 
     angular.module('BlurAdmin.pages.logistics')
@@ -92,11 +92,32 @@
             });
         };
         vm.print = function() {
-            window.print();
+            //get all canvas
+            var imgArr = [];
+            var test = document.getElementsByName('convert-here')
+            for (var i = 0; i < test.length; i++) {
+                var fullQuality = test[i].childNodes[0].toDataURL();
+                var img = $('<img>');
+                img.attr('src', fullQuality);
+                imgArr.push(img);
+            }
+
+            var frameDoc = window.open();
+            frameDoc.document.write('<html><head>');
+            frameDoc.document.write('<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"><link rel="stylesheet" href="./app/main.css"><title>In tem</title>')
+            frameDoc.document.write('</head><body>');
+            //replace
+            var canvas = $("[name='convert-here']");
+            $.each(canvas, function(index, value) {
+                imgArr[index].appendTo(canvas[index]);
+            })
+            frameDoc.document.write($('#test').html());
+            frameDoc.document.write('</body></html>');
+
             vm.cancel();
         };
         vm.cancel = function() {
             $uibModalStack.dismissAll();
         };
     }
-})();
+})(jQuery);

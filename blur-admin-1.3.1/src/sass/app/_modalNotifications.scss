@@ -1,23 +1,27 @@
 .toast {
-  background-color: $primary;
+    background-color: $primary;
 }
 
 .toast-success {
-  background-color: $success;
+    background-color: $success;
+    opacity: 100%;
 }
 
 .toast-error {
-  background-color: $danger;
+    background-color: $danger;
+    opacity: 100%;
 }
 
 .toast-info {
-  background-color: $info;
+    background-color: $info;
 }
 
 .toast-warning {
-  background-color: $warning;
+    background-color: $toast-warning;
+    opacity: 100%;
 }
 
-#toast-container.toast-top-full-width > div, #toast-container.toast-bottom-full-width > div {
-  margin: 5px auto;
+#toast-container.toast-top-full-width>div,
+#toast-container.toast-bottom-full-width>div {
+    margin: 5px auto;
 }
