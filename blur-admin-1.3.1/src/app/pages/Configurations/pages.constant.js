@@ -4,10 +4,12 @@
     angular.module('BlurAdmin.pages')
         .constant('Url', {
             'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
+            'externalDomain': 'http://192.168.56.1:57363/NgocTrang/Api/'
         })
         .constant('backendController', {
             //Bill of landing const
             'getComponents': 'Bol/GetComponent',
+            'getCurrentTimeStamp': 'Bol/GetCurrentTimeStamp',
             'getAllBol': 'Bol/GetAllBol',
             'addBol': 'Bol/Add',
             'updateStatus': 'Bol/UpdateStatus/',
