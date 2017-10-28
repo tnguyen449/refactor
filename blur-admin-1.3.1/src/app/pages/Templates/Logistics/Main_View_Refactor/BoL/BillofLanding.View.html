@@ -64,7 +64,7 @@
                                     <label class="col-sm-4 control-label bolHeader"><strong>Ngày Nhận</strong></label>
                                     <div class="col-sm-8 datepicker">
                                         <p class="input-group" style="margin-bottom: 0">
-                                            <input type="text" class="form-control with-primary-addon" uib-datepicker-popup={{bolInfoCtrl.format}} datepicker-options="bolInfoCtrl.receiveDate" ng-model="bolInfoCtrl.receivedDate" ng-value="bolInfoCtrl.receiveDate.minDate" is-open="bolInfoCtrl.opened"
+                                            <input type="text" class="form-control with-primary-addon" uib-datepicker-popup="{{bolInfoCtrl.format}}" datepicker-options="bolInfoCtrl.receiveDate" ng-model="bolInfoCtrl.receivedDate" ng-value="bolInfoCtrl.receiveDate.minDate" is-open="bolInfoCtrl.opened"
                                                 name="datePicker" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
                                             <span class="input-group-btn">
                                             <button type="button" class="btn btn-default" ng-click="bolInfoCtrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>

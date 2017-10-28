@@ -16,8 +16,8 @@
                                 <label>Tìm kiếm: </label>
                             </div>
                             <!-- button search item -->
-                            <div class="col-md-8">
-                                <input type="text" class="input-sm form-control search-input" ng-model="mainCtrl.searchQuery" placeholder="Nhập từ khóa tìm kiếm">
+                            <div class="col-md-8 datepicker">
+                                <input type="text" class="input-sm form-control search-input" style="width: 167.047px" ng-model="mainCtrl.searchQuery" placeholder="Nhập từ khóa tìm kiếm">
                             </div>
                         </div>
                     </div>
@@ -27,8 +27,29 @@
                             <div class="col-md-6">
                                 <button type="button" ui-sref="create.personal" class="btn btn-md btn-primary"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Tạo Vận Đơn</button>
                             </div>
-                            <div class="col-md-6">
+                            <!--<div class="col-md-6">
                                 <button type="button" ui-sref="qr" class="btn btn-md btn-primary"><i class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i> Tạo Báo Cáo</button>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-7 pull-left">
+                        <div class="col-md-7 pull-left">
+                            <div class="col-md-4" style="padding-top: 10px;">
+                                <label>Ngày Tạo: </label>
+                            </div>
+                            <!-- button search item -->
+                            <div class="datepicker col-md-8" style="padding-left: 7.5px">
+                                <p class="input-group">
+                                    <input type="text" class="input-sm form-control" uib-datepicker-popup="{{mainCtrl.format}}" ng-model="mainCtrl.conditionQuery" ng-change="mainCtrl.filterBol(mainCtrl.conditionQuery)" ng-value="mainCtrl.bindingDate.minDate" is-open="mainCtrl.opened" name="datePicker"
+                                        close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="mainCtrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                                <span class="help-block error-block basic-block">Chọn ngày nhận</span>
                             </div>
                         </div>
                     </div>
@@ -93,8 +114,9 @@
                     </table>
                     <!-- end smart table -->
                 </div>
-                <div ng-show="mainCtrl.bolDetails.length == 0">
-                    Không có Dữ liệu
+                <div></div>
+                <div ng-show="mainCtrl.bolDetails.length == 0" class="col-md-12 text-center">
+                    <p class="table-notification">Không tìm thấy dữ liệu</p>
                 </div>
                 <!-- end bill of landing details -->
             </div>

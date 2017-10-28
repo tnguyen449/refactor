@@ -251,3 +251,28 @@
     color: #808080;
     font-weight: bold
 }
+
+.table-notification {
+    color: grey;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 50px;
+}
+
+.image-top {
+    width: 150px;
+    height: 50px;
+    margin: 5% 0 0 -11%
+}
+
+.img {
+    width: 30%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: $primary;
+}
+
+.section-header-1 {
+    margin-bottom: 40px;
+    text-align: center;
+}

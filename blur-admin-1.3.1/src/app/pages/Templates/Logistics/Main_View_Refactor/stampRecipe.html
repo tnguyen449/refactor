@@ -7,7 +7,7 @@
                         <div class="col-md-7 stamp-code-50">
                             <h1>{{stampCode}}</h1>
                         </div>
-                        <div class="col-md-5 qr-code modify-here">
+                        <div class="col-md-5 qr-code modify-here" ng-show="$index==0">
                             <qr name="convert-here" class="pull-right convert-here" correction-level="'M'" size="100" text="stampCode"></qr>
                         </div>
                     </div>

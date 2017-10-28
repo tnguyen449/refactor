@@ -36,12 +36,12 @@
         .state('create', {
             url: '/van-don/tao',
             template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
-            abstract: true,
-            title: 'Tạo Vận Đơn',
-            sidebarMeta: {
-                icon: 'fa fa-pencil-square-o fa-lg',
-                order: 0,
-            }
+            // abstract: true,
+            // title: 'Tạo Vận Đơn',
+            // sidebarMeta: {
+            //     icon: 'fa fa-pencil-square-o fa-lg',
+            //     order: 0,
+            // }
         })
 
         .state('create.personal', {

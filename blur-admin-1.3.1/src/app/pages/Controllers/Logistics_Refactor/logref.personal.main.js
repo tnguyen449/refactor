@@ -16,6 +16,7 @@
         vm.customerInfoVM = [];
         vm.bolDetails = {};
         vm.itemsByPage = 2;
+        vm.conditionQuery = new Date();
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
 
@@ -24,14 +25,14 @@
 
                         vm.branchInfoVM = response.Branch;
                         vm.merchandiseTypeVM = response.Type;
-                        //vm.serverTimeStampVM = response.CurrentTimeStamp;
+                        vm.serverTimeStampVM = response.CurrentTimeStamp;
                         vm.deliveryTypeVM = response.DeliveryType;
                         vm.initData = {
                             data: {
                                 branchInfoVM: vm.branchInfoVM,
                                 merchandiseTypeVM: vm.merchandiseTypeVM,
                                 deliveryTypeVM: vm.deliveryTypeVM,
-                                //serverTimeStamp: vm.serverTimeStampVM
+                                serverTimeStamp: vm.serverTimeStampVM
                             }
                         }
                         shareDataService.addInitData(vm.initData);
@@ -51,8 +52,44 @@
             }
         };
 
+        /** setup datepicker */
+        vm.today = new Date();
+        vm.opened = false;
+        vm.formats = ['dd/MM/yyyy'];
+        vm.format = vm.formats[0];
+        vm.options = {
+            showWeeks: false
+        };
+        vm.dateOptions = {
+            formatYear: 'yyyy',
+            maxDate: new Date(2099, 12, 31),
+            minDate: new Date(),
+            startingDay: 1
+        };
+        vm.receiveDate = {
+            minDate: new Date(vm.dateOptions.minDate.getFullYear(), vm.dateOptions.minDate.getMonth(), vm.dateOptions.minDate.getDate() + 1)
+        };
+        vm.bindingDate = {
+            minDate: new Date(vm.today.getFullYear(), vm.today.getMonth(), vm.today.getDate()).toLocaleDateString('en-GB')
+        };
+
+        vm.receivedDate = vm.receiveDate.minDate;
+        vm.open = function() {
+            vm.opened = true;
+        };
+        /** end */
+
         vm.getAllBol = function() {
-            utility.getData(backendController.getAllBol).then(
+
+            utility.getData(backendController.getAllBol + vm.conditionQuery.toLocaleDateString('en-GB')).then(
+                function(response) {
+                    vm.bolDetails = response.reverse();
+                }
+            )
+        };
+
+        vm.filterBol = function(filterCondition) {
+            utility.getData(backendController.getAllBol + filterCondition.toLocaleDateString('en-GB')).then(
                 function(response) {
                     vm.bolDetails = response.reverse();
                 }
@@ -83,7 +120,7 @@
 
             $uibModal.open({
                 animation: true,
-                templateUrl: '/app/pages/Templates/Logistics/Main_View_Refactor/stampRecipe.html',
+                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/stampRecipe.html',
                 size: 'lg',
                 controller: 'PersonalMainController',
                 controllerAs: 'stampViewCtrl',
@@ -104,7 +141,8 @@
 
             var frameDoc = window.open();
             frameDoc.document.write('<html><head>');
-            frameDoc.document.write('<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"><link rel="stylesheet" href="./app/main.css"><title>In tem</title>')
+            frameDoc.document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"><link rel="stylesheet" href="styles/app-638196aabe.css"><title>In tem</title>')
+                //frameDoc.document.write('<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"><link rel="stylesheet" href="app/main.css"><title>In tem</title>')
             frameDoc.document.write('</head><body>');
             //replace
             var canvas = $("[name='convert-here']");

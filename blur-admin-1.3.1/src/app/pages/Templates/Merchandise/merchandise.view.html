@@ -43,8 +43,8 @@
                             <!-- <th class="col-xs-1 text-center bolHeaderView">#</th> -->
                             <th class="col-md-4 text-left bolHeaderView">Tên</th>
                             <th class="col-md-4 text-left bolHeaderView">Loại Hàng</th>
-                            <!-- <th class="col-md-1 text-center"></th> -->
-                            <th class="col-md-4 text-center">Xóa</th>
+                            <th class="col-md-1 text-center"></th>
+                            <th class="col-md-4 text-center bolHeaderView">Xóa</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="merchandise in merchandiseCtrl.merchandiseList">
@@ -56,9 +56,10 @@
                             <!-- <td class="text-center">{{branch.Id}}</td> -->
                             <td class="text-left">{{merchandise.MerchandiseType1}}</td>
                             <td class="text-left">{{merchandise.Description}}</td>
+                            <td class="text-left"></td>
                             <td class="text-center">
-                                <div class="align-right row btn-rows">
-                                    <div class="col-sm-5">
+                                <div class="align-center row btn-rows">
+                                    <div class="col-sm-12">
                                         <button type="button" class="btn btn-md btn-danger" ng-click="merchandiseCtrl.deleteMerchandise(merchandise.Id)"><i class="fa fa-ban fa-lg" aria-hidden="true"></i></button>
                                     </div>
                                     <div class="col-sm-5">
@@ -78,8 +79,8 @@
                 </table>
                 <!-- end smart table -->
             </div>
-            <div ng-show="merchandiseCtrl.merchandiseList.length == 0">
-                Không có Dữ liệu
+            <div ng-show="merchandiseCtrl.merchandiseList.length.length == 0" class="col-md-12 text-center">
+                <p class="table-notification">Không tìm thấy dữ liệu</p>
             </div>
             <!-- end bill of landing details -->
         </div>

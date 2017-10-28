@@ -1,5 +1,5 @@
-<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-    <a ui-sref="main" class="al-logo clearfix"><span>NTL</span> Quản Lý</a>
+<div class="page-top clearfix col-lg-3" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+    <a ui-sref="main" class="al-logo clearfix"><span> <img src="assets/logo/ntl_logo.png" class="image-top"></span></a>
     <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
     <!--<div class="search">
@@ -7,7 +7,8 @@
         <input id="searchInput" type="text" placeholder="Search for...">
     </div>-->
 
-    <div class="user-profile clearfix">
+    <div class="user-profile clearfix  col-lg-3">
+
         <div class="al-user-profile" uib-dropdown>
             <a uib-dropdown-toggle class="profile-toggle-link">
                 <img ng-src="{{::( 'Nasta' | profilePicture )}}">

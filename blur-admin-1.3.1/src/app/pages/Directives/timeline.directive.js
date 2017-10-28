@@ -6,7 +6,7 @@
     function statusTimeline() {
         return {
             restrict: 'E',
-            templateUrl: '/app/pages/components/timelines/status.html'
+            templateUrl: 'app/pages/components/timelines/status.html'
         };
     };
 })();
