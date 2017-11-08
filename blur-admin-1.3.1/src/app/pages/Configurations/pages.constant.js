@@ -12,6 +12,7 @@
             'getComponents': 'Bol/GetComponent',
             'getCurrentTimeStamp': 'Bol/GetCurrentTimeStamp',
             'getAllBol': 'Bol/GetAllBol?conditionQuery=',
+            'getBolDeliveryByBolCode': 'Bol/GetBolDeliveryByBolCode?bolCode=',
             'addBol': 'Bol/Add',
             'updateStatus': 'Bol/UpdateStatus/',
             //Branches const

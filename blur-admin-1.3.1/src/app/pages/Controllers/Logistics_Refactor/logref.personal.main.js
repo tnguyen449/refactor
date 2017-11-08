@@ -111,7 +111,13 @@
         $scope.stampCode = [];
         vm.printStamps = function(bolCode, quantity) {
             $scope.stampCode = [];
+            $scope.records = {};
             var count = 1;
+            utility.getData(backendController.getBolDeliveryByBolCode + bolCode).then(
+                function(response) {
+                    $scope.records = response;
+                }
+            );
             while (count <= quantity) {
                 var stampCode = bolCode + "-" + count + "/" + quantity;
                 $scope.stampCode.push(stampCode);
