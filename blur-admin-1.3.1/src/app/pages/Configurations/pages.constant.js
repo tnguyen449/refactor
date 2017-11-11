@@ -13,6 +13,7 @@
             'getCurrentTimeStamp': 'Bol/GetCurrentTimeStamp',
             'getAllBol': 'Bol/GetAllBol?conditionQuery=',
             'getBolDeliveryByBolCode': 'Bol/GetBolDeliveryByBolCode?bolCode=',
+            'getBolByBolCode': 'Bol/GetBolByBolCode?bolCode=',
             'addBol': 'Bol/Add',
             'updateStatus': 'Bol/UpdateStatus/',
             //Branches const

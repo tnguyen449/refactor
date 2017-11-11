@@ -15,7 +15,6 @@
         vm.cancel = function() {
             $uibModalStack.dismissAll();
         };
-
         vm.printInvoice = function() {
 
             $.ajax({

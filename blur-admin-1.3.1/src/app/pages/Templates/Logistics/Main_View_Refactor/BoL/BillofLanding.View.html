@@ -184,7 +184,7 @@
                                         <div class="col-sm-12">
                                             <div class="col-sm-4" style="padding-top: 10px" ng-repeat="deliveryType in bolInfoCtrl.deliveryTypeVM" ng-init="bolInfoCtrl.deliveryType.Id = bolInfoCtrl.deliveryTypeVM[0].Id">
                                                 <label class="radio-inline custom-radio nowrap">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfoCtrl.deliveryType.Id" ng-change="bolInfoCtrl.calculateMinorFee(bolInfoCtrl.deliveryType.Id)">
+                                                    <input type="radio" name="{{deliveryType.Name}}" id="inlineRadio3" ng-value="deliveryType.Id" ng-model="bolInfoCtrl.deliveryType.Id" ng-change="bolInfoCtrl.calculateMinorFee(bolInfoCtrl.deliveryType.Id)">
                                                     <span>{{deliveryType.Name}}</span>
                                             </strong></label>
                                             </div>
@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                     <!-- timed delivery -->
-                                    <div class="col-sm-12" ng-show="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id -1].Name == bolInfoCtrl.deliveryTypeVM[1].Name">
+                                    <div class="col-sm-12 alarm" ng-show="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id -1].Name == bolInfoCtrl.deliveryTypeVM[1].Name">
                                         <div class="col-sm-12">
                                             <label class="col-sm-4 control-label bolHeader"><strong><span class="require">* </span>Địa Chỉ Giao</strong></label>
                                             <div class="col-sm-8">
@@ -220,7 +220,7 @@
                                             <label class="col-sm-4 control-label bolHeader" style="margin-top: 37px;"><strong>Giờ Giao</strong></label>
                                             <div class="col-sm-8">
                                                 <div class="col-sm-5 col-xs-6">
-                                                    <div uib-timepicker ng-model="bolInfoCtrl.receivedTime" ng-change="bolInfoCtrl.change()" show-meridian="!bolInfoCtrl.ismeridian"></div>
+                                                    <div uib-timepicker ng-model="bolInfoCtrl.deliveryTime" ng-change="bolInfoCtrl.change()" show-meridian="!bolInfoCtrl.ismeridian"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
                                     <label class="col-sm-4 control-label bolHeader"><strong>Khấu Trừ</strong></label>
                                     <div class="col-sm-8">
                                         <div class="input-group" style="margin-bottom: 0">
-                                            <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.discount" placeholder="Nhập số tiền khấu trừ" />
+                                            <input type="text" class="form-control" currency-format ng-model="bolInfoCtrl.discount" ng-change="bolInfoCtrl.bindingFinalTotal()" placeholder="Nhập số tiền khấu trừ" />
                                             <span class="input-group-addon addon-right input-group-addon-primary">VNĐ</span>
                                         </div>
                                     </div>

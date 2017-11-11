@@ -84,7 +84,7 @@
                             <!-- primary table body components -->
                             <tr>
                                 <!-- <td>{{(detail.TransactionVM.BillOfLandingInfo.BolCode.length > 7 ? '...' : '') + (detail.TransactionVM.BillOfLandingInfo.BolCode | limitTo: 6 : 15)}}</td> -->
-                                <td class="text-left">{{detail.BolCode}}</td>
+                                <td class="text-left bolDetail" ng-click="mainCtrl.bolDetail(detail.BolCode)">{{detail.BolCode}}</td>
                                 <td class="text-center">{{detail.Customers[0].Phone == detail.Contact ? detail.Customers[0].Name: detail.Customers[1].Name}}</td>
                                 <td class="text-center">{{detail.Customers[1].Phone !== detail.Contact ? detail.Customers[1].Name: detail.Customers[0].Name}}</td>
                                 <td class="text-center">{{detail.Quantity}}</td>

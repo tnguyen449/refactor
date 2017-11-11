@@ -163,5 +163,27 @@
         vm.cancel = function() {
             $uibModalStack.dismissAll();
         };
+
+        $scope.bolInformation = {};
+
+        vm.bolDetail = (bolId) => {
+            utility.getData(backendController.getBolByBolCode + bolId).then(
+                function(response) {
+                    $scope.bolInformation = response;
+                    console.log(response);
+                    $uibModal.open({
+                        animation: true,
+                        templateUrl: 'app/pages/components/notifications/bolDetail.component.html',
+                        size: 'lg',
+                        controller: 'PersonalMainController',
+                        controllerAs: 'detailCtrl',
+                        scope: $scope,
+                        bindToController: true
+                    })
+
+                }
+            )
+
+        }
     }
 })(jQuery);

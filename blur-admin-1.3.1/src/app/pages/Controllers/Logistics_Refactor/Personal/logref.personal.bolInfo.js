@@ -20,7 +20,7 @@
         vm.isOnHandDelivery = false;
         vm.declareFee;
         vm.merchandiseTypeVM = initDataList[0].data.merchandiseTypeVM;
-
+        vm.isAlarm = true;
         vm.merchandiseType = {};
         vm.merchandiseType.selected = vm.merchandiseTypeVM[0];
 
@@ -37,6 +37,7 @@
             }
             /** end */
 
+
         /** setup datetime */
         vm.receivedTime = new Date();
         vm.ismeridian = true;
@@ -50,10 +51,10 @@
             minDate: new Date(vm.dateOptions.minDate.getFullYear(), vm.dateOptions.minDate.getMonth(), vm.dateOptions.minDate.getDate() + 1)
         };
 
-        vm.test = new Date();
+        vm.deliveryTime = new Date();
         vm.change = function() {
-            vm.test.setHours(vm.receivedTime.getHours());
-            vm.test.setMinutes(vm.receivedTime.getMinutes());
+            vm.deliveryTime.setHours(vm.receivedTime.getHours());
+            vm.deliveryTime.setMinutes(vm.receivedTime.getMinutes());
         };
         /** end */
 
@@ -106,9 +107,13 @@
             var guaranteeFee = vm.isGuarantee == false ? '0' : businessConst.StrGuaranteeFee;
             var deliveryPrice = vm.deliveryPrice;
             var discount = vm.discount == "" ? '0' : vm.discount;
+            if (formatDataService.convertToNumber(discount) > formatDataService.convertToNumber(subTotal)) {
+                toastr.info('Số tiền khấu hao phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO');
+                vm.discount = "";
+            } else {
+                vm.finalTotal = businessService.calculateTotal(subTotal, declareFee, deliveryPrice, discount, onHandFee, guaranteeFee);
+            }
             // vm.finalTotal = (subTotal + declareFee + onHandFee + guaranteeFee + deliveryPrice).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-            vm.finalTotal = businessService.calculateTotal(subTotal, declareFee, deliveryPrice, discount, onHandFee, guaranteeFee);
-
             return vm.finalTotal;
         };
 
@@ -119,8 +124,9 @@
         vm.bindingLiabilities = function() {
                 var finalTotal = vm.finalTotal;
                 var prepaid = vm.prepaid == "" ? "0" : vm.prepaid;
+                var discount = vm.discount == "" ? "0" : vm.discount;
                 if (formatDataService.convertToNumber(prepaid) > formatDataService.convertToNumber(finalTotal)) {
-                    toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO')
+                    toastr.info('Số tiền trả trước phải ít hơn hoặc bằng tổng cước', 'THÔNG BÁO');
                     vm.bindingFinalTotal();
                     vm.prepaid = "";
                 } else {
@@ -134,7 +140,11 @@
 
         vm.post = function(id) {
                 vm.calculateMinorFee(id);
-
+                if ($('input[name = "Hẹn giờ"]').is(':checked') == false) {
+                    vm.isAlarm = false;
+                } else {
+                    vm.isAlarm = true;
+                }
                 //  if (($rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == false || $rootScope.transactionVM.TransactionVM.BillOfLandingInfo.IsDiscount == true) && $rootScope.transactionVM.TransactionVM.MerchandiseInfo[0].MerchandiseTypeId == "") {
                 //     toastr.error('Đơn vận không tồn tại hàng hóa! Vui lòng thêm hàng hóa', 'Thất Bại');
                 // } else {
@@ -201,6 +211,7 @@
                             IsGuarantee: vm.bolInfo.isGuarantee,
                             IsDeclare: vm.bolInfo.isDeclare,
                             IsOnHand: vm.bolInfo.isOnHand,
+                            IsAlarm: vm.isAlarm,
                             CollectInBehalf: vm.bolInfo.collectInBehalf,
                             SendAddress: vm.bolInfo.sendAddress,
                             ReceiveTime: vm.receivedTime.toLocaleTimeString('en-GB'),
@@ -208,6 +219,7 @@
                             DeliveryName: vm.bolInfo.deliveryTypeName,
                             DeliveryPrice: vm.bolInfo.deliveryPrice,
                             DeclareValue: vm.bolInfo.declaredPrice,
+                            Discount: vm.bolInfo.discount,
                             AdditionalFee: vm.bolInfo.additionalFee,
                             SubTotal: vm.bolInfo.subTotal,
                             Total: vm.bolInfo.total,
