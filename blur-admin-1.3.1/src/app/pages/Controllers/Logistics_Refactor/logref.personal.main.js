@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -113,9 +113,10 @@
             $scope.stampCode = [];
             $scope.records = {};
             var count = 1;
-            utility.getData(backendController.getBolDeliveryByBolCode + bolCode).then(
+            utility.getData(backendController.getBolByBolCode + bolCode).then(
                 function(response) {
                     $scope.records = response;
+                    console.log($scope.records);
                 }
             );
             while (count <= quantity) {
@@ -170,7 +171,8 @@
             utility.getData(backendController.getBolByBolCode + bolId).then(
                 function(response) {
                     $scope.bolInformation = response;
-                    console.log(response);
+                    $scope.bolInformation.calculatedDeclareValue = businessService.calculateDeclareFee($scope.bolInformation.DeclareValue);
+
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'app/pages/components/notifications/bolDetail.component.html',

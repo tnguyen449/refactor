@@ -103,22 +103,26 @@
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Thu Hộ: </strong>{{detailCtrl.bolInformation.CollectInBehalf =="" ? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.CollectInBehalf}}<br>
+                                    <strong>Thu Hộ: </strong>{{detailCtrl.bolInformation.CollectInBehalf === null ? 'Không': detailCtrl.bolInformation.CollectInBehalf}}<br>
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Khấu Trừ: </strong>{{detailCtrl.bolInformation.IsDiscount == false? 'Không' : 'Có'}}<br>
+                                    <strong>Khai Giá: </strong>{{detailCtrl.bolInformation.DeclareValue === null ? 'Không': detailCtrl.bolInformation.DeclareValue}}<br>
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Giờ Giao (nếu có): </strong>{{detailCtrl.bolInformation.ReceiveTime ==""? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.ReceiveTime }}<br>
+                                    <strong>Tận Tay: </strong>{{detailCtrl.bolInformation.IsOnHand == false? 'Không' : 'Có'}}<br>
+                                </div>
+                                <br>
+                                <div class="text-left">
+                                    <strong>Giờ Giao (nếu có): </strong>{{detailCtrl.bolInformation.ReceiveTime === null? 'Không': detailCtrl.bolInformation.ReceiveTime | date: 'HH giờ MM'}}<br>
                                 </div>
                                 <br>
                                 <div class="text-left">
                                     <strong>Địa Chỉ Giao (nếu có): </strong>
                                 </div>
                                 <div class="text-left">
-                                    {{detailCtrl.bolInformation.SendAddress ==""? 'Không': bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.SendAddress}}
+                                    {{detailCtrl.bolInformation.SendAddress === null ? 'Không': detailCtrl.bolInformation.SendAddress}}
                                 </div>
                                 <br>
                                 <div class="text-left">
@@ -152,11 +156,11 @@
                             <tbody>
                                 <tr>
                                     <td>{{detailCtrl.bolInformation.BolCode}}</td>
-                                    <td>{{detailCtrl.bolInformation.MerchandiseType1.Description}}</td>
+                                    <td>{{detailCtrl.bolInformation.MerchandiseType1.MerchandiseType1}}</td>
                                     <td>{{detailCtrl.bolInformation.Quantity}}</td>
                                     <td>{{detailCtrl.bolInformation.Weight}}</td>
                                     <td>{{detailCtrl.bolInformation.Description}}</td>
-                                    <td>{{detailCtrl.bolInformation.Total}}</td>
+                                    <td>{{detailCtrl.bolInformation.SubTotal}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -171,12 +175,16 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
+                                    <th style="width:66%">Khấu Trừ: </th>
+                                    <td class="text-right" style="border-top:none">{{detailCtrl.bolInformation.Discount === null? '0': detailCtrl.bolInformation.Discount}}</td>
+                                </tr>
+                                <tr>
                                     <th style="width:66%">Cước Vận Chuyển: </th>
                                     <td class="text-right" style="border-top:none">{{detailCtrl.bolInformation.DeliveryPrice}}</td>
                                 </tr>
                                 <tr>
-                                    <th style="width:66%">Phụ Phí: </th>
-                                    <td class="text-right" style="border-top:none">{{detailCtrl.bolInformation.AdditionalFee}}</td>
+                                    <th style="width:66%">Phụ Phí Khai Giá (1%): </th>
+                                    <td class="text-right" style="border-top:none">{{detailCtrl.bolInformation.calculatedDeclareValue}}</td>
                                 </tr>
                                 <tr>
                                     <th style="width:66%">Tổng Cộng:</th>
