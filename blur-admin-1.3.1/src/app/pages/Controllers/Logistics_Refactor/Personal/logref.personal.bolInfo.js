@@ -166,7 +166,7 @@
                         quantity: vm.quantity === undefined ? "" : vm.quantity,
                         weight: vm.weight === undefined ? "" : vm.weight,
                         collectInBehalf: vm.collectInBehalf === undefined ? "" : vm.collectInBehalf,
-                        sendAddress: vm.sendAddress === undefined ? "" : vm.sendAddress,
+                        sendAddress: vm.sendAddress === undefined || vm.deliveryName === "Tại văn phòng" ? "" : vm.sendAddress,
                         receivedTime: vm.deliveryType.Id == 2 ? vm.receivedTime : "",
                         discount: vm.discount === undefined ? '0' : vm.discount,
                         contact: vm.customerInfo.senderPhone,
@@ -237,11 +237,13 @@
                             Start: vm.bolInfo.start,
                             MerchandiseTypeId: vm.bolInfo.merchandiseId,
                             MerchandiseName: vm.bolInfo.merchandiseName,
-                            Description: vm.description
+                            Description: vm.description,
+                            MixedValue: vm.mixedValue
                         }
                     }
                 };
                 /** end */
+                console.log(vm.transactionVM.TransactionVM);
                 shareDataService.addItem(vm.transactionVM);
                 if (window.innerWidth < 768 && window.innerHeight < 768) {
                     alert('Completed');

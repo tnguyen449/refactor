@@ -10,7 +10,7 @@
                         <div class="col-md-7 stamp-code-50">
                             <h3>Giao Nhận: {{records.DeliveryType1.Name}}</h3>
                             <h3 ng-show="records.SendAddress !== null">Địa Chỉ: {{records.SendAddress}}</h3>
-                            <h3 ng-show="records.ReceiveTime !== null">Giờ Giao: {{records.ReceiveTime | date: 'HH giờ MM'}}</h3>
+                            <h3 ng-show="records.ReceiveTime !== null">Giờ Giao: {{records.ReceiveTime | date: 'H giờ M '}} phút</h3>
                         </div>
 
                         <div class="col-md-5 qr-code modify-here" ng-show="$index==0">

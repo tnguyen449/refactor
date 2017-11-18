@@ -115,7 +115,7 @@
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Giờ Giao (nếu có): </strong>{{detailCtrl.bolInformation.ReceiveTime === null? 'Không': detailCtrl.bolInformation.ReceiveTime | date: 'HH giờ MM'}}<br>
+                                    <strong>Giờ Giao (nếu có): </strong>{{detailCtrl.bolInformation.IsAlarm === false? 'Không': detailCtrl.bolInformation.ReceiveTime | date: 'H giờ M'}} <span ng-hide="detailCtrl.bolInformation.IsAlarm === false">phút</span><br>
                                 </div>
                                 <br>
                                 <div class="text-left">
@@ -156,7 +156,8 @@
                             <tbody>
                                 <tr>
                                     <td>{{detailCtrl.bolInformation.BolCode}}</td>
-                                    <td>{{detailCtrl.bolInformation.MerchandiseType1.MerchandiseType1}}</td>
+                                    <!--<td>{{detailCtrl.bolInformation.MerchandiseType1.MerchandiseType1}}</td>-->
+                                    <td>{{detailCtrl.bolInformation.MixValue}}</td>
                                     <td>{{detailCtrl.bolInformation.Quantity}}</td>
                                     <td>{{detailCtrl.bolInformation.Weight}}</td>
                                     <td>{{detailCtrl.bolInformation.Description}}</td>

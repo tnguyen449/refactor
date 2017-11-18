@@ -191,7 +191,7 @@
                                         </div>
                                     </div>
                                     <!-- cash on delivery -->
-                                    <div class="col-sm-12" ng-show="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id-1].Name == bolInfoCtrl.deliveryTypeVM[2].Name">
+                                    <div class="col-sm-12" ng-if="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id-1].Name == bolInfoCtrl.deliveryTypeVM[2].Name">
                                         <div class="col-sm-12">
                                             <label class="col-sm-4 control-label bolHeader"><strong><span class="require">* </span>Địa Chỉ Giao</strong></label>
                                             <div class="col-sm-8">
@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                     <!-- timed delivery -->
-                                    <div class="col-sm-12 alarm" ng-show="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id -1].Name == bolInfoCtrl.deliveryTypeVM[1].Name">
+                                    <div class="col-sm-12 alarm" ng-if="bolInfoCtrl.deliveryTypeVM[bolInfoCtrl.deliveryType.Id -1].Name == bolInfoCtrl.deliveryTypeVM[1].Name">
                                         <div class="col-sm-12">
                                             <label class="col-sm-4 control-label bolHeader"><strong><span class="require">* </span>Địa Chỉ Giao</strong></label>
                                             <div class="col-sm-8">

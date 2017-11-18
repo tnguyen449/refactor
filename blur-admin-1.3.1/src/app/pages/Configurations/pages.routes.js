@@ -12,7 +12,8 @@
             .state('main', {
                 url: '/ngoc-trang/trang-chu',
                 title: 'Trang Chủ',
-                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Main.View.html',
+                // templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Main.View.html',
+                templateUrl: 'auth.html',
                 sidebarMeta: {
                     icon: 'fa fa-home fa-lg',
                     order: 0
@@ -129,27 +130,40 @@
         // })
 
         .state('manage.merchandise', {
-                url: '/mat-hang',
-                templateUrl: 'app/pages/Templates/Merchandise/merchandise.view.html',
-                controller: 'merchandiseCtrl',
-                controllerAs: 'merchandiseCtrl',
-                title: 'Mặt Hàng',
-                sidebarMeta: {
-                    icon: 'fa fa-globe fa-lg',
-                    order: 2
-                }
-            })
-            .state('statistics', {
-                url: '/thong-ke',
-                templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
-                controller: 'statisticsCtrl',
-                controllerAs: 'statisticsCtrl',
-                title: 'Thống Kê',
-                sidebarMeta: {
-                    icon: 'fa fa-bar-chart fa-lg',
-                    order: 2
-                }
-            })
+            url: '/mat-hang',
+            templateUrl: 'app/pages/Templates/Merchandise/merchandise.view.html',
+            controller: 'merchandiseCtrl',
+            controllerAs: 'merchandiseCtrl',
+            title: 'Mặt Hàng',
+            sidebarMeta: {
+                icon: 'fa fa-globe fa-lg',
+                order: 2
+            }
+        })
+
+        .state('manage.employee', {
+            url: '/nhan-vien',
+            templateUrl: 'app/pages/Templates/Employee/employee.view.html',
+            controller: 'EmployeeAddController',
+            controllerAs: 'employeeAddCtrl',
+            title: 'Nhân Viên',
+            sidebarMeta: {
+                icon: 'fa fa-globe fa-lg',
+                order: 2
+            }
+        })
+
+        .state('statistics', {
+            url: '/thong-ke',
+            templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
+            controller: 'statisticsCtrl',
+            controllerAs: 'statisticsCtrl',
+            title: 'Thống Kê',
+            sidebarMeta: {
+                icon: 'fa fa-bar-chart fa-lg',
+                order: 2
+            }
+        })
     };
 })();
 

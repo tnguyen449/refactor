@@ -33,6 +33,12 @@
             'deleteMerchandiseType': 'MerchandiseType/Delete',
             //Status const
             'getStatus': 'Status/GetStatus',
+            //Employee
+            'getAllEmployee': 'Employee/GetAll',
+            'getEmployeeById': 'Employee/GetEmployeeId?conditionQuery=',
+            'addEmployee': 'Employee/AddEmployee',
+            'deleteEmployee': 'Employee/DeleteEmployee',
+            'updateEmployee': '',
             //User const
             'login': 'User/Login',
 

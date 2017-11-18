@@ -116,7 +116,6 @@
             utility.getData(backendController.getBolByBolCode + bolCode).then(
                 function(response) {
                     $scope.records = response;
-                    console.log($scope.records);
                 }
             );
             while (count <= quantity) {
@@ -172,7 +171,7 @@
                 function(response) {
                     $scope.bolInformation = response;
                     $scope.bolInformation.calculatedDeclareValue = businessService.calculateDeclareFee($scope.bolInformation.DeclareValue);
-
+                    console.log($scope.bolInformation);
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'app/pages/components/notifications/bolDetail.component.html',
