@@ -3,6 +3,7 @@
     angular.module('BlurAdmin.pages')
         .directive('statusTimeline', statusTimeline);
 
+    /** @ngInject */
     function statusTimeline() {
         return {
             restrict: 'E',

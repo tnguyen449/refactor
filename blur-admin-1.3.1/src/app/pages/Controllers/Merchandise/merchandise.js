@@ -6,6 +6,7 @@
 
     merchandiseCtrl.$inject = ['$scope', '$uibModal', '$state', 'utility', 'Url', 'backendController', ];
 
+    /** @ngInject */
     function merchandiseCtrl($scope, $uibModal, $state, utility, Url, backendController) {
         var vm = this;
         vm.openModal = function() {

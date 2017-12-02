@@ -3,6 +3,7 @@
     angular.module('BlurAdmin.pages')
         .directive('aboutUs', aboutUs);
 
+    /** @ngInject */
     function aboutUs() {
         return {
             restrict: 'E',

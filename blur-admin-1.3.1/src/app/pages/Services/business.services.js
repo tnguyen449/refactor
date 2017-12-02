@@ -6,6 +6,7 @@
 
     businessService.$inject = ['businessConst', 'formatDataService'];
 
+    /** @ngInject */
     function businessService(businessConst, formatDataService) {
 
         return {

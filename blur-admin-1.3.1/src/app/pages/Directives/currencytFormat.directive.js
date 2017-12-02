@@ -3,6 +3,7 @@
     angular.module('BlurAdmin.pages.logistics')
         .directive('currencyFormat', currencyFormat);
 
+    /** @ngInject */
     function currencyFormat() {
         return {
             restrict: 'A',

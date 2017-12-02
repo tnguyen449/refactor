@@ -3,6 +3,7 @@
     angular.module('BlurAdmin.pages')
         .directive('compInfo', compInfo);
 
+    /** @ngInject */
     function compInfo() {
         return {
             restrict: 'E',

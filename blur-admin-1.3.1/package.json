@@ -55,6 +55,8 @@
   },
   "dependencies": {
     "angular-qrcode": "^7.2.0",
-    "instascan": "^1.0.0"
+    "gulp-uglifyes": "^0.1.2",
+    "instascan": "^1.0.0",
+    "uglify-es": "^3.2.0"
   }
 }

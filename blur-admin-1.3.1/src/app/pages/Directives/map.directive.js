@@ -3,6 +3,7 @@
     angular.module('BlurAdmin.pages')
         .directive('mapContent', mapContent);
 
+    /** @ngInject */
     function mapContent() {
         return {
             restrict: 'E',

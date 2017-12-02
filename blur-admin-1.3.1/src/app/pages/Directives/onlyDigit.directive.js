@@ -3,6 +3,7 @@
     angular.module('BlurAdmin.pages.logistics')
         .directive('onlyDigit', onlyDigit);
 
+    /** @ngInject */
     function onlyDigit() {
         return {
             require: 'ngModel',

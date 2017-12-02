@@ -6,6 +6,7 @@
 
     statisticsCtrl.$inject = ['$scope', 'utility', 'backendController']
 
+    /** @ngInject */
     function statisticsCtrl($scope, utility, backendController) {
 
         utility.getData(backendController.bolData).then(function(response) {

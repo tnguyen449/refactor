@@ -6,6 +6,7 @@
 
     merchandiseAddCtrl.$inject = ['$scope', '$uibModal', '$uibModalStack', 'Url', 'backendController'];
 
+    /** @ngInject */
     function merchandiseAddCtrl($scope, $uibModal, $uibModalStack, Url, backendController) {
         var vm = this;
         vm.cancel = function() {

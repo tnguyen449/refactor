@@ -5,6 +5,7 @@
 
     utilityService.$inject = ['$http', 'Url'];
 
+    /** @ngInject */
     function utilityService($http, Url) {
         return {
             getData: getData,
