@@ -107,10 +107,7 @@
                                 </div>
                                 <br>
                                 <div class="text-left">
-                                    <strong>Giao Tận Tay: </strong>
-                                </div>
-                                <div class="text-left">
-                                    {{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.IsOnHand == false? 'Không': 'Có'}}
+                                    <strong>Tận Tay: </strong>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.IsOnHand == false? 'Không': 'Có'}}<br>
                                 </div>
                                 <br>
                                 <div class="text-left">
@@ -155,7 +152,7 @@
                             <tbody>
                                 <tr>
                                     <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.BolCode}}</td>
-                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.MerchandiseName}}</td>
+                                    <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.MixedValue}}</td>
                                     <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Quantity}}</td>
                                     <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Weight}}</td>
                                     <td>{{bolConfirm.transactionVM.TransactionVM.BillOfLandingInfo.Description}}</td>

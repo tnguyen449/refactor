@@ -9,6 +9,7 @@
         'BlurAdmin.pages.branch',
         'BlurAdmin.pages.location',
         'BlurAdmin.pages.merchandise',
-        'BlurAdmin.pages.statistics'
+        'BlurAdmin.pages.statistics',
+        'BlurAdmin.pages.employee'
     ]);
 })();
