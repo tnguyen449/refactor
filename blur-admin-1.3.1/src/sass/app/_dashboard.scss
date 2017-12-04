@@ -18,6 +18,19 @@
   }
 }
 
+@mixin buttonHover($color, $pointerType){
+  color: $color;
+  cursor: $pointerType
+}
+
 .blurCalendar{
   height: 475px;
+}
+
+.login:hover{
+  @include buttonHover($primary, pointer)
+}
+
+.search-button:hover{
+  @include buttonHover($primary, pointer)
 }
