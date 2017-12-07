@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService',  'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController'];
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) { 
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -17,9 +17,9 @@
         vm.bolDetails = {};
         vm.itemsByPage = 2;
         vm.conditionQuery = new Date();
-        vm.getTransactionComponent = function() {
+        vm.getTransactionComponent = () => {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
-
+              
                 utility.getData(backendController.getComponents).then(
                     function(response) {
 
@@ -171,7 +171,6 @@
                 function(response) {
                     $scope.bolInformation = response;
                     $scope.bolInformation.calculatedDeclareValue = businessService.calculateDeclareFee($scope.bolInformation.DeclareValue);
-                    console.log($scope.bolInformation);
                     $uibModal.open({
                         animation: true,
                         templateUrl: 'app/pages/components/notifications/bolDetail.component.html',
@@ -186,5 +185,6 @@
             )
 
         }
+        $('.user-profile').show();
     }
 })(jQuery);

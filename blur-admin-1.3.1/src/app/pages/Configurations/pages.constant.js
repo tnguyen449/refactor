@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('BlurAdmin.pages')
+    angular.module('BlurAdmin.pages.configuration')
         .constant('Url', {
-            //'hostDomain': 'http://ngoctrangapi.azurewebsites.net/NgocTrang/Api/',
-            'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
-            //'externalDomain': 'http://192.168.56.1:57363/NgocTrang/Api/'
+            'hostDomain': 'http://api.ntl.com.vn/NgocTrang/Api/',
+            //'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
         })
+
         .constant('backendController', {
             //Bill of landing const
             'getComponents': 'Bol/GetComponent',
@@ -46,14 +46,28 @@
             //BolData
             'bolData': 'Statistic/GetBolData',
             'bolBasedLocationData': 'Statistic/GetBolOnLocationData'
-
         })
-        // .constant('hostDomain', 'http://localhost::57363/NgocTrang/Api')
-        // .constant('StrBolView', 'http://localhost::3000/#/logistics/view')
+     
         .constant('businessConst', {
             'intDeclaredFee': 0.01,
             'StrGuaranteeFee': '100,000',
             'StrOnHandFee': '40,000',
             'StrTimedDeliveryFee': '40,000'
+        })
+        
+        .constant('AUTH_EVENTS', {
+            'loginSuccess': 'auth-login-success',
+            'loginFailed': 'auth-login-failed',
+            'logoutSuccess': 'auth-logout-success',
+            'sessionTimeout': 'auth-session-timeout',
+            'notAuthenticated': 'auth-not-authenticated',
+            'notAuthorized': 'auth-not-authorized'
+        })
+          
+        .constant('USER_ROLES', {
+            'admin': 'admin',
+            'editor': 'editor',
+            'guest': 'guest'
         });
+        
 })();

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('BlurAdmin.pages')
+    angular.module('BlurAdmin.pages.configuration')
         .filter('searchFor', searchFor);
 
     /**ngInject */

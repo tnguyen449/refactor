@@ -1,0 +1,26 @@
+.auth-block1 {
+    width: 540px;
+    margin: 0 auto;
+    border-radius: 5px;
+    @include bg-translucent-dark(0.55);
+    background-color: $primary; 
+    color: #fff;
+    padding: 32px;
+    h1 {
+      font-weight: $font-light;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      transition: all 0.2s ease;
+      color: $primary;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+}

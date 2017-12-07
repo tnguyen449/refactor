@@ -1,35 +1,48 @@
 (function() {
     'use strict';
 
-    angular.module('BlurAdmin.pages.logistics')
+    angular.module('BlurAdmin.pages.configuration')
         .config(routeConfig);
+        routeConfig.$inject =['$stateProvider','$urlRouterProvider', '$locationProvider', 'USER_ROLES']
 
     /** @ngInject */
-    function routeConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/ngoc-trang/trang-chu');
-
+    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, USER_ROLES) {
+        $urlRouterProvider.otherwise('/trang-chu');
+        $locationProvider.hashPrefix('');
+        $locationProvider.html5Mode(true);
         $stateProvider
+        .state('login', {
+            url: '/dang-nhap',
+           
+            templateUrl: 'app/pages/Templates/Login/login.view.html',
+            controller: 'LoginController',
+            controllerAs: 'login'
+        })
+
             .state('main', {
-                url: '/ngoc-trang/trang-chu',
+                url: '/trang-chu',
                 title: 'Trang Chủ',
-                // templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Main.View.html',
-                templateUrl: 'auth.html',
+                templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Main.View.html',
                 sidebarMeta: {
                     icon: 'fa fa-home fa-lg',
                     order: 0
                 },
                 controller: 'PersonalMainController',
-                controllerAs: 'mainCtrl'
+                controllerAs: 'mainCtrl',
+               
             })
 
         .state('view', {
-            url: '/ngoc-trang/van-don/danh-sach',
-            title: 'Xem Vận Đơn',
+            url: '/van-don/danh-sach',
+            title: 'Vận Đơn',
             templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BolView.View.html',
             sidebarMeta: {
                 icon: 'fa fa-eye fa-lg',
-                order: 0
+                order: 1
             },
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             controller: 'PersonalMainController',
             controllerAs: 'mainCtrl'
         })
@@ -37,23 +50,14 @@
         .state('create', {
             url: '/van-don/tao',
             template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
-            // abstract: true,
-            // title: 'Tạo Vận Đơn',
-            // sidebarMeta: {
-            //     icon: 'fa fa-pencil-square-o fa-lg',
-            //     order: 0,
-            // }
         })
 
         .state('create.personal', {
-            url: '/ca-nhan',
+            url: '/dia-diem',
             templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Destination/Destination.View.html',
             controller: 'DestinationController',
             controllerAs: 'destinationCtrl',
             title: 'Cá Nhân',
-            lazyLoad: function() {
-                $state.reload();
-            },
             sidebarMeta: {
                 icon: 'fa fa-user fa-lg',
                 order: 0,
@@ -61,95 +65,60 @@
         })
 
         .state('bol', {
-            url: '/logistics/bol',
+            url: '/chi-tiet',
             templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
             controller: 'BolInfoController',
-            controllerAs: 'bolInfoCtrl',
-            lazyLoad: function() {
-                $state.reload();
-            },
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
+            controllerAs: 'bolInfoCtrl'
+            
         })
 
-        // .state('create.area', {
-        //     url: '/area',
-        //     templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Location/Location.View.html',
-        //     controller: 'LocationController',
-        //     controllerAs: 'locationCtrl',
-        //     title: 'Khu Vực',
-        //     sidebarMeta: {
-        //         icon: 'fa fa-users fa-lg',
-        //         order: 0,
-        //     }
-        // })
-
-        // .state('qr', {
-        //         url: '/logistics/qr',
-        //         templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/TestQr.html',
-        //         controller: 'bolReviewCtrl',
-        //         controllerAs: 'bolConfirm'
-        //,
-        // title: "QR Test",
-        // sidebarMeta: {
-        //     icon: 'fa fa-user fa-lg',
-        //     order: 0,
-        // }
-        // })
-        .state('manage', {
-                url: '/quan-ly',
-                template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
-                abstract: true,
-                title: 'Quản Lý',
-                sidebarMeta: {
-                    icon: 'fa fa-pencil-square-o fa-lg',
-                    order: 0,
-                }
-
-            })
-            .state('manage.branch', {
+       
+            .state('branch', {
                 url: '/chi-nhanh',
                 templateUrl: 'app/pages/Templates/Branch/Branch-List.View.html',
                 controller: 'branchListCtrl',
                 controllerAs: 'branchListCtrl',
+                data: {
+                    authorizedRoles: [USER_ROLES.guest]
+                  },
                 title: 'Chi Nhánh',
                 sidebarMeta: {
-                    icon: 'fa fa-globe fa-lg',
-                    order: 2
+                    order: 2,
+                    icon: 'fa fa-building fa-lg'
                 }
             })
 
-        // .state('manage.locations', {
-        //     url: '/khu-vuc',
-        //     templateUrl: 'app/pages/Templates/Location/Location-List.View.html',
-        //     controller: 'locationListCtrl',
-        //     controllerAs: 'locationListCtrl',
-        //     title: 'Khu Vực',
-        //     sidebarMeta: {
-        //         icon: 'fa fa-globe fa-lg',
-        //         order: 2
-        //     }
-        // })
-
-        .state('manage.merchandise', {
+        .state('merchandise', {
             url: '/mat-hang',
             templateUrl: 'app/pages/Templates/Merchandise/merchandise.view.html',
             controller: 'merchandiseCtrl',
             controllerAs: 'merchandiseCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             title: 'Mặt Hàng',
             sidebarMeta: {
-                icon: 'fa fa-globe fa-lg',
-                order: 2
+                order: 3,
+                icon: 'fa fa-globe fa-lg'
             }
         })
 
-        .state('manage.employee', {
+        .state('employee', {
             url: '/nhan-vien',
             templateUrl: 'app/pages/Templates/Employee/employee.view.html',
             controller: 'EmployeeAddController',
             controllerAs: 'employeeAddCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             title: 'Nhân Viên',
             sidebarMeta: {
-                icon: 'fa fa-globe fa-lg',
-                order: 2
+                order: 4,
+                icon: 'fa fa-users fa-lg'
+                
             }
         })
 
@@ -158,10 +127,13 @@
             templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
             controller: 'statisticsCtrl',
             controllerAs: 'statisticsCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             title: 'Thống Kê',
             sidebarMeta: {
                 icon: 'fa fa-bar-chart fa-lg',
-                order: 2
+                order: 5
             }
         })
     };

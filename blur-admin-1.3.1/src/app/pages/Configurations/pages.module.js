@@ -10,6 +10,7 @@
         'BlurAdmin.pages.location',
         'BlurAdmin.pages.merchandise',
         'BlurAdmin.pages.statistics',
-        'BlurAdmin.pages.employee'
+        'BlurAdmin.pages.employee',
+        'BlurAdmin.pages.login'
     ]);
 })();
