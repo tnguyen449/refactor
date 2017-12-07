@@ -19,7 +19,7 @@
         vm.conditionQuery = new Date();
         vm.getTransactionComponent = function() {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
-
+              
                 utility.getData(backendController.getComponents).then(
                     function(response) {
 
@@ -186,5 +186,6 @@
             )
 
         }
+        $('.user-profile').show();
     }
 })(jQuery);

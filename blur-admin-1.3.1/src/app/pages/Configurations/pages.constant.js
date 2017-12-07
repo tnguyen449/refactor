@@ -3,9 +3,8 @@
 
     angular.module('BlurAdmin.pages')
         .constant('Url', {
-            //'hostDomain': 'http://ngoctrangapi.azurewebsites.net/NgocTrang/Api/',
-            'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
-            //'externalDomain': 'http://192.168.56.1:57363/NgocTrang/Api/'
+            'hostDomain': 'http://api.ntl.com.vn/NgocTrang/Api/',
+            //'hostDomain': 'http://localhost:57363/NgocTrang/Api/',
         })
         .constant('backendController', {
             //Bill of landing const
@@ -48,8 +47,7 @@
             'bolBasedLocationData': 'Statistic/GetBolOnLocationData'
 
         })
-        // .constant('hostDomain', 'http://localhost::57363/NgocTrang/Api')
-        // .constant('StrBolView', 'http://localhost::3000/#/logistics/view')
+     
         .constant('businessConst', {
             'intDeclaredFee': 0.01,
             'StrGuaranteeFee': '100,000',
