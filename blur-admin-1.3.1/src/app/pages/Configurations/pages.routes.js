@@ -1,15 +1,24 @@
 (function() {
     'use strict';
 
-    angular.module('BlurAdmin.pages.logistics')
+    angular.module('BlurAdmin.pages.configuration')
         .config(routeConfig);
+        routeConfig.$inject =['$stateProvider','$urlRouterProvider', '$locationProvider', 'USER_ROLES']
 
     /** @ngInject */
-    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, USER_ROLES) {
         $urlRouterProvider.otherwise('/trang-chu');
         $locationProvider.hashPrefix('');
         $locationProvider.html5Mode(true);
         $stateProvider
+        .state('login', {
+            url: '/dang-nhap',
+           
+            templateUrl: 'auth.html',
+            controller: 'LoginController',
+            controllerAs: 'login'
+        })
+
             .state('main', {
                 url: '/trang-chu',
                 title: 'Trang Chủ',
@@ -19,7 +28,8 @@
                     order: 0
                 },
                 controller: 'PersonalMainController',
-                controllerAs: 'mainCtrl'
+                controllerAs: 'mainCtrl',
+               
             })
 
         .state('view', {
@@ -30,6 +40,9 @@
                 icon: 'fa fa-eye fa-lg',
                 order: 0
             },
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             controller: 'PersonalMainController',
             controllerAs: 'mainCtrl'
         })
@@ -55,47 +68,50 @@
             url: '/chi-tiet',
             templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/BoL/BillofLanding.View.html',
             controller: 'BolInfoController',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             controllerAs: 'bolInfoCtrl'
+            
         })
 
-        .state('manage', {
-                url: '/quan-ly',
-                template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
-                abstract: true,
-                title: 'Quản Lý',
-                sidebarMeta: {
-                    icon: 'fa fa-pencil-square-o fa-lg',
-                    order: 0,
-                }
-
-            })
-            .state('manage.branch', {
+       
+            .state('branch', {
                 url: '/chi-nhanh',
                 templateUrl: 'app/pages/Templates/Branch/Branch-List.View.html',
                 controller: 'branchListCtrl',
                 controllerAs: 'branchListCtrl',
+                data: {
+                    authorizedRoles: [USER_ROLES.guest]
+                  },
                 title: 'Chi Nhánh',
                 sidebarMeta: {
                     order: 1
                 }
             })
 
-        .state('manage.merchandise', {
+        .state('merchandise', {
             url: '/mat-hang',
             templateUrl: 'app/pages/Templates/Merchandise/merchandise.view.html',
             controller: 'merchandiseCtrl',
             controllerAs: 'merchandiseCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             title: 'Mặt Hàng',
             sidebarMeta: {
                 order: 2
             }
         })
 
-        .state('manage.employee', {
+        .state('employee', {
             url: '/nhan-vien',
             templateUrl: 'app/pages/Templates/Employee/employee.view.html',
             controller: 'EmployeeAddController',
             controllerAs: 'employeeAddCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             title: 'Nhân Viên',
             sidebarMeta: {
                 order: 3
@@ -107,6 +123,9 @@
             templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
             controller: 'statisticsCtrl',
             controllerAs: 'statisticsCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+              },
             title: 'Thống Kê',
             sidebarMeta: {
                 icon: 'fa fa-bar-chart fa-lg',

@@ -2,7 +2,7 @@
     'use strict';
  
     angular
-        .module('BlurAdmin.pages.configuration')
+        .module('BlurAdmin.pages.login')
         .factory('UserService', UserService);
  
     UserService.$inject = ['$http'];

@@ -4,10 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController']
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService', 'AuthenticationService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController', 'USER_ROLES']
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) {
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, AuthenticationService, utility, $uibModal, $uibModalStack, toastr, Url, backendController, USER_ROLES) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -17,7 +17,14 @@
         vm.bolDetails = {};
         vm.itemsByPage = 2;
         vm.conditionQuery = new Date();
-        vm.getTransactionComponent = function() {
+        vm.currentUser = null;
+        vm.userRoles = USER_ROLES;
+        vm.isAuthorized = AuthenticationService.isAuthorized;
+       
+        vm.setCurrentUser = (user) => {
+            vm.currentUser = user;
+        };
+        vm.getTransactionComponent = () => {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
               
                 utility.getData(backendController.getComponents).then(
