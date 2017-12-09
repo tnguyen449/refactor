@@ -1,36 +1,42 @@
-(function($){
-'use strict';
-angular.module('BlurAdmin.pages.login')
-.run(authentication);
+(function($) {
+    'use strict';
+    angular.module('BlurAdmin.pages.login')
+        .run(authentication);
 
-function authentication($rootScope, AUTH_EVENTS, AuthenticationService, $uibModal, $uibModalStack) {
-    $rootScope.$on('$stateChangeStart', function (event, next) {
-        var authorizedRoles = next.data.authorizedRoles;
-        if (!AuthenticationService.isAuthorized(authorizedRoles)) {
-          event.preventDefault();
-          $uibModal.open({
-            animation: true,
-            templateUrl: 'app/pages/components/notifications/NoMerchandise.alert.html',
-            size: 'md',
-            controllerAs: '$ctrl',
-            controller: ['$uibModalInstance', function($uibModalInstance) {
-                var $ctrl = this;    
-                $ctrl.cancel = function () {
-                    $uibModalInstance.dismiss('cancel');
-                };
-            }]
-          })
-          if (AuthenticationService.isAuthenticated()) {
-            // user is not allowed
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-          } else {
-            // user is not logged in
-            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-          }
-        }
-        if (authorizedRoles === undefined) {
-          alert("You are Guest");
-        }
-      });
-}
+    function authentication($rootScope, AUTH_EVENTS, AuthenticationService, $uibModal, $uibModalStack, $location, $state, Session) {
+        $rootScope.$on('$stateChangeStart', function(event, next) {
+            if (typeof Session.isLoggedIn === 'undefined') {
+                $rootScope.isNotLoggedIn = true;
+                $rootScope.isLoggedIn = false;
+            } else {
+                $rootScope.isLoggedIn = true;
+                $rootScope.isNotLoggedIn = false;
+            }
+
+            if (typeof next.data.authorizedRoles === "undefined") {
+                return undefined;
+            } else {
+                var authorizedRoles = next.data.authorizedRoles;
+            }
+
+
+            var role = Session.userRole;
+            if (role == AuthenticationService.isAuthorized(authorizedRoles) || typeof Session.userRole === " undefined") {
+                event.preventDefault();
+                var restrictedPage = $.inArray($location.path(), ['/', '/trang-chu']) === -1;
+                if (restrictedPage) {
+                    $state.go('main');
+                }
+                if (AuthenticationService.isAuthenticated()) {
+                    // user is not allowed
+                    $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                } else {
+                    // user is not logged in
+                    $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                }
+            } else {
+                $('#listMenu li:gt(0)').show();
+            }
+        });
+    }
 })(jQuery);

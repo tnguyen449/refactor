@@ -16,7 +16,6 @@
             $uibModalStack.dismissAll();
         };
         vm.printInvoice = function() {
-            console.log(vm.transactionVM.TransactionVM);
             $.ajax({
                     method: "POST",
                     url: Url.hostDomain + backendController.addBol,

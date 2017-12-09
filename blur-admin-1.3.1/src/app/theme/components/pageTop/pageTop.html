@@ -2,26 +2,29 @@
     <a ui-sref="main" class="al-logo clearfix"><span> <img src="assets/logo/ntl_logo.png" class="image-top"></span></a>
     <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
-    <div class="user-profile col-lg-3">
-        <div class="profile-toggle-link col-lg-6 pull-right login"  style="margin-top:10px" ng-click="pageTop.click()">
-                <h3><img src="assets/icons/login.svg" style="height:25px"> Đăng nhập</h3>
+    <div class="user-profile clearfix col-lg-6">
+        <div class="profile-toggle-link col-lg-4 pull-right login" style="margin-top:10px" ng-click="pageTop.click()" ng-show="isNotLoggedIn">
+            <h3><img src="assets/icons/login.svg" style="height:25px"> Đăng nhập</h3>
         </div>
     </div>
 
-    <!-- <div class="user-profile clearfix  col-lg-3">
+    <div class="user-profile clearfix col-lg-6" ng-show="isLoggedIn">
+        <div class="profile-toggle-link col-lg-12 pull-right login" style="margin-top:10px">
+            <div class="col-lg-6 pull-right" uib-dropdown>
+                <span>Xin chào, {{userName}}</span>
+                <span uib-dropdown-toggle class=" profile-toggle-link ">
+                <img src="assets/icons/caret-down.svg " style="height:15px">
+            </span>
 
-        <div class="al-user-profile" uib-dropdown>
-            <a uib-dropdown-toggle class="profile-toggle-link">
-                <img ng-src="{{::( 'Nasta' | profilePicture )}}">
-            </a>
-            <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
-                <li><i class="dropdown-arr"></i></li>
-                <li><a href="#/profile"><i class="fa fa-user"></i>Hồ Sơ</a></li>
-                <li><a href><i class="fa fa-cog"></i>Tùy Chỉnh</a></li>
-                <li><a href class="signout"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
-            </ul>
+                <ul class="top-dropdown-menu profile-dropdown fixed-menu" uib-dropdown-menu>
+                    <li><i class="dropdown-arr "></i></li>
+                    <!--<li><a href="#/profile "><i class="fa fa-user "></i>Hồ Sơ</a></li>
+                    <li><a href><i class="fa fa-cog "></i>Tùy Chỉnh</a></li>-->
+                    <li ng-click="pageTop.logOff()"><a href class="signout"><i class="fa fa-power-off "></i>Đăng xuất</a></li>
+                </ul>
+            </div>
         </div>
-        <msg-center></msg-center>
-    </div> -->
-    
+        <!--<msg-center></msg-center>-->
+    </div>
+
 </div>
