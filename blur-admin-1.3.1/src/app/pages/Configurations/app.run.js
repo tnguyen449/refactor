@@ -3,7 +3,7 @@
     angular.module('BlurAdmin.pages.login')
         .run(authentication);
 
-    function authentication($rootScope, AUTH_EVENTS, AuthenticationService, $uibModal, $uibModalStack, $location, $state, Session) {
+    function authentication($rootScope, AUTH_EVENTS, AuthenticationService, $window, $uibModal, $uibModalStack, $location, $state, Session) {
         $rootScope.$on('$stateChangeStart', function(event, next) {
             if (typeof Session.isLoggedIn === 'undefined') {
                 $rootScope.isNotLoggedIn = true;
@@ -11,6 +11,7 @@
             } else {
                 $rootScope.isLoggedIn = true;
                 $rootScope.isNotLoggedIn = false;
+                $rootScope.userName = $window.sessionStorage.getItem('credential');
             }
 
             if (typeof next.data.authorizedRoles === "undefined") {
@@ -35,7 +36,9 @@
                     $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
                 }
             } else {
-                $('#listMenu li:gt(0)').show();
+                // $('#listMenu li:gt(0)').show();
+                $('#tab-item-0').show();
+                
             }
         });
     }

@@ -1,0 +1,33 @@
+<div class="col-lg-12">
+    <a ui-sref="main" class="al-logo clearfix"><span> <img src="assets/logo/ntl_logo.png" class="image-top"></span></a>
+    <!-- <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a> -->
+
+    <div class="user-profile clearfix col-lg-6">
+        <div class="profile-toggle-link col-lg-4 pull-right login" style="margin-top:10px" ng-click="pageTop.click()" ng-show="isNotLoggedIn">
+            <h3><img src="assets/icons/login.svg" style="height:25px"> Đăng nhập</h3>
+        </div>
+    </div>
+
+    <div class="user-profile clearfix col-lg-6" ng-show="isLoggedIn">
+        <div class="profile-toggle-link col-lg-12 pull-right login" style="margin-top:10px">
+            <div class="col-lg-6 pull-right" uib-dropdown>
+                <span>Xin chào, {{userName}}</span>
+                <span uib-dropdown-toggle class=" profile-toggle-link ">
+                    <img src="assets/icons/caret-down.svg " style="height:15px">
+                </span>
+
+                <ul class="top-dropdown-menu profile-dropdown fixed-menu" uib-dropdown-menu>
+                    <li><i class="dropdown-arr "></i></li>
+                    <!--<li><a href="#/profile "><i class="fa fa-user "></i>Hồ Sơ</a></li>
+                        <li><a href><i class="fa fa-cog "></i>Tùy Chỉnh</a></li>-->
+                    <li ng-click="pageTop.logOff()"><a href class="signout"><i class="fa fa-power-off "></i>Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--<msg-center></msg-center>-->
+    </div>
+</div>
+
+<div class="col-lg-8" style="position:absolute; top: -124%; left: 14%">
+    <tabbed-menu></tabbed-menu>
+</div>

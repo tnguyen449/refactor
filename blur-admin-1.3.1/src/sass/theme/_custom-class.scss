@@ -1,0 +1,15 @@
+.bg-danger {
+    background-color: red !important;
+}
+
+.btn-auth {
+    border: solid 0.5px rgb(221, 221, 221);
+    background-color: white !important;
+    color: rgb(31, 30, 30) !important;
+}
+
+.btn-auth:hover {
+    background-color: #ff6600 !important;
+    color: white !important;
+    border: solid 0.5px #ff6600;
+}

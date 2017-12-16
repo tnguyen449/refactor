@@ -1,10 +1,28 @@
 <div class="text-center">
-<div class="col-md-12 datepicker">
-    <p class="input-group" style="margin-bottom: 0">
-        <input type="text" class="form-control" placeholder="Nhập mã đơn hàng"/>
-        <span class="input-group-btn">
-            <button type="button" class="btn search-button" ng-click="bolInfoCtrl.open()"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </span>
-    </p>
-</div>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <p class="input-group" style="margin-bottom: 0">
+                <input type="text" class="form-control" placeholder="Nhập mã đơn hàng" ng-model="search.bolCode" />
+                <span class="input-group-btn">
+                        <button type="button" class="btn search-button" ng-click="search.search(search.bolCode)"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </span>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12" ng-show="progress == true">
+                <img src="assets/icons/xe-chay.gif" alt="" class="col-md-12">
+            </div>
+            <div class="col-md-12" ng-show="data == true">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        Nguoi gui: {{search.result.data.Customers[0].Phone == search.result.data.Contact? search.result.data.Customers[0].Name:search.result.data.Customers[1].Name}}
+                    </div>
+                    <div class="col-md-12">
+                        Nguoi nhan: {{search.result.data.Customers[1].Phone !== search.result.data.Contact? search.result.data.Customers[1].Name:search.result.data.Customers[0].Name}}
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
 </div>

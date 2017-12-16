@@ -3,10 +3,17 @@
     angular.module('BlurAdmin.theme.components')
         .controller('pageTopController', pageTopController);
 
-    function pageTopController($rootScope, $window, $scope, $state, Session) {
+    function pageTopController($rootScope, $window, $scope, $state, Session, $uibModal) {
         var vm = this;
         vm.click = () => {
-            $state.go('login');
+            // $state.go('login');
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'app/pages/Templates/Login/login.view.html',
+                controller: 'LoginController',
+                controllerAs: 'login',
+                size: 'sm'
+            })
         };
         vm.logOff = () => {
             Session.destroy();

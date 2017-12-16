@@ -1,0 +1,97 @@
+$accent: null;
+$white: #ffffff;
+$black: #000000;
+$dark-gray: lighten($black, 20%);
+$gray: lighten($black, 40%);
+$light-gray: lighten($black, 60%);
+$lighter-gray: lighten($black, 80%);
+.info-design {
+    font-weight: bold;
+    font-size: 18px
+}
+
+.tabsdemoDynamicTabs md-content {
+    background-color: transparent !important;
+}
+
+.tabsdemoDynamicTabs md-content md-tabs {
+    border: 1px solid #e1e1e1;
+}
+
+.tabsdemoDynamicTabs md-content md-tabs md-tab-content {
+    background: #f6f6f6;
+}
+
+.tabsdemoDynamicTabs md-content md-tabs md-tabs-wrapper {
+    background: white;
+}
+
+.tabsdemoDynamicTabs md-content h1:first-child {
+    margin-top: 0;
+}
+
+.tabsdemoDynamicTabs md-input-container {
+    padding-bottom: 0;
+}
+
+.tabsdemoDynamicTabs .remove-tab {
+    margin-bottom: 40px;
+}
+
+.tabsdemoDynamicTabs .demo-tab>div>div {
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.tabsdemoDynamicTabs .edit-form input {
+    width: 100%;
+}
+
+.tabsdemoDynamicTabs md-tabs {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.tabsdemoDynamicTabs md-tab[disabled] {
+    opacity: 0.5;
+}
+
+.tabsdemoDynamicTabs label {
+    text-align: left;
+}
+
+.tabsdemoDynamicTabs .long>input {
+    width: 264px;
+}
+
+.tabsdemoDynamicTabs .md-button.add-tab {
+    transform: translateY(5px);
+}
+
+md-nav-bar.md-default-theme .md-nav-bar,
+md-nav-bar .md-nav-bar {
+    border: none !important;
+    background-color: white;
+}
+
+.md-button.md-default-theme.md-accent,
+.md-button.md-accent {
+    color: $primary
+}
+
+.md-ink-ripple {
+    color: $primary
+}
+
+.cta {
+    background: darken($white, 5%);
+    width: 100%;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    color: $gray;
+    font-size: 12px;
+    text-align: center;
+    a {
+        color: $dark-gray;
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,18 @@
+<md-content style="top: 100px">
+    <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item ng-repeat="item in ::menuItems" ng-mouseenter="hoverItem($event, item)" ui-state="item.stateRef || ''" md-nav-href="{{::(item.fixedHref ? item.fixedHref: '')}}">
+            <i class="{{ ::item.icon }}"></i><span> {{ ::item.title }}</span>
+        </md-nav-item>
+
+
+    </md-nav-bar>
+</md-content>
+
+<!-- these require actual routing with ui-router or ng-route, so they
+                  won't work in the demo
+                  <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+                  <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+                  You can also add options for the <code>ui-sref-opts</code> attribute.
+                  <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+                    Page Six
+                  </md-nav-item> -->

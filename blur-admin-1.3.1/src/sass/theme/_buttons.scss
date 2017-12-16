@@ -312,10 +312,12 @@ button.progress-button {
 }
 
 .search-button {
-    background: $primary;
+    background: white;
+    border: none
 }
 
 .search-button:hover {
-    color: white;
-    font-weight: bold
+    color: $primary;
+    font-weight: bold;
+    border: none
 }
