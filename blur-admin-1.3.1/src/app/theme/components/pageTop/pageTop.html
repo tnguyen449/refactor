@@ -1,6 +1,35 @@
+<<<<<<< HEAD
 <div class="page-top clearfix col-lg-12" ng-show="isNotLoggedIn" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
     <customer-nav></customer-nav>
 </div>
 <div class="page-top clearfix col-lg-12" ng-show="isLoggedIn" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
     <employee-nav></employee-nav>
+=======
+<div class="page-top clearfix col-lg-3" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+    <a ui-sref="main" class="al-logo clearfix"><span> <img src="assets/logo/ntl_logo.png" class="image-top"></span></a>
+    <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+    <div class="user-profile col-lg-3">
+        <div class="profile-toggle-link col-lg-6 pull-right login"  style="margin-top:10px" ng-click="pageTop.click()">
+                <h3><img src="assets/icons/login.svg" style="height:25px"> Đăng nhập</h3>
+        </div>
+    </div>
+
+    <!-- <div class="user-profile clearfix  col-lg-3">
+
+        <div class="al-user-profile" uib-dropdown>
+            <a uib-dropdown-toggle class="profile-toggle-link">
+                <img ng-src="{{::( 'Nasta' | profilePicture )}}">
+            </a>
+            <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+                <li><i class="dropdown-arr"></i></li>
+                <li><a href="#/profile"><i class="fa fa-user"></i>Hồ Sơ</a></li>
+                <li><a href><i class="fa fa-cog"></i>Tùy Chỉnh</a></li>
+                <li><a href class="signout"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
+            </ul>
+        </div>
+        <msg-center></msg-center>
+    </div> -->
+    
+>>>>>>> 3d5b96d6fa6ccc7550ea0eb6c262f814c1f07777
 </div>
