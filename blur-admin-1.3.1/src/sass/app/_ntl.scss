@@ -1,97 +1,87 @@
-$accent: null;
-$white: #ffffff;
-$black: #000000;
-$dark-gray: lighten($black, 20%);
-$gray: lighten($black, 40%);
-$light-gray: lighten($black, 60%);
-$lighter-gray: lighten($black, 80%);
-.info-design {
-    font-weight: bold;
-    font-size: 18px
+//carousel
+.carousel-fade .carousel-inner .item {
+    opacity: 0;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
 }
 
-.tabsdemoDynamicTabs md-content {
-    background-color: transparent !important;
+.carousel-fade .carousel-inner .active {
+    opacity: 1;
 }
 
-.tabsdemoDynamicTabs md-content md-tabs {
-    border: 1px solid #e1e1e1;
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
 }
 
-.tabsdemoDynamicTabs md-content md-tabs md-tab-content {
-    background: #f6f6f6;
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
 }
 
-.tabsdemoDynamicTabs md-content md-tabs md-tabs-wrapper {
-    background: white;
+.carousel-fade .carousel-control {
+    z-index: 2;
 }
 
-.tabsdemoDynamicTabs md-content h1:first-child {
-    margin-top: 0;
+//tabbed menu
+.tabbable-panel {
+    border: 1px solid #eee;
+    padding: 10px;
 }
 
-.tabsdemoDynamicTabs md-input-container {
-    padding-bottom: 0;
+
+/* Default mode */
+
+.tabbable-line>.nav-tabs {
+    border: none;
+    margin: 0px;
 }
 
-.tabsdemoDynamicTabs .remove-tab {
-    margin-bottom: 40px;
+.tabbable-line>.nav-tabs>li {
+    margin-right: 2px;
 }
 
-.tabsdemoDynamicTabs .demo-tab>div>div {
-    padding: 25px;
-    box-sizing: border-box;
+.tabbable-line>.nav-tabs>li>a {
+    border: 0;
+    margin-right: 0;
+    color: #000000;
 }
 
-.tabsdemoDynamicTabs .edit-form input {
-    width: 100%;
+.tabbable-line>.nav-tabs>li>a>i {
+    color: #020202;
 }
 
-.tabsdemoDynamicTabs md-tabs {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+.tabbable-line>.nav-tabs>li:hover>a {
+    color: $primary;
 }
 
-.tabsdemoDynamicTabs md-tab[disabled] {
-    opacity: 0.5;
+.tabbable-line>.nav-tabs>li:hover>a>i {
+    color: $primary;
 }
 
-.tabsdemoDynamicTabs label {
-    text-align: left;
+.tabbable-line>.nav-tabs>li.open,
+.tabbable-line>.nav-tabs>li:hover {
+    border-bottom: 4px solid $primary;
 }
 
-.tabsdemoDynamicTabs .long>input {
-    width: 264px;
+.tabbable-line>.nav-tabs>li.open>a,
+.tabbable-line>.nav-tabs>li:hover>a {
+    border: 0;
+    background: none !important;
+    color: #333333;
 }
 
-.tabsdemoDynamicTabs .md-button.add-tab {
-    transform: translateY(5px);
+.tabbable-style {
+    margin: 2% 0 0 6%;
+    cursor: pointer
 }
 
-md-nav-bar.md-default-theme .md-nav-bar,
-md-nav-bar .md-nav-bar {
-    border: none !important;
-    background-color: white;
-}
-
-.md-button.md-default-theme.md-accent,
-.md-button.md-accent {
-    color: $primary
-}
-
-.md-ink-ripple {
-    color: $primary
-}
-
-.cta {
-    background: darken($white, 5%);
-    width: 100%;
-    padding: 15px 40px;
-    box-sizing: border-box;
-    color: $gray;
-    font-size: 12px;
-    text-align: center;
-    a {
-        color: $dark-gray;
-        text-decoration: none;
+@media screen and (min-width: 1593px) {
+    .tabbable-style {
+        margin: 1.75% 0 0 6%
     }
 }

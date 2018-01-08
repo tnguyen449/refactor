@@ -17,6 +17,21 @@
     color: white;
 }
 
+.start-status-search {
+    background-color: #808080 !important;
+    color: white;
+}
+
+.progress-status-search {
+    background-color: $primary !important;
+    color: white;
+}
+
+.complete-status-search {
+    background: #339933 !important;
+    color: white;
+}
+
 .steps-indicator.steps-5 li>a {
     color: #808080 !important
 }

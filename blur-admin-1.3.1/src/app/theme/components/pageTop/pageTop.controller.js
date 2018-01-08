@@ -3,10 +3,9 @@
     angular.module('BlurAdmin.theme.components')
         .controller('pageTopController', pageTopController);
 
-    function pageTopController($rootScope, $window, $scope, $state, Session, $uibModal) {
+    function pageTopController($rootScope, $window, $scope, $state, Session, $uibModal, $location) {
         var vm = this;
         vm.click = () => {
-            // $state.go('login');
             $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/Templates/Login/login.view.html',
@@ -16,13 +15,13 @@
             })
         };
         vm.logOff = () => {
-            Session.destroy();
-            $state.go('main');
-            $rootScope.$on('$stateChangeSuccess', function(event, next) {
-                $rootScope.isLoggedIn = false;
-                $rootScope.isNotLoggedIn = true;
-                $('#listMenu li:gt(0)').hide();
-            });
+            $window.sessionStorage.clear();
+            $rootScope.isLoggedIn = false;
+            $rootScope.isNotLoggedIn = true;
+            $location.path("/trang-chu");
+            $state.go('main', {}, { reload: true });
+            $rootScope.employeeName = "";
+            $('#listMenu li:gt(0)').hide();
 
         }
     };

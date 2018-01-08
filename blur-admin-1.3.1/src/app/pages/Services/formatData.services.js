@@ -9,7 +9,8 @@
 
         return {
             convertToNumber: convertToNumber,
-            formatCurrency: formatCurrency
+            formatCurrency: formatCurrency,
+            convertDate: convertDate
         }
 
         function convertToNumber(numberString) {
@@ -23,6 +24,11 @@
 
         function formatCurrency(currency) {
             return currency.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        }
+
+        function convertDate(stringDate) {
+            var newDate = stringDate.split(/\D/);
+            return newDate.reverse().join('/');
         }
     }
 })();

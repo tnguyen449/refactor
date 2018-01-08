@@ -7,21 +7,23 @@
         var vm = this;
         vm.result = {};
         $rootScope.progress = false;
-        $rootScope.data = true;
+        $rootScope.data = false;
+        $rootScope.notFound = false;
         vm.search = (bolCode) => {
-            $rootScope.progress = true;
-            $rootScope.data = false;
-            $http.get(Url.hostDomain + backendController.getBolByBolCode + bolCode).then((res) => {
-                vm.result = res;
-                console.log(vm.result);
-                $rootScope.progress = false;
-                $rootScope.data = true;
-            }, (err) => {
-                console.log(err);
-                $rootScope.progress = false;
-                $rootScope.data = true;
-            })
+            if (typeof(bolCode) !== 'undefined') {
+                $rootScope.progress = true;
+                $rootScope.data = false;
+                $http.get(Url.hostDomain + backendController.getBolByBolCode + bolCode).then((res) => {
+                    vm.result = res;
+                    $rootScope.progress = false;
+                    $rootScope.data = true;
+                    $rootScope.notFound = false;
+                }, (err) => {
+                    $rootScope.progress = false;
+                    $rootScope.data = false;
+                    $rootScope.notFound = true;
+                })
+            }
         }
-
     }
 })();

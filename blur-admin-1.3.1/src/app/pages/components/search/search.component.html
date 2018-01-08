@@ -1,6 +1,6 @@
 <div class="text-center">
-    <div class="col-md-12">
-        <div class="col-md-6">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <p class="input-group" style="margin-bottom: 0">
                 <input type="text" class="form-control" placeholder="Nhập mã đơn hàng" ng-model="search.bolCode" />
                 <span class="input-group-btn">
@@ -8,20 +8,74 @@
                 </span>
             </p>
         </div>
-        <div class="col-md-6">
-            <div class="col-md-12" ng-show="progress == true">
-                <img src="assets/icons/xe-chay.gif" alt="" class="col-md-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="progress == true">
+                <img src="assets/icons/xe-chay.gif" alt="" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             </div>
-            <div class="col-md-12" ng-show="data == true">
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        Nguoi gui: {{search.result.data.Customers[0].Phone == search.result.data.Contact? search.result.data.Customers[0].Name:search.result.data.Customers[1].Name}}
-                    </div>
-                    <div class="col-md-12">
-                        Nguoi nhan: {{search.result.data.Customers[1].Phone !== search.result.data.Contact? search.result.data.Customers[1].Name:search.result.data.Customers[0].Name}}
+            <div ng-show="notFound == true"><span style="font-weight:bold; color: rgb(107, 106, 106); font-size: 18px">Không tìm thấy kết quả tìm kiếm</span></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color: rgb(249, 249, 249); border-radius: 5px" ng-show="data == true">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="panel panel-default" style="margin-top: 15px">
+                            <div class="panel-heading">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left">
+                                    <strong>Trạng thái:</strong> <span class="badge badge-pill" ng-class="search.result.data.Status.Id==1? 'start-status-search':(search.result.data.Status.Id ==5 ? 'complete-status-search':'progress-status-search')">{{search.result.data.Status.StatusName}}</span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
+                                    <strong>Ngày gửi:</strong> {{search.result.data.CreatedDate | date:'dd/MM/yyyy'}}
+                                </div>
+                            </div>
+                            <div class="panel-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="text-left">
+                                        <strong>Người nhận:</strong> {{search.result.data.Customers[1].Phone !== search.result.data.Contact? search.result.data.Customers[1].Name:search.result.data.Customers[0].Name}}
+                                    </div>
+                                    <div style="padding-top: 5px"></div>
+                                    <div class="text-left">
+                                        <strong>Gửi đến:</strong> {{search.result.data.Branches[0].Id == search.result.data.Start? search.result.data.Branches[0].Name:search.result.data.Branches[0].Name}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="text-left">
+                                        <strong>Người gửi:</strong> {{search.result.data.Customers[0].Phone == search.result.data.Contact? search.result.data.Customers[0].Name:search.result.data.Customers[1].Name}}
+                                    </div>
+                                    <div style="padding-top: 5px"></div>
+                                    <div class="text-left">
+                                        <strong>Gửi từ:</strong> {{search.result.data.Branches[1].Phone !== search.result.data.Start? search.result.data.Branches[1].Name:search.result.data.Branches[0].Name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <td class="bolHeaderView">Hàng Hóa</td>
+                                            <td class="bolHeaderView">Tổng Tiền</td>
+                                            <td class="bolHeaderView">Trả Trước</td>
+                                            <td class="bolHeaderView" ng-hide="search.result.data.Total == search.result.data.Prepaid">Còn Lại</td>
+                                            <td class="bolHeaderView">Phương Thức Nhận</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{search.result.data.MixValue}}</td>
+                                            <td>{{search.result.data.Total}}</td>
+                                            <td>{{search.result.data.Prepaid}}</td>
+                                            <td ng-hide="search.result.data.Total == search.result.data.Prepaid">{{search.result.data.Liabilities}}</td>
+                                            <td>{{search.result.data.DeliveryType1.Name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

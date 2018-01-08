@@ -11,15 +11,15 @@
         $locationProvider.hashPrefix('');
         $locationProvider.html5Mode(true);
         $stateProvider
-            // .state('login', {
-            //     url: '/dang-nhap',
+        // .state('login', {
+        //     url: '/dang-nhap',
 
-            //     templateUrl: 'app/pages/Templates/Login/login.view.html',
-            //     controller: 'LoginController',
-            //     controllerAs: 'login'
-            // })
+        //     templateUrl: 'app/pages/Templates/Login/login.view.html',
+        //     controller: 'LoginController',
+        //     controllerAs: 'login'
+        // })
 
-        .state('main', {
+            .state('main', {
             url: '/trang-chu',
             title: 'Trang Chủ',
             templateUrl: 'app/pages/Templates/Logistics/Main_View_Refactor/Main.View.html',
@@ -94,25 +94,25 @@
             }
         })
 
-        .state('merchandise', {
-            url: '/mat-hang',
-            templateUrl: 'app/pages/Templates/Merchandise/merchandise.view.html',
-            controller: 'merchandiseCtrl',
-            controllerAs: 'merchandiseCtrl',
-            data: {
-                authorizedRoles: [USER_ROLES.guest]
-            },
-            title: 'Mặt Hàng',
-            sidebarMeta: {
-                order: 3,
-                icon: 'fa fa-globe fa-lg'
-            }
-        })
+        // .state('merchandise', {
+        //     url: '/mat-hang',
+        //     templateUrl: 'app/pages/Templates/Merchandise/merchandise.view.html',
+        //     controller: 'merchandiseCtrl',
+        //     controllerAs: 'merchandiseCtrl',
+        //     data: {
+        //         authorizedRoles: [USER_ROLES.guest]
+        //     },
+        //     title: 'Mặt Hàng',
+        //     sidebarMeta: {
+        //         order: 3,
+        //         icon: 'fa fa-globe fa-lg'
+        //     }
+        // })
 
         .state('employee', {
             url: '/nhan-vien',
             templateUrl: 'app/pages/Templates/Employee/employee.view.html',
-            controller: 'EmployeeAddController',
+            controller: 'EmployeeController',
             controllerAs: 'employeeAddCtrl',
             data: {
                 authorizedRoles: [USER_ROLES.guest]
@@ -125,20 +125,20 @@
             }
         })
 
-        .state('statistics', {
-            url: '/thong-ke',
-            templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
-            controller: 'statisticsCtrl',
-            controllerAs: 'statisticsCtrl',
-            data: {
-                authorizedRoles: [USER_ROLES.guest]
-            },
-            title: 'Thống Kê',
-            sidebarMeta: {
-                icon: 'fa fa-bar-chart fa-lg',
-                order: 5
-            }
-        })
+        // .state('statistics', {
+        //     url: '/thong-ke',
+        //     templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
+        //     controller: 'statisticsCtrl',
+        //     controllerAs: 'statisticsCtrl',
+        //     data: {
+        //         authorizedRoles: [USER_ROLES.guest]
+        //     },
+        //     title: 'Thống Kê',
+        //     sidebarMeta: {
+        //         icon: 'fa fa-bar-chart fa-lg',
+        //         order: 5
+        //     }
+        //})
     };
 })();
 

@@ -1,6 +1,7 @@
 .page-top {
     background-color: $sidebar;
     position: fixed;
+    top: 0;
     z-index: 904;
     box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5);
     height: 66px;
@@ -42,6 +43,11 @@ a.al-logo {
     border: 0;
     opacity: 1;
     position: relative;
+    span {
+        position: fixed;
+        right: 130px;
+        top: 24px;
+    }
     a {
         display: block;
     }

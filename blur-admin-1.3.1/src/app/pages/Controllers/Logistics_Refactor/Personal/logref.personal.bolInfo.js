@@ -243,7 +243,6 @@
                     }
                 };
                 /** end */
-                console.log(vm.transactionVM.TransactionVM);
                 shareDataService.addItem(vm.transactionVM);
                 if (window.innerWidth < 768 && window.innerHeight < 768) {
                     alert('Completed');

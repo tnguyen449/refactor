@@ -1,3 +1,6 @@
-<div class="page-top clearfix col-lg-12" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-    <customer-nav ng-if="true"></customer-nav>
+<div class="page-top clearfix col-lg-12" ng-show="isNotLoggedIn" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+    <customer-nav></customer-nav>
+</div>
+<div class="page-top clearfix col-lg-12" ng-show="isLoggedIn" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+    <employee-nav></employee-nav>
 </div>

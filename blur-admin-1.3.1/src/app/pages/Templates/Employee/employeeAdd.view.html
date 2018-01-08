@@ -9,60 +9,58 @@
             <div class="col-md-12">
                 <form class="form-horizontal">
                     <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="alert bg-danger" style="color: white; font-weight: bold;" ng-if="employeeCtrl.isNotNull == false">Các mục không được bỏ trống</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-3  control-label-modal bolHeader"><strong>Tên Nhân Viên</strong></label>
                         <div class="col-sm-9">
-
-                            <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.MerchandiseType1" placeholder="Nhập tên nhân viên">
-
+                            <input type="text" class="form-control" ng-model="employeeCtrl.fullname" placeholder="Tên nhân viên">
                         </div>
-                        <span class="help-block error-block basic-block">Nhập tên mặt hàng</span>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3  control-label-modal bolHeader" tooltip-placement="top-left" uib-tooltip="Gồm chữ đầu tiên của khu vực.&nbsp Ví dụ: SQ1, STB (Quận 1, Quận Tân Bình)"><strong>Ngày Sinh<i class="fa fa-question-circle fa-lg fa-primary" aria-hidden="true"></i></strong></label>
-                        <div class="col-sm-9">
-
-                            <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.Description" placeholder="Nhập mã chi nhánh">
-
-                        </div>
-                        <span class="help-block error-block basic-block">Chọn loại hàng</span>
-                    </div>
-
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-sm-3  control-label-modal bolHeader"><strong>Email</strong></label>
                         <div class="col-sm-9">
-
-                            <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.MerchandiseType1" placeholder="Nhập tên nhân viên">
-
+                            <input type="text" name="receiverPhone" class="form-control" ng-model="employeeCtrl.email" placeholder="Email">
                         </div>
-                        <span class="help-block error-block basic-block">Nhập tên mặt hàng</span>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label class="col-sm-3  control-label-modal bolHeader"><strong>Mật Khẩu</strong></label>
+                        <div class="col-sm-9">
+                            <input type="password" name="receiverPhone" class="form-control" ng-model="employeeCtrl.password" placeholder="Mật khẩu">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3  control-label-modal bolHeader"><strong>Ngày Sinh</strong></label>
+                        <div class="col-sm-9">
+                            <input type="text" name="receiverPhone" class="form-control" ng-model="employeeCtrl.dob" placeholder="Ngày sinh">
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3  control-label-modal bolHeader"><strong>Địa Chỉ</strong></label>
                         <div class="col-sm-9">
-
-                            <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.MerchandiseType1" placeholder="Nhập tên nhân viên">
-
+                            <input type="text" name="receiverPhone" class="form-control" ng-model="employeeCtrl.address" placeholder="Địa chỉ">
                         </div>
-                        <span class="help-block error-block basic-block">Nhập tên mặt hàng</span>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3  control-label-modal bolHeader"><strong>Điện Thoại</strong></label>
                         <div class="col-sm-9">
-
-                            <input type="text" name="receiverPhone" class="form-control" ng-model="merchandiseAddCtrl.merchandise.MerchandiseType1" placeholder="Nhập tên nhân viên">
-
+                            <input type="text" onlyDigit name="receiverPhone" class="form-control" ng-model="employeeCtrl.phone" placeholder="Điện thoại">
                         </div>
-                        <span class="help-block error-block basic-block">Nhập tên mặt hàng</span>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary btn-lg" ng-click="merchandiseAddCtrl.add()"><i class="fa fa-plus-square fa-log fa-primary" aria-hidden="true"></i> Tạo</button>
-        <button class="btn btn-primary btn-lg" ng-click="merchandiseAddCtrl.cancel()"><i class="fa fa-minus-square fa-log fa-primary" aria-hidden="true"></i> Hủy</button>
+        <button class="btn btn-primary btn-lg" ng-click="employeeCtrl.create()"><i class="fa fa-plus-square fa-log fa-primary" aria-hidden="true"></i> Tạo</button>
+        <button class="btn btn-primary btn-lg" ng-click="employeeCtrl.cancel()"><i class="fa fa-minus-square fa-log fa-primary" aria-hidden="true"></i> Hủy</button>
     </div>
 </div>

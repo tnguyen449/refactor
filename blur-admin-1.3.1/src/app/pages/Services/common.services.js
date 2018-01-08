@@ -13,7 +13,7 @@
         };
 
         function postData(controller, dataObject) {
-            return $http.post(Url.hostDomain + controller, dataObject).then(function() {
+            return $http.post(Url.hostDomain + controller, dataObject, { headers: { 'Content-Type': 'application/json' } }).then(function() {
 
             });
         };

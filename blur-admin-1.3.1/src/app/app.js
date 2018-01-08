@@ -2,12 +2,12 @@
 
 angular.module('BlurAdmin', [
     'ngAnimate',
+    'ngRoute',
     'ui.bootstrap',
     'ui.sortable',
     'ui.router',
     'ngTouch',
     'toastr',
-
     "xeditable",
     'ui.slimscroll',
     'ngJsTree',

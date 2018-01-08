@@ -3,8 +3,8 @@
 
     angular.module('BlurAdmin.pages.configuration')
         .constant('Url', {
-            //'hostDomain': 'http://api.ntl.com.vn/NgocTrang/Api/',
-            'hostDomain': 'http://localhost:57363/NgocTrang/Api/'
+            'hostDomain': 'http://api.ntl.com.vn/NgocTrang/Api/',
+            //'hostDomain': 'http://localhost:57363/NgocTrang/Api/'
         })
 
     .constant('backendController', {
@@ -65,6 +65,7 @@
     })
 
     .constant('USER_ROLES', {
+        'guid': 'a0ce457c-b5&18-4dd3-b0c4-49f*0186fbb8-c53b2!3ac-3613-4e96-8d5f-fdefc57$9d685',
         'admin': 'admin',
         'employee': 'Emp',
         'editor': 'editor',
