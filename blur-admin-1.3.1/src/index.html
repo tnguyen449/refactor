@@ -24,17 +24,10 @@
 
 <body>
     <div class="body-bg" ng-controller="PersonalMainController as mainCtrl" ng-init="mainCtrl.getTransactionComponent()"></div>
-<<<<<<< HEAD
     <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
         <!-- <ba-sidebar></ba-sidebar> -->
-=======
-    <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }"
-    > 
-        
-        <ba-sidebar></ba-sidebar>
->>>>>>> 3d5b96d6fa6ccc7550ea0eb6c262f814c1f07777
         <page-top></page-top>
-        
+
         <div class="al-main">
             <!-- <div class="al-content"> -->
             <!-- <content-top></content-top> -->
@@ -46,7 +39,7 @@
 
     <div class="al-footer">
         <footer>
-                <about-us></about-us>
+            <comp-detail></comp-detail>
         </footer>
     </div>
 
@@ -54,8 +47,8 @@
         <div></div>
     </div>
 
-   
-    
+
+
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

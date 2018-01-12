@@ -4,17 +4,10 @@
     angular.module('BlurAdmin.pages.logistics')
         .controller('PersonalMainController', PersonalMainController);
 
-<<<<<<< HEAD
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService',  'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController'];
+    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController'];
 
     /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) { 
-=======
-    PersonalMainController.$inject = ['$scope', '$rootScope', '$state', '$http', 'shareDataService', 'businessService', 'AuthenticationService', 'utility', '$uibModal', '$uibModalStack', 'toastr', 'Url', 'backendController', 'USER_ROLES']
-
-    /** @ngInject */
-    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, AuthenticationService, utility, $uibModal, $uibModalStack, toastr, Url, backendController, USER_ROLES) {
->>>>>>> 3d5b96d6fa6ccc7550ea0eb6c262f814c1f07777
+    function PersonalMainController($scope, $rootScope, $state, $http, shareDataService, businessService, utility, $uibModal, $uibModalStack, toastr, Url, backendController) {
         var vm = this;
         vm.branchInfoVM = [];
         vm.merchandiseTypeVM = [];
@@ -24,19 +17,9 @@
         vm.bolDetails = {};
         vm.itemsByPage = 2;
         vm.conditionQuery = new Date();
-<<<<<<< HEAD
-=======
-        vm.currentUser = null;
-        vm.userRoles = USER_ROLES;
-        vm.isAuthorized = AuthenticationService.isAuthorized;
-       
-        vm.setCurrentUser = (user) => {
-            vm.currentUser = user;
-        };
->>>>>>> 3d5b96d6fa6ccc7550ea0eb6c262f814c1f07777
         vm.getTransactionComponent = () => {
             if (vm.branchInfoVM.length == 0 && vm.merchandiseTypeVM.length == 0 && vm.deliveryTypeVM.length == 0) {
-              
+
                 utility.getData(backendController.getComponents).then(
                     function(response) {
 
