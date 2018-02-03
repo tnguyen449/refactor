@@ -1,63 +1,94 @@
-<div class="col-md-12">
+<div class="col-md-12" ng-init="statisticsCtrl.InitStatistic()">
     <div class="panel panel-primary height">
         <div class="panel-body">
             <h1>Thống Kê</h1>
             <!-- button group -->
             <div class="add-row-editable-table col-md-12">
                 <div class="col-md-12">
-                    <div class="col-md-6 pull-left">
-                        <div class="col-md-7 pull-left">
-
+                    <div class="col-md-6 pull-right">
+                        <div class="col-md-7 pull-right">
+                            <div class="col-md-4 pull-left">
+                            </div>
+                            <div class="col-md-8 pull-right">
+                                <button class="btn btn-md btn-primary" ng-click="statisticsCtrl.exportToExcel('#tableToExport')">
+                                    <i class="far fa-file-excel"></i>Tạo Báo Cáo</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row btns-row pull-right">
+                    <div class="col-md-6  pull-left">
+                        <div class="row btns-row">
                             <!-- button add item -->
-                            <div class="col-md-6">
-                                <button type="button" ng-click="merchandiseCtrl.openModal()" class="btn btn-lg btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Vận Đơn Trong Ngày</span></button>
-                            </div>
-                            <div class="col-md-6">
-                                <button type="button" ng-click="merchandiseCtrl.openModal()" class="btn btn-lg btn-primary"><span><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i> Hàng Nhận Trong Ngày</span></button>
+                            <div class="col-md-7 pull-left">
+                                <div class="col-md-4" style="padding-top: 10px;">
+                                    <label>Ngày Tạo: </label>
+                                </div>
+                                <!-- button search item -->
+                                <div class="datepicker col-md-8" style="padding-left: 7.5px">
+                                    <p class="input-group">
+                                        <input type="text" class="input-sm form-control" uib-datepicker-popup="{{statisticsCtrl.format}}" ng-model="statisticsCtrl.conditionQuery"
+                                            ng-change="statisticsCtrl.filterStatistic(statisticsCtrl.conditionQuery)" ng-value="statisticsCtrl.bindingDate.minDate"
+                                            is-open="statisticsCtrl.opened" datepicker-options="statisticsCtrl.dateOptions" name="datePicker"
+                                            close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="statisticsCtrl.open()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </p>
+                                    <span class="help-block error-block basic-block">Chọn ngày nhận</span>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end button group -->
+
             <!-- table bill of landing details -->
-            <div class="horizontal-scroll col-md-12" ng-show="merchandiseCtrl.merchandiseList.length !== 0">
 
-                <div class="row pie-charts">
-                    <div class="pie-chart-item-container" ng-repeat="chart in charts">
-                        <div ba-panel>
-                            <div class="pie-chart-item">
-                                <div class="chart" rel="{{ ::chart.color }}" data-percent="60"> <span class="percent"></span> </div>
-                                <div class="description">
-                                    <div>{{ ::chart.description }}</div>
-                                    <div class="description-stats">{{ ::chart.stats }}</div>
-                                </div>
-                                <i class="chart-icon i-{{ ::chart.icon }}"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <div class="col-md-12">
-                            <div id="bolDailyChart"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12">
-                            <div id="bolBasedLocationChart"></div>
-                        </div>
-                    </div>
-                </div>
-
+            <div ng-show="statisticsCtrl.DailyStatisticList.length !==0" id="tableToExport">
+                <table class="table table-no-borders">
+                    <thead class="statisticTable">
+                        <tr>
+                            <th class="text-left bolHeaderView">#</th>
+                            <th class="text-left bolHeaderView">Mã ĐH</th>
+                            <th class="text-left bolHeaderView">Người Nhận</th>
+                            <th class="text-left bolHeaderView">SDT Người Nhận</th>
+                            <th class="text-left bolHeaderView">T.Hàng Hóa</th>
+                            <th class="text-left bolHeaderView">SL</th>
+                            <th class="text-left bolHeaderView">Nơi Nhận</th>
+                            <th class="text-left bolHeaderView">Tổng Tiền</th>
+                            <th class="text-left bolHeaderView">Đã Trả</th>
+                            <th class="text-left bolHeaderView">Còn Nợ</th>
+                            <th class="text-left bolHeaderView">TT.Đơn Hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="statistic in statisticsCtrl.DailyStatisticList">
+                        <td>{{$index + 1}}</td>
+                        <td>{{statistic.BolCode}}</td>
+                        <td>{{statistic.Customers[1].Phone ===statistic.Contact ? statistic.Customers[0].Name:statistic.Customers[1].Name}}</td>
+                        <td>{{statistic.Customers[1].Phone ===statistic.Contact ? statistic.Customers[0].Phone:statistic.Customers[1].Phone}}</td>
+                        <td>{{statistic.MixValue}}</td>
+                        <td>{{statistic.Quantity}}</td>
+                        <td>{{statistic.Branches[0].Id === statistic.Start ?statistic.Branches[1].Description : statistic.Branches[0].Description
+                            }}
+                        </td>
+                        <td>{{statistic.Total}}</td>
+                        <td>{{statistic.Prepaid}}</td>
+                        <td>{{statistic.Liabilities}}</td>
+                        <td>
+                            <button type="button" class="btn btn-xs status btn-default ng-binding complete-status" ng-class="statistic.Status.Id==1? 'start-status':(statistic.Status.Id ==5 ? 'complete-status':'progress-status')">{{statistic.Status.StatusName}}</button>
+                        </td>
+                    </tbody>
+                </table>
             </div>
-            <!-- end bill of landing details -->
+            <div ng-show="statisticsCtrl.DailyStatisticList.length===0">
+                <p class="table-notification" style="text-align: center">Không tìm thấy dữ liệu</p>
+            </div>
         </div>
+        <!-- end bill of landing details -->
     </div>
+    <div id="StatisticDataChart"></div>
     <!-- end bill of landing infomation -->
 </div>

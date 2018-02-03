@@ -127,20 +127,20 @@
             }
         })
 
-        // .state('statistics', {
-        //     url: '/thong-ke',
-        //     templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
-        //     controller: 'statisticsCtrl',
-        //     controllerAs: 'statisticsCtrl',
-        //     data: {
-        //         authorizedRoles: [USER_ROLES.guest]
-        //     },
-        //     title: 'Thống Kê',
-        //     sidebarMeta: {
-        //         icon: 'fa fa-bar-chart fa-lg',
-        //         order: 5
-        //     }
-        //})
+       .state('statistics', {
+            url: '/thong-ke',
+            templateUrl: 'app/pages/Templates/Statistics/statistics.view.html',
+            controller: 'statisticsCtrl',
+            controllerAs: 'statisticsCtrl',
+            data: {
+                authorizedRoles: [USER_ROLES.guest]
+            },
+            title: 'Thống Kê',
+            sidebarMeta: {
+                icon: 'fa fa-bar-chart fa-lg',
+                order: 5
+            }
+        })
     };
 })();
 

@@ -27,19 +27,19 @@
     <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
         <!-- <ba-sidebar></ba-sidebar> -->
         <page-top></page-top>
-
+        
         <div class="al-main">
-            <!-- <div class="al-content"> -->
+            <!-- <div class="al-content" content-top> -->
             <!-- <content-top></content-top> -->
-            <div ui-view autoscroll="true" autoscroll-body-top></div>
-            <!-- </div> -->
+            <div ui-view ></div>
+            </div>
         </div>
 
     </main>
 
     <div class="al-footer">
         <footer>
-            <comp-detail></comp-detail>
+            <!-- <about-us></about-us> -->
         </footer>
     </div>
 
@@ -47,8 +47,8 @@
         <div></div>
     </div>
 
-
-
+   
+    
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

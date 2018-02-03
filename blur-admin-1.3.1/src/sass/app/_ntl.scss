@@ -80,6 +80,16 @@
     cursor: pointer
 }
 
+.statisticTable > tr {
+    border-bottom: 1px  solid black ;
+   
+}
+
+#StatisticDataChart {
+    width		: 100%;
+	height		: 500px;
+	
+}
 @media screen and (min-width: 1593px) {
     .tabbable-style {
         margin: 1.75% 0 0 6%
